@@ -14,7 +14,8 @@ html {
 
 /* hover hursor pointer */
 
-.logo, .search_icon, .theme_switcher, .profile_avatar {
+.logo, .search_icon, .theme_switcher,
+.profile_avatar, .icon, .btn {
     cursor: pointer;
 }
 
@@ -117,6 +118,7 @@ header {
     height: calc(100vh - 5em); /* main_container height = viewport height - header height */
 }
 
+/* Side menu */
 .side_menu {
     background-color: var(--primary-color);
     color: var(--main-font-color);
@@ -124,11 +126,51 @@ header {
     border-right: 1px solid var(--border-color);
 }
 
+/* menu title */
+.menu_title_container .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 6em;
+}
+
+.menu_title_container .btn {
+    display: block;
+    background-color: #fff;
+    font-family: var(--main-font);
+    border-radius: 0.75em;
+    border: none;
+    margin: 0 auto;
+    margin-top: 1rem;
+    width: 85%;
+    height: 3em;
+}
+
+.title {
+    margin-top: 1rem;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.btn-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* menu title */
+
 .main_content {
     background-color: #170F23;
     flex-grow: 1;
     padding: 1rem;
 }
+/* Side menu */
 
 /* Main area */
 
@@ -143,6 +185,7 @@ header {
 }
 
 ::-webkit-scrollbar-track {
+    background: none;
     background-color: transparent;
 }
 /* Scroll bar */

@@ -40,7 +40,38 @@
     <main class="main_container">
 
         <!-- SIDEBAR -->
-        <aside class="side_menu">side menu</aside>
+        <aside class="side_menu">
+            <nav>
+                <div class="menu_title_container">
+                    <div class="title">
+                        Menu
+                        <div class="icon collapse_icon">
+                            <img 
+                                width="20px"
+                                height="20px"
+                                src="../public/assets/icons/collapse_icon.png" 
+                                alt=""
+                            >
+                        </div>
+                    </div>
+                    <button class="btn new_btn">
+                        <div class="btn-content">
+                            <img 
+                                width="20px"
+                                height="20px"
+                                src="../public/assets/icons/add_icon.png" 
+                                alt=""
+                            >
+                            <p class="btn_text">
+                                New Post
+                            </p>
+                        </div>
+                    </button>
+                </div>
+
+                
+            </nav>
+        </aside>
 
         <!-- MAIN CONTENT -->
         <main class="main_content">

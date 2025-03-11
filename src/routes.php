@@ -35,7 +35,7 @@ class Router {
                 'path' => '',
                 'controller' => '',
                 'action' => ''
-            ]
+            ],
         ]
         */
 
