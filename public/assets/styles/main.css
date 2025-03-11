@@ -12,6 +12,13 @@ html {
     font-family: var(--main-font);
 }
 
+a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+}
+
 /* hover hursor pointer */
 
 .logo, .search_icon, .theme_switcher,
@@ -119,11 +126,18 @@ header {
 }
 
 /* Side menu */
+
 .side_menu {
     background-color: var(--primary-color);
     color: var(--main-font-color);
     width: 15em;
     border-right: 1px solid var(--border-color);
+}
+
+.side_menu hr {
+    margin-top: 1.5em;
+    border: 0.5px solid var(--border-color);
+    width: 90%;
 }
 
 /* menu title */
@@ -164,6 +178,24 @@ header {
     cursor: pointer;
 }
 /* menu title */
+
+/* menu items */
+.menu_item {
+    display: flex;
+    gap: 0.5em;
+    padding: 1em;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.selected_item {
+    background-color: #393243;
+    border-right: 1px solid #9B4DE0;
+    border-left: 5px solid #9B4DE0;
+}
+/* menu items */
+
 
 .main_content {
     background-color: #170F23;

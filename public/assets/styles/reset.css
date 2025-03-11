@@ -132,3 +132,11 @@ input:focus {
   border: none;
   box-shadow: none;
 }
+a {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+}

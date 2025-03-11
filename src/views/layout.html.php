@@ -69,7 +69,46 @@
                     </button>
                 </div>
 
-                
+                <hr>
+
+                <ul class="menu_list">
+                    <li class="menu_item selected_item">
+                        <div class="icon">
+                            <img 
+                                width="20px"
+                                height="20px"
+                                src="../public/assets/icons/home.png" 
+                                alt=""
+                            >
+                        </div>
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="menu_item">
+                        <div class="icon">
+                            <img 
+                                width="20px"
+                                height="20px"
+                                src="../public/assets/icons/module.png" 
+                                alt=""
+                            >
+                        </div>
+                        <a href="#">Module</a>
+                    </li>
+                    <li class="menu_item">
+                        <div class="icon">
+                            <img 
+                                width="20px"
+                                height="20px"
+                                src="../public/assets/icons/admin.png" 
+                                alt=""
+                            >
+                        </div>
+                        <a href="#">Admin</a>
+                    </li>
+                </ul>
+
+                <hr>
+
             </nav>
         </aside>
 
