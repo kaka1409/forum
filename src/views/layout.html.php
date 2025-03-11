@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/assets/styles/reset.css">
+    <link rel="stylesheet" href="../public/assets/styles/main.css">
     <title>forum</title>
 </head>
 <body>
-    <section class="header">
-        <h1>header</h1>
-    </section>
+    <header>
+        <h1 class="logo">Forum</h1>
 
-    <section class="nav">
-        <h1>side navbar</h1>
-    </section>
+        <div class="search_bar">
+            <div class="seach_icon"></div>
+            <input type="text" placeholder="Search posts or users">
+        </div>
 
-    <section class="main">
-        <h1>main</h1>
-    </section>
+        <div class="theme_switcher"></div>
+
+        <div class="profile_container">profile</div>
+    </header>
+
+    <main class="main_container">
+        <aside class="side_menu">side menu</aside>
+        <main class="main_content">main</main>
+    </main>
 
 </body>
 </html>

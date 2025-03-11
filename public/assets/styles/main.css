@@ -1,0 +1,35 @@
+:root {
+    --primary-color: #231B2E;
+    --border-color: #88518B;
+    --main-font-color: #fff;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    background-color: var(--primary-color);
+    color: var(--main-font-color);
+    height: 5em;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.main_container {
+    display: flex;
+    color: var(--main-font-color);
+    height: calc(100vh - 5em); /* main_container height = viewport height - header height */
+}
+
+.side_menu {
+    background-color: var(--primary-color);
+    color: var(--main-font-color);
+    width: 20em;
+    border-right: 1px solid var(--border-color);
+}
+
+.main_content {
+    background-color: #170F23;
+    flex-grow: 1;
+    padding: 1rem;
+}

@@ -21,6 +21,25 @@ class Router {
     public function dispatch($uriParts, $requestMethod) {
         $uri = implode('/', $uriParts);
         
+        /*
+        this->routes = [
+            [
+                'method' => 'GET',
+                'path' => '',
+                'controller' => 'HomeController',
+                'action' => 'index'
+            ],
+
+            [
+                'method' => 'GET',
+                'path' => '',
+                'controller' => '',
+                'action' => ''
+            ]
+        ]
+        */
+
+        // going through each route of the routes array
         foreach ($this->routes as $route) {
             // Skip if method doesn't match
             if ($route['method'] !== $requestMethod) {
@@ -28,7 +47,7 @@ class Router {
             }
             
             // Check if route pattern matches
-            $pattern = '#^' . $route['pattern'] . '$#';
+            $pattern = '#^' . $route['path'] . '$#';
             if (preg_match($pattern, $uri, $matches)) {
                 // Remove the full match from the matches array
                 array_shift($matches);
