@@ -1,10 +1,27 @@
 :root {
     --primary-color: #231B2E;
+    --search_bar-color: #393243;
     --border-color: #88518B;
+    --main-font: 'Poppins', sans-serif;
     --main-font-color: #fff;
+    --secondary-font: 'Secular One', sans-serif;
+    --secondary-font-color: #C6ABC8;
 }
 
+html {
+    font-family: var(--main-font);
+}
+
+/* hover hursor pointer */
+
+.logo, .search_icon, .theme_switcher, .profile_avatar {
+    cursor: pointer;
+}
+
+/* Header area */
+
 header {
+    position: sticky;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,6 +32,85 @@ header {
     border-bottom: 1px solid var(--border-color);
 }
 
+/* logo */
+.logo {
+    margin-left: 1rem;
+    font-family: var(--main-font);
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--main-font-color);
+    text-decoration: none;
+}
+/* logo */
+
+/* Theme switcher */
+.theme_switcher {
+    display: none;
+    width: 6rem;
+    height: 3rem;
+    border: 1px solid var(--border-color);
+    border-radius: 1em;
+}
+/* Theme switcher */
+
+/* Search bar */
+.search_bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--search_bar-color);
+    border-radius: 1rem;
+    width: 30em;
+    padding: 0.5rem;
+    margin-left: 12rem;
+}
+
+.search_icon {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+#search_input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-family: var(--secondary-font);
+    color: var(--secondary-font-color);
+    font-size: 1rem;
+}
+
+#search_input::placeholder {
+    opacity: 50%;
+    font-family: var(--secondary-font);
+    font-weight: bolder;
+    color: var(--secondary-font-color);
+}
+/* Search bar */
+
+/* Profile */
+.profile_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 10em;
+}
+
+.profile_name {
+    color: var(--secondary-font-color)
+}
+
+.profile_avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 1px solid var(--border-color);
+}
+/* Profile */
+
+/* Header area */
+
+
+/* Main area */
 .main_container {
     display: flex;
     color: var(--main-font-color);
@@ -24,7 +120,7 @@ header {
 .side_menu {
     background-color: var(--primary-color);
     color: var(--main-font-color);
-    width: 20em;
+    width: 15em;
     border-right: 1px solid var(--border-color);
 }
 
@@ -33,3 +129,20 @@ header {
     flex-grow: 1;
     padding: 1rem;
 }
+
+/* Main area */
+
+/* Scroll bar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: purple;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+/* Scroll bar */
