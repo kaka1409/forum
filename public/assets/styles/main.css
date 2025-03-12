@@ -179,17 +179,25 @@ header {
 }
 /* menu title */
 
+
 /* menu items */
 .menu_item {
+    display: block;
     display: flex;
     gap: 0.5em;
     padding: 1em;
+    margin-left: 5px;
     font-family: var(--main-font);
     font-size: 1rem;
     cursor: pointer;
 }
 
+.menu_item:hover {
+    font-weight: bolder;
+}
+
 .selected_item {
+    margin: 0;
     background-color: #393243;
     border-right: 1px solid #9B4DE0;
     border-left: 5px solid #9B4DE0;
@@ -204,7 +212,16 @@ header {
 }
 /* Side menu */
 
+/* Main content */
+/* .feed_settings .feed_text{
+    
+} */
+
+/* Main content */
+
 /* Main area */
+
+
 
 /* Scroll bar */
 ::-webkit-scrollbar {

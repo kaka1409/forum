@@ -12,6 +12,7 @@ PUBLIC_ROOT = C:\xampp\htdocs\forum\public
 session_start();
 
 include APP_ROOT . '/controllers/HomeController.php';
+include APP_ROOT . '/controllers/PostController.php';
 include APP_ROOT . '/routes.php';
 
 // Get the current URI

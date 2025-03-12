@@ -114,8 +114,28 @@
 
         <!-- MAIN CONTENT -->
         <main class="main_content">
+            <!-- main -->
+            
+            <!-- Feed setting -->
+            <div class="feed_settings">
+                <div class="feed_text">
+                    <img
+                        width="20px"
+                        height="15px" 
+                        src="../public/assets/icons/feed_settings.png"
+                        alt=""
+                    >
+                    <p>
+                        Feed settings
+                    </p>
+                </div>
+            </div>
+
+
             <!-- Post listing here -->
-             main
+            <div class="post_container">
+                <!-- <?=$output?> -->
+            </div>
         </main>
     </main>
 
