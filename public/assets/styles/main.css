@@ -213,9 +213,16 @@ header {
 /* Side menu */
 
 /* Main content */
-/* .feed_settings .feed_text{
-    
-} */
+.feed_settings {
+    width: 10em;
+    height: 5em;
+    background-color: var(--search_bar-color);
+}
+
+.feed_settings .feed_text{
+    display: flex;
+    align-items: center;
+}
 
 /* Main content */
 

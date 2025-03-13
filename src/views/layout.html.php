@@ -114,7 +114,6 @@
 
         <!-- MAIN CONTENT -->
         <main class="main_content">
-            <!-- main -->
             
             <!-- Feed setting -->
             <div class="feed_settings">
