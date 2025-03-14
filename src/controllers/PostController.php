@@ -2,7 +2,8 @@
 
 class PostController {
     public function create() {
-        $view = new ViewController();
+        $view = ViewController::getInstance();
+        $view->set('title', 'New Post');
         $view->render('createPost');
     }
 }

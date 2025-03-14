@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?= ViewController::useComponent('head'); ?>
+    <?= ViewController::useComponent('head', ['title' => $title]); ?>
 </head>
 <body>
     <!-- HEADER -->

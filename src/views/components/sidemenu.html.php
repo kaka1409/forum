@@ -9,7 +9,7 @@
                     <img 
                         width="20px"
                         height="20px"
-                        src="../public/assets/icons/collapse_icon.png" 
+                        src="<?=BASE_URL?>assets/icons/collapse_icon.png" 
                         alt=""
                     >
                 </div>
@@ -18,13 +18,13 @@
             <!-- New post button -->
             <a 
                 class="new_btn"
-                href="/forum/public/post/create"
+                href="<?=BASE_URL?>post/create"
             >
                 <div class="btn-content">
                     <img 
                         width="20px"
                         height="20px"
-                        src="../public/assets/icons/add_icon.png" 
+                        src="<?=BASE_URL?>assets/icons/add_icon.png" 
                         alt=""
                     >
                     <p class="btn_text">
@@ -42,18 +42,18 @@
                     <img 
                         width="20px"
                         height="20px"
-                        src="../public/assets/icons/home.png" 
+                        src="<?=BASE_URL?>assets/icons/home.png" 
                         alt=""
                     >
                 </div>
-                <a href="#">Home</a>
+                <a href="<?=BASE_URL?>home">Home</a>
             </li>
             <li class="menu_item">
                 <div class="icon">
                     <img 
                         width="20px"
                         height="20px"
-                        src="../public/assets/icons/module.png" 
+                        src="<?=BASE_URL?>assets/icons/module.png" 
                         alt=""
                     >
                 </div>
@@ -64,7 +64,7 @@
                     <img 
                         width="20px"
                         height="20px"
-                        src="../public/assets/icons/admin.png" 
+                        src="<?=BASE_URL?>assets/icons/admin.png" 
                         alt=""
                     >
                 </div>

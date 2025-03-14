@@ -2,7 +2,8 @@
 
 class HomeController {
     public function index() {
-        $view = new ViewController();
+        $view = ViewController::getInstance();
+        $view->set('title', 'Home Page');
         $view->render('home');
     }
 }

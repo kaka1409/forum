@@ -1,12 +1,20 @@
 <?php
 
+// apply singleton pattern for ViewController class
+
 class ViewController {
     private $layout;
     private $data = [];
+    private static $instance = null;
 
-    public function __construct($layout = 'layout') {
+    private function __construct($layout = 'layout') {
         $this->layout = $layout;
     }
+
+    // prevent cloning and unserialize of the instance
+    private function __clone() {}
+    public function __wakeup() {}
+
 
     public function set($key, $value) {
         // change components's data
@@ -24,6 +32,7 @@ class ViewController {
 
         ob_start();
         require_once APP_ROOT . "/views/layouts/{$this->layout}.html.php";
+        return $content;
     }
 
     public static function useComponent($name, $data = []) {
@@ -31,6 +40,14 @@ class ViewController {
         ob_start();
         require_once APP_ROOT . "/views/components/{$name}.html.php";
         return ob_get_clean();
+    }
+
+    public static function getInstance($layout = 'layout') {
+        if (self::$instance === null) {
+            self::$instance = new ViewController($layout);
+        }
+
+        return self::$instance;
     }
 }
 
