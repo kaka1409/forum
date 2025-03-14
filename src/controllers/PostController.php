@@ -1,8 +1,8 @@
 <?php
 
 class PostController {
-    public function createPostForm() {
-        include  APP_ROOT . "views/createPost.html.php";
+    public function create() {
+        include  APP_ROOT . "/views/post/create.html.php";
     }
 }
 ?>

@@ -11,9 +11,9 @@ PUBLIC_ROOT = C:\xampp\htdocs\forum\public
 
 session_start();
 
-include APP_ROOT . '/controllers/HomeController.php';
-include APP_ROOT . '/controllers/PostController.php';
-include APP_ROOT . '/routes.php';
+require_once APP_ROOT . '/controllers/HomeController.php';
+require_once APP_ROOT . '/controllers/PostController.php';
+require_once APP_ROOT . '/routes.php';
 
 // Get the current URI
 $request_uri = $_SERVER['REQUEST_URI']; 
@@ -43,7 +43,6 @@ $uri_parts = explode('/', trim($request_uri, '/'));
 // $uri_parts = [""]
 
 $router = new Router();
-$router->dispatch($uri_parts, $request_method)
-
+$router->dispatch($uri_parts, $request_method);
 
 ?>

@@ -24,7 +24,7 @@ a {
 /* hover hursor pointer */
 
 .logo, .search_icon, .theme_switcher,
-.profile_avatar, .icon, .btn {
+.profile_avatar, .icon, .new_btn {
     cursor: pointer;
 }
 
@@ -86,11 +86,12 @@ header {
     box-shadow: none;
     font-family: var(--secondary-font);
     color: var(--secondary-font-color);
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 #search_input::placeholder {
     opacity: 50%;
+    font-size: 1rem;
     font-family: var(--secondary-font);
     font-weight: bolder;
     color: var(--secondary-font-color);
@@ -151,9 +152,11 @@ header {
     gap: 6em;
 }
 
-.menu_title_container .btn {
-    display: block;
+.menu_title_container .new_btn {
+    align-items: center;
+    justify-content: center;
     background-color: #fff;
+    color: #000;
     font-family: var(--main-font);
     border-radius: 0.75em;
     border: none;
@@ -161,6 +164,10 @@ header {
     margin-top: 1rem;
     width: 85%;
     height: 3em;
+}
+
+.new_btn:hover {
+    background-color: #f5eaff;
 }
 
 .title {
@@ -254,6 +261,7 @@ header {
 
 .post {
     padding: 1em;
+    padding-top: 0.5em;
     width: 16em;
     height: 22.5em;
     background-color: var(--post-color);
