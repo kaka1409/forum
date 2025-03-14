@@ -11,9 +11,10 @@ PUBLIC_ROOT = C:\xampp\htdocs\forum\public
 
 session_start();
 
+require_once APP_ROOT . '/controllers/ViewController.php';
 require_once APP_ROOT . '/controllers/HomeController.php';
 require_once APP_ROOT . '/controllers/PostController.php';
-require_once APP_ROOT . '/routes.php';
+require_once APP_ROOT . '/Router.php';
 
 // Get the current URI
 $request_uri = $_SERVER['REQUEST_URI']; 

@@ -2,7 +2,8 @@
 
 class HomeController {
     public function index() {
-        include APP_ROOT . "/views/layout.html.php";
+        $view = new ViewController();
+        $view->render('home');
     }
 }
 

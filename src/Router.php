@@ -4,7 +4,7 @@ class Router {
     private $routes = [];
 
     public function __construct() {
-        $this->addRoute('GET', '', 'HomeController', 'index');
+        $this->addRoute('GET', 'home', 'HomeController', 'index');
         $this->addRoute('GET', 'post/create', 'PostController', 'create');
         
     }
@@ -34,7 +34,7 @@ class Router {
 
             [
                 'method' => 'GET',
-                'path' => '',
+                'path' => 'post/create',
                 'controller' => 'PostController',
                 'action' => 'create'
             ],
