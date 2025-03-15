@@ -1,7 +1,8 @@
 :root {
     --primary-color: #231B2E;
-    --search_bar-color: #393243;
+    --secondary-color: #393243;
     --post-color: #251B32;
+    --violet-color: #CE3DF3;
     --border-color: #88518B;
     --main-font: 'Poppins', sans-serif;
     --main-font-color: #fff;
@@ -67,7 +68,7 @@ header {
 .search_bar {
     display: flex;
     align-items: center;
-    background-color: var(--search_bar-color);
+    background-color: var(--secondary-color);
     border-radius: 1rem;
     width: 30em;
     padding: 0.5rem;
@@ -232,7 +233,7 @@ header {
     font-weight: bold;
     font-family: var(--secondary-font);
     color: var(--secondary-font-color);
-    background-color: var(--search_bar-color);
+    background-color: var(--secondary-color);
     cursor: pointer;
     opacity: 0.7;
 }
@@ -342,6 +343,99 @@ header {
     align-items: center;
 }
 
+/* Create post form */
+
+.post_form {
+    margin: 0 auto;
+    margin-top: -1em;
+    padding: 2em;
+    width: 37em;
+    height: 100%;
+    background-color: var(--primary-color);
+    border-left: 0.5px solid var(--border-color);
+    border-right: 0.5px solid var(--border-color);
+}
+
+.form_group {
+    margin-bottom: 2em;
+}
+
+.form_group input, 
+.form_group textarea,
+.form_group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background-color: var(--secondary-color);
+    color: var(--secondary-font-color);
+    font-size: 1rem;
+    font-family: var(--secondary-font);
+    font-weight: bolder;
+}
+
+.form_group input:focus, 
+.form_group textarea:focus,
+.form_group select:focus {
+    outline: none;
+    border: 0.5px solid var(--border-color);
+}
+
+.form_title #title::placeholder, 
+.form_content #content::placeholder {
+    font-family: var(--secondary-font);
+    color: var(--secondary-font-color);
+    font-weight: bold;
+    opacity: 50%;
+}
+
+.form_module #module {
+    padding: 0.5em 1em;
+    width: 100%;
+    height: 3.5em;
+    border-radius: 10px;
+}
+
+.form_title #title {
+    padding: 0.5em 1em;
+    width: 95%;
+    height: 2.5em;
+    border-radius: 10px;
+}
+
+
+.form_content #content {
+    vertical-align: top;
+    border: none;
+    outline: none;
+    resize: none;
+    padding: 1em;
+    width: 95%;
+    max-width: 95%;
+    height: 15em;
+    max-height: 15em;
+    border-radius: 10px;
+}
+
+.post_form .submit_btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    width: 10em;
+    height: 3em;
+    background-color: var(--violet-color);
+    color: #000;
+    font-family: var(--main-font);
+    font-size: 1em;
+    font-weight: bolder;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+/* Create post form */
 
 /* Main content */
 
@@ -351,7 +445,7 @@ header {
 
 /* Scroll bar */
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {

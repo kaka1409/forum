@@ -3,4 +3,3 @@
 <link rel="stylesheet" href="<?=BASE_URL?>assets/styles/reset.css">
 <link rel="stylesheet" href="<?=BASE_URL?>assets/styles/main.css">
 <title><?=$title?></title>
-<title><?=$title?></title>
