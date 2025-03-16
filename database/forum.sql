@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2025 at 07:02 AM
+-- Generation Time: Mar 16, 2025 at 11:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,7 +31,7 @@ CREATE TABLE `account` (
   `account_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `account_name` varchar(50) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -41,7 +41,7 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`account_id`, `user_id`, `role_id`, `name`, `password_hash`, `email`, `create_at`) VALUES
+INSERT INTO `account` (`account_id`, `user_id`, `role_id`, `account_name`, `password_hash`, `email`, `create_at`) VALUES
 (1, 1, 1, 'kaka1409', 'test', 'testEmail@gmail.com', '2025-03-16 05:06:49');
 
 -- --------------------------------------------------------
@@ -87,7 +87,7 @@ CREATE TABLE `message` (
 
 CREATE TABLE `module` (
   `module_id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `module_name` varchar(50) NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -95,7 +95,7 @@ CREATE TABLE `module` (
 -- Dumping data for table `module`
 --
 
-INSERT INTO `module` (`module_id`, `name`, `description`) VALUES
+INSERT INTO `module` (`module_id`, `module_name`, `description`) VALUES
 (1, 'test module', 'test module discription');
 
 -- --------------------------------------------------------
@@ -173,7 +173,7 @@ CREATE TABLE `vote` (
   `post_id` int(11) DEFAULT NULL,
   `comment_id` int(11) DEFAULT NULL,
   `vote_type` enum('upvote','downvote') NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables

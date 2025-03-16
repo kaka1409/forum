@@ -1,6 +1,6 @@
 <?php
 
-// Define the application root directory
+// root directory
 define('APP_ROOT', dirname(__DIR__) . '\src');
 define('PUBLIC_ROOT', __DIR__);
 
@@ -17,6 +17,7 @@ require_once APP_ROOT . '/config/database.php';
 
 // models
 require_once APP_ROOT . '/models/Database.php';
+require_once APP_ROOT . '/models/Post.php';
 
 $db = new Database();
 
