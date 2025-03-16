@@ -23,7 +23,15 @@
         </div>
 
         <!-- post thumbnail -->
-        <div class="form_group form_thumbnail">
+        <button class="form_group form_thumbnail">
+            <div class="thumbnail_title">
+                <img 
+                    width="20px"
+                    height="20px"
+                    src="<?=BASE_URL?>assets/icons/thumbnail.png" alt="<?=BASE_URL?>"
+                >
+                <p>Thumbnail</p>
+            </div>
             <input 
                 type="file" 
                 class="form-control" 
@@ -32,7 +40,7 @@
                 placeholder="Enter thumbnail url"
             >
             <img id="thumbnail-preview" src="">
-        </div>
+        </button>
 
         <!-- post content -->
         <div class="form_group form_content">

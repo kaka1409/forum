@@ -11,12 +11,22 @@ PUBLIC_ROOT = C:\xampp\htdocs\forum\public
 
 session_start();
 
+// config
 require_once APP_ROOT . '/config/config.php';
+require_once APP_ROOT . '/config/database.php';
+
+// models
+require_once APP_ROOT . '/models/Database.php';
+
+$db = new Database();
+
+// controllers
 require_once APP_ROOT . '/controllers/ViewController.php';
 require_once APP_ROOT . '/controllers/HomeController.php';
 require_once APP_ROOT . '/controllers/PostController.php';
-require_once APP_ROOT . '/Router.php';
 
+// router
+require_once APP_ROOT . '/Router.php';
 
 
 // Get the current URI
