@@ -6,5 +6,7 @@ class PostController {
         $view->set('title', 'New Post');
         $view->render('createPost');
     }
+
+    
 }
 ?>
