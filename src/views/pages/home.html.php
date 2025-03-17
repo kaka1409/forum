@@ -13,7 +13,7 @@ $posts = Post::getAllPosts($db);
             <img
                 width="20px"
                 height="15px" 
-                src="../public/assets/icons/feed_settings.png"
+                src="<?=BASE_URL?>/assets/icons/feed_settings.png"
                 alt=""
             >
             <p>
@@ -62,33 +62,33 @@ $posts = Post::getAllPosts($db);
             
                         <div class="post_thumbnail">
                             <img 
-                                src="../<?= htmlspecialchars( $post['thumbnail_url'] )?>" 
+                                src="<?=ROOT_URL?><?= htmlspecialchars( $post['thumbnail_url'] )?>" 
                                 alt=""
                             >
                         </div>
             
                         <div class="post_options">
                             <div class="post_vote">
-                                <img src="../public/assets/icons/upvote.png" alt="">
+                                <img src="<?=BASE_URL?>/assets/icons/upvote.png" alt="">
                                 <p class="vote_count">
                                     <?= htmlspecialchars( $post['vote'] )?>
                                 </p>
-                                <img src="../public/assets/icons/downvote.png" alt="">
+                                <img src="<?=BASE_URL?>/assets/icons/downvote.png" alt="">
                             </div>
             
                             <div class="post_comments">
-                                <img src="../public/assets/icons/comment.png" alt="">
+                                <img src="<?=BASE_URL?>/assets/icons/comment.png" alt="">
                                 <p class="comment_count">
                                     <?= htmlspecialchars( $post['comments_count'] )?>
                                 </p>
                             </div>
             
                             <div class="post_save">
-                                <img src="../public/assets/icons/save.png" alt="">
+                                <img src="<?=BASE_URL?>/assets/icons/save.png" alt="">
                             </div>
                             
                             <div class="post_share">
-                                <img src="../public/assets/icons/share.png" alt="">
+                                <img src="<?=BASE_URL?>/assets/icons/share.png" alt="">
                             </div>
                         </div>
                     </div>

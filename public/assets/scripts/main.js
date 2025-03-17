@@ -116,7 +116,7 @@ const app = {
             if (form) {
                 this.postFormValidation()
                 form.addEventListener('submit', (e) => {
-                    e.preventDefault()
+                    // e.preventDefault()
 
                     console.log(e.target)
                 })

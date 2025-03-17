@@ -3,9 +3,9 @@
 class Post {
 
     public function createPost($db = null) {
-        // no account_id since I haven't implemented authentication
-        $sql = "INSERT INTO `post`( `module_id`, `title`, `content`, `post_at`, `updated_at`, `vote`, `thumbnail_url`) 
-                VALUES (:module.value, ?,?,?,?,?,?,?)";
+        // no account_id since I haven't implemented login system
+        $sql = "INSERT INTO `post`( `module_id`, `title`, `content`, `post_at`, `vote`, `thumbnail_url`) 
+                VALUES (:module_id, :title, :content, :CURDATE(), 0, :thumbnail_url);";
         $stmt = $db->query($sql, [
             
         ]);
