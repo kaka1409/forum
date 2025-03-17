@@ -1,7 +1,6 @@
 <?php
 global $db;
 $posts = Post::getAllPosts($db);
-
 // print_r($posts[0]);
 ?>
 <!-- Feed setting -->
@@ -56,7 +55,7 @@ $posts = Post::getAllPosts($db);
             
                         <div class="post_date">
                             <p>
-                                <?= htmlspecialchars( $post['post_at'] )?>
+                                <?= htmlspecialchars(dateFormat( $post['post_at'] )); ?>
                             </p>
                         </div>
             
@@ -78,7 +77,9 @@ $posts = Post::getAllPosts($db);
             
                             <div class="post_comments">
                                 <img src="../public/assets/icons/comment.png" alt="">
-                                <p class="comment_count">25</p>
+                                <p class="comment_count">
+                                    <?= htmlspecialchars( $post['comments_count'] )?>
+                                </p>
                             </div>
             
                             <div class="post_save">

@@ -4,7 +4,7 @@
 
             <!-- Menu title -->
             <div class="title">
-                Menu
+                <p class="title_text">Menu</p>
                 <div class="icon collapse_icon">
                     <img 
                         width="20px"
@@ -37,7 +37,10 @@
         <hr>
 
         <ul class="menu_list">
-            <li class="menu_item selected_item">
+            <a 
+                class="menu_item selected_item"
+                href="<?=BASE_URL?>home"    
+            >
                 <div class="icon">
                     <img 
                         width="20px"
@@ -46,9 +49,13 @@
                         alt=""
                     >
                 </div>
-                <a href="<?=BASE_URL?>home">Home</a>
-            </li>
-            <li class="menu_item">
+                <p class="menu_item_text">Home</p>
+            </a>
+
+            <a 
+                class="menu_item"
+                href="<?=BASE_URL?>module"    
+            >
                 <div class="icon">
                     <img 
                         width="20px"
@@ -57,9 +64,13 @@
                         alt=""
                     >
                 </div>
-                <a href="#">Module</a>
-            </li>
-            <li class="menu_item">
+                <p class="menu_item_text">Module</p>
+            </a>
+
+            <a 
+                class="menu_item"
+                href="<?=BASE_URL?>admin"    
+            >
                 <div class="icon">
                     <img 
                         width="20px"
@@ -68,8 +79,8 @@
                         alt=""
                     >
                 </div>
-                <a href="#">Admin</a>
-            </li>
+                <p class="menu_item_text">Admin</p>
+            </a>
         </ul>
 
         <hr>

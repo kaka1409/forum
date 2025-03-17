@@ -15,6 +15,9 @@ session_start();
 require_once APP_ROOT . '/config/config.php';
 require_once APP_ROOT . '/config/database.php';
 
+// helpers
+require_once APP_ROOT . '/helpers/format.php';
+
 // models
 require_once APP_ROOT . '/models/Database.php';
 require_once APP_ROOT . '/models/Post.php';
