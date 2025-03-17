@@ -9,8 +9,8 @@ $modules = Module::getAllModules($db);
 
         <!-- module selection -->
         <div class="form_group form_module">
-            <select name="module" id="module">
-                <option value="0">Select your module</option>
+            <select name="module" id="module" require>
+                <!-- <option value="0">Select your module</option> -->
                 <?php foreach ($modules as $module): ?>
                     <option 
                         value="<?=$module['module_id'] ?>"
@@ -52,7 +52,7 @@ $modules = Module::getAllModules($db);
                 placeholder="Enter thumbnail url"
                 accept="image/*"
             >
-            <img id="thumbnail-preview" src="">
+            <img id="thumbnail_preview" src="''">
         </button>
 
         <!-- post content -->
@@ -64,7 +64,7 @@ $modules = Module::getAllModules($db);
                 placeholder="Share your thoughts..."
                 required
             ></textarea>
-            <p id="content_char_count">1000</p>
+            <p id="content_char_count"></p>
         </div>
 
         <input type="submit" id="submit" name="submit" value="Post">

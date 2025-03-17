@@ -15,7 +15,7 @@ const app = {
 
         "thumbnailButton": document.querySelector('.post_form .form_thumbnail'),
         "thumbnail": document.querySelector('.post_form #thumbnail'),
-        "thumbnailPreview": document.querySelector('.post_form #thumbnail-preview'),
+        "thumbnailPreview": document.querySelector('.post_form #thumbnail_preview'),
         "thumbnailTitle": document.querySelector('.post_form .thumbnail_title'),
 
         "content": document.querySelector('.post_form #content'),
@@ -87,6 +87,7 @@ const app = {
 
             thumbnailInput.addEventListener('change', () => {
                 thumbnailTitle.style.display = 'none'
+                thumbnailPreview.style.display = 'block';
                 thumbnailPreview.src = URL.createObjectURL(thumbnailInput.files[0])
             })
 

@@ -2,13 +2,28 @@
 
 class Post {
 
-    public function createPost($db = null) {
-        // no account_id since I haven't implemented login system
-        $sql = "INSERT INTO `post`( `module_id`, `title`, `content`, `post_at`, `vote`, `thumbnail_url`) 
-                VALUES (:module_id, :title, :content, :CURDATE(), 0, :thumbnail_url);";
+    public static function createPost($db = null) {
+        $module_id = $_POST['module'];
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+        $thumbnail_url = UPLOAD_FOLDER . $_POST['thumbnail'];
+
+        echo $module_id;
+    
+        $sql = "INSERT INTO `post`(`account_id`, `module_id`, `title`, `content`, `post_at`, `updated_at`, `vote`, `comments_count`, `thumbnail_url`) 
+                VALUES (:account_id, :module_id, :title, :content, CURDATE(), CURDATE(), :vote, :comments_count, :thumbnail_url)";
+        
         $stmt = $db->query($sql, [
-            
+            ':account_id' => 1, // hard coded since I haven't implemented login system
+            ':module_id' => $module_id,
+            ':title' => $title,
+            ':content' => $content,
+            ':vote' => 0,
+            ':comments_count' => 0,
+            ':thumbnail_url' => $thumbnail_url,
         ]);
+        
+        return $stmt;
     }
 
     public static function getAllPosts($db = null) {

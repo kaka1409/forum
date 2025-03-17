@@ -8,9 +8,24 @@ class PostController {
     }
 
     public function create() {
-        $view = ViewController::getInstance();
-        $view->set('title', 'Home Page');
-        $view->render('home');
+        global $db;
+
+        if (isset($_POST['submit'])) {
+
+            $result = Post::createPost($db);
+
+            if ($result) {
+                header('Location: ' . BASE_URL . 'home');
+                exit;
+            } else {
+                header('Location: ' . BASE_URL . 'post/create');
+                exit;
+            }
+
+        } else {
+            header('Location: ' . BASE_URL . 'post/create');
+            exit;
+        }
     }
     
 }

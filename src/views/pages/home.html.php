@@ -62,7 +62,9 @@ $posts = Post::getAllPosts($db);
             
                         <div class="post_thumbnail">
                             <img 
-                                src="<?=ROOT_URL?><?= htmlspecialchars( $post['thumbnail_url'] )?>" 
+                                src="<?=
+                                        $post['thumbnail_url'] == UPLOAD_FOLDER ? BASE_URL . 'assets/images/placeholder.png' : ROOT_URL . htmlspecialchars( $post['thumbnail_url'] );
+                                    ?>"
                                 alt=""
                             >
                         </div>
