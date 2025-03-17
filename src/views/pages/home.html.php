@@ -3,6 +3,7 @@ global $db;
 $posts = Post::getAllPosts($db);
 // print_r($posts[0]);
 ?>
+
 <!-- Feed setting -->
 <section class="home">
 
@@ -61,7 +62,7 @@ $posts = Post::getAllPosts($db);
             
                         <div class="post_thumbnail">
                             <img 
-                                src="https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/6feb3e397ca7338ef21179a7d6c59e35?_a=AQAEuj9" 
+                                src="../<?= htmlspecialchars( $post['thumbnail_url'] )?>" 
                                 alt=""
                             >
                         </div>

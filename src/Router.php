@@ -5,7 +5,8 @@ class Router {
 
     public function __construct() {
         $this->addRoute('GET', 'home', 'HomeController', 'index');
-        $this->addRoute('GET', 'post/create', 'PostController', 'create');
+        $this->addRoute('GET', 'post/create', 'PostController', 'createForm');
+        $this->addRoute('POST', 'post/create', 'PostController', 'create');
         
     }
 

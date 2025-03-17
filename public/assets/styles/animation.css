@@ -1,38 +1,36 @@
-/* side menu collapse animation class*/
+/* side menu collapse animation*/
 .side_menu.collapsed {
     width: 3.5em;
     transition: all 0.3s ease-in-out;
 }
 
-/* hide menu title text and new btn text */
+.side_menu.collapsed .collapsed_icon {
+    transition: all 0.3s ease-in-out;
+}
+
+.side_menu.collapsed .menu_item_text, 
 .side_menu.collapsed .title_text,
 .side_menu.collapsed .btn_text {
     display: none;
     transition: all 0.3s ease-in-out;
 }
 
-.side_menu.collapsed .menu_item_text {
-    opacity: 0;
-}
-
-/* align the menu items better when collaped */
 .side_menu.collapsed .menu_item {
     margin: 0;
 }
 
-/* hide border of the selected item */
 .side_menu.collapsed .selected_item {
     border: none;
 }
 
-
-
-/* Properties when uncollapsed */
+/* side menu uncollapsed animation*/
 .side_menu {
     transition: all 0.3s ease-in-out;
 }
 
-.menu_item_text {
+.menu_item_text, .title_text {
     transition: all 0.15s ease-in-out;
 }
+
+
 

@@ -1,13 +1,23 @@
+<?php
+global $db;
+$modules = Module::getAllModules($db);
+// print_r($modules);
+?>
+
 <section class="post_form" style="overflow-y: hidden;">
-    <form action="<?=BASE_URL?>post/create" method="POST">
+    <form action="" method="POST">
 
         <!-- module selection -->
         <div class="form_group form_module">
             <select name="module" id="module">
                 <option value="0">Select your module</option>
-                <option value="1">Module 1</option>
-                <option value="2">Module 2</option>
-                <option value="3">Module 3</option>
+                <?php foreach ($modules as $module): ?>
+                    <option 
+                        value="<?=$module['module_id'] ?>"
+                    >
+                        <?= $module['module_name'] ?>
+                    </option>
+                <?php endforeach;?>
             </select>
         </div>
 
@@ -19,7 +29,9 @@
                 id="title" 
                 name="title" 
                 placeholder="Enter title"
+                required
             >
+            <p id="title_char_count"></p>
         </div>
 
         <!-- post thumbnail -->
@@ -28,7 +40,7 @@
                 <img 
                     width="20px"
                     height="20px"
-                    src="<?=BASE_URL?>assets/icons/thumbnail.png" alt="<?=BASE_URL?>"
+                    src="<?=BASE_URL?>assets/icons/thumbnail.png" alt=""
                 >
                 <p>Thumbnail</p>
             </div>
@@ -38,6 +50,7 @@
                 id="thumbnail" 
                 name="thumbnail" 
                 placeholder="Enter thumbnail url"
+                accept="image/*"
             >
             <img id="thumbnail-preview" src="">
         </button>
@@ -49,9 +62,11 @@
                 id="content" 
                 name="content" 
                 placeholder="Share your thoughts..."
+                required
             ></textarea>
+            <p id="content_char_count">1000</p>
         </div>
 
-        <button type="submit" class="submit_btn">Post</button>
+        <input type="submit" id="submit" name="submit" value="Post">
     </form>
 </section>
