@@ -44,7 +44,7 @@ const app = {
             },
 
             thumbnail: {
-                // required: true,
+                // required: false,
             },
 
             content: {
@@ -116,11 +116,7 @@ const app = {
 
             if (form) {
                 this.postFormValidation()
-                form.addEventListener('submit', (e) => {
-                    // e.preventDefault()
-
-                    console.log(e.target)
-                })
+                form.addEventListener('submit')
 
             }
         }        
