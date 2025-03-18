@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2025 at 04:37 AM
+-- Generation Time: Mar 18, 2025 at 10:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -96,7 +96,8 @@ CREATE TABLE `module` (
 --
 
 INSERT INTO `module` (`module_id`, `module_name`, `description`) VALUES
-(1, 'test module', 'test module discription');
+(1, 'test module', 'test module discription'),
+(2, 'Web Progarmming', 'Learn web development concepts');
 
 -- --------------------------------------------------------
 
@@ -124,7 +125,10 @@ CREATE TABLE `post` (
 INSERT INTO `post` (`post_id`, `account_id`, `module_id`, `title`, `content`, `post_at`, `updated_at`, `vote`, `comments_count`, `thumbnail_url`) VALUES
 (1, 1, 1, 'test post', 'lorem isuapum', '2025-03-16 05:08:41', '2025-03-18 03:37:09', 10, 3, 'uploads/1.webp'),
 (2, 1, 1, 'test post number 2', 'lorem isuapum of post number 2', '2025-03-16 05:11:20', '2025-03-18 03:37:24', 5, 16, 'uploads/2.jpg'),
-(4, 1, 1, 'post number 3', 'lorem isuapum of post number 3', '2025-03-16 05:11:56', '2025-03-18 03:37:35', 24, 5, 'uploads/3.webp');
+(4, 1, 1, 'post number 3', 'lorem isuapum of post number 3', '2025-03-16 05:11:56', '2025-03-18 03:37:35', 24, 5, 'uploads/3.webp'),
+(8, 1, 1, 'asdasd', 'asdasdasdasd', '2025-03-18 04:49:01', '2025-03-18 04:49:01', 0, 0, 'uploads/4.webp'),
+(9, 1, 1, 'asdasd', 'asdasd', '2025-03-18 04:54:23', '2025-03-18 04:54:23', 0, 0, 'uploads/4.webp'),
+(10, 1, 2, 'asdfgfuidsgdsfhkf', 'sdjkfsjgfsdf', '2025-03-18 05:41:00', '2025-03-18 05:41:00', 0, 0, 'uploads/2.jpg');
 
 -- --------------------------------------------------------
 
@@ -270,13 +274,13 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
-  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `role`
