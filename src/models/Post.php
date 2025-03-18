@@ -11,7 +11,7 @@ class Post {
         echo $module_id;
     
         $sql = "INSERT INTO `post`(`account_id`, `module_id`, `title`, `content`, `post_at`, `updated_at`, `vote`, `comments_count`, `thumbnail_url`) 
-                VALUES (:account_id, :module_id, :title, :content, CURDATE(), CURDATE(), :vote, :comments_count, :thumbnail_url)";
+                VALUES (:account_id, :module_id, :title, :content, NOW(), NOW(), :vote, :comments_count, :thumbnail_url)";
         
         $stmt = $db->query($sql, [
             ':account_id' => 1, // hard coded since I haven't implemented login system

@@ -26,6 +26,7 @@ require_once APP_ROOT . '/models/Module.php';
 $db = new Database();
 
 // controllers
+require_once APP_ROOT . '/controllers/AccountController.php';
 require_once APP_ROOT . '/controllers/ViewController.php';
 require_once APP_ROOT . '/controllers/HomeController.php';
 require_once APP_ROOT . '/controllers/PostController.php';

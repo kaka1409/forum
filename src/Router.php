@@ -4,10 +4,25 @@ class Router {
     private $routes = [];
 
     public function __construct() {
+
+        // Home page
+        $this->addRoute('GET', '', 'HomeController', 'index');
         $this->addRoute('GET', 'home', 'HomeController', 'index');
+
+        // Create post form 
         $this->addRoute('GET', 'post/create', 'PostController', 'createForm');
         $this->addRoute('POST', 'post/create', 'PostController', 'create');
         
+        // Show post
+        $this->addRoute('GET', 'post/{id}', 'PostController', 'show');
+        
+        // Edit post
+        $this->addRoute('GET', 'post/{id}/edit', 'PostController', 'editForm');
+        $this->addRoute('POST', 'post/{id}/edit', 'PostController', 'edit');
+        
+        // Login and register
+        $this->addRoute('GET', 'login', 'AccountController', 'login');
+        $this->addRoute('GET', 'register', 'AccountController', 'register');
     }
 
     public function addRoute($method, $path, $controller, $action) {

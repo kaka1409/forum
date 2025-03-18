@@ -3,20 +3,24 @@
 
 // date format function
 function dateFormat($date) {
+    // set timezone
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+
     $currentDate = new DateTime();
     $date = new DateTime($date);
 
     $interval = $currentDate->diff($date);
-    if ($interval->days > 365) {
-        return floor($interval->days / 365) . ' years ago';
-    } elseif ($interval->days > 30) {
-        return floor($interval->days / 30) . ' months ago';
-    } elseif ($interval->days) {
-        return $interval->days . ' days ago';
+
+    if ($interval->y > 0) {
+        return $interval->y . ' year' . ($interval->y > 1 ? 's' : '') . ' ago';
+    } elseif ($interval->m > 0) {
+        return $interval->m . ' month' . ($interval->m > 1 ? 's' : '') . ' ago';
+    } elseif ($interval->d > 0) {
+        return $interval->d . ' day' . ($interval->d > 1 ? 's' : '') . ' ago';
     } elseif ($interval->h > 0) {
-        return $interval->h . ' hours ago';
+        return $interval->h . ' hour' . ($interval->h > 1 ? 's' : '') . ' ago';
     } elseif ($interval->i > 0) {
-        return $interval->i . ' minutes ago';
+        return $interval->i . ' minute' . ($interval->i > 1 ? 's' : '') . ' ago';
     } else {
         return 'just now';
     }

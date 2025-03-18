@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2025 at 11:04 AM
+-- Generation Time: Mar 18, 2025 at 04:37 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -113,6 +113,7 @@ CREATE TABLE `post` (
   `post_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `vote` int(11) NOT NULL DEFAULT 0,
+  `comments_count` int(11) DEFAULT NULL,
   `thumbnail_url` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -120,10 +121,10 @@ CREATE TABLE `post` (
 -- Dumping data for table `post`
 --
 
-INSERT INTO `post` (`post_id`, `account_id`, `module_id`, `title`, `content`, `post_at`, `updated_at`, `vote`, `thumbnail_url`) VALUES
-(1, 1, 1, 'test post', 'lorem isuapum', '2025-03-16 05:08:41', '2025-03-16 05:09:07', 10, 'upload/1.png'),
-(2, 1, 1, 'test post number 2', 'lorem isuapum of post number 2', '2025-03-16 05:11:20', '2025-03-16 05:11:20', 5, 'upload/2.png'),
-(4, 1, 1, 'post number 3', 'lorem isuapum of post number 3', '2025-03-16 05:11:56', '2025-03-16 05:11:56', 24, 'upload/3.png');
+INSERT INTO `post` (`post_id`, `account_id`, `module_id`, `title`, `content`, `post_at`, `updated_at`, `vote`, `comments_count`, `thumbnail_url`) VALUES
+(1, 1, 1, 'test post', 'lorem isuapum', '2025-03-16 05:08:41', '2025-03-18 03:37:09', 10, 3, 'uploads/1.webp'),
+(2, 1, 1, 'test post number 2', 'lorem isuapum of post number 2', '2025-03-16 05:11:20', '2025-03-18 03:37:24', 5, 16, 'uploads/2.jpg'),
+(4, 1, 1, 'post number 3', 'lorem isuapum of post number 3', '2025-03-16 05:11:56', '2025-03-18 03:37:35', 24, 5, 'uploads/3.webp');
 
 -- --------------------------------------------------------
 

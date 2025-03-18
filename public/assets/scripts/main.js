@@ -35,20 +35,20 @@ const app = {
     createPostFormValidator: {
         rules: {
             module: {
-                // required: true
+                required: true
             },
 
             title: {
-                // required: true,
+                required: true,
                 maxCharacters: 100
             },
 
             thumbnail: {
-                // required: false,
+                required: false,
             },
 
             content: {
-                // required: true,
+                required: true,
                 maxCharacters: 1000
             }
 

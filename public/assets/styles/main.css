@@ -290,6 +290,13 @@ header {
 .post_title {
     font-size: 1.5rem;
     font-weight: bold;
+    width: 100%;
+    height: 3em;
+}
+
+.post_title h1 {
+    width: 100%;
+    overflow-wrap: break-word;
 }
 
 .post_module {
@@ -315,6 +322,7 @@ header {
 .post_thumbnail img {
     margin-top: 0.5em;
     max-width: 16em;
+    height: 8.5em;
     border: 1px solid var(--border-color);
     border-radius: 20px;
 }
@@ -395,6 +403,7 @@ header {
     width: 100%;
     height: 3.5em;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .form_title {
@@ -500,7 +509,6 @@ header {
 /* Main content */
 
 /* Main area */
-
 
 
 /* Scroll bar */

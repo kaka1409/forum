@@ -44,7 +44,7 @@ $posts = Post::getAllPosts($db);
             
                         <div class="post_title">
                             <h1>
-                                <?= htmlspecialchars( $post['title'] )?>
+                                <?= strlen(htmlspecialchars( $post['title'] )) > 45 ? substr(htmlspecialchars( $post['title'] ), 0, 45) . '...' : htmlspecialchars( $post['title'] ) ?>
                             </h1>
                         </div>
             
