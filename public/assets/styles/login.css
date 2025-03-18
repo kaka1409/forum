@@ -81,9 +81,9 @@ body {
 
 .form_group.forgot_password {
     height: 1em;
-    text-align: right;
+    text-align: center;
     font-size: 1.1em;
-    padding-right: 2em;
+    /* padding-right: 2em; */
     margin-bottom: 1.5em;
 }
 
