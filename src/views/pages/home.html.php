@@ -27,74 +27,88 @@ $posts = Post::getAllPosts($db);
     <div class="post_container">
         <?php if (isset($posts)): ?>
             <?php foreach ($posts as $post): ?>
-                <div class="post">
-                    <div class="post_content">
-                        <div class="post_author">
-                            <img 
-                                width="40px"
-                                height="40px"
-                                src="https://avatars.githubusercontent.com/u/172468139?v=4" 
-                                alt=""
-                            >
-
-                            <p class="author_name">
-                                <?= htmlspecialchars( $post['account_name'] )?>
-                            </p>
-                        </div>
-            
-                        <div class="post_title">
-                            <h1>
-                                <?= strlen(htmlspecialchars( $post['title'] )) > 45 ? substr(htmlspecialchars( $post['title'] ), 0, 45) . '...' : htmlspecialchars( $post['title'] ) ?>
-                            </h1>
-                        </div>
-            
-                        <div class="post_module">
-                            <p>
-                                <?= htmlspecialchars( $post['module_name'] )?>
-                            </p>
-                        </div>
-            
-                        <div class="post_date">
-                            <p>
-                                <?= htmlspecialchars(dateFormat( $post['post_at'] )); ?>
-                            </p>
-                        </div>
-            
-                        <div class="post_thumbnail">
-                            <img 
-                                src="<?=
-                                        $post['thumbnail_url'] == UPLOAD_FOLDER ? BASE_URL . 'assets/images/placeholder.png' : ROOT_URL . htmlspecialchars( $post['thumbnail_url'] );
-                                    ?>"
-                                alt=""
-                            >
-                        </div>
-            
-                        <div class="post_options">
-                            <div class="post_vote">
-                                <img src="<?=BASE_URL?>/assets/icons/upvote.png" alt="">
-                                <p class="vote_count">
-                                    <?= htmlspecialchars( $post['vote'] )?>
-                                </p>
-                                <img src="<?=BASE_URL?>/assets/icons/downvote.png" alt="">
-                            </div>
-            
-                            <div class="post_comments">
-                                <img src="<?=BASE_URL?>/assets/icons/comment.png" alt="">
-                                <p class="comment_count">
-                                    <?= htmlspecialchars( $post['comments_count'] )?>
-                                </p>
-                            </div>
-            
-                            <div class="post_save">
-                                <img src="<?=BASE_URL?>/assets/icons/save.png" alt="">
+                <a href="<?=BASE_URL?>post/<?= $post['post_id'] ?>">
+                    <div 
+                        class="post"
+                        
+                    >
+                        <div class="post_content">
+                            <div class="post_head">
+                                <div class="post_author">
+                                    <img 
+                                        width="40px"
+                                        height="40px"
+                                        src="https://avatars.githubusercontent.com/u/172468139?v=4" 
+                                        alt=""
+                                    >
+        
+                                    <p class="author_name">
+                                        <?= htmlspecialchars( $post['account_name'] )?>
+                                    </p>
+        
+                                </div>
+        
+                                <div class="post_options">
+                                    <img src="<?=BASE_URL?>/assets/icons/more.png" alt="">
+                                </div>
                             </div>
                             
-                            <div class="post_share">
-                                <img src="<?=BASE_URL?>/assets/icons/share.png" alt="">
+                            <div class="post_title">
+                                <h1>
+                                    <?= strlen(htmlspecialchars( $post['title'] )) > 45 ? substr(htmlspecialchars( $post['title'] ), 0, 45) . '...' : htmlspecialchars( $post['title'] ) ?>
+                                </h1>
+                            </div>
+                
+                            <div class="post_module">
+                                <p>
+                                    <?= htmlspecialchars( $post['module_name'] )?>
+                                </p>
+                            </div>
+                
+                            <div class="post_date">
+                                <p>
+                                    <?= htmlspecialchars(dateFormat( $post['post_at'] )); ?>
+                                </p>
+                            </div>
+                
+                            <div class="post_thumbnail">
+                                <img 
+                                    src="
+                                        <?=
+                                            $post['thumbnail_url'] == UPLOAD_FOLDER ? BASE_URL . 'assets/images/placeholder.png' : ROOT_URL . htmlspecialchars( $post['thumbnail_url'] );
+                                        ?>
+                                        "
+                                    alt=""
+                                >
+                            </div>
+                
+                            <div class="post_controls">
+                                <div class="post_vote">
+                                    <img src="<?=BASE_URL?>/assets/icons/upvote.png" alt="">
+                                    <p class="vote_count">
+                                        <?= htmlspecialchars( $post['vote'] )?>
+                                    </p>
+                                    <img src="<?=BASE_URL?>/assets/icons/downvote.png" alt="">
+                                </div>
+                
+                                <div class="post_comments">
+                                    <img src="<?=BASE_URL?>/assets/icons/comment.png" alt="">
+                                    <p class="comment_count">
+                                        <?= htmlspecialchars( $post['comments_count'] )?>
+                                    </p>
+                                </div>
+                
+                                <div class="post_save">
+                                    <img src="<?=BASE_URL?>/assets/icons/save.png" alt="">
+                                </div>
+                                
+                                <div class="post_share">
+                                    <img src="<?=BASE_URL?>/assets/icons/share.png" alt="">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             <?php endforeach; ?>
 
         <?php else: ?>

@@ -27,6 +27,12 @@ class PostController {
             exit;
         }
     }
+
+    public function show() {
+        $view = ViewController::getInstance();
+        $view->set('title', 'Post');
+        $view->render('post');
+    }
     
 }
 ?>

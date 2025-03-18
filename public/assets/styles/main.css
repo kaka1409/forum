@@ -261,6 +261,7 @@ header {
 }
 
 .post {
+    text-align: left;
     padding: 1em;
     padding-top: 0.5em;
     width: 16em;
@@ -276,6 +277,14 @@ header {
 
 }
 
+.post_head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5em;
+}
+
 .post_author {
     display: flex;
     flex-direction: row;
@@ -285,6 +294,25 @@ header {
 
 .post_author .author_name {
     font-weight: lighter;
+}
+
+.post_options {
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8em;
+    height: 2em;
+    border-radius: 7px;
+}
+
+.post_options:hover {
+    background-color: var(--secondary-color);
+}
+
+.post_options img {
+    width: 1.5em;
+    height: 1.5em;
 }
 
 .post_title {
@@ -327,7 +355,7 @@ header {
     border-radius: 20px;
 }
 
-.post_options {
+.post_controls {
     color: var(--secondary-font-color);
     height: 2em;
     margin-top: 1em;
@@ -344,7 +372,7 @@ header {
     gap: 0.5em;
 }
 
-.post_options, .post_vote,
+.post_controls, .post_vote,
 .post_comments, .post_save, .post_share {
     display: flex;
     justify-content: space-between;

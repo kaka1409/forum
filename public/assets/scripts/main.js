@@ -5,6 +5,9 @@ const app = {
         "collapse_icon": document.querySelector('.collapse_icon'),
         "sidemenu": document.querySelector('.side_menu'),
         
+        // post components
+        "posts": Array.from(document.querySelectorAll('.post')),
+
         // create post form components
         "create_post_form": document.querySelector('.post_form form'),
 
@@ -23,13 +26,24 @@ const app = {
 
     },
 
-    animation: {
+    eventHandler: {
         init: function() {
-            // side menu collapse animation
+            // side menu collapse event
             app.components['collapse_icon'].addEventListener('click', () => {
                 app.components['sidemenu'].classList.toggle('collapsed')
             })
-        }
+
+            // post options events
+            app.components['posts'].forEach((post) => {
+                post.addEventListener('mouseover', () => {
+                    post.querySelector('.post_options').style.visibility = 'visible'
+                })
+
+                post.addEventListener('mouseout', () => {
+                    post.querySelector('.post_options').style.visibility = 'hidden'
+                })
+            })
+        },
     },
 
     createPostFormValidator: {
@@ -123,7 +137,7 @@ const app = {
     },
 
     start: function() {
-        this.animation.init()
+        this.eventHandler.init()
         this.createPostFormValidator.init()
     }
 }

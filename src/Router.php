@@ -14,11 +14,11 @@ class Router {
         $this->addRoute('POST', 'post/create', 'PostController', 'create');
         
         // Show post
-        $this->addRoute('GET', 'post/{id}', 'PostController', 'show');
+        $this->addRoute('GET', 'post/(\d+)', 'PostController', 'show');
         
         // Edit post
-        $this->addRoute('GET', 'post/{id}/edit', 'PostController', 'editForm');
-        $this->addRoute('POST', 'post/{id}/edit', 'PostController', 'edit');
+        $this->addRoute('GET', 'post/(\d+)/edit', 'PostController', 'editForm');
+        $this->addRoute('POST', 'post/(\d+)/edit', 'PostController', 'edit');
         
         // Login and register
         $this->addRoute('GET', 'login', 'AccountController', 'login');
