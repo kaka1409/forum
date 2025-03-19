@@ -7,7 +7,7 @@
     <div class="login_container">
         <img id="login_bg" src="<?=BASE_URL?>/assets/images/login_bg<?=mt_rand(1, 3)?>.png" alt="">
         
-        <div class="form_container">
+        <div>
             <?= $content; ?>
         </div>
     </div>

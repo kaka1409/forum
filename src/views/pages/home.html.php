@@ -84,11 +84,11 @@ $posts = Post::getAllPosts($db);
                 
                             <div class="post_controls">
                                 <div class="post_vote">
-                                    <img src="<?=BASE_URL?>/assets/icons/upvote.png" alt="">
+                                    <img id="upvote" src="<?=BASE_URL?>/assets/icons/upvote.png" alt="">
                                     <p class="vote_count">
                                         <?= htmlspecialchars( $post['vote'] )?>
                                     </p>
-                                    <img src="<?=BASE_URL?>/assets/icons/downvote.png" alt="">
+                                    <img id="downvote" src="<?=BASE_URL?>/assets/icons/downvote.png" alt="">
                                 </div>
                 
                                 <div class="post_comments">

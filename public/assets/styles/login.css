@@ -2,6 +2,8 @@ body {
     overflow: hidden;
 }
 
+/* Login form */
+
 .login_container {
     contain: content;
 }
@@ -12,7 +14,7 @@ body {
     object-fit: cover;
 }
 
-.form_container {
+.form_container.login {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -115,4 +117,52 @@ body {
 
 .form_group.register a{
     font-weight: bold;
+}
+
+
+/* Register form */
+
+.form_container.register {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+    border-radius: 30px;
+    width: 25em;
+    height: 35em;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid #fff;
+}
+
+#register .title {
+    font-size: 3em;
+    margin: 0.5em 0;
+}
+
+#register .form_group.email,
+#register .form_group.confirm_password{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3.5em;
+    border: 1px solid #fff;
+    border-radius: 30px;
+    margin-bottom: 2em;
+    padding: 0 1.5em;
+    cursor: pointer;
+}
+
+#register .form_group.email input,
+#register .form_group.confirm_password input{
+    width: 80%;
+}
+
+#register .form_group.password {
+    margin-bottom: 2em;
 }

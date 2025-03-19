@@ -7,6 +7,8 @@ const app = {
         
         // post components
         "posts": Array.from(document.querySelectorAll('.post')),
+        // "upvotes": Array.from(document.querySelectorAll('.post_vote #upvote')),
+        // "downvotes": Array.from(document.querySelectorAll('.post_vote #downvote')),
 
         // create post form components
         "create_post_form": document.querySelector('.post_form form'),
@@ -43,6 +45,29 @@ const app = {
                     post.querySelector('.post_options').style.visibility = 'hidden'
                 })
             })
+
+            // upvote events (hover)
+            const upvotes = Array.from(app.components['posts'].querySelectorAll('#upvote'))
+            console.log(upvotes)
+            // app.components['upvotes'].forEach( (upvote) => {
+            //     upvote.addEventListener('mouseover', () => {
+            //         upvote.src = 'assets/icons/upvote_hover.png'
+            //     })
+
+            //     upvote.addEventListener('mouseout', () => {
+            //         upvote.src = 'assets/icons/upvote.png'
+            //     })
+            // })
+
+            // app.components['downvotes'].forEach( (downvote) => {
+            //     downvote.addEventListener('mouseover', () => {
+            //         downvote.src = 'assets/icons/downvote_hover.png'
+            //     })
+
+            //     downvote.addEventListener('mouseout', () => {
+            //         downvote.src = 'assets/icons/downvote.png'
+            //     })
+            // })
         },
     },
 
@@ -136,7 +161,23 @@ const app = {
         }        
     },
 
+    loginFormValidator: {
+        init: function() {
+            
+        }
+    },
+
+    registerFormValidator: {
+        init: function() {
+            
+        }
+    },
+
     start: function() {
+        // login and register form validation
+        this.loginFormValidator.init()
+        this.registerFormValidator.init()
+
         this.eventHandler.init()
         this.createPostFormValidator.init()
     }
