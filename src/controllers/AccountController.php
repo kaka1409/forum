@@ -20,7 +20,6 @@ class AccountController {
 
             $account = Account::register($db);
             
-            // echo $account;
 
             if ($account) {
                 header('Location: ' . BASE_URL . 'login');

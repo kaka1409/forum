@@ -2,8 +2,21 @@
 
 class Account {
 
-    public static function login($db) {
-        
+    public static function login($db, $email, $password) {
+        $sql = "SELECT * FROM `account` WHERE email = :email;";
+        $stmt = $db->query($sql, [
+            ':email' => $email
+        ]);
+
+        if ($stmt.rowCount() > 0) {
+            $account = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (password_verify($password, $account['password'])) {
+                return $account;
+            }
+        }
+
+        return false;
     }
 
     public static function register($db) {
