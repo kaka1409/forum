@@ -22,6 +22,7 @@ require_once APP_ROOT . '/helpers/format.php';
 require_once APP_ROOT . '/models/Database.php';
 require_once APP_ROOT . '/models/Post.php';
 require_once APP_ROOT . '/models/Module.php';
+require_once APP_ROOT . '/models/Account.php';
 
 $db = new Database();
 

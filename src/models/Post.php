@@ -8,7 +8,7 @@ class Post {
         $content = $_POST['content'];
         $thumbnail_url = UPLOAD_FOLDER . $_POST['thumbnail'];
 
-        echo $module_id;
+        // echo $module_id;
     
         $sql = "INSERT INTO `post`(`account_id`, `module_id`, `title`, `content`, `post_at`, `updated_at`, `vote`, `comments_count`, `thumbnail_url`) 
                 VALUES (:account_id, :module_id, :title, :content, NOW(), NOW(), :vote, :comments_count, :thumbnail_url)";

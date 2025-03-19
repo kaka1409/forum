@@ -2,6 +2,20 @@ body {
     overflow: hidden;
 }
 
+input {
+    appearance: none;
+    -moz-appearance: none; /* for Firefox */
+    -webkit-appearance: none; /* for Safari and Chrome */
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff;
+    -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 /* Login form */
 
 .login_container {
@@ -161,6 +175,7 @@ body {
 #register .form_group.email input,
 #register .form_group.confirm_password input{
     width: 80%;
+    height: 100%;
 }
 
 #register .form_group.password {

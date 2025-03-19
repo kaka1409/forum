@@ -4,14 +4,14 @@
         <h1 class="title">Sign up</h1>
     
         <div class="form_group username">
-            <input type="text" id="username" name="username" placeholder="Username">
+            <input type="text" id="username" name="username" placeholder="Username" >
             <div class="username_icon">
                 <img width="25px" height="25px" src="<?=BASE_URL?>/assets/icons/user.png" alt="">
             </div>
         </div>
     
         <div class="form_group email">
-            <input type="email" id="email" name="email" placeholder="Email">
+            <input type="email" id="email" name="email" placeholder="Email" >
             <div class="email_icon">
                 <img width="25px" height="20px" src="<?=BASE_URL?>/assets/icons/email.png" alt="">
             </div>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form_group confirm_password">
-            <input type="confirm_password" id="confirm_password" name="confirm_password" placeholder="Confirm your assword">
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password">
             <div class="confirm_password_icon">
                 <img width="25px" height="25px" src="<?=BASE_URL?>/assets/icons/password.png" alt="">
             </div>
@@ -33,7 +33,7 @@
 
 
         <div class="form_group submit">
-            <input type="submit" value="Sign up">
+            <input type="submit" name="submit" value="Sign up">
         </div>
     
         <div class="form_group register">

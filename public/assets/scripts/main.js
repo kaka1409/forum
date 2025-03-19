@@ -7,8 +7,6 @@ const app = {
         
         // post components
         "posts": Array.from(document.querySelectorAll('.post')),
-        // "upvotes": Array.from(document.querySelectorAll('.post_vote #upvote')),
-        // "downvotes": Array.from(document.querySelectorAll('.post_vote #downvote')),
 
         // create post form components
         "create_post_form": document.querySelector('.post_form form'),
@@ -35,39 +33,43 @@ const app = {
                 app.components['sidemenu'].classList.toggle('collapsed')
             })
 
-            // post options events
+            // post's components events
             app.components['posts'].forEach((post) => {
+
+                // post options events
+                const postOptions = post.querySelector('.post_options')
+
                 post.addEventListener('mouseover', () => {
-                    post.querySelector('.post_options').style.visibility = 'visible'
+                    postOptions.style.visibility = 'visible'
                 })
 
                 post.addEventListener('mouseout', () => {
-                    post.querySelector('.post_options').style.visibility = 'hidden'
+                    postOptions.style.visibility = 'hidden'
                 })
+
+                // upvote events (hover)
+                const upvote = post.querySelector('#upvote')
+                
+                upvote.addEventListener('mouseover', () => {
+                    upvote.src = 'assets/icons/upvote_hover.png'
+                })
+
+                upvote.addEventListener('mouseout', () => {
+                    upvote.src = 'assets/icons/upvote.png'
+                })
+
+                // downvote events (hover)
+                const downvote = post.querySelector('#downvote')
+
+                downvote.addEventListener('mouseover', () => {
+                    downvote.src = 'assets/icons/downvote_hover.png'
+                })
+
+                downvote.addEventListener('mouseout', () => {
+                    downvote.src = 'assets/icons/downvote.png'
+                })
+
             })
-
-            // upvote events (hover)
-            const upvotes = Array.from(app.components['posts'].querySelectorAll('#upvote'))
-            console.log(upvotes)
-            // app.components['upvotes'].forEach( (upvote) => {
-            //     upvote.addEventListener('mouseover', () => {
-            //         upvote.src = 'assets/icons/upvote_hover.png'
-            //     })
-
-            //     upvote.addEventListener('mouseout', () => {
-            //         upvote.src = 'assets/icons/upvote.png'
-            //     })
-            // })
-
-            // app.components['downvotes'].forEach( (downvote) => {
-            //     downvote.addEventListener('mouseover', () => {
-            //         downvote.src = 'assets/icons/downvote_hover.png'
-            //     })
-
-            //     downvote.addEventListener('mouseout', () => {
-            //         downvote.src = 'assets/icons/downvote.png'
-            //     })
-            // })
         },
     },
 

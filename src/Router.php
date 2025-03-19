@@ -34,8 +34,10 @@ class Router {
         $this->addRoute('GET', 'admin', 'AdminController', 'dashboard');
         
         // Login and register
-        $this->addRoute('GET', 'login', 'AccountController', 'login');
-        $this->addRoute('GET', 'register', 'AccountController', 'register');
+        $this->addRoute('GET', 'login', 'AccountController', 'loginForm');
+        
+        $this->addRoute('GET', 'register', 'AccountController', 'registerForm');
+        $this->addRoute('POST', 'register', 'AccountController', 'register');
     }
 
     public function addRoute($method, $path, $controller, $action) {
