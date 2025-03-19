@@ -69,7 +69,7 @@
 
             <a 
                 class="menu_item"
-                href="<?=BASE_URL?>admin"    
+                href="<?=BASE_URL?>email"    
             >
                 <div class="icon">
                     <img 

@@ -19,6 +19,19 @@ class Router {
         // Edit post
         $this->addRoute('GET', 'post/(\d+)/edit', 'PostController', 'editForm');
         $this->addRoute('POST', 'post/(\d+)/edit', 'PostController', 'edit');
+
+        // List all modules
+        $this->addRoute('GET', 'module', 'ModuleController', 'show');
+
+        // Email admin
+        $this->addRoute('GET', 'email', 'AdminController', 'message');
+
+        // Profile
+        $this->addRoute('GET', 'profile', 'AccountController', 'showProfile');
+
+
+        // Admin dashboard
+        $this->addRoute('GET', 'admin', 'AdminController', 'dashboard');
         
         // Login and register
         $this->addRoute('GET', 'login', 'AccountController', 'login');

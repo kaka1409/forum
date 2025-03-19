@@ -12,6 +12,17 @@ class AccountController {
         $view->set('title', 'Register');
         $view->render('register');
     }
+
+    public function logout() {
+        // to do
+    }
+
+    public function showProfile() {
+        $view = ViewController::getInstance();
+        $view->set('title', 'Profile');
+        $view->render('profile');
+    
+    }
 }
 
 ?>

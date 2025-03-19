@@ -19,13 +19,15 @@
         <div class="profile_name">
             username
         </div>
-        <div class="profile_avatar">
-            <img 
-                width="40px"
-                height="40px"
-                src="https://avatars.githubusercontent.com/u/172468139?v=4" 
-                alt=""
-            >
-        </div>
+        <a href="<?=BASE_URL?>profile?">
+            <div class="profile_avatar">
+                <img 
+                    width="40px"
+                    height="40px"
+                    src="https://avatars.githubusercontent.com/u/172468139?v=4" 
+                    alt=""
+                >
+            </div>
+        </a>
     </div>
 </header>
