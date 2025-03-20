@@ -10,7 +10,6 @@ PUBLIC_ROOT = C:\xampp\htdocs\forum\public
 */
 
 session_start();
-$_SESSION['account_avatar'] = null;
 
 // config
 require_once APP_ROOT . '/config/config.php';

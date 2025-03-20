@@ -84,15 +84,21 @@ $posts = Post::getAllPosts($db);
                 
                             <div class="post_controls">
                                 <div class="post_vote">
-                                    <img id="upvote" src="<?=BASE_URL?>/assets/icons/upvote.png" alt="">
-                                    <p class="vote_count">
-                                        <?= htmlspecialchars( $post['vote'] )?>
-                                    </p>
-                                    <img id="downvote" src="<?=BASE_URL?>/assets/icons/downvote.png" alt="">
+                                    <div class="upvote_container">
+                                        <img id="upvote" src="<?=BASE_URL?>/assets/icons/upvote.png" alt="">
+                                        <p class="vote_count">
+                                            <?= htmlspecialchars( $post['vote'] )?>
+                                        </p>
+                                    </div>
+                                    <div class="downvote_container">
+                                        <img id="downvote" src="<?=BASE_URL?>/assets/icons/downvote.png" alt="">
+                                    </div>
                                 </div>
                 
                                 <div class="post_comments">
-                                    <img src="<?=BASE_URL?>/assets/icons/comment.png" alt="">
+                                    <div class="post_comments_container">
+                                        <img src="<?=BASE_URL?>/assets/icons/comment.png" alt="">
+                                    </div>
                                     <p class="comment_count">
                                         <?= htmlspecialchars( $post['comments_count'] )?>
                                     </p>

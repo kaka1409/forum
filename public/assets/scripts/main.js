@@ -48,24 +48,28 @@ const app = {
                 })
 
                 // upvote events (hover)
-                const upvote = post.querySelector('#upvote')
+                const upvoteContainer = post.querySelector('.upvote_container')
                 
-                upvote.addEventListener('mouseover', () => {
+                upvoteContainer.addEventListener('mouseover', () => {
+                    const upvote = upvoteContainer.querySelector('.upvote_container img')
                     upvote.src = 'assets/icons/upvote_hover.png'
                 })
 
-                upvote.addEventListener('mouseout', () => {
+                upvoteContainer.addEventListener('mouseout', () => {
+                    const upvote = upvoteContainer.querySelector('.upvote_container img')
                     upvote.src = 'assets/icons/upvote.png'
                 })
 
                 // downvote events (hover)
-                const downvote = post.querySelector('#downvote')
+                const downvoteContainer = post.querySelector('.downvote_container')
 
-                downvote.addEventListener('mouseover', () => {
+                downvoteContainer.addEventListener('mouseover', () => {
+                    const downvote = downvoteContainer.querySelector('.downvote_container img')
                     downvote.src = 'assets/icons/downvote_hover.png'
                 })
 
-                downvote.addEventListener('mouseout', () => {
+                downvoteContainer.addEventListener('mouseout', () => {
+                    const downvote = downvoteContainer.querySelector('.downvote_container img')
                     downvote.src = 'assets/icons/downvote.png'
                 })
 

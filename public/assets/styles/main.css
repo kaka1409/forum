@@ -10,6 +10,12 @@
     --secondary-font-color: #C6ABC8;
 }
 
+/* 
+    comment hover #2cdce6
+    bookmark hover #ff8e3b
+    copy link hover #ce3df3
+*/
+
 html {
     font-family: var(--main-font);
     overflow-y: hidden;
@@ -365,18 +371,39 @@ header {
 }
 
 .post_vote {
-    padding: 0.5em;
     background-color: #332544;
     border-radius: 10px;
-    gap: 0.5em;
+}
+
+.upvote_container, .downvote_container {
+    padding: 0.5em;
+}
+
+.upvote_container {
+    border-radius: 10px;
+    gap: 0.5em
+}
+
+.downvote_container {
+    border-radius: 10px;
+}
+
+.upvote_container:hover {
+    background-color: rgba(57, 229, 140, 0.2);
+    color: #39E58C;
+}
+
+.downvote_container:hover {
+    background-color: rgba(224, 67, 55, 0.2);
 }
 
 .post_comments {
     gap: 0.5em;
 }
 
-.post_controls, .post_vote,
-.post_comments, .post_save, .post_share {
+.post_controls, .post_vote, .upvote_container, .downvote_container,
+.post_comments, .post_comments_container
+.post_save, .post_share {
     display: flex;
     justify-content: space-between;
     align-items: center;
