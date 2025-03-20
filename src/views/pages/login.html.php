@@ -3,10 +3,10 @@
     
         <h1 class="title">Login</h1>
     
-        <div class="form_group username">
-            <input type="text" id="username" name="username" placeholder="Username">
-            <div class="username_icon">
-                <img width="25px" height="25px" src="<?=BASE_URL?>/assets/icons/user.png" alt="">
+        <div class="form_group email">
+            <input type="text" id="email" name="email" placeholder="Email">
+            <div class="email_icon">
+                <img width="25px" height="20px" src="<?=BASE_URL?>/assets/icons/email.png" alt="">
             </div>
         </div>
     
@@ -22,7 +22,7 @@
         </div>
     
         <div class="form_group submit">
-            <input type="submit" value="Login">
+            <input type="submit" name="submit" value="Login">
         </div>
     
         <div class="form_group register">

@@ -18,7 +18,7 @@ input:-webkit-autofill:focus {
 
 /* Login form */
 
-.login_container {
+.account_form_container {
     contain: content;
 }
 
@@ -74,7 +74,7 @@ input:-webkit-autofill:focus {
     font-size: 1em;
 }
 
-.form_group.username, .form_group.password {
+.form_group.email, .form_group.password {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -90,7 +90,7 @@ input:-webkit-autofill:focus {
     margin-bottom: 1em;
 }
 
-#username, #password {
+#email, #password {
     width: 80%;
     height: 99%;
 }
@@ -159,6 +159,7 @@ input:-webkit-autofill:focus {
     margin: 0.5em 0;
 }
 
+#register .form_group.username,
 #register .form_group.email,
 #register .form_group.confirm_password{
     display: flex;

@@ -10,6 +10,7 @@ PUBLIC_ROOT = C:\xampp\htdocs\forum\public
 */
 
 session_start();
+$_SESSION['account_avatar'] = null;
 
 // config
 require_once APP_ROOT . '/config/config.php';
@@ -17,12 +18,14 @@ require_once APP_ROOT . '/config/database.php';
 
 // helpers
 require_once APP_ROOT . '/helpers/format.php';
+require_once APP_ROOT . '/helpers/auth.php';
 
 // models
 require_once APP_ROOT . '/models/Database.php';
 require_once APP_ROOT . '/models/Post.php';
 require_once APP_ROOT . '/models/Module.php';
 require_once APP_ROOT . '/models/Account.php';
+require_once APP_ROOT . '/models/Session.php';
 
 $db = new Database();
 

@@ -2,12 +2,23 @@
 
 class PostController {
     public function createForm() {
+        $session = new Session();
+        $csrf_token = $session->generateCsrfToken();
+
         $view = ViewController::getInstance();
+        $view->set('csrf_token', $csrf_token);
         $view->set('title', 'New Post');
         $view->render('createPost');
     }
 
     public function create() {
+        // validate csrf token
+        $session = new Session();
+        if (!$session->validateCsrfToken($_POST['csrf_token'])) {
+            header('Location: ' . BASE_URL . 'post/create');
+            exit;
+        }
+
         global $db;
 
         if (isset($_POST['submit'])) {

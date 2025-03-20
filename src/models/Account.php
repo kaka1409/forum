@@ -2,16 +2,16 @@
 
 class Account {
 
-    public static function login($db, $email, $password) {
+    public static function authenticate($db, $email, $password) {
         $sql = "SELECT * FROM `account` WHERE email = :email;";
         $stmt = $db->query($sql, [
             ':email' => $email
         ]);
-
-        if ($stmt.rowCount() > 0) {
+        
+        if ($stmt->rowCount() > 0) {
             $account = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if (password_verify($password, $account['password'])) {
+            if (password_verify($password, $account['password_hash'])) {
                 return $account;
             }
         }
@@ -19,10 +19,27 @@ class Account {
         return false;
     }
 
-    public static function register($db) {
-        $username = $_POST['username'];
+    public static function login($db) {
         $email = $_POST['email'];
         $password = $_POST['password'];
+    
+        $account = self::authenticate($db, $email, $password);
+        if ($account) {
+            $session = new Session();
+
+            $session->set('account_id', $account['account_id']);
+            $session->set('account_name', $account['account_name']);
+            $session->set('role_id', $account['role_id']);
+            return true;
+        }
+    
+        return false;
+    }
+
+    public static function register($db) {
+        $username = trim($_POST['username']);
+        $email = $_POST['email'];
+        $password = trim($_POST['password']);
     
         $sql = "INSERT INTO `account`(`user_id`, `role_id`, `account_name`, `password_hash`, `email`, `create_at`) 
                 VALUES (:user_id, :role_id, :username, :password_hash, :email, NOW())";
@@ -31,7 +48,7 @@ class Account {
             ':user_id' => 2,
             ':role_id' => 1,
             ':username' => $username,
-            ':password_hash' => password_hash($password, PASSWORD_BCRYPT),
+            ':password_hash' => password_hash($password, PASSWORD_DEFAULT),
             ':email' => $email,
         ]);
 

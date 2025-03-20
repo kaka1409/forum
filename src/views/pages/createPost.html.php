@@ -6,6 +6,7 @@ $modules = Module::getAllModules($db);
 
 <section class="post_form" style="overflow-y: hidden;">
     <form action="" method="POST">
+        <input type="hidden" name="csrf_token" value="<?= $csrf_token ?? null ?>">
 
         <!-- module selection -->
         <div class="form_group form_module">

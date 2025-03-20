@@ -4,8 +4,8 @@ class Post {
 
     public static function createPost($db = null) {
         $module_id = $_POST['module'];
-        $title = $_POST['title'];
-        $content = $_POST['content'];
+        $title = trim($_POST['title']);
+        $content = trim($_POST['content']);
         $thumbnail_url = UPLOAD_FOLDER . $_POST['thumbnail'];
 
         // echo $module_id;
@@ -14,7 +14,7 @@ class Post {
                 VALUES (:account_id, :module_id, :title, :content, NOW(), NOW(), :vote, :comments_count, :thumbnail_url)";
         
         $stmt = $db->query($sql, [
-            ':account_id' => 1, // hard coded since I haven't implemented login system
+            ':account_id' => $_SESSION['account_id'], // hard coded since I haven't implemented login system
             ':module_id' => $module_id,
             ':title' => $title,
             ':content' => $content,
@@ -27,7 +27,7 @@ class Post {
     }
 
     public static function getAllPosts($db = null) {
-        $sql = "SELECT post.post_id, post.title, post.content, post.post_at, post.vote, post.comments_count, post.thumbnail_url, account.account_name, module.module_name
+        $sql = "SELECT post.post_id, post.account_id, post.title, post.content, post.post_at, post.vote, post.comments_count, post.thumbnail_url, account.account_name, module.module_name
         FROM `post`
         INNER JOIN `account` ON post.account_id = account.account_id
         INNER JOIN `module` ON post.module_id = module.module_id;";
