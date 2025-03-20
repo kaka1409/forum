@@ -2,6 +2,7 @@
 global $db;
 $posts = Post::getAllPosts($db);
 // print_r($posts[0]);
+
 ?>
 
 <!-- Feed setting -->
@@ -28,11 +29,9 @@ $posts = Post::getAllPosts($db);
         <?php if (isset($posts)): ?>
             <?php foreach ($posts as $post): ?>
                 <a href="<?=BASE_URL?>post/<?= $post['post_id'] ?>">
-                    <div 
-                        class="post"
-                        
-                    >
+                    <div class="post">
                         <div class="post_content">
+
                             <div class="post_head">
                                 <div class="post_author">
                                     <img 

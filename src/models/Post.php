@@ -26,6 +26,18 @@ class Post {
         return $stmt;
     }
 
+    public static function getPostById($post_id, $db) {
+
+        $sql = "SELECT * FROM `post` WHERE post_id = :post_id";
+
+        $stmt = $db->query($sql, [
+            ':post_id' => $post_id
+        ]);
+
+        $post_content = $stmt->FetchAll(PDO::FETCH_ASSOC);
+        return $post_content;
+    }
+
     public static function getAllPosts($db = null) {
         $sql = "SELECT post.post_id, post.account_id, post.title, post.content, post.post_at, post.vote, post.comments_count, post.thumbnail_url, account.account_name, module.module_name
         FROM `post`
