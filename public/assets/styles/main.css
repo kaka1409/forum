@@ -398,7 +398,38 @@ header {
 }
 
 .post_comments {
+    height: 100%;
     gap: 0.5em;
+}
+
+.post_comments:hover {
+    color: #2cdce6;
+}
+
+.post_comments_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+    border-radius: 10px;
+}
+
+.post_save {
+    padding: 0.35em;
+    border-radius: 10px;
+}
+
+.post_save:hover {
+    background-color: rgba(255, 142, 59, 0.2);
+}
+
+.post_share {
+    padding: 0.35em;
+    border-radius: 10px;
+}
+
+.post_share:hover {
+    background-color: rgba(206, 61, 243, 0.2);
 }
 
 .post_controls, .post_vote, .upvote_container, .downvote_container,

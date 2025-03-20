@@ -49,28 +49,66 @@ const app = {
 
                 // upvote events (hover)
                 const upvoteContainer = post.querySelector('.upvote_container')
+                const upvote = upvoteContainer.querySelector('.upvote_container img')
                 
                 upvoteContainer.addEventListener('mouseover', () => {
-                    const upvote = upvoteContainer.querySelector('.upvote_container img')
                     upvote.src = 'assets/icons/upvote_hover.png'
                 })
 
                 upvoteContainer.addEventListener('mouseout', () => {
-                    const upvote = upvoteContainer.querySelector('.upvote_container img')
                     upvote.src = 'assets/icons/upvote.png'
                 })
 
                 // downvote events (hover)
                 const downvoteContainer = post.querySelector('.downvote_container')
+                const downvote = downvoteContainer.querySelector('.downvote_container img')
 
                 downvoteContainer.addEventListener('mouseover', () => {
-                    const downvote = downvoteContainer.querySelector('.downvote_container img')
                     downvote.src = 'assets/icons/downvote_hover.png'
                 })
 
                 downvoteContainer.addEventListener('mouseout', () => {
-                    const downvote = downvoteContainer.querySelector('.downvote_container img')
                     downvote.src = 'assets/icons/downvote.png'
+                })
+
+                // comment icon hover effect
+                const commentIconContainer = post.querySelector('.post_comments')
+                const iconContainer = commentIconContainer.querySelector('.post_comments_container')
+                const commentIcon = commentIconContainer.querySelector('.post_comments_container img')
+
+                commentIconContainer.addEventListener('mouseover', () => {
+                    iconContainer.style.backgroundColor = "rgba(44, 220, 230, 0.2)";
+                    commentIcon.src = 'assets/icons/comment_hover.png'
+
+                })
+
+                commentIconContainer.addEventListener('mouseout', () => {
+                    iconContainer.style.backgroundColor = "transparent";
+                    commentIcon.src = 'assets/icons/comment.png'
+                })
+
+                // save icon hover effect
+                const saveIconContainer = post.querySelector('.post_save')
+                const saveIcon = saveIconContainer.querySelector('img')
+
+                saveIconContainer.addEventListener('mouseover', () => {
+                    saveIcon.src = 'assets/icons/save_hover.png'
+                })
+
+                saveIconContainer.addEventListener('mouseout', () => {
+                    saveIcon.src = 'assets/icons/save.png'
+                })
+
+                // share icon hover effect
+                const shareContainer = post.querySelector('.post_share')
+                const shareIcon = shareContainer.querySelector('img')
+
+                shareContainer.addEventListener('mouseover', () => {
+                    shareIcon.src = 'assets/icons/share_hover.png'
+                })
+
+                shareContainer.addEventListener('mouseout', () => {
+                    shareIcon.src = 'assets/icons/share.png'
                 })
 
             })
