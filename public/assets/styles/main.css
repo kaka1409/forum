@@ -263,7 +263,7 @@ header {
     text-align: center;
 }
 
-.post_container {
+.posts_container {
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 5 equal-width columns */
     grid-gap: 20px;
@@ -609,6 +609,74 @@ header {
 
 
 /* Create post form */
+
+/* Post content and comment section */
+
+.post_container {
+    background-color: var(--primary-color);
+    border-left: 0.5px solid var(--border-color);
+    border-right: 0.5px solid var(--border-color);
+    margin: 0 auto;
+    margin-top: -1em;
+    padding: 2em;
+    padding-top: 1em;
+    width: 37em;    
+    height: 100%;
+}
+
+.post_container .author_avatar{
+    height: 3em;
+    width: 3em;
+}
+
+.post_container .author_name {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+
+.post_container .post_date{
+    margin: 0;
+}
+
+.post_container .title {
+    font-size: 1.75em;
+}
+
+.post_container .thumbnail,
+.post_container .content {
+    margin-top: 1em;
+}
+
+.post_container .thumbnail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    contain: content;
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+}
+
+.post_container .thumbnail img {
+    width: 100%;
+    height: 100%;
+}
+
+.post_container .post_controls {
+    margin-top: 1.5em;
+    width: 50%;
+}
+
+.post_container .upvote_container,
+.post_container .downvote_container,
+.post_container .post_comments_container,
+.post_container .post_save,
+.post_container .post_share {
+    cursor: pointer;
+}
+
+
+/* Post content and comment section */
 
 /* Main content */
 

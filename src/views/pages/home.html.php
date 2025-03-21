@@ -25,7 +25,7 @@ $posts = Post::getAllPosts($db);
     
     
     <!-- Post listing here -->
-    <div class="post_container">
+    <div class="posts_container">
         <?php if (isset($posts)): ?>
             <?php foreach ($posts as $post): ?>
                 <a href="<?=BASE_URL?>post/<?= $post['post_id'] ?>">
@@ -74,7 +74,7 @@ $posts = Post::getAllPosts($db);
                                 <img 
                                     src="
                                         <?=
-                                            $post['thumbnail_url'] == UPLOAD_FOLDER ? BASE_URL . 'assets/images/placeholder.png' : ROOT_URL . htmlspecialchars( $post['thumbnail_url'] );
+                                            $post['thumbnail_url'] == UPLOAD_FOLDER ? ROOT_URL . 'uploads/default.png' : ROOT_URL . htmlspecialchars( $post['thumbnail_url'] );
                                         ?>
                                         "
                                     alt=""
