@@ -42,11 +42,10 @@ class Account {
         $email = $_POST['email'];
         $password = trim($_POST['password']);
     
-        $sql = "INSERT INTO `account`(`user_id`, `role_id`, `account_name`, `account_avatar`, `password_hash`, `email`, `create_at`) 
-                VALUES (:user_id, :role_id, :username, :account_avatar, :password_hash, :email, NOW())";
+        $sql = "INSERT INTO `account`(`role_id`, `account_name`, `account_avatar`, `password_hash`, `email`, `create_at`) 
+                VALUES (:role_id, :username, :account_avatar, :password_hash, :email, NOW())";
 
         $stmt = $db->query($sql, [
-            ':user_id' => 2,
             ':role_id' => 1,
             ':username' => $username,
             ':account_avatar' => 'uploads/account/default.jpg',

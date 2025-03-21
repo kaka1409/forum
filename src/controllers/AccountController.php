@@ -39,7 +39,6 @@ class AccountController {
         if (isset($_POST['submit'])) {
 
             $account = Account::register($db);
-            
 
             if ($account) {
                 header('Location: ' . BASE_URL . 'login');
@@ -57,6 +56,9 @@ class AccountController {
     public function logout() {
         $session = new Session();
         $session->destroy();
+
+        header('Location: ' . BASE_URL . 'login');
+        exit;
     }
 
     public function showProfile() {

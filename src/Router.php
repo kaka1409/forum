@@ -29,6 +29,8 @@ class Router {
         // Profile
         $this->addRoute('GET', 'profile', 'AccountController', 'showProfile');
 
+        // Logout
+        $this->addRoute('GET', 'logout', 'AccountController', 'logout');
 
         // Admin dashboard
         $this->addRoute('GET', 'admin', 'AdminController', 'dashboard');

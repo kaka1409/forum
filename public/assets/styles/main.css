@@ -667,6 +667,55 @@ header {
     width: 50%;
 }
 
+.post_container .comment_input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2em;
+    width: 100%;
+    height: 3.5em;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.post_container .comment_input:hover {
+    border: 1px solid #eea6f1;
+}
+
+.post_container .comment_input #comment {
+    padding-left: 1em;
+    background: transparent;
+    border: none;
+    width: 80%;
+    height: 100%;
+    color: var(--secondary-font-color);
+    font-size: 1em;
+}
+
+.post_container .comment_input #comment::placeholder {
+    color: var(--secondary-font-color);
+    font-size: 1em;
+    font-weight: bolder;
+    opacity: 50%;
+}
+
+.post_container .comment_input #post_comment {
+    padding: 0.5em 0.75em;
+    height: 70%;
+    margin-right: 1em;
+    background-color: var(--primary-color);
+    color: var(--secondary-font-color);
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 7px;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+}
+
+.post_container .comment_input #post_comment:hover {
+    background-color: var(--secondary-color);
+}
+
 .post_container .upvote_container,
 .post_container .downvote_container,
 .post_container .post_comments_container,
@@ -675,8 +724,34 @@ header {
     cursor: pointer;
 }
 
+.back_btn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1em;
+    color: var(--secondary-font-color);
+    background-color: var(--post-color);
+    cursor: pointer;
+}
 
 /* Post content and comment section */
+
+.profile_display_container {
+    background-color: var(--primary-color);
+    border-left: 0.5px solid var(--border-color);
+    border-right: 0.5px solid var(--border-color);
+    margin: 0 auto;
+    margin-top: -1em;
+    padding: 2em;
+    padding-top: 1em;
+    width: 37em;    
+    height: 100%;
+}
+
 
 /* Main content */
 

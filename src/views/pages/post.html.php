@@ -10,6 +10,11 @@ $post_content = Post::getPostById($post_id, $db);
 // print_r($post_content);
 ?>
 
+<a class="back_btn" href="<?= BASE_URL?>home">
+    <img src="<?=BASE_URL?>/assets/icons/back.png" alt="" width="15px" height="15px">
+    <p>Back</p>
+</a>
+
 <div class="post_container">
     <div class="post_content">
 
@@ -81,6 +86,12 @@ $post_content = Post::getPostById($post_id, $db);
             </div>
         </div>
 
+        <!-- comment input -->
+        <div class="comment_input">
+            <input id="comment" type="text" placeholder="Leave a comment">
+
+            <input id="post_comment" type="submit" name="submit" value="Post">
+        </div>
 
         <!-- comment section -->
 

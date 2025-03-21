@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2025 at 10:20 AM
+-- Generation Time: Mar 21, 2025 at 07:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `account` (
   `account_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   `account_name` varchar(50) NOT NULL,
+  `account_avatar` varchar(255) DEFAULT NULL,
   `password_hash` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -41,8 +41,11 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`account_id`, `user_id`, `role_id`, `account_name`, `password_hash`, `email`, `create_at`) VALUES
-(1, 1, 1, 'kaka1409', 'test', 'testEmail@gmail.com', '2025-03-16 05:06:49');
+INSERT INTO `account` (`account_id`, `role_id`, `account_name`, `account_avatar`, `password_hash`, `email`, `create_at`) VALUES
+(1, 1, 'kaka1409', 'uploads/account/kaka1409.png', 'test', 'testEmail@gmail.com', '2025-03-16 05:06:49'),
+(7, 1, 'test user', 'uploads/account/default.jpg', '$2y$10$j37XG4wZOUJslK3dH1IM7uQv4BOGfa5RK6H7l3t88lNlgQo.CI5Fq', 'test@gmail.com', '2025-03-20 04:54:40'),
+(8, 1, 'kk1409', 'uploads/account/default.jpg', '$2y$10$nVSapmddlfUCX344CJumde9w/qL1aiCGvLrw1MSkjEyDRoVmbLsfO', 'bruh@gmail.com', '2025-03-20 04:58:36'),
+(10, 1, 'new user', 'uploads/account/default.jpg', '$2y$10$S8y9wx2ADVjKz/gT7rVllO2jsnxNKbYTcJ3S9qZ3eDCIlhzfN1Tju', 'new@gmail.com', '2025-03-21 06:10:40');
 
 -- --------------------------------------------------------
 
@@ -126,9 +129,8 @@ INSERT INTO `post` (`post_id`, `account_id`, `module_id`, `title`, `content`, `p
 (1, 1, 1, 'test post', 'lorem isuapum', '2025-03-16 05:08:41', '2025-03-18 03:37:09', 10, 3, 'uploads/1.webp'),
 (2, 1, 1, 'test post number 2', 'lorem isuapum of post number 2', '2025-03-16 05:11:20', '2025-03-18 03:37:24', 5, 16, 'uploads/2.jpg'),
 (4, 1, 1, 'post number 3', 'lorem isuapum of post number 3', '2025-03-16 05:11:56', '2025-03-18 03:37:35', 24, 5, 'uploads/3.webp'),
-(8, 1, 1, 'asdasd', 'asdasdasdasd', '2025-03-18 04:49:01', '2025-03-18 04:49:01', 0, 0, 'uploads/4.webp'),
-(9, 1, 1, 'asdasd', 'asdasd', '2025-03-18 04:54:23', '2025-03-18 04:54:23', 0, 0, 'uploads/4.webp'),
-(10, 1, 2, 'asdfgfuidsgdsfhkf', 'sdjkfsjgfsdf', '2025-03-18 05:41:00', '2025-03-18 05:41:00', 0, 0, 'uploads/2.jpg');
+(12, 8, 2, 'new post yeah', 'oh baby oh bay oh baby', '2025-03-20 08:56:49', '2025-03-20 08:56:49', 0, 0, 'uploads/4.webp'),
+(13, 8, 1, 'yeah baby', 'oy hm good', '2025-03-21 04:27:54', '2025-03-21 04:27:54', 0, 0, 'uploads/');
 
 -- --------------------------------------------------------
 
@@ -148,23 +150,6 @@ CREATE TABLE `role` (
 INSERT INTO `role` (`role_id`, `role_name`) VALUES
 (2, 'admin'),
 (1, 'student');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`user_id`) VALUES
-(1);
 
 -- --------------------------------------------------------
 
@@ -190,7 +175,6 @@ CREATE TABLE `vote` (
 ALTER TABLE `account`
   ADD PRIMARY KEY (`account_id`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `idx_account_user_id` (`user_id`),
   ADD KEY `idx_account_role_id` (`role_id`);
 
 --
@@ -232,12 +216,6 @@ ALTER TABLE `role`
   ADD UNIQUE KEY `role_name` (`role_name`);
 
 --
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
-
---
 -- Indexes for table `vote`
 --
 ALTER TABLE `vote`
@@ -256,7 +234,7 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -280,19 +258,13 @@ ALTER TABLE `module`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `vote`
@@ -308,7 +280,6 @@ ALTER TABLE `vote`
 -- Constraints for table `account`
 --
 ALTER TABLE `account`
-  ADD CONSTRAINT `account_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `account_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE CASCADE;
 
 --

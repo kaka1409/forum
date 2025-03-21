@@ -17,11 +17,11 @@
 
     <div class="profile_container">
         <div class="profile_name">
-            <?= $_SESSION['account_name']?>
+            <?= $_SESSION['account_name'] ?? null?>
         </div>
         <a href="<?=BASE_URL?>profile?">
             <div class="profile_avatar">
-                <?php if( $_SESSION['account_avatar'] != null):?>
+                <?php if( isset($_SESSION['account_avatar']) ):?>
                     <img 
                         width="40px"
                         height="40px"
