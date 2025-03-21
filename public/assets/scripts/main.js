@@ -45,7 +45,7 @@ const app = {
                 // console.log('yes')
 
                 posts.forEach((post) => {
-    
+
                     // post options events
                     const postOptions = post.querySelector('.post_options')
     
@@ -55,6 +55,12 @@ const app = {
     
                     post.addEventListener('mouseout', () => {
                         postOptions.style.visibility = 'hidden'
+                    })
+
+                    post.addEventListener('click', (e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        // pop up here
                     })
     
                     // upvote events (hover and click)
@@ -70,7 +76,7 @@ const app = {
                     })
 
                     upvoteContainer.addEventListener('click', (e) => {
-                        console.log(e)
+                        e.preventDefault()
                         e.stopPropagation()
                         upvote.src = '/forum/public/assets/icons/upvoted.png'
                     })
@@ -85,6 +91,12 @@ const app = {
     
                     downvoteContainer.addEventListener('mouseout', () => {
                         downvote.src = '/forum/public/assets/icons/downvote.png'
+                    })
+
+                    downvoteContainer.addEventListener('click', (e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        downvote.src = '/forum/public/assets/icons/downvoted.png'
                     })
     
                     // comment icon hover effect

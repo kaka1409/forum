@@ -11,7 +11,7 @@ $post_content = Post::getPostById($post_id, $db);
 ?>
 
 <a class="back_btn" href="<?= BASE_URL?>home">
-    <img src="<?=BASE_URL?>/assets/icons/back.png" alt="" width="15px" height="15px">
+    <img src="<?=BASE_URL?>/assets/icons/back.png" alt="" width="18px" height="18px">
     <p>Back</p>
 </a>
 

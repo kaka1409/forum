@@ -11,12 +11,6 @@
     --secondary-font-color: #C6ABC8;
 }
 
-/* 
-    comment hover #2cdce6
-    bookmark hover #ff8e3b
-    copy link hover #ce3df3
-*/
-
 html {
     font-family: var(--main-font);
     overflow-y: hidden;
@@ -708,7 +702,7 @@ header {
     color: var(--secondary-font-color);
     font-size: 1em;
     font-weight: bold;
-    border-radius: 7px;
+    border-radius: 10px;
     border: 2px solid var(--border-color);
     cursor: pointer;
 }
@@ -730,12 +724,15 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5em;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
+    gap: 0.25em;
+    padding: 0.7em;
+    border-radius: 15px;
     font-size: 1em;
+    font-weight: bold;
+    font-family: var(--secondary-font);
     color: var(--secondary-font-color);
-    background-color: var(--post-color);
+    background-color: var(--secondary-color);
+    opacity: 0.7;
     cursor: pointer;
 }
 
