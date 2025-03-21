@@ -20,6 +20,9 @@
 
     </main>
 
+    <!-- MODAL -->
+    <?= ViewController::useComponent('modal'); ?>
+
     <script src="<?=BASE_URL?>assets/scripts/main.js"></script>
 </body>
 </html>

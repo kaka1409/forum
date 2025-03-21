@@ -3,6 +3,7 @@
     --secondary-color: #393243;
     --post-color: #251B32;
     --violet-color: #CE3DF3;
+    --modal-bg-color: rgba(95, 55, 233, 0.23);
     --border-color: #88518B;
     --main-font: 'Poppins', sans-serif;
     --main-font-color: #fff;
@@ -756,6 +757,21 @@ header {
 /* Main content */
 
 /* Main area */
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--modal-bg-color);
+}
+
+/* Modal */
 
 
 /* Scroll bar */

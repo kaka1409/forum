@@ -57,7 +57,7 @@ const app = {
                         postOptions.style.visibility = 'hidden'
                     })
     
-                    // upvote events (hover)
+                    // upvote events (hover and click)
                     const upvoteContainer = post.querySelector('.upvote_container')
                     const upvote = upvoteContainer.querySelector('.upvote_container img')
                     
@@ -67,6 +67,12 @@ const app = {
     
                     upvoteContainer.addEventListener('mouseout', () => {
                         upvote.src = '/forum/public/assets/icons/upvote.png'
+                    })
+
+                    upvoteContainer.addEventListener('click', (e) => {
+                        console.log(e)
+                        e.stopPropagation()
+                        upvote.src = '/forum/public/assets/icons/upvoted.png'
                     })
     
                     // downvote events (hover)
