@@ -4,11 +4,10 @@ function isLoggedIn() {
     return isset($_SESSION['account_id']);
 }
 
-function requireLogin() {
-    if (!isLoggedIn()) {
-        header('Location: ' . BASE_URL . 'login');
-        exit;
-    }
+function authStatusJS() {
+    echo '<script>';
+    echo 'const isLoggedIn = ' . (isLoggedIn() ? 'true' : 'false');
+    echo '</script>';
 }
 
 function isAdmin() {

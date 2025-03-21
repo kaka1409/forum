@@ -736,6 +736,11 @@ header {
     cursor: pointer;
 }
 
+.back_btn:hover {
+    color: #fff;
+    opacity: 1;
+}
+
 /* Post content and comment section */
 
 .profile_display_container {
@@ -758,6 +763,8 @@ header {
 /* Modal */
 .modal {
     display: none;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -766,6 +773,46 @@ header {
     height: 100%;
     overflow: auto;
     background-color: var(--modal-bg-color);
+}
+
+.modal .pop_up {
+    display: block;
+    margin: 0 auto;
+    padding: 1em;
+    width: 20em;
+    height: 7em;
+    color: #fff;
+    font-family: var(--secondary-font);
+    font-size: 1.25em;
+    font-weight: bolder;
+    background-color: #170F23;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+}
+
+.modal .pop_up p {
+    margin-top: 1em;
+    text-align: center;
+    padding: 0 1em;
+}
+
+.modal .pop_up img {
+    position: relative;
+    top: -3.5em;
+    left: 19.3em;
+    cursor: pointer;
+}
+
+.modal .pop_up a {
+    margin: 0 auto;
+    padding: 1em;
+    width: 6em;
+    height: 1em;
+    font-size: 0.8em;
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+    justify-content: center;
 }
 
 /* Modal */

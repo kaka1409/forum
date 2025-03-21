@@ -4,6 +4,7 @@
     <?= ViewController::useComponent('head', ['title' => $title]); ?>
 </head>
 <body>
+
     <!-- HEADER -->
     <?= ViewController::useComponent('header'); ?>
 
@@ -23,6 +24,8 @@
     <!-- MODAL -->
     <?= ViewController::useComponent('modal'); ?>
 
+    <!-- SCRIPTS -->
+    <?php authStatusJS()?>
     <script src="<?=BASE_URL?>assets/scripts/main.js"></script>
 </body>
 </html>

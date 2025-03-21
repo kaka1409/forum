@@ -25,6 +25,13 @@ const app = {
         "content": document.querySelector('.post_form #content'),
         "content_char_count": document.querySelector('.post_form #content_char_count'),
 
+        // modal
+        "modal" : document.querySelector('.modal')
+
+    },
+
+    requireLogin: function () {
+
     },
 
     eventHandler: {
@@ -57,7 +64,7 @@ const app = {
                         postOptions.style.visibility = 'hidden'
                     })
 
-                    post.addEventListener('click', (e) => {
+                    postOptions.addEventListener('click', (e) => {
                         e.preventDefault()
                         e.stopPropagation()
                         // pop up here
@@ -78,7 +85,12 @@ const app = {
                     upvoteContainer.addEventListener('click', (e) => {
                         e.preventDefault()
                         e.stopPropagation()
-                        upvote.src = '/forum/public/assets/icons/upvoted.png'
+
+                        if (isLoggedIn) {
+                            upvote.src = '/forum/public/assets/icons/upvoted.png'
+                        } else {
+                            app.components['modal'].style.display = 'flex'
+                        }
                     })
     
                     // downvote events (hover)
@@ -96,7 +108,12 @@ const app = {
                     downvoteContainer.addEventListener('click', (e) => {
                         e.preventDefault()
                         e.stopPropagation()
-                        downvote.src = '/forum/public/assets/icons/downvoted.png'
+
+                        if (isLoggedIn) {
+                            downvote.src = '/forum/public/assets/icons/downvoted.png'
+                        } else {
+                            app.components['modal'].style.display = 'flex'
+                        }
                     })
     
                     // comment icon hover effect
@@ -140,7 +157,7 @@ const app = {
                     })
     
                 })
-            } else {
+            } else if (app.components['post']) {
                 // console.log('no')
 
                 const post = app.components['post']
@@ -222,6 +239,13 @@ const app = {
                 })
 
             }
+
+            // modal exit button
+            const modalExitButton = app.components['modal'].querySelector('img')
+
+            modalExitButton.addEventListener('click', () => {
+                app.components['modal'].style.display = 'none'
+            })
         }
     },
 

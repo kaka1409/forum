@@ -17,7 +17,11 @@
 
     <div class="profile_container">
         <div class="profile_name">
-            <?= $_SESSION['account_name'] ?? null?>
+            <?php if (isset($_SESSION['account_name'])): ?>
+                <?= $_SESSION['account_name'] ?>
+            <?php else: ?>
+                <a href="<?=BASE_URL?>login">Sign in</a>
+            <?php endif; ?>
         </div>
         <a href="<?=BASE_URL?>profile?">
             <div class="profile_avatar">
