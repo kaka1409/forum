@@ -34,12 +34,12 @@ $posts = Post::getAllPosts($db);
 
                             <div class="post_head">
                                 <div class="post_author">
-                                    <img 
-                                        width="40px"
-                                        height="40px"
-                                        src="https://avatars.githubusercontent.com/u/172468139?v=4" 
-                                        alt=""
-                                    >
+                                    <div class="author_avatar">
+                                        <img 
+                                            src="<?=ROOT_URL .  $post['account_avatar']?>" 
+                                            alt=""
+                                        >
+                                    </div>
         
                                     <p class="author_name">
                                         <?= htmlspecialchars( $post['account_name'] )?>

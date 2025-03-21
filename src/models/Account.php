@@ -29,6 +29,7 @@ class Account {
 
             $session->set('account_id', $account['account_id']);
             $session->set('account_name', $account['account_name']);
+            $session->set('account_avatar', $account['account_avatar']);
             $session->set('role_id', $account['role_id']);
             return true;
         }
@@ -41,13 +42,14 @@ class Account {
         $email = $_POST['email'];
         $password = trim($_POST['password']);
     
-        $sql = "INSERT INTO `account`(`user_id`, `role_id`, `account_name`, `password_hash`, `email`, `create_at`) 
-                VALUES (:user_id, :role_id, :username, :password_hash, :email, NOW())";
+        $sql = "INSERT INTO `account`(`user_id`, `role_id`, `account_name`, `account_avatar`, `password_hash`, `email`, `create_at`) 
+                VALUES (:user_id, :role_id, :username, :account_avatar, :password_hash, :email, NOW())";
 
         $stmt = $db->query($sql, [
             ':user_id' => 2,
             ':role_id' => 1,
             ':username' => $username,
+            ':account_avatar' => 'uploads/account/default.jpg',
             ':password_hash' => password_hash($password, PASSWORD_DEFAULT),
             ':email' => $email,
         ]);

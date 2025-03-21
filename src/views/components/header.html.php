@@ -25,7 +25,7 @@
                     <img 
                         width="40px"
                         height="40px"
-                        src="https://avatars.githubusercontent.com/u/172468139?v=4" 
+                        src="<?=ROOT_URL .  $_SESSION['account_avatar']?>" 
                         alt=""
                     >
                 <?php else: ?>
