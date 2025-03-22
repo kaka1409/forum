@@ -1,34 +1,46 @@
 <?php
+
 global $db;
-$posts = Post::getAllPosts($db);
-// print_r($posts[0]);
+
+$uri_array = explode('/', $_SERVER['REQUEST_URI']);
+
+$module_id = end($uri_array);
+
+$posts_of_module = Module::getAllPostById($db, $module_id);
+
+// print_r($posts_of_module);
 
 ?>
-
-<!-- Feed setting -->
-<section class="home">
-
-    <!-- Feed setting -->
-    <div class="feed_settings">
-        <div class="feed_text">
-            <img
-                width="20px"
-                height="15px" 
-                src="<?=BASE_URL?>/assets/icons/feed_settings.png"
-                alt=""
-            >
-            <p>
-                Feed settings
-            </p>
+<section class="module_view_post_container">
+    <div class="main_nav_container">
+        <!-- Back button -->
+        <a class="back_btn" href="<?= BASE_URL?>module">
+            <img src="<?=BASE_URL?>/assets/icons/back.png" alt="" width="18px" height="18px">
+            <p>Back</p>
+        </a>
+    
+        <!-- Feed setting -->
+        <div class="feed_settings">
+            <div class="feed_text">
+                <img
+                    width="20px"
+                    height="15px" 
+                    src="<?=BASE_URL?>/assets/icons/feed_settings.png"
+                    alt=""
+                >
+                <p>
+                    Feed settings
+                </p>
+            </div>
         </div>
     </div>
     
     
     <!-- Post listing here -->
     <div class="posts_container">
-        <?php if (isset($posts)): ?>
-            <?php foreach ($posts as $post): ?>
-                <a href="<?=BASE_URL?>post/<?= $post['post_id'] ?>">
+        <?php if (isset($posts_of_module)): ?>
+            <?php foreach ($posts_of_module as $post): ?>
+                <a href="<?= BASE_URL ?>module/<?= $post['module_id'] ?>/post/<?= $post['post_id'] ?>">
                     <div class="post">
                         <div class="post_content">
 
@@ -117,8 +129,8 @@ $posts = Post::getAllPosts($db);
             <?php endforeach; ?>
 
         <?php else: ?>
-            <h1>Be the first person to post</h1>
+            <h1>No post in this module</h1>
         <?php endif; ?>
     </div>
-    
+
 </section>

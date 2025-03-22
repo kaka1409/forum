@@ -725,8 +725,8 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 0.25em;
-    padding: 0.7em;
-    border-radius: 15px;
+    padding: 1em;
+    border-radius: 20px;
     font-size: 1em;
     font-weight: bold;
     font-family: var(--secondary-font);
@@ -757,12 +757,85 @@ header {
 
 /* module listing */
 
+.main_nav_container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1em;
+}
+
+.main_nav_container .back_btn,
+.main_nav_container .feed_settings {
+    position: relative ; 
+}
+
 .modules_container {
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 5 equal-width columns */
-    grid-gap: 20px;
+    grid-gap: 2em;
     margin-top: 2em;
 }
+
+.module_border {
+    display: flex;
+    align-items: flex-end;
+    padding: 0.1em;
+    background-image: linear-gradient(to right bottom, #FF0099, #008CFF);
+    border-radius: 20px;
+    width: 20em;
+    height: 22em;
+}
+
+.module {
+    position: relative;
+    display: block;
+    text-align: left;
+    padding: 1em;
+    background-color: var(--post-color);
+    width: 90%;
+    height: 75%;
+    border-radius: inherit;
+}
+
+.module .teacher,
+.module .posts_count {
+    margin-bottom: 1em;
+    color: var(--secondary-font-color);
+}
+
+.module .title {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+
+.module .posts_count {
+    font-weight: 100;
+    font-size: 1em;
+}
+
+.module .description {
+    font-size: 1em;
+    font-family: var(--secondary-font);
+    color: var(--secondary-font-color);
+}
+
+.module_view {
+    position: absolute;
+    display: block;
+    margin: 0 auto;
+    bottom: 1em;
+    width: 90%;
+    height: 3em;
+    background-color: transparent;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bolder;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
 
 /* module listing */
 

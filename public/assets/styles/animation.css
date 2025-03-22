@@ -50,5 +50,27 @@
     100% {
       transform: scale(1.05);
     }
-  }
+}
+
+.module_border:hover {
+    transform: translateY(-1em);
+    transition: transform 1.5s ease-in-out;
+}
+
+  
+.module_border:not(:hover) {
+    transform: translateY(0px);
+    transition: transform 1.5s ease-in-out;
+}
+
+.module:hover {
+    opacity: 0.9;
+    transition: opacity 1s ease-in-out;
+}
+
+.module:not(:hover) {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
 

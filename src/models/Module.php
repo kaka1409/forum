@@ -30,7 +30,13 @@ class Module {
     }
 
     public static function getAllPostById($db, $module_id) {
-        $sql = 'SELECT * FROM `post` WHERE module_id = :module_id;';
+        $sql = 'SELECT post.post_id, post.account_id, post.title, post.content,
+            post.post_at, post.vote, post.comments_count, post.thumbnail_url,
+            account.account_name, account.account_avatar, module.module_id, module.module_name
+            FROM `post`
+            INNER JOIN `account` ON post.account_id = account.account_id
+            INNER JOIN `module` ON post.module_id = module.module_id
+            WHERE module.module_id = :module_id;';
 
         $stmt = $db->query($sql, [
             ':module_id' => $module_id

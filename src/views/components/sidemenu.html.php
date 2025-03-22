@@ -38,7 +38,7 @@
 
         <ul class="menu_list">
             <a 
-                class="menu_item selected_item"
+                class="menu_item <?= stripos($_SERVER['REQUEST_URI'], BASE_URL . 'home') !== false ? 'selected_item' : '';?>"
                 href="<?=BASE_URL?>home"    
             >
                 <div class="icon">
@@ -53,7 +53,7 @@
             </a>
 
             <a 
-                class="menu_item"
+                class="menu_item <?= stripos($_SERVER['REQUEST_URI'], BASE_URL . 'module') !== false ? 'selected_item' : '';?>"
                 href="<?=BASE_URL?>module"    
             >
                 <div class="icon">
@@ -68,7 +68,7 @@
             </a>
 
             <a 
-                class="menu_item"
+                class="menu_item <?= stripos($_SERVER['REQUEST_URI'], BASE_URL . 'email') !== false ? 'selected_item' : '';?>"
                 href="<?=BASE_URL?>email"    
             >
                 <div class="icon">
