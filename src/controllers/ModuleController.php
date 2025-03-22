@@ -1,10 +1,16 @@
 <?php
 
 class ModuleController {
-    public function show() {
+    public function index() {
         $view = ViewController::getInstance();
         $view->set('title', 'Modules');
         $view->render('moduleList');
+    }
+
+    public function show() {
+        $view = ViewController::getInstance();
+        $view->set('title', 'Viewing a module');
+        $view->render('module');
     }
 
 }

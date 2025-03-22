@@ -21,7 +21,8 @@ class Router {
         $this->addRoute('POST', 'post/(\d+)/edit', 'PostController', 'edit');
 
         // List all modules
-        $this->addRoute('GET', 'module', 'ModuleController', 'show');
+        $this->addRoute('GET', 'module', 'ModuleController', 'index');
+        $this->addRoute('GET', 'module/(\d+)', 'ModuleController', 'show');
 
         // Email admin
         $this->addRoute('GET', 'email', 'AdminController', 'message');

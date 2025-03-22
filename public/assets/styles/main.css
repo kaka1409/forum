@@ -755,6 +755,17 @@ header {
     height: 100%;
 }
 
+/* module listing */
+
+.modules_container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 equal-width columns */
+    grid-gap: 20px;
+    margin-top: 2em;
+}
+
+/* module listing */
+
 
 /* Main content */
 
