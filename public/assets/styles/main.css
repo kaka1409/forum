@@ -874,7 +874,15 @@ header {
     border-radius: 15px;
 }
 
+.modal .pop_up h1 {
+    margin-top: 1em;
+    text-align: center;
+    font-weight: bolder;
+}
+
 .modal .pop_up p {
+    color: var(--secondary-font-color);
+    font-size: 0.8em;
     margin-top: 1em;
     text-align: center;
     padding: 0 1em;
@@ -882,7 +890,7 @@ header {
 
 .modal .pop_up img {
     position: relative;
-    top: -3.5em;
+    top: -4em;
     left: 19.3em;
     cursor: pointer;
 }
