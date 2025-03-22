@@ -1,11 +1,3 @@
-<?php
-global $db;
-$posts = Post::getAllPosts($db);
-// print_r($posts[0]);
-
-?>
-
-<!-- Feed setting -->
 <section class="home">
 
     <!-- Feed setting -->

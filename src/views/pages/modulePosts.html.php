@@ -1,16 +1,4 @@
-<?php
 
-global $db;
-
-$uri_array = explode('/', $_SERVER['REQUEST_URI']);
-
-$module_id = end($uri_array);
-
-$posts_of_module = Module::getAllPostById($db, $module_id);
-
-// print_r($posts_of_module);
-
-?>
 <section class="module_view_post_container">
     <div class="main_nav_container">
         <!-- Back button -->

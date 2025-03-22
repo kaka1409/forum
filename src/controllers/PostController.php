@@ -5,8 +5,12 @@ class PostController {
         $session = new Session();
         $csrf_token = $session->generateCsrfToken();
 
+        global $db;
+        $modules = Module::getAllModules($db);
+
         $view = ViewController::getInstance();
         $view->set('csrf_token', $csrf_token);
+        $view->set('modules', $modules);
         $view->set('title', 'New Post');
         $view->render('createPost');
     }
@@ -40,7 +44,16 @@ class PostController {
     }
 
     public function show() {
+        global $db;
+
+        $URI_array = explode('/', $_SERVER['REQUEST_URI']); 
+
+        $post_id = end($URI_array);
+
+        $post_content = Post::getPostById($post_id, $db);
+
         $view = ViewController::getInstance();
+        $view->set('post_content', $post_content);
         $view->set('title', 'Post');
         $view->render('post');
     }

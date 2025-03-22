@@ -1,11 +1,3 @@
-<?php
-global $db;
-
-$modules = Module::getAllModules($db);
-
-// print_r($modules);
-
-?>
 <div class="modules_container">
     <?php foreach ($modules as $module): ?>
         <a href="<?= BASE_URL?>module/<?=$module['module_id']?>">

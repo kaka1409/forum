@@ -1,14 +1,3 @@
-<?php
-global $db;
-
-$URI_array = explode('/', $_SERVER['REQUEST_URI']); 
-
-$post_id = end($URI_array);
-
-$post_content = Post::getPostById($post_id, $db);
-
-// print_r($post_content['module_id']);
-?>
 
 <a class="back_btn" href="<?= BASE_URL?>module/<?= $post_content['module_id']?>">
     <img src="<?=BASE_URL?>/assets/icons/back.png" alt="" width="18px" height="18px">

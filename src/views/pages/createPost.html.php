@@ -1,9 +1,3 @@
-<?php
-global $db;
-$modules = Module::getAllModules($db);
-// print_r($modules);
-?>
-
 <section class="post_form" style="overflow-y: hidden;">
     <form action="" method="POST">
         <input type="hidden" name="csrf_token" value="<?= $csrf_token ?? null ?>">

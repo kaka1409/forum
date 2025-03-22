@@ -1,15 +1,4 @@
-<?php
-global $db;
-
-$URI_array = explode('/', $_SERVER['REQUEST_URI']); 
-
-$post_id = end($URI_array);
-
-$post_content = Post::getPostById($post_id, $db);
-
-// print_r($post_content);
-?>
-
+<!-- Back to home -->
 <a class="back_btn" href="<?= BASE_URL?>home">
     <img src="<?=BASE_URL?>/assets/icons/back.png" alt="" width="18px" height="18px">
     <p>Back</p>
