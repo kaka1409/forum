@@ -4,6 +4,7 @@ const app = {
         // side menu components
         "collapse_icon": document.querySelector('.collapse_icon'),
         "sidemenu": document.querySelector('.side_menu'),
+        "newBtn": document.querySelector('.new_btn'),
         
         // post's components
         "posts": Array.from(document.querySelectorAll('.post')), // get an array of posts
@@ -30,15 +31,22 @@ const app = {
 
     },
 
-    requireLogin: function () {
-
-    },
-
     eventHandler: {
         init: function() {
             // side menu collapse event
             app.components['collapse_icon'].addEventListener('click', () => {
                 app.components['sidemenu'].classList.toggle('collapsed')
+            })
+
+            const newPostBtn = app.components['newBtn']
+
+            newPostBtn.addEventListener('click', (e) => {
+                if (!isLoggedIn) {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    app.components['modal'].style.display = 'flex'
+                    
+                } 
             })
 
             // post's components events
@@ -143,7 +151,18 @@ const app = {
                     saveIconContainer.addEventListener('mouseout', () => {
                         saveIcon.src = '/forum/public/assets/icons/save.png'
                     })
-    
+                    
+                    saveIconContainer.addEventListener('click', (e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+
+                        if (isLoggedIn) {
+                            saveIcon.src = '/forum/public/assets/icons/saved.png'
+                        } else {
+                            app.components['modal'].style.display = 'flex'
+                        }
+                    })
+
                     // share icon hover effect
                     const shareContainer = post.querySelector('.post_share')
                     const shareIcon = shareContainer.querySelector('img')
@@ -154,6 +173,17 @@ const app = {
     
                     shareContainer.addEventListener('mouseout', () => {
                         shareIcon.src = '/forum/public/assets/icons/share.png'
+                    })
+
+                    shareContainer.addEventListener('click', (e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+
+                        if (isLoggedIn) {
+                            shareIcon.src = '/forum/public/assets/icons/shared.png'
+                        } else {
+                            app.components['modal'].style.display = 'flex'
+                        }
                     })
     
                 })
