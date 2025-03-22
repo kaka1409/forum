@@ -32,11 +32,11 @@ class ModuleController {
     public function showPost() {
         global $db;
 
-        $URI_array = explode('/', $_SERVER['REQUEST_URI']); 
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']); 
 
-        $post_id = end($URI_array);
+        $post_id = end($uri_array);
 
-        $post_content = Post::getPostById($post_id, $db);
+        $post_content = Post::getPostById($db, $post_id);
 
         $view = ViewController::getInstance();
         $view->set('post_content', $post_content);

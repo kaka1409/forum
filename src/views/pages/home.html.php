@@ -20,8 +20,8 @@
     <div class="posts_container">
         <?php if (isset($posts)): ?>
             <?php foreach ($posts as $post): ?>
-                <a href="<?=BASE_URL?>post/<?= $post['post_id'] ?>">
-                    <div class="post">
+                <div class="post">
+                    <a href="<?=BASE_URL?>post/<?= $post['post_id'] ?>">
                         <div class="post_content">
 
                             <div class="post_head">
@@ -42,6 +42,7 @@
                                 <div class="post_options">
                                     <img src="<?=BASE_URL?>/assets/icons/more.png" alt="">
                                 </div>
+
                             </div>
                             
                             <div class="post_title">
@@ -104,8 +105,26 @@
                                 </div>
                             </div>
                         </div>
+                    </a>
+
+                    <div class="options_popup">
+                        <ul class="options_container">
+
+                            <a href="<?= BASE_URL ?>post/<?= $post['post_id']?>/edit">
+                                <li class="item update">
+                                    Update post
+                                </li>
+                            </a>
+                            
+                            <a href="<?= BASE_URL ?>post/<?= $post['post_id']?>/delete">
+                                <li class="item delete">
+                                    Delete post
+                                </li>
+                            </a>
+                        </ul>
                     </div>
-                </a>
+                    
+                </div>
             <?php endforeach; ?>
 
         <?php else: ?>
