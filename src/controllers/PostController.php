@@ -73,8 +73,8 @@ class PostController {
 
         $view = ViewController::getInstance();        
         $view->set('modules', $modules);
+        $view->set('csrf_token', $csrf_token);
         $view->set('post_data', $post_data);
-        // $view->set('post_id', $post_id);
         $view->set('title', 'Edit a post');
         $view->render('editPostForm');
     }
