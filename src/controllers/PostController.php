@@ -59,6 +59,9 @@ class PostController {
     }
 
     public function editForm() {
+        $session = new Session();
+        $csrf_token = $session->generateCsrfToken();
+        
         global $db;
 
         $uri_array = explode('/', $_SERVER['REQUEST_URI']);
@@ -77,6 +80,12 @@ class PostController {
     }
 
     public function edit() {
+        $session = new Session();
+        if (!$session->validateCsrfToken($_POST['csrf_token'])) {
+            header('Location: ' . BASE_URL . 'home');
+            exit;
+        }
+
         global $db;
 
         $uri_array = explode('/', $_SERVER['REQUEST_URI']);
