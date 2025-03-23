@@ -107,18 +107,24 @@
                         </div>
                     </a>
 
-                    <div class="options_popup">
+                    <div class="options_popup hidden">
                         <ul class="options_container">
 
                             <a href="<?= BASE_URL ?>post/<?= $post['post_id']?>/edit">
                                 <li class="item update">
-                                    Update post
+                                    <img src="<?=BASE_URL?>assets/icons/edit.png" alt="">
+                                    <p>
+                                        Update post
+                                    </p>
                                 </li>
                             </a>
                             
                             <a href="<?= BASE_URL ?>post/<?= $post['post_id']?>/delete">
                                 <li class="item delete">
-                                    Delete post
+                                    <img width="17px" height="17px" src="<?=BASE_URL?>assets/icons/trash.png" alt="">
+                                    <p>
+                                        Delete post
+                                    </p>
                                 </li>
                             </a>
                         </ul>

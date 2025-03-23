@@ -22,7 +22,10 @@
     </main>
 
     <!-- MODAL -->
-    <?= ViewController::useComponent('modal'); ?>
+    <?= ViewController::useComponent('modal', [
+        'modalTitle' => "Don't have an account",
+        'modalMessage' => "To use this feature you need to have an account",
+    ]); ?>
 
     <!-- SCRIPTS -->
     <?php authStatusJS()?>

@@ -30,7 +30,7 @@
         </div>
 
         <!-- post thumbnail -->
-        <button class="form_group form_thumbnail">
+        <button type="button" class="form_group form_thumbnail">
             <div class="thumbnail_title">
                 <img 
                     width="20px"

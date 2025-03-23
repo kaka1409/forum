@@ -1,3 +1,8 @@
+<!-- Back to home -->
+<a class="back_btn" href="<?= BASE_URL?>home">
+    <img src="<?=BASE_URL?>/assets/icons/back.png" alt="" width="18px" height="18px">
+    <p>Back</p>
+</a>
 
 <section class="post_form" style="overflow-y: hidden;">
     <form action="" method="POST">
@@ -32,8 +37,16 @@
         </div>
 
         <!-- post thumbnail -->
-        <button class="form_group form_thumbnail">
-            
+        <button type="button" class="form_group form_thumbnail">
+            <div class="thumbnail_title" style="display: none;">
+                <img 
+                    width="20px"
+                    height="20px"
+                    src="<?=BASE_URL?>assets/icons/thumbnail.png" alt=""
+                >
+                <p>Thumbnail</p>
+            </div>
+
             <input 
                 type="file" 
                 class="form-control" 
@@ -41,11 +54,11 @@
                 name="thumbnail" 
                 placeholder="Enter thumbnail url"
                 accept="image/*"
-                value="<?= htmlspecialchars($post_data['thumbnail_url'])?>"
+                value="<?= ROOT_URL ?><?= htmlspecialchars($post_data['thumbnail_url'])?>"
             >
             <img 
                 id="thumbnail_preview" 
-                src="<?= ROOT_URL ?><?= htmlspecialchars($post_data['thumbnail_url'])?>"
+                src="<?= htmlspecialchars($post_data['thumbnail_url']) == UPLOAD_FOLDER ? '/forum/uploads/default.png' : ROOT_URL . htmlspecialchars($post_data['thumbnail_url']) ;?>"
                 style="display: block;"
             >
         </button>

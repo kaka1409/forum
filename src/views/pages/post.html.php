@@ -19,6 +19,7 @@
 
             <div class="post_date">
                 &bull; <?= dateFormat( htmlspecialchars($post_content['post_at']))?>
+                <?= $post_content['updated_at'] != $post_content['post_at'] ? '(updated ' . dateFormat(htmlspecialchars($post_content['updated_at'])) . ')' : ''?>
             </div>
         </div>
 

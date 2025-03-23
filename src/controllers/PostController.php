@@ -77,6 +77,54 @@ class PostController {
     }
 
     public function edit() {
+        global $db;
+
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
+
+        $post_id = $uri_array[4];
+
+        if (isset($_POST['submit'])) {
+            $result = Post::updatePostById($db, $post_id);
+    
+            if ($result) {
+                header('Location: ' . BASE_URL . 'post/' . $post_id);
+                exit;
+            } else {
+                // error toase message maybe
+                header('Location: ' . BASE_URL . 'edit/' . $post_id . '/edit');
+                exit;
+            }
+
+        } else {
+            header('Location: ' . BASE_URL . 'edit/' . $post_id . '/edit');
+            exit;
+        }
+
+    }
+
+    public function delete() {
+        global $db;
+
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
+
+        $post_id = $uri_array[4];
+
+        if (isset($_POST['submit'])) {
+
+            $result = Post::deletePostById($db, $post_id);
+
+            if ($result) {
+                header('Location: ' . BASE_URL . 'home');
+                exit;
+            } else {
+                header('Location: ' . BASE_URL . 'home');
+                exit;
+            }
+
+        } else {
+            header('Location: ' . BASE_URL . 'home');
+            exit;
+        }
 
     }
     

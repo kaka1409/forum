@@ -52,6 +52,18 @@ const app = {
             // post's components events
             const posts = app.components['posts']
             
+            // hidden all opo up if the user click on another place
+            document.addEventListener('click', () => {
+                const popups = document.querySelectorAll('.options_popup')
+
+                popups.forEach( (popup) => {
+                    if (!popup.classList.contains('hidden')) {
+                        popup.classList.add('hidden')
+                        popup.style.display = 'none'
+                    }
+                })
+            })
+
             /*
                 if post listing exist (many posts is displayed) apply effect for posts component 
                 if not then the user has to be in a post
@@ -71,11 +83,31 @@ const app = {
                     post.addEventListener('mouseout', () => {
                         postOptions.style.visibility = 'hidden'
                     })
-
+                    
+                    const popup = post.querySelector('.options_popup')
                     postOptions.addEventListener('click', (e) => {
                         e.preventDefault()
                         e.stopPropagation()
+
+
                         // pop up here
+                        if (popup.classList.contains('hidden')) {
+                            popup.style.display = 'block'
+                            popup.classList.remove('hidden')
+                        } else {
+                            popup.classList.add('hidden')
+                            popup.style.display = 'none'
+                        }
+                        
+                    })
+
+                    const items = Array.from(popup.querySelectorAll('a'))
+
+                    items.forEach( (item) => {
+                        item.addEventListener('click', () => {
+                            popup.style.display = 'none'
+                            popup.classList.add('hidden')
+                        })
                     })
     
                     // upvote events (hover and click)
@@ -329,6 +361,8 @@ const app = {
             const thumbnailTitle = app.components['thumbnailTitle']
 
             thumbnailBtn.addEventListener('click', () => {
+                // e.stopImmediatePropagation()
+
                 thumbnailInput.click()
             })
 

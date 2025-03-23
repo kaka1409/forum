@@ -14,7 +14,7 @@ class Post {
                 VALUES (:account_id, :module_id, :title, :content, NOW(), NOW(), :vote, :comments_count, :thumbnail_url)";
         
         $stmt = $db->query($sql, [
-            ':account_id' => $_SESSION['account_id'], // hard coded since I haven't implemented login system
+            ':account_id' => $_SESSION['account_id'],
             ':module_id' => $module_id,
             ':title' => $title,
             ':content' => $content,
@@ -26,10 +26,10 @@ class Post {
         return $stmt;
     }
 
-    public static function getPostById($db, $post_id) {
+    public static function getPostById($db = null, $post_id = null) {
 
         $sql = "SELECT post.post_id, post.account_id, post.title, post.content,
-            post.post_at, post.vote, post.comments_count, post.thumbnail_url,
+            post.post_at, post.updated_at, post.vote, post.comments_count, post.thumbnail_url,
             account.account_name, account.account_avatar, module.module_id
             FROM `post` 
             INNER JOIN `account` ON post.account_id = account.account_id
@@ -57,6 +57,38 @@ class Post {
         return $posts;
     }
     
+    public static function updatePostById($db = null, $post_id = null) {
+        $module_id = $_POST['module'];
+        $title = trim($_POST['title']);
+        $content = trim($_POST['content']);
+        $thumbnail_url = UPLOAD_FOLDER . trim($_POST['thumbnail']);
+
+        $sql = "UPDATE `post`
+                SET module_id = :module_id, title = :title, content = :content,
+                updated_at = NOW(), thumbnail_url = :thumbnail_url
+                WHERE post_id = :post_id";
+
+        $stmt = $db->query($sql, [
+            ':module_id' => $module_id,
+            ':title' => $title,
+            ':content' => $content,
+            ':thumbnail_url' => $thumbnail_url,
+            ':post_id' => $post_id,
+        ]);
+
+        return $stmt;
+    }
+
+    public static function deletePostById($db = null, $post_id = null) {
+        $sql = "DELETE FROM `post` WHERE post_id = :post_id";
+
+        $stmt = $db->query($sql, [
+            ':post_id' => $post_id
+        ]);
+
+        return $stmt;
+    }
+
 }
 
 ?>

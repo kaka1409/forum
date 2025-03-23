@@ -4,6 +4,14 @@ class Router {
     private $routes = [];
 
     public function __construct() {
+        // Login and register
+        $this->addRoute('GET', 'login', 'AccountController', 'loginForm');
+        $this->addRoute('POST', 'login', 'AccountController', 'login');
+        $this->addRoute('GET', 'register', 'AccountController', 'registerForm');
+        $this->addRoute('POST', 'register', 'AccountController', 'register');
+        
+        // Logout
+        $this->addRoute('GET', 'logout', 'AccountController', 'logout');
 
         // Home page
         $this->addRoute('GET', '', 'HomeController', 'index');
@@ -20,6 +28,9 @@ class Router {
         $this->addRoute('GET', 'post/(\d+)/edit', 'PostController', 'editForm');
         $this->addRoute('POST', 'post/(\d+)/edit', 'PostController', 'edit');
 
+        // Delete post 
+        $this->addRoute('POST', 'post/(\d+)/delete', 'PostController' , 'delete');
+
         // List all modules
         $this->addRoute('GET', 'module', 'ModuleController', 'index');
         $this->addRoute('GET', 'module/(\d+)', 'ModuleController', 'show');
@@ -31,17 +42,9 @@ class Router {
         // Profile
         $this->addRoute('GET', 'profile', 'AccountController', 'showProfile');
 
-        // Logout
-        $this->addRoute('GET', 'logout', 'AccountController', 'logout');
-
         // Admin dashboard
         $this->addRoute('GET', 'admin', 'AdminController', 'dashboard');
         
-        // Login and register
-        $this->addRoute('GET', 'login', 'AccountController', 'loginForm');
-        $this->addRoute('POST', 'login', 'AccountController', 'login');
-        $this->addRoute('GET', 'register', 'AccountController', 'registerForm');
-        $this->addRoute('POST', 'register', 'AccountController', 'register');
     }
 
     public function addRoute($method, $path, $controller, $action) {
@@ -73,6 +76,8 @@ class Router {
                 'controller' => 'PostController',
                 'action' => 'create'
             ],
+
+            ...
         ]
         */
 
