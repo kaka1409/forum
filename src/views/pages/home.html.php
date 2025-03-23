@@ -106,31 +106,46 @@
                             </div>
                         </div>
                     </a>
+                    
+                    <?php if($post['account_id'] === $_SESSION['account_id']): ?>
+                        <div class="options_popup hidden">
+                            <ul class="options_container">
+    
+                                <a href="<?= BASE_URL ?>post/<?= $post['post_id']?>/edit">
+                                    <li class="item update">
+                                        <img src="<?=BASE_URL?>assets/icons/edit.png" alt="">
+                                        <p>
+                                            Update post
+                                        </p>
+                                    </li>
+                                </a>
+                                
+    
+                                <a href="" id="delete_btn">
+                                    <li class="item delete">
+                                        <img width="17px" height="17px" src="<?=BASE_URL?>assets/icons/trash.png" alt="">
+                                        <p>
+                                            Delete post
+                                        </p>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+                        
+                    <!-- Post delete confimation -->
+                    <?= ViewController::useComponent('deletePostConfirmation', [
+                        'modalTitle' => "Delete post?",
+                        'modalMessage' => "
+                            Are you sure you want to permanently delete this post?
+                            This action can not be undone
+                        ",
+                        'post_id' => $post['post_id'],
+                    ]); ?>
 
-                    <div class="options_popup hidden">
-                        <ul class="options_container">
-
-                            <a href="<?= BASE_URL ?>post/<?= $post['post_id']?>/edit">
-                                <li class="item update">
-                                    <img src="<?=BASE_URL?>assets/icons/edit.png" alt="">
-                                    <p>
-                                        Update post
-                                    </p>
-                                </li>
-                            </a>
-                            
-                            <a href="<?= BASE_URL ?>post/<?= $post['post_id']?>/delete">
-                                <li class="item delete">
-                                    <img width="17px" height="17px" src="<?=BASE_URL?>assets/icons/trash.png" alt="">
-                                    <p>
-                                        Delete post
-                                    </p>
-                                </li>
-                            </a>
-                        </ul>
-                    </div>
+                    <?php endif; ?>
                     
                 </div>
+
             <?php endforeach; ?>
 
         <?php else: ?>

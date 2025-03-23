@@ -73,42 +73,64 @@ const app = {
 
                 posts.forEach((post) => {
 
-                    // post options events
-                    const postOptions = post.querySelector('.post_options')
-    
-                    post.addEventListener('mouseover', () => {
-                        postOptions.style.visibility = 'visible'
-                    })
-    
-                    post.addEventListener('mouseout', () => {
-                        postOptions.style.visibility = 'hidden'
-                    })
                     
                     const popup = post.querySelector('.options_popup')
-                    postOptions.addEventListener('click', (e) => {
-                        e.preventDefault()
-                        e.stopPropagation()
-
-
-                        // pop up here
-                        if (popup.classList.contains('hidden')) {
-                            popup.style.display = 'block'
-                            popup.classList.remove('hidden')
-                        } else {
-                            popup.classList.add('hidden')
-                            popup.style.display = 'none'
-                        }
-                        
-                    })
-
-                    const items = Array.from(popup.querySelectorAll('a'))
-
-                    items.forEach( (item) => {
-                        item.addEventListener('click', () => {
-                            popup.style.display = 'none'
-                            popup.classList.add('hidden')
+                    
+                    if (popup) {
+                        // post options events
+                        const postOptions = post.querySelector('.post_options')
+        
+                        post.addEventListener('mouseover', () => {
+                            postOptions.style.visibility = 'visible'
                         })
-                    })
+        
+                        post.addEventListener('mouseout', () => {
+                            postOptions.style.visibility = 'hidden'
+                        })
+                        
+                        postOptions.addEventListener('click', (e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+    
+                            // pop up here
+                            
+                            if (popup.classList.contains('hidden')) {
+                                popup.style.display = 'block'
+                                popup.classList.remove('hidden')
+                            } else {
+                                popup.classList.add('hidden')
+                                popup.style.display = 'none'
+                            }
+                            
+                        })
+
+                        // a tag in post options
+                       
+    
+                        const items = Array.from(popup.querySelectorAll('a'))
+                        
+                        items.forEach( (item) => {
+                            item.addEventListener('click', () => {
+                                popup.style.display = 'none'
+                                popup.classList.add('hidden')
+                            })
+                        })
+
+                        // delete button in post's options event (click will toggle the confimation)
+                        const deleteBtn = post.querySelector('#delete_btn')
+                        const confimation = post.querySelector('.delete_confirmation')
+                        const exitBtn = post.querySelector('.delete_confirmation img')
+                        
+                        deleteBtn.addEventListener('click', (e) => {
+                            e.preventDefault()
+    
+                            confimation.style.display = 'flex'
+                        })
+    
+                        exitBtn.addEventListener('click', () => {
+                            confimation.style.display = 'none'
+                        })
+                    }
     
                     // upvote events (hover and click)
                     const upvoteContainer = post.querySelector('.upvote_container')
@@ -217,7 +239,7 @@ const app = {
                             app.components['modal'].style.display = 'flex'
                         }
                     })
-    
+                    
                 })
             } else if (app.components['post']) {
                 // console.log('no')

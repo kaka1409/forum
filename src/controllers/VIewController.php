@@ -38,7 +38,7 @@ class ViewController {
     public static function useComponent($name, $data = []) {
         extract($data);
         ob_start();
-        require_once APP_ROOT . "/views/components/{$name}.html.php";
+        include APP_ROOT . "/views/components/{$name}.html.php";
         return ob_get_clean();
     }
 
