@@ -27,24 +27,28 @@ function updateIcon(elementName = null, behavior = '', iconName = '', defaultBeh
 
 function updateClassList(elementName = null, method = '', className = '') {
     const element = selectElement(elementName)
+    console.log(element)
 
-    switch (method) {
-        case 'add':
-            element.classList.add(className)
-            break
-        case 'remove':
-            element.classList.remove(className)
-            break
-        case 'contains':
-            return element.classList.contains(className)
-            break
-        case 'toggle':
-            element.classList.toggle(className)
-            break
-        default:
-            console.error('No class list method exist')
-            break
+    if (element) {
+        switch (method) {
+            case 'add':
+                element.classList.add(className)
+                break
+            case 'remove':
+                element.classList.remove(className)
+                break
+            case 'contains':
+                return element.classList.contains(className)
+                break
+            case 'toggle':
+                element.classList.toggle(className)
+                break
+            default:
+                console.error('No class list method exist')
+                break
+        }
     }
-}
+    }
+
 
 export {updateStyle, updateIcon, updateClassList }

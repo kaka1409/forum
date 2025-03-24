@@ -13,7 +13,7 @@ class VoteController {
         // new vote count
         $voteCount = Vote::getVoteCount($db, $post_id);
 
-        $this->sendJson($voteCount);
+        $this->sendJson(['voteCount' => $voteCount['votes']]);
     }
 
     public function downvote() {
@@ -28,12 +28,12 @@ class VoteController {
         // new vote count
         $voteCount = Vote::getVoteCount($db, $post_id);
 
-        $this->sendJson(['voteCount' => $voteCount]);
+        $this->sendJson(['voteCount' => $voteCount['votes']]);
     }
 
     private function sendJson($data) {
         header('Content-Type: application/json');
-        echo json_encode($data);
+        echo trim(json_encode($data));
         exit;
     }
 }

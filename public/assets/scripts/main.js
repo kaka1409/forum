@@ -39,9 +39,9 @@ const app = {
         init: function() {
             // side menu collapse event
             app.components['collapse_icon'].addEventListener('click', () => {
-                // app.components['sidemenu'].classList.toggle('collapsed')
+                app.components['sidemenu'].classList.toggle('collapsed')
 
-                updateClassList('sidemenu', 'toggle', 'collapsed')
+                // updateClassList('sidemenu', 'toggle', 'collapsed')
             })
 
             const newPostBtn = app.components['newBtn']
@@ -69,6 +69,8 @@ const app = {
                     }
                 })
             })
+
+    
 
             /*
                 if post listing exist (many posts is displayed) apply effect for posts component 
@@ -147,15 +149,21 @@ const app = {
                         upvote.src = '/forum/public/assets/icons/upvote.png'
                     })
 
-                    upvoteContainer.addEventListener('click', (e) => {
+                    upvoteContainer.addEventListener('click', async (e) => {
                         e.preventDefault()
                         e.stopPropagation()
 
-                        if (isLoggedIn) {
-                            // upvote.src = '/forum/public/assets/icons/upvoted.png'
-                        } else {
-                            app.components['modal'].style.display = 'flex'
-                        }
+                        if (!isLoggedIn) {
+                            // Show login modal
+                            const modal = app.components('.modal');
+                            if (modal) {
+                                modal.style.display = 'flex'
+                            }
+                            return;
+                        } 
+
+                        const postId = upvoteContainer.getAttribute('post_id')
+                        await handleVote(postId, true)
                     })
     
                     // downvote events (hover)
@@ -170,15 +178,21 @@ const app = {
                         downvote.src = '/forum/public/assets/icons/downvote.png'
                     })
 
-                    downvoteContainer.addEventListener('click', (e) => {
+                    downvoteContainer.addEventListener('click', async (e) => {
                         e.preventDefault()
                         e.stopPropagation()
 
-                        if (isLoggedIn) {
-                            downvote.src = '/forum/public/assets/icons/downvoted.png'
-                        } else {
-                            app.components['modal'].style.display = 'flex'
-                        }
+                        if (!isLoggedIn) {
+                            // Show login modal
+                            const modal = app.components('.modal');
+                            if (modal) {
+                                modal.style.display = 'flex'
+                            }
+                            return;
+                        } 
+
+                        const postId = downvoteContainer.getAttribute('post_id')
+                        await handleVote(postId, false)
                     })
     
                     // comment icon hover effect
@@ -328,42 +342,60 @@ const app = {
             }
 
             // handle vote event
+            const handleVote = async (postId, isUpvote) => {
+                const endPoint = isUpvote ? 'post/upvote' : 'post/downvote';
 
-            document.addEventListener('DOMContentLoaded', () => {
-                document.querySelectorAll('.upvote_container').forEach((btn) => {
-                    btn.addEventListener('click', (e) => {
-                        e.preventDefault()
-
-                        const postId = btn.getAttribute('post_id')
-                        const isUpvote = btn.classList.contains('upvote_container')
-                        const endPoint = isUpvote ? 'post/upvote' : 'post/downvote'
-
-        
-                        const data = async () => {
-                            try {
-                                const response = await fetch('/forum/public/' + endPoint, {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/x-www-form-urlencoded'
-                                    },
-                                    body: 'post_id=' + postId
-                                })
-
-                                return response.json()
-                            } catch (error) {
-                                console.error(error)
-                            }
-                        }
-
-                        console.log(data.voteCount)
-
-                        if (data) {
-
-                        }
-
+                try {
+                    const response = await fetch('/forum/public/' + endPoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: 'post_id=' + postId
                     })
-                })
-            })
+
+                    const data = await response.json()
+
+                    // console.log(data)
+
+                    if (data && data.voteCount !== undefined) {
+
+                        const voteCountELement = document.querySelector(`[post_id="${postId}"] .vote_count`);
+                        if (voteCountELement) {
+                            voteCountELement.textContent = data.voteCount
+                        }
+                    }
+
+                    // Update vote button appearance
+                    const upvoteButton = document.querySelector(`[post_id="${postId}"] #upvote`);
+                    const downvoteButton = document.querySelector(`[post_id="${postId}"] #downvote`);
+                    
+                    // console.log(upvoteButton, downvoteButton)
+
+                    if (isUpvote) {
+                        upvoteButton.src = '/forum/public/assets/icons/upvoted.png'
+                        downvoteButton.src = '/forum/public/assets/icons/downvote.png'
+                    } else {
+                        upvoteButton.src = '/forum/public/assets/icons/upvote.png'
+                        downvoteButton.src = '/forum/public/assets/icons/downvoted.png'
+                    }
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+
+
+            // document.addEventListener('DOMContentLoaded', () => {
+            //     document.querySelectorAll('.upvote_container').forEach((btn) => {
+            //         btn.addEventListener('click', (e) => {
+            //             e.preventDefault()
+
+            //             const endPoint = isUpvote ? 'post/upvote' : 'post/downvote'
+
+            //         })
+            //     })
+            // })
 
             // modal exit button
             const modalExitButton = app.components['modal'].querySelector('img')
@@ -403,7 +435,8 @@ const app = {
             const title = app.components['title']
             const titleCharCount = app.components['title_char_count']
             
-            titleMax = rules.title.maxCharacters
+            let titleMax = rules.title.maxCharacters
+            
             titleCharCount.textContent = titleMax // display max characters to DOM
 
             title.addEventListener('input', () => {
@@ -437,7 +470,7 @@ const app = {
             const content = app.components['content']
             const contentCharCount = app.components['content_char_count']
 
-            contentMax = rules.content.maxCharacters
+            let contentMax = rules.content.maxCharacters
             contentCharCount.textContent = contentMax
 
             content.addEventListener('input', () => {
