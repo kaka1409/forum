@@ -22,10 +22,12 @@ require_once APP_ROOT . '/config/database.php';
 // helpers
 require_once APP_ROOT . '/helpers/format.php';
 require_once APP_ROOT . '/helpers/auth.php';
+require_once APP_ROOT . '/helpers/getPostId.php';
 
 // models
 require_once APP_ROOT . '/models/Database.php';
 require_once APP_ROOT . '/models/Post.php';
+require_once APP_ROOT . '/models/Vote.php';
 require_once APP_ROOT . '/models/Module.php';
 require_once APP_ROOT . '/models/Account.php';
 require_once APP_ROOT . '/models/Session.php';
@@ -39,6 +41,7 @@ require_once APP_ROOT . '/controllers/HomeController.php';
 require_once APP_ROOT . '/controllers/PostController.php';
 require_once APP_ROOT . '/controllers/ModuleController.php';
 require_once APP_ROOT . '/controllers/AdminController.php';
+require_once APP_ROOT . '/controllers/VoteController.php';
 
 // router
 require_once APP_ROOT . '/Router.php';
@@ -46,7 +49,6 @@ require_once APP_ROOT . '/Router.php';
 
 // Get the current URI
 $request_uri = $_SERVER['REQUEST_URI']; 
-// $request_uri = /forum/public/
 
 // Remove query string if present
 $request_uri = strtok($request_uri, '?'); 

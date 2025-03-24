@@ -20,8 +20,8 @@ class Account {
     }
 
     public static function login($db) {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $email = trim($_POST['email']);
+        $password = trim($_POST['password']);
     
         $account = self::authenticate($db, $email, $password);
         if ($account) {
@@ -39,7 +39,7 @@ class Account {
 
     public static function register($db) {
         $username = trim($_POST['username']);
-        $email = $_POST['email'];
+        $email = trim($_POST['email']);
         $password = trim($_POST['password']);
     
         $sql = "INSERT INTO `account`(`role_id`, `account_name`, `account_avatar`, `password_hash`, `email`, `create_at`) 

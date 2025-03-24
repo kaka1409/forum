@@ -1,4 +1,5 @@
 /* side menu collapse animation*/
+
 .side_menu.collapsed {
     width: 3.5em;
     transition: all 0.3s ease-in-out;

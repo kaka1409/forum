@@ -46,9 +46,9 @@ class PostController {
     public function show() {
         global $db;
 
-        $uri_array = explode('/', $_SERVER['REQUEST_URI']); 
+        // $uri_array = explode('/', $_SERVER['REQUEST_URI']); 
 
-        $post_id = end($uri_array);
+        $post_id = getPostId();
 
         $post_content = Post::getPostById($db, $post_id);
 

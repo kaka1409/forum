@@ -40,8 +40,24 @@ class Post {
             ':post_id' => $post_id
         ]);
 
-        $post_content = $stmt->FetchAll(PDO::FETCH_ASSOC);
-        return $post_content[0];
+        $post_content = $stmt->FetchAll(PDO::FETCH_ASSOC)[0];
+
+         // Add vote information
+        if ($post_content) {
+            $voteCounts = Vote::getVoteCount($db, $post_id);
+            $post_content['upvotes'] = $voteCounts['upvotes'];
+            $post_content['downvotes'] = $voteCounts['downvotes'];
+            $post_content['votes'] = $voteCounts['votes'];
+            
+            // Add user's vote if logged in
+            if (isset($_SESSION['account_id'])) {
+                $userVote = Vote::checkVote($db, $post_id, $_SESSION['account_id']);
+                $post_content['user_vote'] = $userVote ? $userVote['vote_type'] : 0;
+            } else {
+                $post_content['user_vote'] = 0;
+            }
+    }
+        return $post_content;
     }
 
     public static function getAllPosts($db = null) {

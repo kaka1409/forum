@@ -29,6 +29,6 @@
 
     <!-- SCRIPTS -->
     <?php authStatusJS()?>
-    <script src="<?=BASE_URL?>assets/scripts/main.js"></script>
+    <script type="module" src="<?=BASE_URL?>assets/scripts/main.js"></script>
 </body>
 </html>

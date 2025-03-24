@@ -1,3 +1,7 @@
+import { selectElement, Element } from "./elements.js"
+import { updateStyle, updateIcon, updateClassList } from "./uiHandler.js"
+
+
 const app = {
     components: {
 
@@ -35,7 +39,9 @@ const app = {
         init: function() {
             // side menu collapse event
             app.components['collapse_icon'].addEventListener('click', () => {
-                app.components['sidemenu'].classList.toggle('collapsed')
+                // app.components['sidemenu'].classList.toggle('collapsed')
+
+                updateClassList('sidemenu', 'toggle', 'collapsed')
             })
 
             const newPostBtn = app.components['newBtn']
@@ -52,7 +58,7 @@ const app = {
             // post's components events
             const posts = app.components['posts']
             
-            // hidden all opo up if the user click on another place
+            // hidden all  popup if the user click on the main page
             document.addEventListener('click', () => {
                 const popups = document.querySelectorAll('.options_popup')
 
@@ -69,11 +75,8 @@ const app = {
                 if not then the user has to be in a post
             */ 
             if (posts.length != 0) {
-                // console.log('yes')
 
                 posts.forEach((post) => {
-
-                    
                     const popup = post.querySelector('.options_popup')
                     
                     if (popup) {
@@ -88,6 +91,7 @@ const app = {
                             postOptions.style.visibility = 'hidden'
                         })
                         
+
                         postOptions.addEventListener('click', (e) => {
                             e.preventDefault()
                             e.stopPropagation()
@@ -95,8 +99,8 @@ const app = {
                             // pop up here
                             
                             if (popup.classList.contains('hidden')) {
-                                popup.style.display = 'block'
                                 popup.classList.remove('hidden')
+                                popup.style.display = 'block'
                             } else {
                                 popup.classList.add('hidden')
                                 popup.style.display = 'none'
@@ -106,7 +110,6 @@ const app = {
 
                         // a tag in post options
                        
-    
                         const items = Array.from(popup.querySelectorAll('a'))
                         
                         items.forEach( (item) => {
@@ -149,7 +152,7 @@ const app = {
                         e.stopPropagation()
 
                         if (isLoggedIn) {
-                            upvote.src = '/forum/public/assets/icons/upvoted.png'
+                            // upvote.src = '/forum/public/assets/icons/upvoted.png'
                         } else {
                             app.components['modal'].style.display = 'flex'
                         }
@@ -324,6 +327,44 @@ const app = {
 
             }
 
+            // handle vote event
+
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('.upvote_container').forEach((btn) => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault()
+
+                        const postId = btn.getAttribute('post_id')
+                        const isUpvote = btn.classList.contains('upvote_container')
+                        const endPoint = isUpvote ? 'post/upvote' : 'post/downvote'
+
+        
+                        const data = async () => {
+                            try {
+                                const response = await fetch('/forum/public/' + endPoint, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded'
+                                    },
+                                    body: 'post_id=' + postId
+                                })
+
+                                return response.json()
+                            } catch (error) {
+                                console.error(error)
+                            }
+                        }
+
+                        console.log(data.voteCount)
+
+                        if (data) {
+
+                        }
+
+                    })
+                })
+            })
+
             // modal exit button
             const modalExitButton = app.components['modal'].querySelector('img')
 
@@ -383,8 +424,6 @@ const app = {
             const thumbnailTitle = app.components['thumbnailTitle']
 
             thumbnailBtn.addEventListener('click', () => {
-                // e.stopImmediatePropagation()
-
                 thumbnailInput.click()
             })
 

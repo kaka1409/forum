@@ -31,6 +31,10 @@ class Router {
         // Delete post 
         $this->addRoute('POST', 'post/(\d+)/delete', 'PostController' , 'delete');
 
+        // Post vote
+        $this->addRoute('POST', 'post/upvote', 'VoteController', 'upvote');
+        $this->addRoute('POST', 'post/downvote', 'VoteController', 'downvote');
+
         // List all modules
         $this->addRoute('GET', 'module', 'ModuleController', 'index');
         $this->addRoute('GET', 'module/(\d+)', 'ModuleController', 'show');

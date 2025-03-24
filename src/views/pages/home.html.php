@@ -75,16 +75,18 @@
                             </div>
                 
                             <div class="post_controls">
+
                                 <div class="post_vote">
-                                    <div class="upvote_container">
+                                    <button class="upvote_container" post_id = "<?= $post['post_id'] ?>">
                                         <img id="upvote" src="<?=BASE_URL?>/assets/icons/upvote.png" alt="">
                                         <p class="vote_count">
                                             <?= htmlspecialchars( $post['vote'] )?>
                                         </p>
-                                    </div>
-                                    <div class="downvote_container">
+                                    </button>
+
+                                    <button class="downvote_container" post_id = "<?= $post['post_id'] ?>">
                                         <img id="downvote" src="<?=BASE_URL?>/assets/icons/downvote.png" alt="">
-                                    </div>
+                                    </button>
                                 </div>
                 
                                 <div class="post_comments">
