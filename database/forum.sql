@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2025 at 12:04 PM
+-- Generation Time: Mar 24, 2025 at 11:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -127,9 +127,9 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`post_id`, `account_id`, `module_id`, `title`, `content`, `post_at`, `updated_at`, `vote`, `comments_count`, `thumbnail_url`) VALUES
-(1, 1, 1, 'test post updated 3', 'lorem isuapum yeah', '2025-03-16 05:08:41', '2025-03-23 11:02:30', 10, 3, 'uploads/1.webp'),
-(2, 1, 2, 'test post number oishdfshiodfu', 'lorem isuapum of post number 2', '2025-03-16 05:11:20', '2025-03-23 11:02:51', 5, 16, 'uploads/2.jpg'),
-(4, 1, 1, 'post number 3', 'lorem isuapum of post number 3', '2025-03-16 05:11:56', '2025-03-16 05:11:56', 24, 5, 'uploads/3.webp'),
+(1, 1, 1, 'test post updated 3', 'lorem isuapum yeah', '2025-03-16 05:08:41', '2025-03-24 07:15:19', 0, 0, 'uploads/1.webp'),
+(2, 1, 2, 'test post number oishdfshiodfu', 'lorem isuapum of post number 2', '2025-03-16 05:11:20', '2025-03-24 07:15:19', 0, 0, 'uploads/2.jpg'),
+(4, 1, 1, 'post number 3', 'lorem isuapum of post number 3', '2025-03-16 05:11:56', '2025-03-24 07:15:19', 0, 0, 'uploads/3.webp'),
 (12, 8, 2, 'new post yeah', 'oh baby oh bay oh baby', '2025-03-20 08:56:49', '2025-03-20 08:56:49', 0, 0, 'uploads/4.webp'),
 (13, 8, 1, 'yeah baby', 'oy hm good', '2025-03-21 04:27:54', '2025-03-21 04:27:54', 0, 0, 'uploads/'),
 (14, 10, 1, 'my first post ever', 'yayayayayaaayaa', '2025-03-22 16:09:17', '2025-03-22 16:09:17', 0, 0, 'uploads/4.webp'),
@@ -165,8 +165,18 @@ CREATE TABLE `vote` (
   `account_id` int(11) NOT NULL,
   `post_id` int(11) DEFAULT NULL,
   `comment_id` int(11) DEFAULT NULL,
-  `vote_type` enum('upvote','downvote') NOT NULL
+  `vote_type` enum('1','-1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vote`
+--
+
+INSERT INTO `vote` (`vote_id`, `account_id`, `post_id`, `comment_id`, `vote_type`) VALUES
+(1, 10, 14, NULL, '1'),
+(2, 8, 14, NULL, '1'),
+(3, 1, 14, NULL, '1'),
+(4, 7, 14, NULL, '-1');
 
 --
 -- Indexes for dumped tables
@@ -273,7 +283,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
