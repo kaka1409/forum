@@ -8,11 +8,13 @@ class VoteController {
 
         if (isset($account_id) && isset($post_id)) {
             $result = Vote::vote($db, $account_id, $post_id, Vote::UPVOTE);
+            $result = Vote::updatePostVote($db, $post_id);
         }
         
         // new vote count
         $voteCount = Vote::getVoteCount($db, $post_id);
 
+        // send data frontend
         $this->sendJson(['voteCount' => $voteCount['votes']]);
     }
 
@@ -23,11 +25,13 @@ class VoteController {
 
         if (isset($account_id) && isset($post_id)) {
             $result = Vote::vote($db, $account_id, $post_id, Vote::DOWNVOTE);
+            $result = Vote::updatePostVote($db, $post_id);
         }
 
         // new vote count
         $voteCount = Vote::getVoteCount($db, $post_id);
 
+        // send data frontend
         $this->sendJson(['voteCount' => $voteCount['votes']]);
     }
 

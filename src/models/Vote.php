@@ -105,8 +105,8 @@ class Vote {
                 WHERE post_id = :post_id";
 
         $stmt = $db->query($sql, [
-            ':voteScore' => $voteScore,
-            ':post_id' => $post_id
+            ':voteScore' => intval($voteScore),
+            ':post_id' => intval($post_id)
         ]);
 
         return $stmt;
