@@ -7,8 +7,8 @@ class VoteController {
         $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : null;
 
         if (isset($account_id) && isset($post_id)) {
-            $result = Vote::vote($db, $account_id, $post_id, Vote::UPVOTE);
-            $result = Vote::updatePostVote($db, $post_id);
+            Vote::vote($db, $account_id, $post_id, Vote::UPVOTE);
+            Vote::updatePostVote($db, $post_id);
         }
         
         // new vote count
@@ -24,8 +24,8 @@ class VoteController {
         $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : null;
 
         if (isset($account_id) && isset($post_id)) {
-            $result = Vote::vote($db, $account_id, $post_id, Vote::DOWNVOTE);
-            $result = Vote::updatePostVote($db, $post_id);
+            Vote::vote($db, $account_id, $post_id, Vote::DOWNVOTE);
+            Vote::updatePostVote($db, $post_id);
         }
 
         // new vote count

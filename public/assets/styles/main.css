@@ -14,6 +14,7 @@
 html {
     font-family: var(--main-font);
     overflow-y: hidden;
+    background-repeat: no-repeat;
 }
 
 a {
@@ -210,7 +211,9 @@ header {
 }
 
 .menu_item:hover {
-    font-weight: bolder;
+    /* font-weight: bolder; */
+    background-color: #393243;
+    opacity: 0.5;
 }
 
 .selected_item {
@@ -218,6 +221,10 @@ header {
     background-color: #393243;
     border-right: 1px solid #9B4DE0;
     border-left: 5px solid #9B4DE0;
+}
+
+.selected_item:hover {
+    opacity: 1;
 }
 /* menu items */
 
@@ -346,7 +353,7 @@ header {
 
 
 .options_popup {
-    display: none;
+    /* display: none; */
     position: absolute;
     top: 2.5em;
     right: 1.5em;
@@ -359,6 +366,8 @@ header {
 
 .options_popup.hidden {
     opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .options_popup a {
@@ -447,6 +456,7 @@ header {
     font: inherit;
     color: inherit;
     gap: 0.5em;
+    width: 3em;
 }
 
 .downvote_container {
@@ -465,10 +475,17 @@ header {
 .post_comments {
     height: 100%;
     gap: 0.5em;
+    background-image: url('/forum/public/assets/icons/comment.png');
+    background-repeat: no-repeat;
+    background-position: 15% center;
+    padding: 0 0.4em;
 }
 
 .post_comments:hover {
     color: #2cdce6;
+    background-color: rgba(44, 220, 230, 0.2);
+    background-image: url('/forum/public/assets/icons/comment_hover.png');
+    border-radius: 10px;
 }
 
 .post_comments_container{
@@ -808,6 +825,7 @@ header {
     background-color: var(--secondary-color);
     opacity: 0.7;
     cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .back_btn:hover {

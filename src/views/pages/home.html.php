@@ -78,20 +78,20 @@
 
                                 <div class="post_vote">
                                     <button class="upvote_container" post_id = "<?= $post['post_id'] ?>">
-                                        <img id="upvote" src="<?=BASE_URL?>/assets/icons/upvote.png" alt="">
+                                        <img id="upvote"  src="<?=BASE_URL?>assets/icons/<?= $post['is_voted'] == '1' ? 'upvoted.png' : 'upvote.png'; ?>" alt="">
                                         <p class="vote_count">
                                             <?= htmlspecialchars( $post['vote'] )?>
                                         </p>
                                     </button>
 
                                     <button class="downvote_container" post_id = "<?= $post['post_id'] ?>">
-                                        <img id="downvote" src="<?=BASE_URL?>/assets/icons/downvote.png" alt="">
+                                        <img id="downvote" src="<?=BASE_URL?>/assets/icons/<?= $post['is_voted'] == '-1' ? 'downvoted.png' : 'downvote.png'; ?>" alt="">
                                     </button>
                                 </div>
                 
                                 <div class="post_comments">
                                     <div class="post_comments_container">
-                                        <img src="<?=BASE_URL?>/assets/icons/comment.png" alt="">
+                                        <img src="" alt="">
                                     </div>
                                     <p class="comment_count">
                                         <?= htmlspecialchars( $post['comments_count'] )?>
@@ -109,7 +109,7 @@
                         </div>
                     </a>
                     
-                    <?php if(isset($_SESSION['account_id'])): ?>
+                    <?php if(isLoggedIn()): ?>
                         <?php if($post['account_id'] === $_SESSION['account_id']): ?>
                             <div class="options_popup hidden">
                                 <ul class="options_container">

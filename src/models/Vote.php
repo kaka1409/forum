@@ -70,9 +70,7 @@ class Vote {
             ':post_id' => $post_id,
         ]);
 
-        $vote = $stmt->fetchALL(PDO::FETCH_ASSOC);
-
-        return $vote;
+        return $stmt->fetchALL(PDO::FETCH_ASSOC);
     }
 
     public static function getVoteCount($db, $post_id) { // count vote of a post
@@ -105,7 +103,7 @@ class Vote {
                 WHERE post_id = :post_id";
 
         $stmt = $db->query($sql, [
-            ':voteScore' => intval($voteScore),
+            ':voteScore' => intval($voteScore['votes']),
             ':post_id' => intval($post_id)
         ]);
 

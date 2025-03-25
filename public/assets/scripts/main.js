@@ -65,7 +65,6 @@ const app = {
                 popups.forEach( (popup) => {
                     if (!popup.classList.contains('hidden')) {
                         popup.classList.add('hidden')
-                        popup.style.display = 'none'
                     }
                 })
             })
@@ -102,38 +101,33 @@ const app = {
                             
                             if (popup.classList.contains('hidden')) {
                                 popup.classList.remove('hidden')
-                                popup.style.display = 'block'
                             } else {
                                 popup.classList.add('hidden')
-                                popup.style.display = 'none'
                             }
                             
                         })
 
                         // a tag in post options
-                       
                         const items = Array.from(popup.querySelectorAll('a'))
                         
                         items.forEach( (item) => {
                             item.addEventListener('click', () => {
-                                popup.style.display = 'none'
                                 popup.classList.add('hidden')
                             })
                         })
 
                         // delete button in post's options event (click will toggle the confimation)
                         const deleteBtn = post.querySelector('#delete_btn')
-                        const confimation = post.querySelector('.delete_confirmation')
+                        const confirmation = post.querySelector('.delete_confirmation')
                         const exitBtn = post.querySelector('.delete_confirmation img')
                         
                         deleteBtn.addEventListener('click', (e) => {
                             e.preventDefault()
-    
-                            confimation.style.display = 'flex'
+                            confirmation.style.display = 'flex'
                         })
     
                         exitBtn.addEventListener('click', () => {
-                            confimation.style.display = 'none'
+                            confirmation.style.display = 'none'
                         })
                     }
     
@@ -142,20 +136,27 @@ const app = {
                     const upvote = upvoteContainer.querySelector('.upvote_container img')
                     
                     upvoteContainer.addEventListener('mouseover', () => {
-                        upvote.src = '/forum/public/assets/icons/upvote_hover.png'
+                        if (!upvote.src.includes('upvoted')) {
+                            upvote.src = '/forum/public/assets/icons/upvote_hover.png'
+                        }
                     })
     
                     upvoteContainer.addEventListener('mouseout', () => {
-                        upvote.src = '/forum/public/assets/icons/upvote.png'
+                        if (!upvote.src.includes('upvoted')) {
+                            upvote.src = '/forum/public/assets/icons/upvote.png'
+                        }
                     })
+    
 
                     upvoteContainer.addEventListener('click', async (e) => {
                         e.preventDefault()
                         e.stopPropagation()
 
+
+
                         if (!isLoggedIn) {
                             // Show login modal
-                            const modal = app.components('.modal');
+                            const modal = app.components['modal'];
                             if (modal) {
                                 modal.style.display = 'flex'
                             }
@@ -184,7 +185,7 @@ const app = {
 
                         if (!isLoggedIn) {
                             // Show login modal
-                            const modal = app.components('.modal');
+                            const modal = app.components['modal'];
                             if (modal) {
                                 modal.style.display = 'flex'
                             }
@@ -200,16 +201,16 @@ const app = {
                     const iconContainer = commentIconContainer.querySelector('.post_comments_container')
                     const commentIcon = commentIconContainer.querySelector('.post_comments_container img')
     
-                    commentIconContainer.addEventListener('mouseover', () => {
-                        iconContainer.style.backgroundColor = "rgba(44, 220, 230, 0.2)";
-                        commentIcon.src = '/forum/public/assets/icons/comment_hover.png'
+                    // commentIconContainer.addEventListener('mouseover', () => {
+                    //     iconContainer.style.backgroundColor = "rgba(44, 220, 230, 0.2)";
+                    //     commentIcon.src = '/forum/public/assets/icons/comment_hover.png'
     
-                    })
+                    // })
     
-                    commentIconContainer.addEventListener('mouseout', () => {
-                        iconContainer.style.backgroundColor = "transparent";
-                        commentIcon.src = '/forum/public/assets/icons/comment.png'
-                    })
+                    // commentIconContainer.addEventListener('mouseout', () => {
+                    //     iconContainer.style.backgroundColor = "transparent";
+                    //     commentIcon.src = '/forum/public/assets/icons/comment.png'
+                    // })
     
                     // save icon hover effect
                     const saveIconContainer = post.querySelector('.post_save')
@@ -280,11 +281,15 @@ const app = {
                 
 
                 upvoteContainer.addEventListener('mouseover', () => {
-                    upvote.src = '/forum/public/assets/icons/upvote_hover.png'
+                    if (!upvote.src.includes('upvoted')) {
+                        upvote.src = '/forum/public/assets/icons/upvote_hover.png'
+                    }
                 })
 
                 upvoteContainer.addEventListener('mouseout', () => {
-                    upvote.src = '/forum/public/assets/icons/upvote.png'
+                    if (!upvote.src.includes('upvoted')) {
+                        upvote.src = '/forum/public/assets/icons/upvote.png'
+                    }
                 })
 
                 // downvote events (hover)
@@ -367,17 +372,17 @@ const app = {
                     }
 
                     // Update vote button appearance
-                    const upvoteButton = document.querySelector(`[post_id="${postId}"] #upvote`);
-                    const downvoteButton = document.querySelector(`[post_id="${postId}"] #downvote`);
+                    const upvoteIcon = document.querySelector(`[post_id="${postId}"] #upvote`);
+                    const downvoteIcon = document.querySelector(`[post_id="${postId}"] #downvote`);
                     
-                    // console.log(upvoteButton, downvoteButton)
+                    // console.log(upvoteIcon, downvoteIcon)
 
                     if (isUpvote) {
-                        upvoteButton.src = '/forum/public/assets/icons/upvoted.png'
-                        downvoteButton.src = '/forum/public/assets/icons/downvote.png'
+                        upvoteIcon.src = upvoteIcon.src.includes('upvoted') ? '/forum/public/assets/icons/upvote.png' : '/forum/public/assets/icons/upvoted.png'
+                        downvoteIcon.src = '/forum/public/assets/icons/downvote.png'
                     } else {
-                        upvoteButton.src = '/forum/public/assets/icons/upvote.png'
-                        downvoteButton.src = '/forum/public/assets/icons/downvoted.png'
+                        upvoteIcon.src = '/forum/public/assets/icons/upvote.png'
+                        downvoteIcon.src = downvoteIcon.src.includes('downvoted') ? '/forum/public/assets/icons/downvote.png' : '/forum/public/assets/icons/downvoted.png'
                     }
 
                 } catch (error) {

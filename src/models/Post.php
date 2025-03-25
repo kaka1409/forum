@@ -42,19 +42,19 @@ class Post {
 
         $post_content = $stmt->FetchAll(PDO::FETCH_ASSOC)[0];
 
-         // Add vote information
+        // vote information
         if ($post_content) {
             $voteCounts = Vote::getVoteCount($db, $post_id);
             $post_content['upvotes'] = $voteCounts['upvotes'];
             $post_content['downvotes'] = $voteCounts['downvotes'];
             $post_content['votes'] = $voteCounts['votes'];
             
-            // Add user's vote if logged in
-            if (isset($_SESSION['account_id'])) {
-                $userVote = Vote::checkVote($db, $post_id, $_SESSION['account_id']);
-                $post_content['user_vote'] = $userVote ? $userVote['vote_type'] : 0;
+            // user's vote if logged in
+            if (isLoggedIn()) {
+                $userVote = Vote::checkVote($db, $_SESSION['account_id'], $post_id);
+                $post_content['is_voted'] = $userVote ? $userVote['vote_type'] : 0;
             } else {
-                $post_content['user_vote'] = 0;
+                $post_content['is_voted'] = 0;
             }
     }
         return $post_content;
@@ -70,6 +70,7 @@ class Post {
 
         $stmt = $db->query($sql);
         $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
         return $posts;
     }
     
