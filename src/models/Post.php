@@ -52,6 +52,9 @@ class Post {
             // user's vote if logged in
             if (isLoggedIn()) {
                 $userVote = Vote::checkVote($db, $_SESSION['account_id'], $post_id);
+
+                // print_r($userVote);
+
                 $post_content['is_voted'] = $userVote ? $userVote['vote_type'] : 0;
             } else {
                 $post_content['is_voted'] = 0;

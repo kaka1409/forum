@@ -9,7 +9,7 @@ class Vote {
 
         if ($vote) {
 
-            if ($vote[0]['vote_type'] == $vote_type) { // existing vote has the same vote type user has sent (should toggle off vote btn)
+            if ($vote['vote_type'] == $vote_type) { // existing vote has the same vote type user has sent (should toggle off vote btn)
                 return self::removeVote($db, $account_id, $post_id);
             } else { // change vote type
                 return self::updateVote($db, $account_id, $post_id, $vote_type);
@@ -70,7 +70,7 @@ class Vote {
             ':post_id' => $post_id,
         ]);
 
-        return $stmt->fetchALL(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function getVoteCount($db, $post_id) { // count vote of a post

@@ -235,6 +235,10 @@ header {
     padding: 1rem 2rem;
     overflow-y: scroll;
 }
+
+.main_content.disable_scroll {
+    overflow-y: hidden;
+}
 /* Side menu */
 
 /* Main content */
@@ -928,6 +932,35 @@ header {
 /* module listing */
 
 /* Email form */
+#contact_email_container {
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 60em;
+    height: 100%;
+}
+
+#contact_email_container  form {
+    padding: 2em;
+    padding-top: 0em;
+    width: 70%;
+    height: inherit;
+}
+
+
+#contact_email .form_title {
+    background-color: transparent;
+    height: 2em;
+    margin: 2em 0;
+    margin-top: 1em;
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 0;
+    font-weight: bolder;
+    font-size: 1.1em;
+    font-family: var(--main-font);
+}
+
 #email_title, #email_content{
     padding: 1em;
     margin: 0;
@@ -956,6 +989,49 @@ header {
     margin: 0 auto;
 }
 
+.messages_container {
+    width: 30%;
+    height: 100%;
+    border-left: 1px solid var(--border-color);
+}
+
+.messages_container .title {
+    font-size: 1.1em;
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 1em 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.messages {
+    margin: 0 auto;
+    margin-top: 2em;
+    padding-top: 0.5em;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.messages .message {
+    width: 70%;
+    height: 1.75em;
+    padding: 0.8em;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    font-weight: bolder;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}
+
+.message_title {
+    margin-bottom: 0.25em;
+}
+
+.message_date {
+    opacity: 0.6;
+    font-size: 0.75em;
+    font-weight: 300;
+}
 
 /* Email form */
 

@@ -11,7 +11,7 @@ class HomeController {
                 $userVote = Vote::checkVote($db, $_SESSION['account_id'], $post['post_id']);
 
                 if (!empty($userVote)) {
-                    $post['is_voted'] = $userVote[0]['vote_type'];
+                    $post['is_voted'] = $userVote['vote_type'];
                 } else {
                     $post['is_voted'] = 0;
                 }
