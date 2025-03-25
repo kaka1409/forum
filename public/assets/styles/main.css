@@ -455,8 +455,8 @@ header {
     border-radius: 10px;
     font: inherit;
     color: inherit;
-    gap: 0.5em;
-    width: 3em;
+    gap: 0.25em;
+    width: 3.5em;
 }
 
 .downvote_container {
@@ -474,18 +474,10 @@ header {
 
 .post_comments {
     height: 100%;
-    gap: 0.5em;
-    background-image: url('/forum/public/assets/icons/comment.png');
-    background-repeat: no-repeat;
-    background-position: 15% center;
-    padding: 0 0.4em;
 }
 
 .post_comments:hover {
     color: #2cdce6;
-    background-color: rgba(44, 220, 230, 0.2);
-    background-image: url('/forum/public/assets/icons/comment_hover.png');
-    border-radius: 10px;
 }
 
 .post_comments_container{
@@ -493,25 +485,30 @@ header {
     justify-content: center;
     align-items: center;
     padding: 0.5em;
+}
+
+.post_comments_container:hover {
     border-radius: 10px;
+    color: #2cdce6;
+    background-color: rgba(44, 220, 230, 0.2);
 }
 
 .post_save {
     padding: 0.35em;
-    border-radius: 10px;
 }
 
 .post_save:hover {
     background-color: rgba(255, 142, 59, 0.2);
+    border-radius: 10px;
 }
 
 .post_share {
     padding: 0.35em;
-    border-radius: 10px;
 }
 
 .post_share:hover {
     background-color: rgba(206, 61, 243, 0.2);
+    border-radius: 10px;
 }
 
 .post_controls, .post_vote, .upvote_container, .downvote_container,
@@ -930,9 +927,39 @@ header {
 
 /* module listing */
 
+/* Email form */
+#email_title, #email_content{
+    padding: 1em;
+    margin: 0;
+    width: 100%;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+#email_title::placeholder,
+#email_content::placeholder {
+    color: var(--secondary-font-color);
+    opacity: 0.5;
+}
+
+#email_title {
+    height: 3em;
+}
+
+#email_content {
+    resize: none;
+    border: none;
+    height: 10em;
+}
+
+#contact_email #submit{
+    margin: 0 auto;
+}
+
+
+/* Email form */
 
 /* Main content */
-
 /* Main area */
 
 /* Modal */

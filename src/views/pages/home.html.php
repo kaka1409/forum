@@ -91,7 +91,7 @@
                 
                                 <div class="post_comments">
                                     <div class="post_comments_container">
-                                        <img src="" alt="">
+                                        <img src="<?= BASE_URL ?>/assets/icons/comment.png" alt="">
                                     </div>
                                     <p class="comment_count">
                                         <?= htmlspecialchars( $post['comments_count'] )?>

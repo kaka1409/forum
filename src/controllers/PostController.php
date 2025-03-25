@@ -61,16 +61,20 @@ class PostController {
     public function editForm() {
         $session = new Session();
         $csrf_token = $session->generateCsrfToken();
-        
+
         global $db;
-
+        
         $uri_array = explode('/', $_SERVER['REQUEST_URI']);
-
         $post_id = $uri_array[4];
 
-        $post_data = Post::getPostById($db, $post_id);
         $modules = Module::getAllModules($db);
-
+        
+        $post_data = Post::getPostById($db, $post_id);
+        
+        if ($post_data['account_id'] !== $_SESSION['account_id']) {
+            header('Location: ' . BASE_URL . 'home');
+            exit;
+        }
         $view = ViewController::getInstance();        
         $view->set('modules', $modules);
         $view->set('csrf_token', $csrf_token);
@@ -91,6 +95,7 @@ class PostController {
         $uri_array = explode('/', $_SERVER['REQUEST_URI']);
 
         $post_id = $uri_array[4];
+
 
         if (isset($_POST['submit'])) {
             $result = Post::updatePostById($db, $post_id);

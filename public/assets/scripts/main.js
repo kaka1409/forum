@@ -15,7 +15,7 @@ const app = {
         "post": document.querySelector('.post_container'), // get a post when viewing a single post
 
         // create post form components
-        "create_post_form": document.querySelector('.post_form form'),
+        "create_post_form": document.querySelector('#create_post_form'),
 
         "module": document.querySelector('.post_form #module'),
 
@@ -172,11 +172,15 @@ const app = {
                     const downvote = downvoteContainer.querySelector('.downvote_container img')
     
                     downvoteContainer.addEventListener('mouseover', () => {
-                        downvote.src = '/forum/public/assets/icons/downvote_hover.png'
+                        if (!downvote.src.includes('downvoted')) {
+                            downvote.src = '/forum/public/assets/icons/downvote_hover.png'
+                        }
                     })
     
                     downvoteContainer.addEventListener('mouseout', () => {
-                        downvote.src = '/forum/public/assets/icons/downvote.png'
+                        if (!downvote.src.includes('downvoted')) {
+                            downvote.src = '/forum/public/assets/icons/downvote.png'
+                        }
                     })
 
                     downvoteContainer.addEventListener('click', async (e) => {
@@ -198,40 +202,41 @@ const app = {
     
                     // comment icon hover effect
                     const commentIconContainer = post.querySelector('.post_comments')
-                    const iconContainer = commentIconContainer.querySelector('.post_comments_container')
                     const commentIcon = commentIconContainer.querySelector('.post_comments_container img')
     
-                    // commentIconContainer.addEventListener('mouseover', () => {
-                    //     iconContainer.style.backgroundColor = "rgba(44, 220, 230, 0.2)";
-                    //     commentIcon.src = '/forum/public/assets/icons/comment_hover.png'
+                    commentIconContainer.addEventListener('mouseover', () => {
+                        commentIcon.src = '/forum/public/assets/icons/comment_hover.png'
     
-                    // })
+                    })
     
-                    // commentIconContainer.addEventListener('mouseout', () => {
-                    //     iconContainer.style.backgroundColor = "transparent";
-                    //     commentIcon.src = '/forum/public/assets/icons/comment.png'
-                    // })
+                    commentIconContainer.addEventListener('mouseout', () => {
+                        commentIcon.src = '/forum/public/assets/icons/comment.png'
+                    })
     
                     // save icon hover effect
                     const saveIconContainer = post.querySelector('.post_save')
                     const saveIcon = saveIconContainer.querySelector('img')
     
                     saveIconContainer.addEventListener('mouseover', () => {
-                        saveIcon.src = '/forum/public/assets/icons/save_hover.png'
+                        if (!saveIcon.src.includes('saved')) {
+                            saveIcon.src = '/forum/public/assets/icons/save_hover.png'
+                        }
                     })
     
                     saveIconContainer.addEventListener('mouseout', () => {
-                        saveIcon.src = '/forum/public/assets/icons/save.png'
+                        if (!saveIcon.src.includes('saved')) {
+                            saveIcon.src = '/forum/public/assets/icons/save.png'
+                        }
                     })
                     
                     saveIconContainer.addEventListener('click', (e) => {
                         e.preventDefault()
                         e.stopPropagation()
 
-                        if (isLoggedIn) {
-                            saveIcon.src = '/forum/public/assets/icons/saved.png'
-                        } else {
+                        if (!isLoggedIn) {
                             app.components['modal'].style.display = 'flex'
+                        } else {
+                            saveIcon.src = '/forum/public/assets/icons/saved.png'
                         }
                     })
 
@@ -251,9 +256,7 @@ const app = {
                         e.preventDefault()
                         e.stopPropagation()
 
-                        if (isLoggedIn) {
-                            shareIcon.src = '/forum/public/assets/icons/shared.png'
-                        } else {
+                        if (!isLoggedIn) {
                             app.components['modal'].style.display = 'flex'
                         }
                     })
@@ -297,26 +300,27 @@ const app = {
                 const downvote = downvoteContainer.querySelector('.downvote_container img')
 
                 downvoteContainer.addEventListener('mouseover', () => {
-                    downvote.src = '/forum/public/assets/icons/downvote_hover.png'
+                    if (!downvote.src.includes('downvoted')) {
+                        downvote.src = '/forum/public/assets/icons/downvote_hover.png'
+                    }
                 })
 
                 downvoteContainer.addEventListener('mouseout', () => {
-                    downvote.src = '/forum/public/assets/icons/downvote.png'
+                    if (!downvote.src.includes('downvoted')) {
+                        downvote.src = '/forum/public/assets/icons/downvote.png'
+                    }
                 })
 
                 // comment icon hover effect
                 const commentIconContainer = post.querySelector('.post_comments')
-                const iconContainer = commentIconContainer.querySelector('.post_comments_container')
                 const commentIcon = commentIconContainer.querySelector('.post_comments_container img')
 
                 commentIconContainer.addEventListener('mouseover', () => {
-                    iconContainer.style.backgroundColor = "rgba(44, 220, 230, 0.2)";
                     commentIcon.src = '/forum/public/assets/icons/comment_hover.png'
 
                 })
 
                 commentIconContainer.addEventListener('mouseout', () => {
-                    iconContainer.style.backgroundColor = "transparent";
                     commentIcon.src = '/forum/public/assets/icons/comment.png'
                 })
 
@@ -389,18 +393,6 @@ const app = {
                     console.log(error)
                 }
             }
-
-
-            // document.addEventListener('DOMContentLoaded', () => {
-            //     document.querySelectorAll('.upvote_container').forEach((btn) => {
-            //         btn.addEventListener('click', (e) => {
-            //             e.preventDefault()
-
-            //             const endPoint = isUpvote ? 'post/upvote' : 'post/downvote'
-
-            //         })
-            //     })
-            // })
 
             // modal exit button
             const modalExitButton = app.components['modal'].querySelector('img')

@@ -10,10 +10,6 @@ PUBLIC_ROOT = C:\xampp\htdocs\forum\public
 */
 
 session_start();
-// $_SESSION['account_id'] = null;
-// $_SESSION['account_name'] = null;
-// $_SESSION['role_id'] = null;
-// $_SESSION['account_avatar'] = null;
 
 // config
 require_once APP_ROOT . '/config/config.php';
@@ -40,6 +36,7 @@ require_once APP_ROOT . '/controllers/ViewController.php';
 require_once APP_ROOT . '/controllers/HomeController.php';
 require_once APP_ROOT . '/controllers/PostController.php';
 require_once APP_ROOT . '/controllers/ModuleController.php';
+require_once APP_ROOT . '/controllers/EmailController.php';
 require_once APP_ROOT . '/controllers/AdminController.php';
 require_once APP_ROOT . '/controllers/VoteController.php';
 

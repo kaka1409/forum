@@ -1,4 +1,4 @@
-<section class="post_form" style="overflow-y: hidden;">
+<section class="post_form" style="overflow-y: hidden;" id="create_post_form">
     <form action="" method="POST">
         <input type="hidden" name="csrf_token" value="<?= $csrf_token ?? null ?>">
 

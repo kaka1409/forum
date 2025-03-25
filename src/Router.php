@@ -41,7 +41,7 @@ class Router {
         $this->addRoute('GET', 'module/(\d+)/post/(\d+)', 'ModuleController', 'showPost');
 
         // Email admin
-        $this->addRoute('GET', 'email', 'AdminController', 'message');
+        $this->addRoute('GET', 'email', 'EmailController', 'email');
 
         // Profile
         $this->addRoute('GET', 'profile', 'AccountController', 'showProfile');

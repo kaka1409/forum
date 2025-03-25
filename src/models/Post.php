@@ -40,7 +40,7 @@ class Post {
             ':post_id' => $post_id
         ]);
 
-        $post_content = $stmt->FetchAll(PDO::FETCH_ASSOC)[0];
+        $post_content = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // vote information
         if ($post_content) {
