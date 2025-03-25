@@ -9,12 +9,7 @@ class HomeController {
         if ($posts && isLoggedIn()) {
             foreach ($posts as &$post) {
                 $userVote = Vote::checkVote($db, $_SESSION['account_id'], $post['post_id']);
-
-                if (!empty($userVote)) {
-                    $post['is_voted'] = $userVote['vote_type'];
-                } else {
-                    $post['is_voted'] = 0;
-                }
+                $post['is_voted'] = !empty($userVote) ? $userVote['vote_type'] : 0;
             } 
         } else {
             foreach ($posts as &$post) {
@@ -24,6 +19,7 @@ class HomeController {
 
         $view = ViewController::getInstance();
         $view->set('title', 'Home Page');
+        $view->set('disable_scroll', false);
         $view->set('posts', $posts);
         $view->render('home');
     }

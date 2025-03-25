@@ -1,3 +1,23 @@
+/* Login background animation */
+
+#login_bg {
+    position: relative;
+    overflow: hidden;
+    animation: wave 10s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0% {
+      transform: scale(1.05);
+    }
+    50% {
+      transform: scale(1.25);
+    }
+    100% {
+      transform: scale(1.05);
+    }
+}
+
 /* side menu collapse animation*/
 
 .side_menu.collapsed {
@@ -53,32 +73,12 @@
     transition: all 0.15s ease-in-out;
 }
 
-/* Login background animation */
-
-#login_bg {
-    position: relative;
-    overflow: hidden;
-    animation: wave 10s ease-in-out infinite;
-}
-
-@keyframes wave {
-    0% {
-      transform: scale(1.05);
-    }
-    50% {
-      transform: scale(1.25);
-    }
-    100% {
-      transform: scale(1.05);
-    }
-}
-
+/* Module hover animation */
 .module_border:hover {
     transform: translateY(-1em);
     transition: transform 1.5s ease-in-out;
 }
 
-  
 .module_border:not(:hover) {
     transform: translateY(0px);
     transition: transform 1.5s ease-in-out;
@@ -94,4 +94,20 @@
     transition: opacity 1s ease-in-out;
 }
 
+/* messages animation */
 
+.message {
+    animation: slideIn 1s ease-out;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(10em);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

@@ -9,14 +9,14 @@ class Module {
         return $modules;
     }
 
-    public function getModuleById($db, $module_id) {
+    public static function getModuleById($db, $module_id) {
         $sql = 'SELECT * FROM module WHERE module_id = :module_id;';
     
         $stmt = $db->query($sql, [
             ':module_id' => $module_id
         ]);
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function countPostById($db, $module_id) {
@@ -26,7 +26,7 @@ class Module {
             ':module_id' => $module_id
         ]);      
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function getAllPostById($db, $module_id) {

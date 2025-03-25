@@ -23,7 +23,7 @@
                     <div class="posts_count">
                         <?php
                             $posts_count_result = Module::countPostById($db, $module['module_id']);
-                            $posts_count_result = $posts_count_result[0]['COUNT(module_id)'];
+                            $posts_count_result = $posts_count_result['COUNT(module_id)'];
         
                             $post_count = intval($posts_count_result) > 1 ? $posts_count_result .' posts' : $posts_count_result . ' post';
                         ?>

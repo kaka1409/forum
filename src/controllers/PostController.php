@@ -11,6 +11,7 @@ class PostController {
         $view = ViewController::getInstance();
         $view->set('csrf_token', $csrf_token);
         $view->set('modules', $modules);
+        $view->set('disable_scroll', true);
         $view->set('title', 'New Post');
         $view->render('createPost');
     }
@@ -46,15 +47,14 @@ class PostController {
     public function show() {
         global $db;
 
-        // $uri_array = explode('/', $_SERVER['REQUEST_URI']); 
-
         $post_id = getPostId();
 
         $post_content = Post::getPostById($db, $post_id);
 
         $view = ViewController::getInstance();
         $view->set('post_content', $post_content);
-        $view->set('title', 'Post');
+        $view->set('disable_scroll', true);
+        $view->set('title', 'Viewing ' . $post_content['title']);
         $view->render('post');
     }
 
@@ -64,8 +64,7 @@ class PostController {
 
         global $db;
         
-        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
-        $post_id = $uri_array[4];
+        $post_id = getPostId();
 
         $modules = Module::getAllModules($db);
         
@@ -79,6 +78,7 @@ class PostController {
         $view->set('modules', $modules);
         $view->set('csrf_token', $csrf_token);
         $view->set('post_data', $post_data);
+        $view->set('disable_scroll', true);
         $view->set('title', 'Edit a post');
         $view->render('editPostForm');
     }
@@ -92,10 +92,7 @@ class PostController {
 
         global $db;
 
-        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
-
-        $post_id = $uri_array[4];
-
+        $post_id = getPostId();
 
         if (isset($_POST['submit'])) {
             $result = Post::updatePostById($db, $post_id);

@@ -938,12 +938,11 @@ header {
     align-items: flex-start;
     justify-content: space-between;
     width: 60em;
-    height: 100%;
+    height: 105%;
 }
 
 #contact_email_container  form {
-    padding: 2em;
-    padding-top: 0em;
+    padding:0 2em;
     width: 70%;
     height: inherit;
 }
@@ -987,6 +986,11 @@ header {
 
 #contact_email #submit{
     margin: 0 auto;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#contact_email #submit:hover {
+    opacity: 0.75;
 }
 
 .messages_container {
@@ -1009,6 +1013,7 @@ header {
     margin-top: 2em;
     padding-top: 0.5em;
     width: 100%;
+    height: 100%;
     overflow-y: scroll;
 }
 
@@ -1021,10 +1026,31 @@ header {
     font-weight: bolder;
     background-color: var(--secondary-color);
     border-radius: 10px;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.messages .message:hover {
+    opacity: 0.75;
 }
 
 .message_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 0.25em;
+}
+
+.message_status.unread {
+    color: rgb(194, 165, 36);
+    font-size: 0.9em;
+    font-weight: 100;
+}
+
+.message_status.read {
+    color: rgb(39, 197, 34);
+    font-size: 0.8em;
+    font-weight: 100;
 }
 
 .message_date {

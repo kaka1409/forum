@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2025 at 11:12 AM
+-- Generation Time: Mar 25, 2025 at 06:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -73,14 +73,21 @@ CREATE TABLE `comment` (
 
 CREATE TABLE `message` (
   `message_id` int(11) NOT NULL,
-  `sender_id` int(11) NOT NULL,
-  `receiver_id` int(11) NOT NULL,
+  `account_id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `content` text NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `sent_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('unread','read','deleted') DEFAULT 'unread'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`message_id`, `account_id`, `title`, `content`, `updated_at`, `sent_at`, `status`) VALUES
+(1, 10, 'test email', 'yayaay', '2025-03-25 17:20:01', '2025-03-25 17:20:01', 'unread'),
+(2, 10, 'message 2', 'wowow', '2025-03-25 17:27:43', '2025-03-25 17:27:43', 'unread');
 
 -- --------------------------------------------------------
 
@@ -127,13 +134,14 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`post_id`, `account_id`, `module_id`, `title`, `content`, `post_at`, `updated_at`, `vote`, `comments_count`, `thumbnail_url`) VALUES
-(1, 1, 1, 'test post updated 3', 'lorem isuapum yeah', '2025-03-16 05:08:41', '2025-03-24 07:15:19', 0, 0, 'uploads/1.webp'),
+(1, 1, 1, 'test post updated 3', 'lorem isuapum yeah', '2025-03-16 05:08:41', '2025-03-25 16:56:27', 1, 0, 'uploads/1.webp'),
 (2, 1, 2, 'test post number oishdfshiodfu', 'lorem isuapum of post number 2', '2025-03-16 05:11:20', '2025-03-24 07:15:19', 0, 0, 'uploads/2.jpg'),
-(4, 1, 1, 'post number 3', 'lorem isuapum of post number 3', '2025-03-16 05:11:56', '2025-03-24 07:15:19', 0, 0, 'uploads/3.webp'),
+(4, 1, 1, 'post number 3', 'lorem isuapum of post number 3', '2025-03-16 05:11:56', '2025-03-25 15:54:11', -1, 0, 'uploads/3.webp'),
 (12, 8, 2, 'new post yeah', 'oh baby oh bay oh baby', '2025-03-20 08:56:49', '2025-03-20 08:56:49', 0, 0, 'uploads/4.webp'),
 (13, 8, 1, 'yeah baby', 'oy hm good', '2025-03-21 04:27:54', '2025-03-21 04:27:54', 0, 0, 'uploads/'),
-(14, 10, 1, 'my first post ever', 'yayayayayaaayaa', '2025-03-22 16:09:17', '2025-03-22 16:09:17', 0, 0, 'uploads/4.webp'),
-(15, 10, 2, 'yeah yeah', 'a', '2025-03-23 10:22:23', '2025-03-23 10:22:23', 0, 0, 'uploads/4.webp');
+(14, 10, 1, 'my first post ever', 'yayayayayaaayaa', '2025-03-22 16:09:17', '2025-03-25 15:16:49', 2, 0, 'uploads/4.webp'),
+(15, 10, 2, 'yeah yeah', 'a', '2025-03-23 10:22:23', '2025-03-23 10:22:23', 0, 0, 'uploads/4.webp'),
+(16, 10, 1, 'my lasted post IG', 'uspen nivka', '2025-03-25 17:25:50', '2025-03-25 17:25:54', 1, 0, 'uploads/');
 
 -- --------------------------------------------------------
 
@@ -173,10 +181,13 @@ CREATE TABLE `vote` (
 --
 
 INSERT INTO `vote` (`vote_id`, `account_id`, `post_id`, `comment_id`, `vote_type`) VALUES
-(1, 10, 14, NULL, '1'),
 (2, 8, 14, NULL, '1'),
 (3, 1, 14, NULL, '1'),
-(4, 7, 14, NULL, '-1');
+(4, 7, 14, NULL, '-1'),
+(50, 10, 1, NULL, '1'),
+(51, 10, 14, NULL, '1'),
+(52, 10, 4, NULL, '-1'),
+(53, 10, 16, NULL, '1');
 
 --
 -- Indexes for dumped tables
@@ -204,8 +215,7 @@ ALTER TABLE `comment`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`message_id`),
-  ADD KEY `idx_message_sender_id` (`sender_id`),
-  ADD KEY `idx_message_receiver_id` (`receiver_id`);
+  ADD KEY `idx_message_sender_id` (`account_id`);
 
 --
 -- Indexes for table `module`
@@ -259,7 +269,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `module`
@@ -271,7 +281,7 @@ ALTER TABLE `module`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -283,7 +293,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Constraints for dumped tables
@@ -307,8 +317,7 @@ ALTER TABLE `comment`
 -- Constraints for table `message`
 --
 ALTER TABLE `message`
-  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `post`

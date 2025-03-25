@@ -15,7 +15,7 @@
         <?= ViewController::useComponent('sidemenu'); ?>
 
         <!-- MAIN CONTENT -->
-        <main class="main_content">    
+        <main class="main_content <?= $disable_scroll ? 'disable_scroll' : '' ; ?>">    
             <?=$content?>
         </main>
 

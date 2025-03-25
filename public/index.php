@@ -25,6 +25,7 @@ require_once APP_ROOT . '/models/Database.php';
 require_once APP_ROOT . '/models/Post.php';
 require_once APP_ROOT . '/models/Vote.php';
 require_once APP_ROOT . '/models/Module.php';
+require_once APP_ROOT . '/models/Message.php';
 require_once APP_ROOT . '/models/Account.php';
 require_once APP_ROOT . '/models/Session.php';
 
