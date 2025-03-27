@@ -50,7 +50,7 @@
                         <?=
                             htmlspecialchars(
                                 dateFormat($message['sent_at'])
-                            ) 
+                            )
                         ?>
                     </p>
 

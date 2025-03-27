@@ -19,9 +19,12 @@ class Message {
     }
 
     public static function getAllMessages($db) {
-        $sql = "SELECT * FROM `message`;";
+        $account_id = $_SESSION['account_id'];
+        $sql = "SELECT * FROM `message` WHERE account_id = :account_id;";
 
-        $stmt = $db->query($sql);
+        $stmt = $db->query($sql, [
+            ':account_id' => $account_id
+        ]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

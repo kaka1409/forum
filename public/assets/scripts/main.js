@@ -68,16 +68,22 @@ const app = {
                     }
                 })
             })
-
     
 
             /*
                 if post listing exist (many posts is displayed) apply effect for posts component 
                 if not then the user has to be in a post
             */ 
+
+            let interval = 0;
+
             if (posts.length != 0) {
 
                 posts.forEach((post) => {
+                    // interval +=
+                    //post anim interval
+                    post.style.setProperty('--animation-duration', )
+
                     const popup = post.querySelector('.options_popup')
                     
                     if (popup) {
@@ -151,8 +157,6 @@ const app = {
                     upvoteContainer.addEventListener('click', async (e) => {
                         e.preventDefault()
                         e.stopPropagation()
-
-
 
                         if (!isLoggedIn) {
                             // Show login modal
@@ -263,7 +267,6 @@ const app = {
                     
                 })
             } else if (app.components['post']) {
-                // console.log('no')
 
                 const post = app.components['post']
 
