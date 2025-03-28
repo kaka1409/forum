@@ -9,6 +9,13 @@ import {
 } from './validators.js'
 
 const app = {
+    start: function() {
+        document.addEventListener('DOMContentLoaded', () => {
+            this.eventHandlers.init()
+            this.validators.init()
+        })
+    },
+
     eventHandlers: {
         init: function() { 
             handleDOMEvent()
@@ -21,16 +28,12 @@ const app = {
 
     validators: {
         init: function() {
+            loginFormValidator()
+            registerFormValidator()
             createPostFormValidator()
+            messageFormValidator()
         }
-    },
-
-    start: function() {
-        this.eventHandlers.init()
-        this.validators.init()
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    app.start()
-})
+app.start()

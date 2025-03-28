@@ -1,4 +1,7 @@
 <?php if (isset($_SESSION['account_id'])): ?>
+    <!-- Back button -->
+    <?= ViewController::useComponent('back_button', ['redirect' => 'home'])?>
+
     <div class="profile_display_container">
         <div class="profile_name">
             <?= $_SESSION['account_name']?>

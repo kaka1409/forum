@@ -51,6 +51,8 @@ class PostController {
 
         $post_content = Post::getPostById($db, $post_id);
 
+        $comments = Comment::getAllComments($db, $post_id);
+
         $view = ViewController::getInstance();
         $view->set('post_content', $post_content);
         $view->set('disable_scroll', true);

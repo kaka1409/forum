@@ -99,6 +99,21 @@
                 </a>
             <?php endif; ?>
 
+            <a 
+                class="menu_item <?= stripos($_SERVER['REQUEST_URI'], BASE_URL . 'bookmarked') !== false ? 'selected_item' : '';?>"
+                href="<?=BASE_URL?>bookmarked"    
+            >
+                <div class="icon">
+                    <img 
+                        width="20px"
+                        height="20px"
+                        src="<?=BASE_URL?>assets/icons/save.png" 
+                        alt=""
+                    >
+                </div>
+                <p class="menu_item_text">Bookmarked</p>
+            </a>
+
         </ul>
 
         <hr>

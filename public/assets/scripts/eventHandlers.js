@@ -2,7 +2,6 @@ import { selectElement } from "./helpers.js"
 import { baseURL, iconsURL } from "./config.js"
 
 function modalAppear() {
-
     const modal = selectElement('.modal.auth')
 
     if (modal) {
@@ -47,9 +46,19 @@ function handleSidemenuEvent() {
             sidemenu.classList.toggle('collapsed')
         }
 
+        const loginAuth = (e) => {
+            e.preventDefault()
+            e.stopPropagation()
+
+            if (!isLoggedIn) {
+                modalAppear()
+                return
+            } 
+        }
+
         // event listeners
         collapseIcon.addEventListener('click', sidemenuCollapsed)
-        newPostBtn.addEventListener('click', modalAppear)
+        newPostBtn.addEventListener('click', loginAuth)
     }
 }
 

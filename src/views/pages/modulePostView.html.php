@@ -1,8 +1,4 @@
-
-<a class="back_btn" href="<?= BASE_URL?>module/<?= $post_content['module_id']?>">
-    <img src="<?=BASE_URL?>/assets/icons/back.png" alt="" width="18px" height="18px">
-    <p>Back</p>
-</a>
+<?= ViewController::useComponent('back_button', ['redirect' => 'module/' . $post_content['module_id']]) ?>
 
 <div class="post_container">
     <div class="post_content">

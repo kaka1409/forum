@@ -2,10 +2,8 @@
 <section class="module_view_post_container">
     <div class="main_nav_container">
         <!-- Back button -->
-        <a class="back_btn" href="<?= BASE_URL?>module">
-            <img src="<?=BASE_URL?>/assets/icons/back.png" alt="" width="18px" height="18px">
-            <p>Back</p>
-        </a>
+        <?= ViewController::useComponent('back_button', ['redirect' => 'module']) ?>
+
     
         <!-- Feed setting -->
         <div class="feed_settings">

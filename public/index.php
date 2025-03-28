@@ -27,6 +27,7 @@ require_once APP_ROOT . '/models/Vote.php';
 require_once APP_ROOT . '/models/Module.php';
 require_once APP_ROOT . '/models/Message.php';
 require_once APP_ROOT . '/models/Account.php';
+require_once APP_ROOT . '/models/Comment.php';
 require_once APP_ROOT . '/models/Session.php';
 
 $db = new Database();
@@ -36,6 +37,7 @@ require_once APP_ROOT . '/controllers/AccountController.php';
 require_once APP_ROOT . '/controllers/ViewController.php';
 require_once APP_ROOT . '/controllers/HomeController.php';
 require_once APP_ROOT . '/controllers/PostController.php';
+require_once APP_ROOT . '/controllers/CommentController.php';
 require_once APP_ROOT . '/controllers/ModuleController.php';
 require_once APP_ROOT . '/controllers/EmailController.php';
 require_once APP_ROOT . '/controllers/AdminController.php';

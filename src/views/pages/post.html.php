@@ -1,8 +1,5 @@
 <!-- Back to home -->
-<a class="back_btn" href="<?= BASE_URL?>home">
-    <img src="<?=BASE_URL?>/assets/icons/back.png" alt="" width="18px" height="18px">
-    <p>Back</p>
-</a>
+<?= ViewController::useComponent('back_button', ['redirect' => 'home'])?>
 
 <div class="post_container">
     <div class="post_content">
@@ -77,13 +74,38 @@
         </div>
 
         <!-- comment input -->
-        <div class="comment_input">
-            <input id="comment" type="text" placeholder="Leave a comment">
-
-            <input id="post_comment" type="submit" name="submit" value="Post">
-        </div>
+        <form action="<?= BASE_URL ?>comment" method="POST">
+            <div class="comment_input">
+                <input id="comment" type="text" placeholder="Leave a comment">
+    
+                <input id="post_comment" type="submit" name="submit" value="Post">
+            </div>
+        </form>
 
         <!-- comment section -->
+        <div class="comment_section">
+            <div class="comment">
+                <div class="comment_header">
+                    <div class="thumbnail_container">
+                        <img src="<?= BASE_URL ?>uploads/account/default.png" alt="">
+                    </div>
 
+                    <div class="comment_username">
+                        <h1>username</h1>
+                        <div class="comment_date">
+                            &bull;
+                        </div>
+                    </div>
+                </div>    
+
+                <div class="comment_content"></div>
+
+                <div class="comment_control">
+                    <form action="" method="POST">
+                        <input id="post_comment" type="submit" name="submit" value="Post">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
