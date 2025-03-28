@@ -44,25 +44,6 @@
     border: none;
 }
 
-/* Post animation */
-.post {
-    animation: scaleUp 1s ease-in-out;
-}
-
-@keyframes scaleUp {
-    0% {
-        transform: scale(0);
-    }
-
-    80% {
-        transform: scale(1.05);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
 
 /* side menu uncollapsed animation*/
 .side_menu {
