@@ -431,7 +431,7 @@ header {
 
 .post_thumbnail img {
     margin-top: 0.5em;
-    max-width: 16em;
+    width: 16em;
     height: 8.5em;
     border: 1px solid var(--border-color);
     border-radius: 20px;

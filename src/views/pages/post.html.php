@@ -74,38 +74,38 @@
         </div>
 
         <!-- comment input -->
-        <form action="<?= BASE_URL ?>comment" method="POST">
-            <div class="comment_input">
-                <input id="comment" type="text" placeholder="Leave a comment">
-    
-                <input id="post_comment" type="submit" name="submit" value="Post">
-            </div>
-        </form>
+        <div class="comment_input">
+            <input id="comment" type="text" placeholder="Leave a comment">
+            <button id="post_comment" post-id="<?= $post_content['post_id']?>">Post</button>
+        </div>
 
         <!-- comment section -->
         <div class="comment_section">
-            <div class="comment">
-                <div class="comment_header">
-                    <div class="thumbnail_container">
-                        <img src="<?= BASE_URL ?>uploads/account/default.png" alt="">
-                    </div>
-
-                    <div class="comment_username">
-                        <h1>username</h1>
-                        <div class="comment_date">
-                            &bull;
+            <?php foreach($comments as $comment): ?>
+                <div class="comment">
+                    <div class="comment_header">
+                        <div class="thumbnail_container">
+                            <img src="<?= BASE_URL .  ?>" alt="">
                         </div>
+    
+                        <div class="comment_username">
+                            <h1><?=  ?></h1>
+                            <div class="comment_date">
+                                &bull;
+                            </div>
+                        </div>
+                    </div>    
+    
+                    <div class="comment_content"></div>
+    
+                    <div class="comment_control">
+                        <!-- <form action="<?= BASE_URL ?>post/reply" method="POST">
+                            <input type="text">
+                            <input id="post_comment" type="submit" name="submit" value="Post">
+                        </form> -->
                     </div>
-                </div>    
-
-                <div class="comment_content"></div>
-
-                <div class="comment_control">
-                    <form action="" method="POST">
-                        <input id="post_comment" type="submit" name="submit" value="Post">
-                    </form>
                 </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

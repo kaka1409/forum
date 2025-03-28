@@ -8,17 +8,17 @@ class Comment {
             'post_id' => $post_id
         ]);
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function createComment($db = null, $post_id = null) {
+    public static function createComment($db = null, $post_id = null, $content) {
         $sql = "INSERT INTO `comment` (account_id, post_id, content, updated_at, commented_at, vote, depth_level)
                 VALUES (:account_id, :post_id, :content, NOW(), NOW(), 0, 0);";
 
         $stmt = $db->query($sql, [
             ':account_id' => $_SESSION['account_id'],
             ':post_id' => $post_id,
-            ':content' => trim($_POST['comment_content'])
+            ':content' => $content
         ]);
 
         return $stmt->fetch(PDO::FETCH_ASSOC);

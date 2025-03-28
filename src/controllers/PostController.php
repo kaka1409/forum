@@ -46,15 +46,14 @@ class PostController {
 
     public function show() {
         global $db;
-
         $post_id = getPostId();
 
         $post_content = Post::getPostById($db, $post_id);
-
         $comments = Comment::getAllComments($db, $post_id);
 
         $view = ViewController::getInstance();
         $view->set('post_content', $post_content);
+        $view->set('comments', $comments);
         $view->set('disable_scroll', true);
         $view->set('title', 'Viewing ' . $post_content['title']);
         $view->render('post');
@@ -65,17 +64,16 @@ class PostController {
         $csrf_token = $session->generateCsrfToken();
 
         global $db;
-        
         $post_id = getPostId();
 
         $modules = Module::getAllModules($db);
-        
         $post_data = Post::getPostById($db, $post_id);
         
         if ($post_data['account_id'] !== $_SESSION['account_id']) {
             header('Location: ' . BASE_URL . 'home');
             exit;
         }
+
         $view = ViewController::getInstance();        
         $view->set('modules', $modules);
         $view->set('csrf_token', $csrf_token);
@@ -93,7 +91,6 @@ class PostController {
         }
 
         global $db;
-
         $post_id = getPostId();
 
         if (isset($_POST['submit'])) {
@@ -117,10 +114,7 @@ class PostController {
 
     public function delete() {
         global $db;
-
-        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
-
-        $post_id = $uri_array[4];
+        $post_id = getPostId();
 
         if (isset($_POST['submit'])) {
 

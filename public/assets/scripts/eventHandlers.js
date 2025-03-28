@@ -1,5 +1,6 @@
 import { selectElement } from "./helpers.js"
 import { baseURL, iconsURL } from "./config.js"
+import { handleVote, handleComment } from "./async.js"
 
 function modalAppear() {
     const modal = selectElement('.modal.auth')
@@ -314,50 +315,6 @@ function handlePostsEvents () {
             shareContainer.addEventListener('click', shareIconClicked)
         }
 
-        // AJAX functions for upvote and downvote
-        const handleVote = async (postId, isUpvote) => {
-            const endPoint = isUpvote ? 'post/upvote' : 'post/downvote';
-
-            try {
-                const response = await fetch(baseURL + endPoint, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: 'post_id=' + postId
-                })
-
-                const data = await response.json()
-
-                // console.log(data)
-
-                if (data && data.voteCount !== undefined) {
-
-                    const voteCountELement = selectElement(`[post_id="${postId}"] .vote_count`);
-                    if (voteCountELement) {
-                        voteCountELement.textContent = data.voteCount
-                    }
-                }
-
-                // Update vote button appearance
-                const upvoteIcon = selectElement(`[post_id="${postId}"] #upvote`);
-                const downvoteIcon = selectElement(`[post_id="${postId}"] #downvote`);
-                
-                // console.log(upvoteIcon, downvoteIcon)
-
-                if (isUpvote) {
-                    upvoteIcon.src = upvoteIcon.src.includes('upvoted') ? iconsURL + 'upvote.png' : iconsURL + 'upvoted.png'
-                    downvoteIcon.src = iconsURL + 'downvote.png'
-                } else {
-                    upvoteIcon.src = iconsURL + 'upvote.png'
-                    downvoteIcon.src = downvoteIcon.src.includes('downvoted') ? iconsURL + 'downvote.png' : iconsURL + 'downvoted.png'
-                }
-
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
     });
 }
 
@@ -365,6 +322,7 @@ function handlePostViewEvents () {
     const post = selectElement('.post_container')
 
     if (post) {
+        // upvote
         const upvoteContainer = post.querySelector('.upvote_container')
         const upvote = upvoteContainer.querySelector('.upvote_container img')
         
@@ -383,81 +341,151 @@ function handlePostViewEvents () {
         // share icon 
         const shareContainer = post.querySelector('.post_share')
         const shareIcon = shareContainer.querySelector('img')
-    
-        // Event functions
-        const upvoteMouseOver = () => {
-            if (!upvote.src.includes('upvoted')) {
-                upvote.src = iconsURL + 'upvote_hover.png'
-            }
-        }
-    
-        const upvoteMouseOut = () => {
-            if (!upvote.src.includes('upvoted')) {
-                upvote.src = iconsURL + 'upvote.png'
-            }
-        }
-    
-        const downvoteMouseOver = () => {
-            if (!downvote.src.includes('downvoted')) {
-                downvote.src = iconsURL + 'downvote_hover.png'
-            }
-        }
-    
-        const downvoteMouseOut = () => {
-            if (!downvote.src.includes('downvoted')) {
-                downvote.src = iconsURL + 'downvote.png'
-            }
-        }
-    
-        const commentIconMouseOver = () => {
-            commentIcon.src = iconsURL + 'comment_hover.png'
-        }
-    
-        const commentIconMouseOut = () => {
-            commentIcon.src = iconsURL + 'comment.png'
-        }
-    
-        const saveIconMouseOver = () => {
-            saveIcon.src = iconsURL + 'save_hover.png'
-        }
-    
-        const saveIconMouseOut = () => {
-            saveIcon.src = iconsURL + 'save.png'
-        }
-    
-        const shareIconMouseOver = () => {
-            shareIcon.src = iconsURL + 'share_hover.png'
-        }
-    
-        const shareIconMouseOut = () => {
-            shareIcon.src = iconsURL + 'share.png'
-        }
+
+        // comment input
+        const commentInput = post.querySelector('#comment')
+        const commentButton = post.querySelector('#post_comment')
 
         if (upvoteContainer) {
+            const upvoteMouseOver = () => {
+                if (!upvote.src.includes('upvoted')) {
+                    upvote.src = iconsURL + 'upvote_hover.png'
+                }
+            }
+        
+            const upvoteMouseOut = () => {
+                if (!upvote.src.includes('upvoted')) {
+                    upvote.src = iconsURL + 'upvote.png'
+                }
+            }
+
+            const upvoteClicked = () => {
+                if (!isLoggedIn) {
+                    modalAppear()
+                    return
+                }
+            }
+
             // Event listeners
             upvoteContainer.addEventListener('mouseover', upvoteMouseOver)
             upvoteContainer.addEventListener('mouseout', upvoteMouseOut)
+            upvoteContainer.addEventListener('click', upvoteClicked)
         }
 
         if (downvoteContainer) {
+            const downvoteMouseOver = () => {
+                if (!downvote.src.includes('downvoted')) {
+                    downvote.src = iconsURL + 'downvote_hover.png'
+                }
+            }
+        
+            const downvoteMouseOut = () => {
+                if (!downvote.src.includes('downvoted')) {
+                    downvote.src = iconsURL + 'downvote.png'
+                }
+            }
+
+            const downvoteClicked = () => {
+                if (!isLoggedIn) {
+                    modalAppear()
+                    return
+                }
+            }
+        
+
             downvoteContainer.addEventListener('mouseover', downvoteMouseOver)
             downvoteContainer.addEventListener('mouseout', downvoteMouseOut)
+            downvoteContainer.addEventListener('click', downvoteClicked)
         }
 
         if (commentIconContainer) {
+            const commentIconMouseOver = () => {
+                commentIcon.src = iconsURL + 'comment_hover.png'
+            }
+        
+            const commentIconMouseOut = () => {
+                commentIcon.src = iconsURL + 'comment.png'
+            }
+
+            const commentIconClicked = () => {
+                if (!isLoggedIn) {
+                    modalAppear()
+                    return
+                }
+            }
+
             commentIconContainer.addEventListener('mouseover', commentIconMouseOver)
             commentIconContainer.addEventListener('mouseout', commentIconMouseOut)
+            commentIconContainer.addEventListener('click', commentIconClicked)
         }
     
         if (saveIconContainer) {
+            const saveIconMouseOver = () => {
+                if (!saveIcon.src.includes('saved')) {
+                    saveIcon.src = iconsURL + 'save_hover.png'
+                }
+            }
+        
+            const saveIconMouseOut = () => {
+                if (!saveIcon.src.includes('saved')) {
+                    saveIcon.src = iconsURL + 'save.png'
+                }
+            }
+
+            const saveIconClicked = () => {
+                if (!isLoggedIn) {
+                    modalAppear()
+                    return
+                }
+
+                saveIcon.src = iconsURL + 'saved.png'
+            }
+
             saveIconContainer.addEventListener('mouseover', saveIconMouseOver)
             saveIconContainer.addEventListener('mouseout', saveIconMouseOut)
+            saveIconContainer.addEventListener('click', saveIconClicked)
         }
 
         if (shareContainer) {
+            const shareIconMouseOver = () => {
+                shareIcon.src = iconsURL + 'share_hover.png'
+            }
+        
+            const shareIconMouseOut = () => {
+                shareIcon.src = iconsURL + 'share.png'
+            }
+
+            const shareIconClicked = () => {
+                if (!isLoggedIn) {
+                    modalAppear()
+                    return
+                }
+            }
+
             shareContainer.addEventListener('mouseover', shareIconMouseOver)
             shareContainer.addEventListener('mouseout', shareIconMouseOut)
+            shareContainer.addEventListener('click', shareIconClicked)
         }
+
+        if (commentInput) {
+            const commentButtonClicked = async () => {
+                if (!isLoggedIn) {
+                    modalAppear()
+                    return
+                }
+
+                const postId = commentButton.getAttribute('post-id')
+                await handleComment(postId, commentInput.value)
+
+                // reset input
+                commentInput.value = ''
+            }
+
+
+            commentButton.addEventListener('click', commentButtonClicked)
+
+        }
+
     }
 }
 

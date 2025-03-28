@@ -19,6 +19,7 @@ require_once APP_ROOT . '/config/database.php';
 require_once APP_ROOT . '/helpers/format.php';
 require_once APP_ROOT . '/helpers/auth.php';
 require_once APP_ROOT . '/helpers/getPostId.php';
+require_once APP_ROOT . '/helpers/sendJson.php';
 
 // models
 require_once APP_ROOT . '/models/Database.php';

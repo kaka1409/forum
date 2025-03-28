@@ -14,8 +14,8 @@ class VoteController {
         // new vote count
         $voteCount = Vote::getVoteCount($db, $post_id);
 
-        // send data frontend
-        $this->sendJson(['voteCount' => $voteCount['votes']]);
+        // send data browser
+        sendJson(['voteCount' => $voteCount['votes']]);
     }
 
     public function downvote() {
@@ -31,15 +31,10 @@ class VoteController {
         // new vote count
         $voteCount = Vote::getVoteCount($db, $post_id);
 
-        // send data frontend
-        $this->sendJson(['voteCount' => $voteCount['votes']]);
+        // send data browser
+        sendJson(['voteCount' => $voteCount['votes']]);
     }
 
-    private function sendJson($data) {
-        header('Content-Type: application/json');
-        echo trim(json_encode($data));
-        exit;
-    }
 }
 
 ?>
