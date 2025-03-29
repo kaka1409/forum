@@ -1,6 +1,6 @@
 <?php if (isset($_SESSION['account_id'])): ?>
     <!-- Back button -->
-    <?= ViewController::useComponent('back_button')?>
+    <?= ViewController::useComponent('backButton')?>
 
     <div class="profile_display_container">
         <div class="profile_name">

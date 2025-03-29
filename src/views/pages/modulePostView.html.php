@@ -1,4 +1,4 @@
-<?= ViewController::useComponent('back_button')?>
+<?= ViewController::useComponent('backButton')?>
 
 <div class="post_container">
     <div class="post_content">

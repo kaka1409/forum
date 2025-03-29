@@ -2,6 +2,10 @@
 
 class PostController {
     public function createForm() {
+        if (!isLoggedIn()) {
+            header('Location: ' . BASE_URL . 'home');
+            exit;
+        }
         $session = new Session();
         $csrf_token = $session->generateCsrfToken();
 

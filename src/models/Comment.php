@@ -13,12 +13,6 @@ class Comment {
             ':post_id' => $post_id
         ]);
 
-        if ($stmt) {
-            $data = self::getCommentCount($db);
-            self::updateCommentCount($db, $data['comments_count'], $post_id);
-        }
-
-
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -31,6 +25,11 @@ class Comment {
             ':post_id' => $post_id,
             ':content' => $content
         ]);
+
+        if ($stmt) {
+            $data = self::getCommentCount($db, $post_id);
+            self::updateCommentCount($db, $data['comments_count'], $post_id);
+        }
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -55,7 +54,6 @@ class Comment {
             ':comment_id' => $comment_id
         ]);
 
-        // self::decreaseCommentCount($db, $post_id);
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -71,10 +69,14 @@ class Comment {
         return $stmt->fetch(PDO::FETCH_ASSOC);  
     }
 
-    public static function getCommentCount($db = null) {
-        $sql = "SELECT COUNT(*) AS comments_count FROM comment;";
+    public static function getCommentCount($db = null, $post_id) {
+        $sql = "SELECT COUNT(*) AS comments_count 
+                FROM comment
+                WHERE post_id = :post_id;";
 
-        $stmt = $db->query($sql);
+        $stmt = $db->query($sql,[
+            ':post_id' => $post_id
+        ]);
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }

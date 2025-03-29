@@ -2,7 +2,7 @@
 <section class="module_view_post_container">
     <div class="main_nav_container">
         <!-- Back button -->
-        <?= ViewController::useComponent('back_button')?>
+        <?= ViewController::useComponent('backButton')?>
 
     
         <!-- Feed setting -->

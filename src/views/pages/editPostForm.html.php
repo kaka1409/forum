@@ -1,5 +1,5 @@
 <!-- Back to home -->
-<?= ViewController::useComponent('back_button')?>
+<?= ViewController::useComponent('backButton')?>
 
 <section class="post_form" style="overflow-y: hidden;">
     <form action="" method="POST">

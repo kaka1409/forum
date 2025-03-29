@@ -854,8 +854,12 @@ header {
     height: 100%;
 }
 
+.comment_main_container {
+    width: 100%;
+}
+
 .comment_content {
-    padding: 0.75em 0;
+    padding: 0.5em 0;
 }
 
 .comment_control, .comment_vote {
@@ -948,7 +952,6 @@ header {
     display: flex;
     align-items: flex-end;
     padding: 0.1em;
-    background-image: linear-gradient(to right bottom, #FF0099, #008CFF);
     border-radius: 20px;
     width: 20em;
     height: 22em;

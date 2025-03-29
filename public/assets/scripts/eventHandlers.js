@@ -2,6 +2,7 @@ import { selectElement } from "./helpers.js"
 import { baseURL, iconsURL } from "./config.js"
 import { handleVote, handleComment } from "./async.js"
 
+
 function modalAppear() {
     const modal = selectElement('.modal.auth')
 
@@ -34,6 +35,25 @@ function handleDOMEvent() {
     document.addEventListener('click', popupHidden)
 }
 
+function handleSearchBarEvent() {
+    const searchBar = selectElement('.search_bar')
+
+    if (searchBar) {
+        const searchInput = searchBar.querySelector('#search_input')
+
+        const searchInputFocus = () => {
+            searchBar.style.border = '0.5px solid #d78adb'
+        }
+
+        const searchInputNoFocus = () => {
+            searchBar.style.border = 'none'
+        }
+
+        searchInput.addEventListener('focus', searchInputFocus)
+        searchInput.addEventListener('blur', searchInputNoFocus)
+    }
+}
+
 function handleSidemenuEvent() {
     const sidemenu = selectElement('.side_menu')
 
@@ -62,8 +82,9 @@ function handleSidemenuEvent() {
 
 function handlePostsEvents () {
 
-    const posts = selectElement('.post')
+    let posts = selectElement('.post')
     if (posts === undefined) return
+    if (!Array.isArray(posts)) posts = new Array(posts)
 
     // post animation config
     let animDuration = 1200
@@ -491,10 +512,50 @@ function handlePostViewEvents () {
     }
 }
 
+function handleModuleEvent() {
+    const moduleWrapers = selectElement('.module_border')
+    const gradients = [
+        '#008CFF', '#FF0099',
+        '#FF7700', '#FF00EE',
+        '#2F00FF', '#FF0004',
+        '#FF0000', '#F6FF00'
+    ]
+    let cur = 0, next = 1
+    
+    // anim config
+    let duration = 0
+    let delay = 1000
+
+    if (moduleWrapers) {
+        moduleWrapers.forEach( (wraper) => {
+            if (next > gradients.length)  cur = 0, next = 1
+            
+            // set background to linear gradient
+            wraper.style.backgroundImage = `linear-gradient(to right bottom, ${gradients[cur]}, ${gradients[next]})`
+            cur++, next++
+    
+            // module anim
+            duration += delay
+            wraper.animate(
+                [
+                    {opacity: '0'},
+                    {opacity: '1'}
+                ],
+                
+                {
+                    duration: duration,
+                    easing: 'ease-in-out'
+                }
+            )
+        })
+    }
+}
 
 export {
     handleDOMEvent,
+    handleSearchBarEvent,
     handleSidemenuEvent,
     handlePostsEvents, 
-    handlePostViewEvents
+    handlePostViewEvents,
+    handleModuleEvent
 }
