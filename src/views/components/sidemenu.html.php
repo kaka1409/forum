@@ -100,18 +100,18 @@
             <?php endif; ?>
 
             <a 
-                class="menu_item <?= stripos($_SERVER['REQUEST_URI'], BASE_URL . 'bookmarked') !== false ? 'selected_item' : '';?>"
-                href="<?=BASE_URL?>bookmarked"    
+                class="menu_item <?= stripos($_SERVER['REQUEST_URI'], BASE_URL . 'bookmarks') !== false ? 'selected_item' : '';?>"
+                href="<?=BASE_URL?>bookmarks"    
             >
                 <div class="icon">
                     <img 
                         width="20px"
                         height="20px"
-                        src="<?=BASE_URL?>assets/icons/save.png" 
+                        src="<?=BASE_URL?>assets/icons/bookmark.png" 
                         alt=""
                     >
                 </div>
-                <p class="menu_item_text">Bookmarked</p>
+                <p class="menu_item_text">Bookmarks</p>
             </a>
 
         </ul>

@@ -86,7 +86,7 @@ class Vote {
             ':post_id' => $post_id,
         ]);
         
-        $result = $stmt->fetchALL(PDO::FETCH_ASSOC)[0];
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return [
             'upvotes' => $result['upvotes'] ? intval($result['upvotes']) : 0,

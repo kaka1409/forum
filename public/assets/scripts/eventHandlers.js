@@ -47,10 +47,7 @@ function handleSidemenuEvent() {
             sidemenu.classList.toggle('collapsed')
         }
 
-        const loginAuth = (e) => {
-            e.preventDefault()
-            e.stopPropagation()
-
+        const loginAuth = () => {
             if (!isLoggedIn) {
                 modalAppear()
                 return
@@ -199,7 +196,7 @@ function handlePostsEvents () {
                     return 
                 }
     
-                const postId = upvoteContainer.getAttribute('post_id')
+                const postId = upvoteContainer.getAttribute('post-id')
                 await handleVote(postId, true)
             }
 
@@ -232,7 +229,7 @@ function handlePostsEvents () {
                     return;
                 } 
     
-                const postId = downvoteContainer.getAttribute('post_id')
+                const postId = downvoteContainer.getAttribute('post-id')
                 await handleVote(postId, false)
             }
             
@@ -359,11 +356,14 @@ function handlePostViewEvents () {
                 }
             }
 
-            const upvoteClicked = () => {
+            const upvoteClicked = async () => {
                 if (!isLoggedIn) {
                     modalAppear()
                     return
                 }
+
+                const postId = upvoteContainer.getAttribute('post-id')
+                await handleVote(postId, true)
             }
 
             // Event listeners
@@ -385,14 +385,16 @@ function handlePostViewEvents () {
                 }
             }
 
-            const downvoteClicked = () => {
+            const downvoteClicked = async () => {
                 if (!isLoggedIn) {
                     modalAppear()
                     return
                 }
+
+                const postId = upvoteContainer.getAttribute('post-id')
+                await handleVote(postId, false)
             }
         
-
             downvoteContainer.addEventListener('mouseover', downvoteMouseOver)
             downvoteContainer.addEventListener('mouseout', downvoteMouseOut)
             downvoteContainer.addEventListener('click', downvoteClicked)

@@ -1,4 +1,5 @@
+const rootURL = '/forum/'
 const baseURL = '/forum/public/'
 const iconsURL = '/forum/public/assets/icons/'
 
-export {baseURL, iconsURL}
+export {rootURL, baseURL, iconsURL}

@@ -77,15 +77,29 @@
                             <div class="post_controls">
 
                                 <div class="post_vote">
-                                    <button class="upvote_container" post_id = "<?= $post['post_id'] ?>">
-                                        <img id="upvote"  src="<?=BASE_URL?>assets/icons/<?= $post['is_voted'] == '1' ? 'upvoted.png' : 'upvote.png'; ?>" alt="">
+                                    <button 
+                                        class="upvote_container" 
+                                        post-id="<?= $post['post_id'] ?>"
+                                    >
+                                        <img 
+                                            id="upvote"  
+                                            src="<?=BASE_URL?>assets/icons/<?= $post['is_voted'] == '1' ? 'upvoted.png' : 'upvote.png'; ?>" 
+                                            alt=""
+                                        >
                                         <p class="vote_count">
                                             <?= htmlspecialchars( $post['vote'] )?>
                                         </p>
                                     </button>
 
-                                    <button class="downvote_container" post_id = "<?= $post['post_id'] ?>">
-                                        <img id="downvote" src="<?=BASE_URL?>/assets/icons/<?= $post['is_voted'] == '-1' ? 'downvoted.png' : 'downvote.png'; ?>" alt="">
+                                    <button 
+                                        class="downvote_container" 
+                                        post-id="<?= $post['post_id'] ?>"
+                                    >
+                                        <img 
+                                            id="downvote" 
+                                            src="<?=BASE_URL?>/assets/icons/<?= $post['is_voted'] == '-1' ? 'downvoted.png' : 'downvote.png'; ?>" 
+                                            alt=""
+                                        >
                                     </button>
                                 </div>
                 

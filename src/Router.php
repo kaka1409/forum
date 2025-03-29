@@ -42,11 +42,13 @@ class Router {
         // List all modules
         $this->addRoute('GET', 'module', 'ModuleController', 'index');
         $this->addRoute('GET', 'module/(\d+)', 'ModuleController', 'show');
-        $this->addRoute('GET', 'module/(\d+)/post/(\d+)', 'ModuleController', 'showPost');
 
         // Email admin
         $this->addRoute('GET', 'email', 'EmailController', 'emailForm');
         $this->addRoute('POST', 'email', 'EmailController', 'email');
+
+        // Bookmarks
+        $this->addRoute('GET', 'bookmarks', 'PostController', 'bookmarks');
 
         // Profile
         $this->addRoute('GET', 'profile', 'AccountController', 'showProfile');

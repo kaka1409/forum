@@ -1,4 +1,4 @@
-<?= ViewController::useComponent('back_button', ['redirect' => 'module/' . $post_content['module_id']]) ?>
+<?= ViewController::useComponent('back_button')?>
 
 <div class="post_container">
     <div class="post_content">

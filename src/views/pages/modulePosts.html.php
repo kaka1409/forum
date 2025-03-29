@@ -2,7 +2,7 @@
 <section class="module_view_post_container">
     <div class="main_nav_container">
         <!-- Back button -->
-        <?= ViewController::useComponent('back_button', ['redirect' => 'module']) ?>
+        <?= ViewController::useComponent('back_button')?>
 
     
         <!-- Feed setting -->
@@ -26,7 +26,7 @@
     <div class="posts_container">
         <?php if (isset($posts_of_module)): ?>
             <?php foreach ($posts_of_module as $post): ?>
-                <a href="<?= BASE_URL ?>module/<?= $post['module_id'] ?>/post/<?= $post['post_id'] ?>">
+                <a href="<?= BASE_URL ?>post/<?= $post['post_id'] ?>">
                     <div class="post">
                         <div class="post_content">
 

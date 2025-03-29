@@ -8,8 +8,8 @@ class HomeController {
         // add user vote status
         if ($posts && isLoggedIn()) {
             foreach ($posts as &$post) {
-                $userVote = Vote::checkVote($db, $_SESSION['account_id'], $post['post_id']);
-                $post['is_voted'] = !empty($userVote) ? $userVote['vote_type'] : 0;
+                $user_vote = Vote::checkVote($db, $_SESSION['account_id'], $post['post_id']);
+                $post['is_voted'] = !empty($user_vote) ? $user_vote['vote_type'] : 0;
             } 
         } else {
             foreach ($posts as &$post) {

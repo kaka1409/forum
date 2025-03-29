@@ -51,10 +51,18 @@ class PostController {
         $post_content = Post::getPostById($db, $post_id);
         $comments = Comment::getAllComments($db, $post_id);
 
+        // add user vote status
+        if ($post_content && isLoggedIn()) {
+            $user_vote = Vote::checkVote($db, $_SESSION['account_id'], $post_content['post_id']);
+            $post_content['is_voted'] = !empty($user_vote) ? 1 : 0;
+        } else {
+            $post_content['is_voted'] = 0;
+        }
+
         $view = ViewController::getInstance();
         $view->set('post_content', $post_content);
         $view->set('comments', $comments);
-        $view->set('disable_scroll', true);
+        $view->set('disable_scroll', false);
         $view->set('title', 'Viewing ' . $post_content['title']);
         $view->render('post');
     }
@@ -132,8 +140,14 @@ class PostController {
             header('Location: ' . BASE_URL . 'home');
             exit;
         }
-
+        
     }
     
+    public function bookmarks() {
+        $view = ViewController::getInstance();
+        $view->set('title', 'Bookmarks');
+        $view->render('bookmarks');
+    }
+
 }
 ?>

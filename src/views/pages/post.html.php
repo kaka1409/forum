@@ -1,5 +1,5 @@
 <!-- Back to home -->
-<?= ViewController::useComponent('back_button', ['redirect' => 'home'])?>
+<?= ViewController::useComponent('back_button')?>
 
 <div class="post_container">
     <div class="post_content">
@@ -44,14 +44,29 @@
         <!-- post controls -->
         <div class="post_controls">
             <div class="post_vote">
-                <div class="upvote_container">
-                    <img id="upvote" src="<?=BASE_URL?>/assets/icons/upvote.png" alt="">
+                <div 
+                    class="upvote_container"
+                    post-id="<?= $post_content['post_id']?>"
+                >
+                    <img 
+                        id="upvote"     
+                        src="<?=BASE_URL?>/assets/icons/<?= $post_content['is_voted'] == '1' ? 'upvoted.png' : 'upvote.png'; ?>"     
+                        alt=""
+                    >
                     <p class="vote_count">
                         <?= htmlspecialchars( $post_content['vote'] )?>
                     </p>
                 </div>
-                <div class="downvote_container">
-                    <img id="downvote" src="<?=BASE_URL?>/assets/icons/downvote.png" alt="">
+
+                <div 
+                    class="downvote_container"
+                    post-id="<?= $post_content['post_id']?>"
+                >
+                    <img 
+                        id="downvote" 
+                        src="<?=BASE_URL?>/assets/icons/<?= $post_content['is_voted'] == '-1' ? 'downvoted.png' : 'downvote.png'; ?>" 
+                        alt=""
+                    >
                 </div>
             </div>
 
@@ -81,31 +96,65 @@
 
         <!-- comment section -->
         <div class="comment_section">
-            <?php foreach($comments as $comment): ?>
-                <div class="comment">
-                    <div class="comment_header">
-                        <div class="thumbnail_container">
-                            <img src="<?= BASE_URL .  ?>" alt="">
-                        </div>
-    
-                        <div class="comment_username">
-                            <h1><?=  ?></h1>
-                            <div class="comment_date">
-                                &bull;
+            <?php if($comments): ?>
+
+                <?php foreach($comments as $comment): ?>
+                    <div class="comment">
+                        <div class="comment_header">
+                            <div class="thumbnail_container">
+                                <img src="<?= ROOT_URL . $comment['account_avatar'] ?>" alt="">
                             </div>
+        
+                            <div class="comment_username">
+                                <h1><?= $comment['account_name'] ?></h1>
+                                <div class="comment_date">
+                                    &bull; <?= dateFormat($comment['commented_at']) ?>
+                                </div>
+                            </div>
+                        </div>    
+    
+                        <div class="comment_wraper">
+                            <div class="branch_line_container"></div>
+    
+                            <div class="comment_main_container">
+                                <div class="comment_content">
+                                    <?= $comment['content']?>
+                                </div>
+                
+                                <div class="comment_control">
+                                    <div class="comment_vote">
+                                        <div class="upvote_container">
+                                            <img id="upvote" src="<?=BASE_URL?>/assets/icons/upvote.png" alt="">
+                                            <p class="vote_count">
+                                                <?= htmlspecialchars( $comment['vote'] )?>
+                                            </p>
+                                        </div>
+                                        <div class="downvote_container">
+                                            <img id="downvote" src="<?=BASE_URL?>/assets/icons/downvote.png" alt="">
+                                        </div>
+                                    </div>
+            
+                                    <div class="post_comments">
+                                        <div class="post_comments_container">
+                                            <img src="<?=BASE_URL?>/assets/icons/comment.png" alt="">
+                                        </div>
+                                    </div>
+                                    <!-- <form action="<?= BASE_URL ?>post/reply" method="POST">
+                                        <input type="text">
+                                        <input id="post_comment" type="submit" name="submit" value="Post">
+                                    </form> -->
+                                </div>
+                            </div>
+    
                         </div>
-                    </div>    
     
-                    <div class="comment_content"></div>
-    
-                    <div class="comment_control">
-                        <!-- <form action="<?= BASE_URL ?>post/reply" method="POST">
-                            <input type="text">
-                            <input id="post_comment" type="submit" name="submit" value="Post">
-                        </form> -->
                     </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="comment_empty">
+                    No comments
                 </div>
-            <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>

@@ -2,13 +2,24 @@
 
 class Comment {
     public static function getAllComments($db = null, $post_id = null) {
-        $sql = "SELECT * FROM `comment` WHERE post_id = :post_id;";
+        $sql = "SELECT comment.account_id , comment.parent_comment_id, comment.content,
+                comment.updated_at, comment.commented_at, comment.vote, comment.depth_level,
+                account.account_name, account.account_avatar
+                FROM `comment`
+                INNER JOIN `account` ON comment.account_id = account.account_id 
+                WHERE comment.post_id = :post_id;";
 
         $stmt = $db->query($sql, [
-            'post_id' => $post_id
+            ':post_id' => $post_id
         ]);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($stmt) {
+            $data = self::getCommentCount($db);
+            self::updateCommentCount($db, $data['comments_count'], $post_id);
+        }
+
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function createComment($db = null, $post_id = null, $content) {
@@ -44,6 +55,8 @@ class Comment {
             ':comment_id' => $comment_id
         ]);
 
+        // self::decreaseCommentCount($db, $post_id);
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -56,6 +69,51 @@ class Comment {
         ]);
 
         return $stmt->fetch(PDO::FETCH_ASSOC);  
+    }
+
+    public static function getCommentCount($db = null) {
+        $sql = "SELECT COUNT(*) AS comments_count FROM comment;";
+
+        $stmt = $db->query($sql);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function updateCommentCount($db = null, $comments_count, $post_id) {
+        $sql = "UPDATE `post`
+                SET comments_count = :comments_count
+                WHERE post_id = :post_id;";
+
+        $stmt = $db->query($sql,[
+            ':comments_count' => $comments_count,
+            ':post_id' => $post_id
+        ]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function increaseCommentCount($db = null, $post_id = null) {
+        $sql = "UPDATE `post`
+                SET comments_count = comments_count + 1 
+                WHERE post_id = :post_id;";
+
+        $stmt = $db->query($sql, [
+            ':post_id' => $post_id
+        ]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function decreaseCommentCount($db = null, $post_id = null) {
+        $sql = "UPDATE `post`
+                SET comments_count = comment_counts - 1 
+                WHERE post_id = :post_id;";
+
+        $stmt = $db->query($sql, [
+            ':post_id' => $post_id
+        ]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 
