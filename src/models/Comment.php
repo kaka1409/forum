@@ -44,7 +44,7 @@ class Comment {
             ':comment_id' => $comment_id
         ]);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt;
     }
 
     public static function deleteComment($db = null, $comment_id = null) {
@@ -55,7 +55,7 @@ class Comment {
         ]);
 
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt;
     }
 
     public static function replyComment($db, $parent_comment_id, $depth_level) {
@@ -91,7 +91,7 @@ class Comment {
             ':post_id' => $post_id
         ]);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt;
     }
 
     public static function increaseCommentCount($db = null, $post_id = null) {
@@ -103,7 +103,7 @@ class Comment {
             ':post_id' => $post_id
         ]);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt;
     }
 
     public static function decreaseCommentCount($db = null, $post_id = null) {
@@ -115,7 +115,7 @@ class Comment {
             ':post_id' => $post_id
         ]);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt;
     }
 }
 

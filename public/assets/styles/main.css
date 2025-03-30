@@ -1139,6 +1139,27 @@ header {
 
 /* Email form */
 
+/* Admin area */
+.admin_area {
+    
+}
+
+.admin_controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin_area .control {
+    padding: 2em;
+    height: 5em;
+    width: 10em;
+    background-color: var(--primary-color);
+    border: 1px solid var(--border-color);
+}
+/* Admin area */
+
+
 /* Main content */
 /* Main area */
 

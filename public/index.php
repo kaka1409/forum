@@ -29,6 +29,7 @@ require_once APP_ROOT . '/models/Module.php';
 require_once APP_ROOT . '/models/Message.php';
 require_once APP_ROOT . '/models/Account.php';
 require_once APP_ROOT . '/models/Comment.php';
+require_once APP_ROOT . '/models/Admin.php';
 require_once APP_ROOT . '/models/Session.php';
 
 $db = new Database();

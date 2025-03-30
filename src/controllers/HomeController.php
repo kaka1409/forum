@@ -17,6 +17,8 @@ class HomeController {
             } 
         }
 
+        // sendJson(['content' => $posts]);
+
         $view = ViewController::getInstance();
         $view->set('title', 'Home Page');
         $view->set('disable_scroll', false);
