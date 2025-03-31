@@ -18,6 +18,10 @@ class Message {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public static function replyMessage($db = null) {
+        $sql = "";
+    }
+
     public static function getAllMessages($db) {
         $account_id = $_SESSION['account_id'] ?? null;
         $sql = "SELECT * FROM `message` WHERE account_id = :account_id;";
@@ -35,6 +39,29 @@ class Message {
         $stmt = $db->query($sql);
 
         return $stmt->fetch();
+    }
+
+    public static function updateMessage($db = null, $message_id = null) {
+        $sql = "UPDATE `message`
+                SET title = :title, content = :content, updated_at = NOW()
+                WHERE message_id = :message_id";
+
+        $stmt = $db->query($sql, [
+            ':title' => $title,
+            ':content' => $content,
+        ]);
+
+        return $stmt;
+    }
+
+    public static function deleteMessage($db = null, $message_id = null) {
+        $sql = "DELETE FROM `module` WHERE message_id = :message_id";
+
+        $stmt = $db->query($sql, [
+            ':message_id' => $message_id
+        ]);
+
+        return $stmt;
     }
 }
 

@@ -2,6 +2,20 @@
 
 class Module {
 
+    public static function createModule($db = null) {
+        $sql = "INSERT INTO `module`
+                (module_name, teacher, description)
+                VALUES (:module_name, :teacher, :description)";
+
+        $stmt = $db->query($sql, [
+            ':module_name' => $module_name,
+            ':teacher' => $teacher,
+            ':description' => $description,
+        ]);
+
+        return $stmt;
+    }
+
     public static function getAllModules($db) {
         $sql = "SELECT * FROM `module`;";
         $stmt = $db->query($sql);
@@ -51,6 +65,32 @@ class Module {
         $stmt = $db->query($sql);
 
         return $stmt->fetch();
+    }
+
+    public static function updateModule($db = null, $module_id = null) {
+        $sql = "UPDATE `module`
+                SET module_name = :module_name, teacher = :teacher,
+                description = :description
+                WHERE module_id = :module_id;";
+
+        $stmt = $db->query($sql, [
+            ':module_name' => $module_name,
+            ':teacher' => $teacher,
+            ':description' => $description,
+            ':module_id' => $module_id,
+        ]);
+
+        return $stmt;
+    }
+
+    public static function deleteModule($db = null, $module_id = null) {
+        $sql = "DELETE FROM `module` WHERE module_id = :module_id";
+
+        $stmt = $db->query($sql, [
+            ':module_id' => $module_id
+        ]);
+
+        return $stmt;
     }
 }
 

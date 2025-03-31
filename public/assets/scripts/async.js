@@ -195,8 +195,7 @@ const handleAdminControl = async (listType) => {
                     case 'user': {
                         // user data
                         const users = data.users
-                        // console.log(list)
-                        
+
                         //  load user data to userItem element
                         for (const user of users) {
                             const userItem = document.createElement('li')
@@ -206,7 +205,7 @@ const handleAdminControl = async (listType) => {
                                 <div class="user_details">
                                     <div class="user_avatar">
                                         <img 
-                                            src="${ rootURL + user.account_avatar}" 
+                                            src="${ rootURL + user.account_avatar }" 
                                             alt=""
                                         >
                                     </div>
@@ -244,8 +243,10 @@ const handleAdminControl = async (listType) => {
                                     </a>
                                 </div>
                             `
-            
+
+                            // add to list
                             list.appendChild(userItem)
+
                         }
 
                         listContent.innerHTML = title + list.outerHTML

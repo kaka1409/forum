@@ -561,13 +561,44 @@ function handleAdminEvent() {
     if (controlElements !== undefined) {
 
         controlElements.forEach( (element) => {
-            element.addEventListener('click', async () => {
+            const controlElementClicked = async () => {
                 const listType = element.getAttribute('list-type')
 
                 await handleAdminControl(listType)
-            })
+                
+                handleListItemsEvent()
+            }
+
+            element.addEventListener('click', controlElementClicked)
         })
     }
+}
+
+function handleListItemsEvent() {
+    const userItems = selectElement('.item.user')
+
+    // slide animation config
+    let animDuration = 1000
+    let delay = 200
+
+    if (userItems) {
+        userItems.forEach( (item) => {
+            // item animation
+            animDuration += delay
+            item.animate(
+                [
+                    {transform: 'translateX(100%)', opacity: '0'},
+                    {transform: 'translateX(0)', opacity: '1'}
+                ],
+
+                {
+                    duration: animDuration,
+                    easing: 'ease-in-out'
+                }
+            )
+        })
+    }
+
 }
 
 export {
@@ -577,5 +608,5 @@ export {
     handlePostsEvents, 
     handlePostViewEvents,
     handleModuleEvent,
-    handleAdminEvent
+    handleAdminEvent,
 }

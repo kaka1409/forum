@@ -48,14 +48,45 @@ class AdminController {
             exit;
         }
 
+        global $db;
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
+        $accout_id = end($uri_array);
+
+        $account = Account::getAccountById($db, $accout_id);
+
         $view = ViewController::getInstance();
         $view->set('title', 'Editing user');
         $view->set('disable_scroll', true);
+        $view->set('account', $account);
         $view->render('adminUserEditForm');
 
     }
 
-    public function userDelete() {
+    public function editUser() {
+        global $db;
+
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
+        $accout_id = end($uri_array);
+
+        if (isset($_POST['submit'])) {
+            
+            $result = Account::updateAccount($db, $accout_id);
+
+            if ($result) {
+                header('Location: '. BASE_URL . 'admin');
+                exit;
+            } else {
+                header('Location: '. BASE_URL . 'admin/user/edit/' . $accout_id);
+                exit;
+            }
+
+        } else {
+            header('Location: '. BASE_URL . 'admin/user/edit/' . $accout_id);
+            exit;
+        }
+    }
+
+    public function deleteUser() {
         if (!isAdmin()) {
             header('Location: ' . BASE_URL . 'home');
             exit;
@@ -66,13 +97,6 @@ class AdminController {
         global $db;
 
         $posts = Post::getAllPosts($db);
-
-        // sendJson([
-        //     'username' => $posts['account_name'],
-        //     'avatar' => $posts['account_avatar'],
-        //     'email' => $posts['account_email'],
-        //     'createDate' =>dateFormat($posts['account_name']),
-        // ]);
 
         sendJson(['posts' => $posts]);
     }

@@ -1301,6 +1301,58 @@ header {
     cursor: pointer;
 }
 
+#edit_user_form {
+    margin: 0 auto;
+    margin-top: -1em;
+    padding: 2em;
+    width: 37em;
+    height: 100%;
+    background-color: var(--primary-color);
+    border-left: 0.5px solid var(--border-color);
+    border-right: 0.5px solid var(--border-color);
+}
+
+#edit_user_form .form_group {
+    height: 3.5em;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#edit_user_form input,  
+#edit_user_form select{
+    width: 100%;
+    height: 100%;
+    padding-left: 1em;
+}
+
+#edit_user_form input::placeholder {
+    color: var(--secondary-font-color);
+    opacity: 0.5;
+}
+
+#edit_user_form .avatar_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10em;
+    overflow: scroll;
+}
+
+#edit_user_form #submit {
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    background-color: var(--violet-color);
+    height: 3em;
+    width: 10em;
+    border: none;
+    border-radius: 15px;
+    font-weight: bolder;
+    font-size: 1em;
+    cursor: pointer;
+}
+
 /* Admin area */
 
 
