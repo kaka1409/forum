@@ -22,17 +22,57 @@ class AdminController {
     public function user() {
         global $db;
 
-        // $posts = Post::getAllPosts($db);
+        $users = Account::getAllAccounts($db);
+        
+        // formating user's data
+        foreach($users as &$user) {
+            // date format
+            $user['create_at'] = dateFormat($user['create_at']);
+            $user['create_date'] = $user['create_at'];
+            unset($user['create_at']);
 
-        // print_r($posts);
+            // user role format
+            $user['role_id'] = $user['role_id'] === 2 ? 'admin' : 'student';
+            $user['role'] = $user['role_id'];
+            unset($user['role_id']);
+        }
 
-        // sendJson(['posts' => $posts]);
+        // print_r($users);
+
+        sendJson(['users' => $users]);
+    }
+
+    public function userEditForm() {
+        if (!isAdmin()) {
+            header('Location: ' . BASE_URL . 'home');
+            exit;
+        }
+
+        $view = ViewController::getInstance();
+        $view->set('title', 'Editing user');
+        $view->set('disable_scroll', true);
+        $view->render('adminUserEditForm');
+
+    }
+
+    public function userDelete() {
+        if (!isAdmin()) {
+            header('Location: ' . BASE_URL . 'home');
+            exit;
+        }
     }
 
     public function post() {
         global $db;
 
         $posts = Post::getAllPosts($db);
+
+        // sendJson([
+        //     'username' => $posts['account_name'],
+        //     'avatar' => $posts['account_avatar'],
+        //     'email' => $posts['account_email'],
+        //     'createDate' =>dateFormat($posts['account_name']),
+        // ]);
 
         sendJson(['posts' => $posts]);
     }

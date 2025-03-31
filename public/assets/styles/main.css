@@ -1216,7 +1216,6 @@ header {
 .admin_content .content,
 .admin_content .audit_log {
     padding: 2em;
-    /* width: 43%; */
     height: 90%;
     background-color: var(--primary-color);
     border-radius: 1em;
@@ -1228,6 +1227,7 @@ header {
 .admin_content .content {
     width: 70%;
     overflow-y: scroll;
+    font-size: 0.95em;
 }
 
 .admin_content .audit_log {
@@ -1246,21 +1246,24 @@ header {
     overflow-y: scroll;
 }
 
-.content .list .item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.content .list > .item {
+    display: grid;
+    grid-template-columns: 3fr 3fr 4fr 3fr 0.5fr;
+    gap: 1em;
     width: 100%;
     height: 2em;
-    margin-top: 0.5em;
+    margin-top: 2em;
+}
+
+.item > * {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .user .user_avatar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3em;
-    height: 3em;
+    width: 2.5em;
+    height: 2.5em;
     border-radius: 100em;
     border: 1px solid var(--border-color);
     overflow: hidden;
@@ -1272,18 +1275,26 @@ header {
 }
 
 .user .user_details {
-    display: flex;
-    align-items: center;
     justify-content: flex-start;
     gap: 0.5em;
 }
 
+/* .user_create_date {
+    justify-content: center;
+} */
 
 .user_controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5em;
+    justify-content: flex-end;
+    gap: 1em;
+}
+
+.user_role {
+    padding: 0.3em;
+    border-radius: 10px;
+}
+
+.user_create_date {
+    color: gray;
 }
 
 .user_controls img {

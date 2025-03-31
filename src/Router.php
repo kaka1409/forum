@@ -58,8 +58,15 @@ class Router {
 
         // admin controls
         $this->addRoute('GET', 'admin/post', 'AdminController', 'post');
-        $this->addRoute('GET', 'admin/module', 'AdminController', 'module');
+        
         $this->addRoute('GET', 'admin/user', 'AdminController', 'user');
+        $this->addRoute('GET', 'admin/user/edit/(\d+)', 'AdminController', 'userEditForm');
+        $this->addRoute('POST', 'admin/user/edit/(\d+)', 'AdminController', 'userEdit');
+        $this->addRoute('POST', 'admin/user/delete/(\d+)', 'AdminController', 'userDelete');
+        
+        $this->addRoute('GET', 'admin/module', 'AdminController', 'module');
+
+
         $this->addRoute('GET', 'admin/message', 'AdminController', 'message');
         
     }

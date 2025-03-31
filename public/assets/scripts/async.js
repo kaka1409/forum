@@ -127,8 +127,6 @@ const handleComment = async (postId, commentContent) => {
 
         }
 
-        
-
     } catch (error) {
         console.error("Failed to fetch comment data from server: ", error)
     }
@@ -162,66 +160,120 @@ const handleReply = async () => {
 
 const handleAdminControl = async (listType) => {
     const endPoint = 'admin/' + listType
-
-    try {
-
-        const response = await fetch(baseURL + endPoint)
-        const data = await response.json()
-
-        if (data) {
-
-        }
-
-        const listContent = selectElement('.admin_content .content')
-
-        const title = `
-            <h1 class="title">
+    const title = `
+        <h1 class="title">
             List of ${listType}
-            </h1>
-        `
+        </h1>
+    `
 
-        const list = `
-            <ul class="list">
-                <li>item 1</li>
-                <li>item 2</li>
-                <li>item 3</li>
-            </ul>
-        `
+    // element to display user data
+    const listContent = selectElement('.admin_content .content')
+    const list = selectElement('.list')
+    list.innerHTML = ''
 
-        switch (listType) {
-            case 'post': {
-                listContent.innerHTML = title + list
-                break;
+    if (list && listContent) {
+
+        try {
+            // get data
+            const response = await fetch(baseURL + endPoint)
+            const data = await response.json()
+    
+            if (data) {
+                
+                // swtich between lists
+                switch (listType) {
+                    case 'post': {
+                        listContent.innerHTML = title + list.outerHTML
+                        break;
+                    }
+        
+                    case 'module': {
+                        listContent.innerHTML = title + list.outerHTML
+                        break;
+                    }
+        
+                    case 'user': {
+                        // user data
+                        const users = data.users
+                        // console.log(list)
+                        
+                        //  load user data to userItem element
+                        for (const user of users) {
+                            const userItem = document.createElement('li')
+                            userItem.classList.add('item', 'user')
+            
+                            userItem.innerHTML = `
+                                <div class="user_details">
+                                    <div class="user_avatar">
+                                        <img 
+                                            src="${ rootURL + user.account_avatar}" 
+                                            alt=""
+                                        >
+                                    </div>
+            
+                                    <div class="username">
+                                        ${user.account_name}
+                                    </div>
+                                </div>
+            
+                                <div class="user_role">
+                                    ${user.role}
+                                </div>
+            
+                                <div class="user_email">
+                                    ${user.email}
+                                </div>
+            
+                                <div class="user_create_date">
+                                    created ${user.create_date}
+                                </div>
+            
+                                <div class="user_controls">
+                                    <a href="${baseURL}admin/user/edit/${user.account_id}">
+                                        <img 
+                                            src="${baseURL}assets/icons/edit.png"  
+                                            alt=""
+                                        >
+                                    </a>
+
+                                    <a href="${baseURL}admin/user/delete/${user.account_id}">
+                                        <img 
+                                            src="${baseURL}assets/icons/trash.png"  
+                                            alt=""
+                                        >
+                                    </a>
+                                </div>
+                            `
+            
+                            list.appendChild(userItem)
+                        }
+
+                        listContent.innerHTML = title + list.outerHTML
+                        break;
+                    }
+        
+                    case 'message': {
+                        listContent.innerHTML = title + list.outerHTML
+                        break;
+                    }
+        
+                    default: {
+                        adminContent.innerHTML = `
+                            <h1 class="title">
+                                No content
+                            </h1>
+                        `
+                        break;
+                    }
+                }
             }
-
-            case 'module': {
-                listContent.innerHTML =  title + list
-                break;
-            }
-
-            case 'user': {
-                listContent.innerHTML =  title + list
-                break;
-            }
-
-            case 'message': {
-                listContent.innerHTML =  title + list
-                break;
-            }
-
-            default: {
-                adminContent.innerHTML = `
-                    <h1 class="title">
-                        No content
-                    </h1>
-                `
-                break;
-            }
+    
+    
+    
+    
+        } catch (error) {
+            console.error(error)
         }
-
-
-    } catch (error) {
-        console.error(error)
     }
 }
 

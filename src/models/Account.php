@@ -57,6 +57,16 @@ class Account {
     
     }
 
+    public static function getAllAccounts($db = null) {
+        $sql = "SELECT account_id, role_id, account_name, 
+                account_avatar, email, create_at
+                FROM `account`";
+    
+        $stmt = $db->query($sql);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
     public static function getUserCount($db = null) {
         $sql = "SELECT COUNT(*) AS user_count FROM `account`;";
 
