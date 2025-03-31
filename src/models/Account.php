@@ -56,6 +56,14 @@ class Account {
         return $stmt;
     
     }
+
+    public static function getUserCount($db = null) {
+        $sql = "SELECT COUNT(*) AS user_count FROM `account`;";
+
+        $stmt = $db->query($sql);
+
+        return $stmt->fetch();
+    }
 }
 
 ?>

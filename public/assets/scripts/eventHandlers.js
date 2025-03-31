@@ -1,6 +1,10 @@
 import { selectElement } from "./helpers.js"
 import { baseURL, iconsURL } from "./config.js"
-import { handleVote, handleComment } from "./async.js"
+import {
+    handleVote,
+    handleComment,
+    handleAdminControl 
+} from "./async.js"
 
 
 function modalAppear() {
@@ -551,11 +555,27 @@ function handleModuleEvent() {
     }
 }
 
+function handleAdminEvent() {
+    const controlElements = selectElement('.control')
+
+    if (controlElements !== undefined) {
+
+        controlElements.forEach( (element) => {
+            element.addEventListener('click', async () => {
+                const listType = element.getAttribute('list-type')
+
+                await handleAdminControl(listType)
+            })
+        })
+    }
+}
+
 export {
     handleDOMEvent,
     handleSearchBarEvent,
     handleSidemenuEvent,
     handlePostsEvents, 
     handlePostViewEvents,
-    handleModuleEvent
+    handleModuleEvent,
+    handleAdminEvent
 }

@@ -92,3 +92,10 @@
         opacity: 1;
     }
 }
+
+/* Admin control hover effect */
+
+.admin_area .control:hover {
+    transform: scale(0.9);
+    border-color: #eeacf1;
+}

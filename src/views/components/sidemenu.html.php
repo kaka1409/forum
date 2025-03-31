@@ -67,37 +67,20 @@
                 <p class="menu_item_text">Module</p>
             </a>
 
-            <?php if(isAdmin()): ?>
-                <a 
-                    class="menu_item <?= stripos($_SERVER['REQUEST_URI'], BASE_URL . 'admin') !== false ? 'selected_item' : '';?>"
-                    href="<?=BASE_URL?>admin"    
-                >
-                    <div class="icon">
-                        <img 
-                            width="20px"
-                            height="20px"
-                            src="<?=BASE_URL?>assets/icons/admin.png" 
-                            alt=""
-                        >
-                    </div>
-                    <p class="menu_item_text">Admin</p>
-                </a>           
-            <?php else: ?>            
-                <a 
-                    class="menu_item <?= stripos($_SERVER['REQUEST_URI'], BASE_URL . 'email') !== false ? 'selected_item' : '';?>"
-                    href="<?=BASE_URL?>email"    
-                >
-                    <div class="icon">
-                        <img 
-                            width="20px"
-                            height="20px"
-                            src="<?=BASE_URL?>assets/icons/admin.png" 
-                            alt=""
-                        >
-                    </div>
-                    <p class="menu_item_text">Contact</p>
-                </a>
-            <?php endif; ?>
+            <a 
+                class="menu_item <?= stripos($_SERVER['REQUEST_URI'], BASE_URL . 'email') !== false ? 'selected_item' : '';?>"
+                href="<?=BASE_URL?>email"    
+            >
+                <div class="icon">
+                    <img 
+                        width="20px"
+                        height="15px"
+                        src="<?=BASE_URL?>assets/icons/email.png" 
+                        alt=""
+                    >
+                </div>
+                <p class="menu_item_text">Contact</p>
+            </a>
 
             <a 
                 class="menu_item <?= stripos($_SERVER['REQUEST_URI'], BASE_URL . 'bookmarks') !== false ? 'selected_item' : '';?>"
@@ -117,6 +100,26 @@
         </ul>
 
         <hr>
+        
+        <ul class="menu_list">
+            <?php if(isAdmin()): ?>
+                <a 
+                    class="menu_item <?= stripos($_SERVER['REQUEST_URI'], BASE_URL . 'admin') !== false ? 'selected_item' : '';?>"
+                    href="<?=BASE_URL?>admin"    
+                >
+                    <div class="icon">
+                        <img 
+                            width="20px"
+                            height="20px"
+                            src="<?=BASE_URL?>assets/icons/admin.png" 
+                            alt=""
+                        >
+                    </div>
+                    <p class="menu_item_text">Admin</p>
+                </a>           
+            <?php endif; ?>
+
+        </ul>
 
     </nav>
 </aside>

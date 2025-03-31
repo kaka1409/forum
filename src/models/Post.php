@@ -73,7 +73,7 @@ class Post {
 
         return $posts;
     }
-    
+
     public static function updatePostById($db = null, $post_id = null) {
         $module_id = $_POST['module'];
         $title = trim($_POST['title']);
@@ -104,6 +104,14 @@ class Post {
         ]);
 
         return $stmt;
+    }
+
+    public static function getPostCount($db = null) {
+        $sql = "SELECT COUNT(*) AS post_count FROM `post`;";
+
+        $stmt = $db->query($sql);
+
+        return $stmt->fetch();
     }
 
 }

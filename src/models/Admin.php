@@ -17,7 +17,7 @@ class Admin {
             ':role_id' => $role_id,
             ':account_name' => $account_name,
             ':account_avatar' => $account_avatar,
-            ':role_id' => $password_hash,
+            ':password_hash' => $password_hash,
             ':email' => $email,
         ]);
 
@@ -41,7 +41,7 @@ class Admin {
             ':role_id' => $role_id,
             ':account_name' => $account_name,
             ':account_avatar' => $account_avatar,
-            ':role_id' => $password_hash,
+            ':password_hash' => $password_hash,
             ':email' => $email,
         ]);
 
@@ -98,8 +98,6 @@ class Admin {
         return $stmt;
     }
 
- 
-
     public static function replyMessage($db = null) {
         $sql = "";
     }
@@ -126,6 +124,7 @@ class Admin {
 
         return $stmt;
     }
+
 }
 
 ?>

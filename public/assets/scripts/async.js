@@ -160,7 +160,73 @@ const handleReply = async () => {
 
 }
 
+const handleAdminControl = async (listType) => {
+    const endPoint = 'admin/' + listType
+
+    try {
+
+        const response = await fetch(baseURL + endPoint)
+        const data = await response.json()
+
+        if (data) {
+
+        }
+
+        const listContent = selectElement('.admin_content .content')
+
+        const title = `
+            <h1 class="title">
+            List of ${listType}
+            </h1>
+        `
+
+        const list = `
+            <ul class="list">
+                <li>item 1</li>
+                <li>item 2</li>
+                <li>item 3</li>
+            </ul>
+        `
+
+        switch (listType) {
+            case 'post': {
+                listContent.innerHTML = title + list
+                break;
+            }
+
+            case 'module': {
+                listContent.innerHTML =  title + list
+                break;
+            }
+
+            case 'user': {
+                listContent.innerHTML =  title + list
+                break;
+            }
+
+            case 'message': {
+                listContent.innerHTML =  title + list
+                break;
+            }
+
+            default: {
+                adminContent.innerHTML = `
+                    <h1 class="title">
+                        No content
+                    </h1>
+                `
+                break;
+            }
+        }
+
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 export {
     handleVote,
-    handleComment
+    handleComment,
+    handleAdminControl
 }

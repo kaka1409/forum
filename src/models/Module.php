@@ -44,6 +44,14 @@ class Module {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function getModuleount($db = null) {
+        $sql = "SELECT COUNT(*) AS module_count FROM `module`;";
+
+        $stmt = $db->query($sql);
+
+        return $stmt->fetch();
+    }
 }
 
 ?>

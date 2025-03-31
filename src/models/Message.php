@@ -28,6 +28,14 @@ class Message {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function getMessageCount($db = null) {
+        $sql = "SELECT COUNT(*) AS message_count FROM `message`;";
+
+        $stmt = $db->query($sql);
+
+        return $stmt->fetch();
+    }
 }
 
 ?>

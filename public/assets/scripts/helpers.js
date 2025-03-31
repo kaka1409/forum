@@ -4,4 +4,8 @@ function selectElement(selector) {
     return elements.length === 1 ? elements[0] : elements
 }
 
+function truncateText() {
+    
+}
+
 export {selectElement}

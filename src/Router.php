@@ -55,6 +55,12 @@ class Router {
 
         // Admin dashboard
         $this->addRoute('GET', 'admin', 'AdminController', 'dashboard');
+
+        // admin controls
+        $this->addRoute('GET', 'admin/post', 'AdminController', 'post');
+        $this->addRoute('GET', 'admin/module', 'AdminController', 'module');
+        $this->addRoute('GET', 'admin/user', 'AdminController', 'user');
+        $this->addRoute('GET', 'admin/message', 'AdminController', 'message');
         
     }
 
