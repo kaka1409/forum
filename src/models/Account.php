@@ -59,15 +59,15 @@ class Account {
     }
 
     public static function createAccount($db = null) {
-        $role_id = trim($_POST['role_id']);
+        $role_id = trim($_POST['role']);
         $account_name = trim($_POST['account_name']);
-        $account_avatar = trim($_POST['account_avatar']) ?? 'uploads/account/default.jpg';
+        $account_avatar = $_POST['account_avatar'] ? UPLOAD_FOLDER . '/account/' . trim($_POST['account_avatar']): 'uploads/account/default.jpg';
         $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $email = trim($_POST['email']);
 
 
         $sql = "INSERT INTO `account`
-                (role_id, account_name, account_avatar, password_hash, email, creat_at)
+                (role_id, account_name, account_avatar, password_hash, email, create_at)
                 VALUES (:role_id, :account_name, :account_avatar, :password_hash, :email, NOW())";
 
         $stmt = $db->query($sql, [
@@ -78,7 +78,7 @@ class Account {
             ':email' => $email,
         ]);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt;
     }
 
     public static function getAccountById($db = null, $account_id) {

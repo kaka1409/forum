@@ -73,6 +73,29 @@ class AdminController {
 
     }
 
+    public function createUser() {
+        adminAuth();
+
+        global $db;
+
+        if (isset($_POST['submit'])) {
+
+            $result = Account::createAccount($db);
+    
+            if ($result) {
+                header('Location: ' . BASE_URL . 'admin');
+                exit;
+            } else {
+                header('Location: ' . BASE_URL . 'admin/user/create');
+                exit;
+            }
+        } else {
+            header('Location: ' . BASE_URL . 'admin/user/create');
+            exit;
+        }
+
+    }
+
     public function editUser() {
         adminAuth();
 
@@ -105,7 +128,13 @@ class AdminController {
         $uri_array = explode('/', $_SERVER['REQUEST_URI']);
         $account_id = end($uri_array);
 
-        $result = Account::deleteAccount($db, $account_id);
+        
+        if (isset($_POST['submit'])) {
+            Account::deleteAccount($db, $account_id);
+        }
+
+        header('Location: '. BASE_URL . 'admin');
+        exit;
     }
 
     public function module() {
