@@ -1,11 +1,14 @@
-function selectElement(selector) {
+function selectElement(selector = '') {
     const elements = Array.from(document.querySelectorAll(selector))
     if (elements.length < 1) return undefined 
     return elements.length === 1 ? elements[0] : elements
 }
 
-function truncateText(text = undefined, limit = undefined) {
+function truncateText(text = '', limit = undefined) {
     return text.length > limit ? text.slice(0, limit) +  '...' : text
 }
 
-export {selectElement, truncateText}
+export {
+    selectElement, 
+    truncateText
+}

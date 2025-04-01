@@ -10,6 +10,8 @@ class AdminController {
         $user_count = Account::getUserCount($db);
         $message_count = Message::getMessageCount($db);
 
+        $posts = Post::getAllPosts($db);
+
         $view = ViewController::getInstance();
         $view->set('title', 'Admin dashboard');
         $view->set('disable_scroll', false);
@@ -17,6 +19,7 @@ class AdminController {
         $view->set('module_count', $module_count);
         $view->set('user_count', $user_count);
         $view->set('message_count', $message_count);
+        $view->set('posts', $posts);
         $view->render('admin_dashboard');
     }
 
@@ -150,6 +153,10 @@ class AdminController {
 
         global $db;
         $posts = Post::getAllPosts($db);
+
+        foreach ($posts as &$post) {
+            $post['post_at'] = dateFormat($post['post_at']);
+        }
 
         sendJson(['posts' => $posts]);
     }

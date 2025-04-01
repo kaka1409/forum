@@ -148,6 +148,7 @@ const handleCommentVote = async (isupvote) => {
 
         const data = await response.json()
 
+        // todo
 
     } catch (error) {
         console.error("Failed to to fetch comment vote data from server ", error)
@@ -155,7 +156,7 @@ const handleCommentVote = async (isupvote) => {
 }
 
 const handleReply = async () => {
-
+    // todo
 }
 
 const handleAdminControl = async (listType) => {
@@ -189,8 +190,41 @@ const handleAdminControl = async (listType) => {
                         const posts = data.posts
 
                         posts.forEach(post => {
-                            console.log(post)
+                            const postElement = document.createElement('li')
+                            postElement.classList.add('item', 'post')
+
+                            postElement.innerHTML = `
+                                <div class="post_title">
+                                    ${post.title}
+                                </div>
+
+                                <div class="post_author">
+                                    ${post.account_name}
+                                </div>
+
+                                <div class="posted_date">
+                                    ${post.post_at}
+                                </div>
+
+                                <div class="post_controls">
+                                    <a href="${baseURL}post/${post.post_id}/edit">
+                                        <img src="${baseURL}assets/icons/edit.png" alt="">
+                                    </a>
+                                    <a href="${baseURL}post/${post.post_id}/delete">
+                                        <img src="${baseURL}assets/icons/trash.png" alt="">
+                                    </a>
+                                </div>
+                            `
+
+                            list.appendChild(postElement)
                         })
+
+                        // append add button to the end of the list
+                        const addButton = document.createElement('a')
+                        addButton.classList.add('btn', 'add_btn')
+                        addButton.setAttribute('href', `${baseURL}post/create`)
+                        addButton.textContent = '+ Add'
+                        list.appendChild(addButton)
 
                         listContent.innerHTML = title + list.outerHTML
                         break;
@@ -216,7 +250,7 @@ const handleAdminControl = async (listType) => {
 
                                 <div class="module_description">
                                     ${
-                                        truncateText(module.description, 20)
+                                        truncateText(module.description, 50)
                                     }
                                 </div>
 
@@ -321,6 +355,9 @@ const handleAdminControl = async (listType) => {
                     
                     // List of messages
                     case 'message': {
+
+                        // todo
+
                         listContent.innerHTML = title + list.outerHTML
                         break;
                     }

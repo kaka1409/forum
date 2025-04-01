@@ -86,7 +86,7 @@ function handleSidemenuEvent() {
 
 function handlePostsEvents () {
 
-    let posts = selectElement('.post')
+    let posts = selectElement('.posts_container .post')
     if (posts === undefined) return
     if (!Array.isArray(posts)) posts = new Array(posts)
 

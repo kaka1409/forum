@@ -279,7 +279,7 @@ header {
     margin-top: 2em;
 }
 
-.post {
+.posts_container .post {
     position: relative;
     padding: 1em;
     padding-top: 0.5em;
@@ -397,7 +397,7 @@ header {
     background-color: #4b2675;
 }
 
-.post_title {
+.post .post_title {
     font-size: 1.5rem;
     font-weight: bold;
     width: 100%;
@@ -405,7 +405,7 @@ header {
     margin-top: 0.25em;
 }
 
-.post_title h1 {
+.post, .post_title h1 {
     width: 100%;
     overflow-wrap: break-word;
 }
@@ -1243,16 +1243,27 @@ header {
     height: 90%;
     margin-top: 2em;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .content .list > .item {
     display: grid;
-    grid-template-columns: 3fr 3fr 4fr 3fr 0.5fr;
-    gap: 1em;
     width: 100%;
     height: 2em;
     margin-top: 2em;
     transition: all 0.25s ease-in-out;
+}
+
+.item.user {
+    grid-template-columns: 3fr 3fr 4fr 3fr 0.5fr;
+    gap: 1em;
+}
+
+.list .item .post_title,
+.list .item .module_name,
+.list .item .username {
+    font-size: 1em;
+    font-weight: bold;
 }
 
 .item:hover {
@@ -1284,13 +1295,27 @@ header {
 }
 
 .item.module {
-    grid-template-columns: 1.25fr 1fr 1fr 1fr !important;
+    grid-template-columns: 1fr 1fr 2fr 1fr ;
     gap: 0;
     padding-left: 0;
     background-color: transparent;
 }
 
 .item .module_controls {
+    justify-content: flex-end;
+    gap: 1em;
+}
+
+.item.post {
+    grid-template-columns: 1fr 1fr 1fr 0.5fr;
+    gap: 0;
+}
+
+.item.post:hover {
+    border: none;
+}
+
+.item.post .post_controls {
     justify-content: flex-end;
     gap: 1em;
 }
@@ -1307,9 +1332,6 @@ header {
     border-radius: 15px;
     cursor: pointer;
 }
-/* .user_create_date {
-    justify-content: center;
-} */
 
 .user_controls {
     justify-content: flex-end;

@@ -89,51 +89,43 @@
             </h1>
 
             <ul class="list">
-                <li
-                    class="item module"
-                >
-                    <div class="module_name">
-                        Web programming
-                    </div>
+                <?php foreach($posts as $post): ?>
+                    <li
+                        class="item post"
+                    >
+    
+                        <div class="post_title">
+                            <?= htmlspecialchars($post['title']) ?>
+                        </div>
+
+                        <div class="post_author">
+                            by <?= htmlspecialchars($post['account_name']) ?>
+                        </div>
+
+                        <div class="posted_date">
+                            posted <?= 
+                                dateFormat(htmlspecialchars($post['post_at']))
+                            ?>
+                        </div>
+
+                        <div class="post_controls">
+                            <a href="<?= BASE_URL ?>post/<?= $post['post_id']?>/edit">
+                                <img src="<?= BASE_URL ?>assets/icons/edit.png" alt="">
+                            </a>
+                            <a href="<?= BASE_URL ?>post/<?= $post['post_id']?>/delete">
+                                <img src="<?= BASE_URL ?>assets/icons/trash.png" alt="">
+                            </a>
+                        </div>
+
+                    </li>
+                <?php endforeach; ?>
                     
-                    <div class="module_teacher">
-                        Mr Tra
-                    </div>
-
-                    <div class="module_description">
-                        lorem isuapum
-                    </div>
-
-                    <div class="module_controls">
-                        <!-- <a href="${baseURL}admin/user/edit/${user.account_id}">
-                            <img 
-                                src="${baseURL}assets/icons/edit.png"  
-                                alt=""
-                            >
-                        </a>
-
-                        <a href="${baseURL}admin/user/delete/${user.account_id}">
-                            <img 
-                                src="${baseURL}assets/icons/trash.png"  
-                                alt=""
-                            >
-                        </a> -->
-
-                        <a href="<?= BASE_URL ?>admin/module/edit/2">
-                            <img 
-                                src="<?= BASE_URL ?>assets/icons/edit.png"  
-                                alt=""
-                            >
-                        </a>
-
-                        <a href="<?= BASE_URL ?>admin/module/delete/2">
-                            <img 
-                                src="<?= BASE_URL ?>assets/icons/trash.png"  
-                                alt=""
-                            >
-                        </a>
-                    </div> 
-                </li>
+                    <a 
+                        class="btn add_btn"    
+                        href="<?= BASE_URL ?>post/create"
+                    >
+                        + Add
+                    </a>
 
             </ul>
         </div>
