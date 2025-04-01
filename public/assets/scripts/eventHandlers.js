@@ -115,25 +115,20 @@ function handlePostsEvents () {
         // popup
         const popup = post.querySelector('.options_popup')
 
-        // upvote icon
+        // upvote container
         const upvoteContainer = post.querySelector('.upvote_container')
-        const upvote = upvoteContainer.querySelector('.upvote_container img')
 
-        // downvote icon
+        // downvote container
         const downvoteContainer = post.querySelector('.downvote_container')
-        const downvote = downvoteContainer.querySelector('.downvote_container img')
 
-        // save icon
-        const saveIconContainer = post.querySelector('.post_save')
-        const saveIcon = saveIconContainer.querySelector('img')
-
-        // comment icon 
+        // comment container 
         const commentIconContainer = post.querySelector('.post_comments')
-        const commentIcon = commentIconContainer.querySelector('.post_comments_container img')
+        
+        // save container
+        const saveIconContainer = post.querySelector('.post_save')
 
-        // share icon 
+        // share container 
         const shareContainer = post.querySelector('.post_share')
-        const shareIcon = shareContainer.querySelector('img')
 
         if (popup) {
             // post options 
@@ -199,6 +194,9 @@ function handlePostsEvents () {
         }
         
         if (upvoteContainer) {
+            // upvote icon
+            const upvote = upvoteContainer.querySelector('.upvote_container img')
+
             // event functions
             const upvoteMouseOver = () => {
                 if (!upvote.src.includes('upvoted')) {
@@ -232,6 +230,9 @@ function handlePostsEvents () {
         }
 
         if (downvoteContainer) {
+            // downvote icon
+            const downvote = downvoteContainer.querySelector('.downvote_container img')
+
             // event functions
             const downvoteMouseOver = () => {
                 if (!downvote.src.includes('downvoted')) {
@@ -265,6 +266,9 @@ function handlePostsEvents () {
         }
 
         if (commentIconContainer) {
+            // comment icon
+            const commentIcon = commentIconContainer.querySelector('.post_comments_container img')
+
             // event functions
             const commentIconMouseOver = () => {
                 commentIcon.src = iconsURL + 'comment_hover.png'
@@ -280,6 +284,9 @@ function handlePostsEvents () {
         }
 
         if (saveIconContainer) {
+            // save icon
+            const saveIcon = saveIconContainer.querySelector('img')
+
             // event function
             const saveIconMouseOver = () => {
                 if (!saveIcon.src.includes('saved')) {
@@ -312,6 +319,9 @@ function handlePostsEvents () {
         }
 
         if (shareContainer) {
+            // share icon
+            const shareIcon = shareContainer.querySelector('img')
+
             // event function
             const shareIconMouseOver = () => {
                 shareIcon.src = iconsURL + 'share_hover.png'
@@ -575,14 +585,18 @@ function handleAdminEvent() {
 }
 
 function handleListItemsEvent() {
-    const userItems = selectElement('.item.user')
+    // list items
+    const items = selectElement('.list > .item')
+
+    // add button
+    const addButton = selectElement('.add_btn')
 
     // slide animation config
     let animDuration = 1000
     let delay = 200
 
-    if (userItems) {
-        userItems.forEach( (item) => {
+    if (items) {
+        items.forEach( (item) => {
             // item animation
             animDuration += delay
             item.animate(
@@ -597,7 +611,22 @@ function handleListItemsEvent() {
                 }
             )
         })
+
+        if (addButton) {
+            addButton.animate(
+                [
+                    {opacity: '0'},
+                    {opacity: '1'}
+                ],
+    
+                {
+                    duration: animDuration + delay,
+                    easing: 'ease-in-out'
+                }
+            )
+        }
     }
+
 
 }
 

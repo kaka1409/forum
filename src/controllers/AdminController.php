@@ -2,10 +2,11 @@
 
 class AdminController {
     public function dashboard() {
-        global $db;
+        adminAuth();
 
+        global $db;
         $post_count = Post::getPostCount($db);
-        $module_count = Module::getModuleount($db);
+        $module_count = Module::getModuleCount($db);
         $user_count = Account::getUserCount($db);
         $message_count = Message::getMessageCount($db);
 
@@ -20,8 +21,9 @@ class AdminController {
     }
 
     public function user() {
-        global $db;
+        adminAuth();
 
+        global $db;
         $users = Account::getAllAccounts($db);
         
         // formating user's data
@@ -42,11 +44,17 @@ class AdminController {
         sendJson(['users' => $users]);
     }
 
+    public function createUserForm() {
+        adminAuth();
+
+        $view = ViewController::getInstance();
+        $view->set('title', 'Create a new user');
+        $view->set('disable_scroll', true);
+        $view->render('adminUserCreateForm');
+    }
+
     public function userEditForm() {
-        if (!isAdmin()) {
-            header('Location: ' . BASE_URL . 'home');
-            exit;
-        }
+        adminAuth();
 
         global $db;
         $uri_array = explode('/', $_SERVER['REQUEST_URI']);
@@ -63,8 +71,9 @@ class AdminController {
     }
 
     public function editUser() {
-        global $db;
+        adminAuth();
 
+        global $db;
         $uri_array = explode('/', $_SERVER['REQUEST_URI']);
         $accout_id = end($uri_array);
 
@@ -87,15 +96,59 @@ class AdminController {
     }
 
     public function deleteUser() {
-        if (!isAdmin()) {
-            header('Location: ' . BASE_URL . 'home');
-            exit;
+        adminAuth();
+
+    }
+
+    public function module() {
+        adminAuth();
+
+        global $db;
+        $modules = Module::getAllModules($db);
+
+        foreach($modules as &$module) {
+            $module_id = $module['module_id'];
+            $post_count = Module::countPostById($db, $module_id);
+
+            $module['post_count'] = $post_count['post_count'];
         }
+
+        sendJson(['modules' => $modules]);
+
+    }
+
+    public function createModuleForm() {
+        adminAuth();
+
+        $view = ViewController::getInstance();
+        $view->set('title', 'Editing a module');
+        $view->set('disable_scroll', true);
+        $view->render('adminModuleCreateForm');
+    }
+
+    public function moduleEditForm() {
+        adminAuth();
+
+        $view = ViewController::getInstance();
+        $view->set('title', 'Editing a module');
+        $view->set('disable_scroll', true);
+        $view->render('adminModuleEditForm');
+    }
+
+    public function editModule() {
+        adminAuth();
+
+    }
+
+    public function deleteModule() {
+        adminAuth();
+
     }
 
     public function post() {
-        global $db;
+        adminAuth();
 
+        global $db;
         $posts = Post::getAllPosts($db);
 
         sendJson(['posts' => $posts]);

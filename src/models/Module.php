@@ -34,7 +34,7 @@ class Module {
     }
 
     public static function countPostById($db, $module_id) {
-        $sql = 'SELECT COUNT(module_id) FROM `post` WHERE module_id = :module_id;';
+        $sql = 'SELECT COUNT(module_id) AS `post_count` FROM `post` WHERE module_id = :module_id;';
 
         $stmt = $db->query($sql, [
             ':module_id' => $module_id
@@ -59,7 +59,7 @@ class Module {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function getModuleount($db = null) {
+    public static function getModuleCount($db = null) {
         $sql = "SELECT COUNT(*) AS module_count FROM `module`;";
 
         $stmt = $db->query($sql);

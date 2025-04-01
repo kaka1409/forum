@@ -1,4 +1,4 @@
-import { selectElement } from "./helpers.js";
+import { selectElement, truncateText } from "./helpers.js";
 import { rootURL, baseURL, iconsURL } from "./config.js"
 
 // async function to handle upvote and downvote
@@ -180,18 +180,78 @@ const handleAdminControl = async (listType) => {
     
             if (data) {
                 
-                // swtich between lists
+                // switch between lists
                 switch (listType) {
+
+                    // List of post
                     case 'post': {
+                        // module data
+                        const posts = data.posts
+
+                        posts.forEach(post => {
+                            console.log(post)
+                        })
+
                         listContent.innerHTML = title + list.outerHTML
                         break;
                     }
-        
+                    
+                    // List of modules
                     case 'module': {
+                        // module data
+                        const modules = data.modules
+
+                        modules.forEach(module => {
+                            const moduleElement = document.createElement('li')
+                            moduleElement.classList.add('item', 'module')
+
+                            moduleElement.innerHTML = `
+                                <div class="module_name">
+                                    ${module.module_name}
+                                </div>
+                                
+                                <div class="module_teacher">
+                                    ${module.teacher}
+                                </div>
+
+                                <div class="module_description">
+                                    ${
+                                        truncateText(module.description, 20)
+                                    }
+                                </div>
+
+                                <div class="module_controls">
+                                    <a href="${baseURL}admin/module/edit/${module.module_id}">
+                                        <img 
+                                            src="${baseURL}assets/icons/edit.png"  
+                                            alt=""
+                                        >
+                                    </a>
+
+                                    <a href="${baseURL}admin/module/delete/${module.module_id}">
+                                        <img 
+                                            src="${baseURL}assets/icons/trash.png"  
+                                            alt=""
+                                        >
+                                    </a>
+                                </div> 
+                            `
+
+                            list.appendChild(moduleElement)
+                        });
+
+                        // append add button to the end of the list
+                        const addButton = document.createElement('a')
+                        addButton.classList.add('btn', 'add_btn')
+                        addButton.setAttribute('href', `${baseURL}admin/module/create`)
+                        addButton.textContent = '+ Add'
+                        list.appendChild(addButton)
+
                         listContent.innerHTML = title + list.outerHTML
                         break;
                     }
-        
+                    
+                    // List of users
                     case 'user': {
                         // user data
                         const users = data.users
@@ -246,18 +306,26 @@ const handleAdminControl = async (listType) => {
 
                             // add to list
                             list.appendChild(userItem)
-
                         }
+
+                        // append add button to the end of the list
+                        const addButton = document.createElement('a')
+                        addButton.classList.add('btn', 'add_btn')
+                        addButton.setAttribute('href', `${baseURL}admin/user/create`)
+                        addButton.textContent = '+ Add'
+                        list.appendChild(addButton)
 
                         listContent.innerHTML = title + list.outerHTML
                         break;
                     }
-        
+                    
+                    // List of messages
                     case 'message': {
                         listContent.innerHTML = title + list.outerHTML
                         break;
                     }
-        
+                    
+                    // undefined listType
                     default: {
                         adminContent.innerHTML = `
                             <h1 class="title">
@@ -268,9 +336,6 @@ const handleAdminControl = async (listType) => {
                     }
                 }
             }
-    
-    
-    
     
         } catch (error) {
             console.error(error)

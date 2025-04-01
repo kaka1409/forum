@@ -85,50 +85,54 @@
     <div class="admin_content">
         <div class="content">
             <h1 class="title">
-                List of user
+                List of post
             </h1>
 
             <ul class="list">
                 <li
-                    class="item user"
+                    class="item module"
                 >
-                    <div class="user_details">
-                        <div class="user_avatar">
+                    <div class="module_name">
+                        Web programming
+                    </div>
+                    
+                    <div class="module_teacher">
+                        Mr Tra
+                    </div>
+
+                    <div class="module_description">
+                        lorem isuapum
+                    </div>
+
+                    <div class="module_controls">
+                        <!-- <a href="${baseURL}admin/user/edit/${user.account_id}">
                             <img 
-                                src="<?= ROOT_URL . UPLOAD_FOLDER?>account/default.jpg" 
+                                src="${baseURL}assets/icons/edit.png"  
                                 alt=""
                             >
-                        </div>
+                        </a>
 
-                        <div class="username">
-                            user 1
-                        </div>
-                    </div>
+                        <a href="${baseURL}admin/user/delete/${user.account_id}">
+                            <img 
+                                src="${baseURL}assets/icons/trash.png"  
+                                alt=""
+                            >
+                        </a> -->
 
-                    <div class="user_role">
-                        Admin
-                    </div>
+                        <a href="<?= BASE_URL ?>admin/module/edit/2">
+                            <img 
+                                src="<?= BASE_URL ?>assets/icons/edit.png"  
+                                alt=""
+                            >
+                        </a>
 
-                    <div class="user_email">
-                        test@gmail.com
-                    </div>
-
-                    <div class="user_create_date">
-                        created 5 months ago
-                    </div>
-
-                    <div class="user_controls">
-                        <img 
-                            src="<?= BASE_URL ?>assets/icons/edit.png"  
-                            alt=""
-                        >
-
-                        <img 
-                            src="<?= BASE_URL ?>assets/icons/trash.png"  
-                            alt=""
-                        >
-                    </div>
-
+                        <a href="<?= BASE_URL ?>admin/module/delete/2">
+                            <img 
+                                src="<?= BASE_URL ?>assets/icons/trash.png"  
+                                alt=""
+                            >
+                        </a>
+                    </div> 
                 </li>
 
             </ul>

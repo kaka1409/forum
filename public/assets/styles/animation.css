@@ -65,12 +65,12 @@
     transition: transform 1.5s ease-in-out;
 }
 
-.module:hover {
+.modules_container .module:hover {
     opacity: 0.9;
     transition: opacity 1s ease-in-out;
 }
 
-.module:not(:hover) {
+.modules_container .module:not(:hover) {
     opacity: 1;
     transition: opacity 1s ease-in-out;
 }

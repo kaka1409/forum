@@ -14,4 +14,11 @@ function isAdmin() {
     return isLoggedIn() && $_SESSION['role_id'] == 2;
 }
 
+function adminAuth() {
+    if (!isAdmin()) {
+        header('Location: ' . BASE_URL . 'home');
+        exit;
+    }
+}
+
 ?>

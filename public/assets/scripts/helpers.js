@@ -4,8 +4,8 @@ function selectElement(selector) {
     return elements.length === 1 ? elements[0] : elements
 }
 
-function truncateText() {
-    
+function truncateText(text = undefined, limit = undefined) {
+    return text.length > limit ? text.slice(0, limit) +  '...' : text
 }
 
-export {selectElement}
+export {selectElement, truncateText}
