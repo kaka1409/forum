@@ -76,7 +76,6 @@ function createPostFormValidator() {
             }
 
             thumbnailBtn.addEventListener('click', selectFile)
-
             thumbnailInput.addEventListener('change', previewImgFile)
         }
 

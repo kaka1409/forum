@@ -1,3 +1,5 @@
+<?= ViewController::useComponent('backButton')?>
+
 <section id="edit_user_form">
     <form action="<?=BASE_URL?>admin/user/edit/<?= $account['account_id'] ?>" method="POST">
         <!-- Role -->

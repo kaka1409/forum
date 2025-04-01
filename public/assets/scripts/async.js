@@ -195,7 +195,9 @@ const handleAdminControl = async (listType) => {
 
                             postElement.innerHTML = `
                                 <div class="post_title">
-                                    ${post.title}
+                                    ${
+                                        truncateText(post.title, 50)  
+                                    }
                                 </div>
 
                                 <div class="post_author">
@@ -210,9 +212,14 @@ const handleAdminControl = async (listType) => {
                                     <a href="${baseURL}post/${post.post_id}/edit">
                                         <img src="${baseURL}assets/icons/edit.png" alt="">
                                     </a>
-                                    <a href="${baseURL}post/${post.post_id}/delete">
-                                        <img src="${baseURL}assets/icons/trash.png" alt="">
-                                    </a>
+
+                                    <form action="${baseURL}post/${post.post_id}/delete" method="POST">
+                                        <button style="background-color: transparent; border: none;">
+                                            <a href="${baseURL}post/${post.post_id}/delete">
+                                                <img src="${baseURL}assets/icons/trash.png" alt="">
+                                            </a>
+                                        </button>
+                                    </form>
                                 </div>
                             `
 
@@ -250,7 +257,7 @@ const handleAdminControl = async (listType) => {
 
                                 <div class="module_description">
                                     ${
-                                        truncateText(module.description, 50)
+                                        truncateText(module.description, 30)
                                     }
                                 </div>
 

@@ -33,29 +33,31 @@
         </div>
 
         <div class="messages">
-            <?php foreach($messages as $message): ?>
-                <div class="message">
-
-                    <div class="message_title">
-                        <h1>
-                            <?= htmlspecialchars($message['title']) ?>
-                        </h1>
-
-                        <p class="message_status <?= htmlspecialchars($message['status']) ?>">
-                           &bull; <?= htmlspecialchars($message['status']) ?>
+            <?php if (!empty($messages)): ?>
+                <?php foreach($messages as $message): ?>
+                    <div class="message">
+                        <div class="message_title">
+                            <h1>
+                                <?= htmlspecialchars($message['title']) ?>
+                            </h1>
+    
+                            <p class="message_status <?= htmlspecialchars($message['status']) ?>">
+                               &bull; <?= htmlspecialchars($message['status']) ?>
+                            </p>
+                        </div>
+    
+                        <p class="message_date">
+                            <?=
+                                htmlspecialchars(
+                                    dateFormat($message['sent_at'])
+                                )
+                            ?>
                         </p>
                     </div>
-
-                    <p class="message_date">
-                        <?=
-                            htmlspecialchars(
-                                dateFormat($message['sent_at'])
-                            )
-                        ?>
-                    </p>
-
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="no_messages">You have no messages</p>
+            <?php endif; ?>
         </div>
     </aside>
 </section>

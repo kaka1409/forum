@@ -5,6 +5,7 @@ class EmailController {
         global $db;
 
         $messages = Message::getAllMessages($db);
+        // print_r(empty($messages));
 
         $view = ViewController::getInstance();
         $view->set('title', 'Message');

@@ -112,9 +112,14 @@
                             <a href="<?= BASE_URL ?>post/<?= $post['post_id']?>/edit">
                                 <img src="<?= BASE_URL ?>assets/icons/edit.png" alt="">
                             </a>
-                            <a href="<?= BASE_URL ?>post/<?= $post['post_id']?>/delete">
-                                <img src="<?= BASE_URL ?>assets/icons/trash.png" alt="">
-                            </a>
+
+                            <form action="<?= BASE_URL ?>post/<?= $post['post_id'] ?>/delete" method="POST">
+                                <button style="background-color: transparent; border: none;">
+                                    <a href="<?= BASE_URL ?>post/<?= $post['post_id']?>/delete">
+                                        <img src="<?= BASE_URL ?>assets/icons/trash.png" alt="">
+                                    </a>
+                                </button>
+                            </form>
                         </div>
 
                     </li>

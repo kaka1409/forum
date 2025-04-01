@@ -128,22 +128,37 @@ class PostController {
         global $db;
         $post_id = getPostId();
 
-        if (isset($_POST['submit'])) {
+        if (isAdmin()) {
 
             $result = Post::deletePostById($db, $post_id);
 
             if ($result) {
-                header('Location: ' . BASE_URL . 'home');
+                header('Location: ' . BASE_URL . 'admin');
                 exit;
             } else {
-                header('Location: ' . BASE_URL . 'home');
+                header('Location: ' . BASE_URL . 'admin');
                 exit;
             }
 
         } else {
-            header('Location: ' . BASE_URL . 'home');
-            exit;
+            if (isset($_POST['submit']) ) {
+    
+                $result = Post::deletePostById($db, $post_id);
+    
+                if ($result) {
+                    header('Location: ' . BASE_URL . 'home');
+                    exit;
+                } else {
+                    header('Location: ' . BASE_URL . 'home');
+                    exit;
+                }
+    
+            } else {
+                header('Location: ' . BASE_URL . 'home');
+                exit;
+            }
         }
+
         
     }
     

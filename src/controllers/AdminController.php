@@ -101,6 +101,11 @@ class AdminController {
     public function deleteUser() {
         adminAuth();
 
+        global $db;
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
+        $account_id = end($uri_array);
+
+        $result = Account::deleteAccount($db, $account_id);
     }
 
     public function module() {

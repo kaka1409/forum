@@ -17,7 +17,8 @@ class Comment {
     }
 
     public static function createComment($db = null, $post_id = null, $content) {
-        $sql = "INSERT INTO `comment` (account_id, post_id, content, updated_at, commented_at, vote, depth_level)
+        $sql = "INSERT INTO `comment` 
+                (account_id, post_id, content, updated_at, commented_at, vote, depth_level)
                 VALUES (:account_id, :post_id, :content, NOW(), NOW(), 0, 0);";
 
         $stmt = $db->query($sql, [

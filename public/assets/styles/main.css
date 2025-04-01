@@ -1136,6 +1136,10 @@ header {
     font-size: 0.75em;
     font-weight: 300;
 }
+.no_messages {
+    text-align: center;
+    color: gray;
+}
 
 /* Email form */
 
@@ -1252,6 +1256,7 @@ header {
     height: 2em;
     margin-top: 2em;
     transition: all 0.25s ease-in-out;
+    cursor: pointer;
 }
 
 .item.user {
@@ -1330,7 +1335,12 @@ header {
     background-color: var(--violet-color);
     width: 8em;
     border-radius: 15px;
+    transition: opacity 0.3s ease-in-out;
     cursor: pointer;
+}
+
+.add_btn:hover {
+    opacity: 0.5;
 }
 
 .user_controls {
@@ -1351,6 +1361,97 @@ header {
     cursor: pointer;
 }
 
+/* create user form */
+#create_user_form {
+    margin: 0 auto;
+    margin-top: -1em;
+    padding: 2em;
+    width: 37em;
+    height: 100%;
+    background-color: var(--primary-color);
+    border-left: 0.5px solid var(--border-color);
+    border-right: 0.5px solid var(--border-color);
+}
+
+#create_user_form .form_group {
+    height: 3.5em;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: var(--secondary-color);
+    cursor: pointer;
+}
+
+#create_user_form input,  
+#create_user_form select{
+    width: 100%;
+    height: 100%;
+    padding: 0 1em;
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--secondary-font-color);
+}
+
+#create_user_form input::placeholder,
+#create_user_form select::placeholder {
+    color: var(--secondary-font-color);
+    font-size: 0.9em;
+    opacity: 50%;
+}
+
+#create_user_form .form_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+#create_user_form .avatar_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10em;
+    height: 10em;
+    border-radius: 20em;
+    border: 1px solid white;
+    overflow: hidden;
+}
+
+#create_user_form .user_details {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: space-between;
+}
+
+#create_user_form .avatar_container img {
+    width: 100%;
+    height: 100%;
+}
+
+#create_user_form .username,
+#create_user_form .email {
+    margin: 0;
+}
+
+#create_user_form #submit {
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    color: #000;
+    background-color: var(--violet-color);
+    height: 3em;
+    width: 10em;
+    border: none;
+    border-radius: 15px;
+    font-weight: bolder;
+    font-size: 1em;
+    cursor: pointer;
+}
+/* create user form */
+
+/* Edit user form */
 #edit_user_form {
     margin: 0 auto;
     margin-top: -1em;
@@ -1386,7 +1487,8 @@ header {
     justify-content: center;
     align-items: center;
     height: 10em;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #edit_user_form #submit {
@@ -1402,6 +1504,8 @@ header {
     font-size: 1em;
     cursor: pointer;
 }
+/* Edit user form */
+
 
 /* Admin area */
 
