@@ -138,7 +138,7 @@ class Account {
     }
 
     public static function deleteAccount($db = null, $account_id = null) {
-        $sql = "DELETE FROM `account` WHERE account_id = :account_id";
+        $sql = "DELETE FROM `account` WHERE account_id = :account_id;";
 
         $stmt = $db->query($sql, [
             ':account_id' => $account_id

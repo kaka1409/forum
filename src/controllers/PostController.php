@@ -130,15 +130,10 @@ class PostController {
 
         if (isAdmin()) {
 
-            $result = Post::deletePostById($db, $post_id);
-
-            if ($result) {
-                header('Location: ' . BASE_URL . 'admin');
-                exit;
-            } else {
-                header('Location: ' . BASE_URL . 'admin');
-                exit;
-            }
+            Post::deletePostById($db, $post_id);
+  
+            header('Location: ' . BASE_URL . 'admin');
+            exit;            
 
         } else {
             if (isset($_POST['submit']) ) {

@@ -128,10 +128,7 @@ class AdminController {
         $uri_array = explode('/', $_SERVER['REQUEST_URI']);
         $account_id = end($uri_array);
 
-        
-        if (isset($_POST['submit'])) {
-            Account::deleteAccount($db, $account_id);
-        }
+        Account::deleteAccount($db, $account_id);
 
         header('Location: '. BASE_URL . 'admin');
         exit;

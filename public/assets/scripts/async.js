@@ -336,12 +336,13 @@ const handleAdminControl = async (listType) => {
                                         >
                                     </a>
 
-                                    <a href="${baseURL}admin/user/delete/${user.account_id}">
-                                        <img 
-                                            src="${baseURL}assets/icons/trash.png"  
-                                            alt=""
-                                        >
-                                    </a>
+                                    <form action="${baseURL}admin/user/delete/${user.account_id}" method="POST">
+                                        <button style="background-color: transparent; border: none;">
+                                            <a href="${baseURL}admin/user/delete/${user.account_id}">
+                                                <img src="${baseURL}assets/icons/trash.png" alt="">
+                                            </a>
+                                        </button>
+                                    </form>
                                 </div>
                             `
 
