@@ -942,7 +942,7 @@ header {
 
 .modules_container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 equal-width columns */
+    grid-template-columns: repeat(4, 1fr); /* 5 equal-width columns */
     grid-gap: 2em;
     margin-top: 2em;
 }
@@ -1388,7 +1388,7 @@ header {
     width: 100%;
     height: 100%;
     padding: 0 1em;
-    background-color: transparent;
+    background-color: var(--secondary-color);
     font-size: 1em;
     font-weight: bold;
     color: var(--secondary-font-color);
@@ -1400,11 +1400,15 @@ header {
     opacity: 50%;
 }
 
+#create_user_form select {
+    cursor: pointer;
+}
+
 #create_user_form .form_head {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 }
 
 #create_user_form .avatar_container {
@@ -1526,6 +1530,127 @@ header {
 }
 /* Edit user form */
 
+
+/* Create module form */
+#create_module_form {
+    margin: 0 auto;
+    margin-top: -1em;
+    padding: 2em;
+    width: 37em;
+    height: 100%;
+    background-color: var(--primary-color);
+    border-left: 0.5px solid var(--border-color);
+    border-right: 0.5px solid var(--border-color);
+    font-size: 1em;
+}
+
+
+#create_module_form .form_group {
+    height: 3.5em;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#create_module_form input {
+    width: 100%;
+    height: 100%;
+    padding-left: 1em;
+}
+
+#create_module_form textarea {
+    padding: 1em;
+    background-color: var(--secondary-color);
+    width: 100%;
+    height: 100%;
+}
+
+#create_module_form .module_description {
+    height: 20em;
+}
+
+#create_module_form input::placeholder,
+#create_module_form textarea::placeholder {
+    color: var(--secondary-font-color);
+    opacity: 0.5;
+}
+
+#create_module_form #submit {
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    background-color: var(--violet-color);
+    height: 3em;
+    width: 10em;
+    border: none;
+    border-radius: 15px;
+    font-weight: bolder;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/* Create module form */
+
+
+/* Edit module form */
+#edit_module_form {
+    margin: 0 auto;
+    margin-top: -1em;
+    padding: 2em;
+    width: 37em;
+    height: 100%;
+    background-color: var(--primary-color);
+    border-left: 0.5px solid var(--border-color);
+    border-right: 0.5px solid var(--border-color);
+    font-size: 1em;
+}
+
+
+#edit_module_form .form_group {
+    height: 3.5em;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#edit_module_form input {
+    width: 100%;
+    height: 100%;
+    padding-left: 1em;
+}
+
+#edit_module_form textarea {
+    padding: 1em;
+    background-color: var(--secondary-color);
+    width: 100%;
+    height: 100%;
+}
+
+#edit_module_form .module_description {
+    height: 20em;
+}
+
+#edit_module_form input::placeholder,
+#edit_module_form textarea::placeholder {
+    color: var(--secondary-font-color);
+    opacity: 0.5;
+}
+
+#edit_module_form #submit {
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    background-color: var(--violet-color);
+    height: 3em;
+    width: 10em;
+    border: none;
+    border-radius: 15px;
+    font-weight: bolder;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/* Edit module form */
 
 /* Admin area */
 

@@ -160,23 +160,80 @@ class AdminController {
         $view->render('adminModuleCreateForm');
     }
 
+    public function createModule() {
+        adminAuth();
+
+        global $db;
+
+        if (isset($_POST['submit'])) {
+
+            $result = Module::createModule($db);
+
+            if ($result) {
+                header('Location: ' . BASE_URL . 'admin');
+                exit;
+            } else {
+                header('Location: ' . BASE_URL . 'admin/module/create');
+                exit;
+            }
+        } else {
+            header('Location: ' . BASE_URL . 'admin/module/create');
+            exit;
+        }
+    }
+
     public function moduleEditForm() {
         adminAuth();
+
+        global $db;
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
+        $module_id = end($uri_array);
+
+        $module = Module::getModuleById($db, $module_id) ?? false;
 
         $view = ViewController::getInstance();
         $view->set('title', 'Editing a module');
         $view->set('disable_scroll', true);
+        $view->set('module', $module);
         $view->render('adminModuleEditForm');
     }
 
     public function editModule() {
         adminAuth();
 
+        global $db;
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
+        $module_id = end($uri_array);
+
+        if (isset($_POST['submit'])) {
+
+            $result = Module::updateModule($db, $module_id);
+
+            if ($result) {
+                header('Location: ' . BASE_URL . 'admin');
+                exit;
+            } else {
+                header('Location: ' . BASE_URL . 'admin/module/edit' . $module_id);
+                exit;
+            }
+        } else {
+            header('Location: ' . BASE_URL . 'admin/module/edit' . $module_id);
+            exit;
+        }
+
     }
 
     public function deleteModule() {
         adminAuth();
 
+        global $db;
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
+        $module_id = end($uri_array);
+
+        Module::deleteModule($db, $module_id);
+
+        header('Location: ' . BASE_URL . 'admin');
+        exit;
     }
 
     public function post() {

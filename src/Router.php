@@ -71,7 +71,7 @@ class Router {
         $this->addRoute('POST', 'admin/module/create', 'AdminController', 'createModule');
         $this->addRoute('GET', 'admin/module/edit/(\d+)', 'AdminController', 'moduleEditForm');
         $this->addRoute('POST', 'admin/module/edit/(\d+)', 'AdminController', 'editModule');
-        $this->addRoute('POST', 'admin/module/delete(\d+)', 'AdminController', 'deleteModule');
+        $this->addRoute('POST', 'admin/module/delete/(\d+)', 'AdminController', 'deleteModule');
 
         $this->addRoute('GET', 'admin/message', 'AdminController', 'message');
         

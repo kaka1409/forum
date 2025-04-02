@@ -3,6 +3,10 @@
 class Module {
 
     public static function createModule($db = null) {
+        $module_name = trim($_POST['module_name']);
+        $teacher = trim($_POST['teacher']);
+        $description = trim($_POST['description']);
+
         $sql = "INSERT INTO `module`
                 (module_name, teacher, description)
                 VALUES (:module_name, :teacher, :description)";
@@ -68,6 +72,10 @@ class Module {
     }
 
     public static function updateModule($db = null, $module_id = null) {
+        $module_name = trim($_POST['module_name']);
+        $teacher = trim($_POST['teacher']);
+        $description = trim($_POST['description']);
+
         $sql = "UPDATE `module`
                 SET module_name = :module_name, teacher = :teacher,
                 description = :description
