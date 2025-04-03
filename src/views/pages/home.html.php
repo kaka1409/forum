@@ -113,7 +113,7 @@
                                 </div>
                 
                                 <div class="post_save">
-                                    <img src="<?=BASE_URL?>/assets/icons/save.png" alt="">
+                                    <img src="<?=BASE_URL?>/assets/icons/<?= $post['is_bookmarked'] == 1 ? 'saved.png' : 'save.png' ?> " alt="">
                                 </div>
                                 
                                 <div class="post_share">

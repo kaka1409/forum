@@ -159,6 +159,26 @@ const handleReply = async () => {
     // todo
 }
 
+const handleBookmark = async (postId) => {
+
+    try {
+        const response = await fetch(baseURL + 'post/bookmark', {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'post_id=' + postId
+        })        
+
+        const data = await response.json()
+
+        // console.log(data)
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 const handleAdminControl = async (listType) => {
     const endPoint = 'admin/' + listType
     const title = `
@@ -392,5 +412,6 @@ const handleAdminControl = async (listType) => {
 export {
     handleVote,
     handleComment,
+    handleBookmark,
     handleAdminControl
 }

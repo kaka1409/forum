@@ -5,15 +5,19 @@ class HomeController {
         global $db;
         $posts = Post::getAllPosts($db);
 
-        // add user vote status
+        // add post's information status
         if ($posts && isLoggedIn()) {
             foreach ($posts as &$post) {
                 $user_vote = Vote::checkVote($db, $_SESSION['account_id'], $post['post_id']);
                 $post['is_voted'] = !empty($user_vote) ? $user_vote['vote_type'] : 0;
+
+                $user_bookmark = Post::checkBookmarked($db, $post['post_id']);
+                $post['is_bookmarked'] = !empty($user_bookmark) ? 1 : 0;
             } 
         } else {
             foreach ($posts as &$post) {
                 $post['is_voted'] = 0;
+                $post['is_bookmarked'] = 0;
             } 
         }
 

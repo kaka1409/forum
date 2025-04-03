@@ -39,6 +39,10 @@ class Router {
         $this->addRoute('POST', 'post/comment', 'CommentController', 'comment');
         $this->addRoute('POST', 'post/reply', 'CommentController', 'reply');
 
+        // post bookmark
+        $this->addRoute('GET', 'bookmarks', 'PostController', 'bookmarksView');
+        $this->addRoute('POST', 'post/bookmark', 'PostController', 'bookmark');
+
         // List all modules
         $this->addRoute('GET', 'module', 'ModuleController', 'index');
         $this->addRoute('GET', 'module/(\d+)', 'ModuleController', 'show');
@@ -48,7 +52,6 @@ class Router {
         $this->addRoute('POST', 'email', 'EmailController', 'email');
 
         // Bookmarks
-        $this->addRoute('GET', 'bookmarks', 'PostController', 'bookmarks');
 
         // Profile
         $this->addRoute('GET', 'profile', 'AccountController', 'showProfile');

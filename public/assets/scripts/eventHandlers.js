@@ -1,8 +1,9 @@
-import { selectElement } from "./helpers.js"
+import { selectElement, getPostIdInList } from "./helpers.js"
 import { baseURL, iconsURL } from "./config.js"
 import {
     handleVote,
     handleComment,
+    handleBookmark,
     handleAdminControl 
 } from "./async.js"
 
@@ -219,7 +220,7 @@ function handlePostsEvents () {
                     return 
                 }
     
-                const postId = upvoteContainer.getAttribute('post-id')
+                const postId = getPostIdInList(e)
                 await handleVote(postId, true)
             }
 
@@ -255,7 +256,7 @@ function handlePostsEvents () {
                     return;
                 } 
     
-                const postId = downvoteContainer.getAttribute('post-id')
+                const postId = getPostIdInList(e)
                 await handleVote(postId, false)
             }
             
@@ -300,7 +301,7 @@ function handlePostsEvents () {
                 }
             }
 
-            const saveIconClicked = (e) => {
+            const saveIconClicked = async (e) => {
                 e.preventDefault()
                 e.stopPropagation()
     
@@ -308,7 +309,11 @@ function handlePostsEvents () {
                     modalAppear()
                     return
                 } 
-                saveIcon.src = iconsURL + 'saved.png'
+
+                saveIcon.src = saveIcon.src.includes('saved') ? iconsURL + 'save.png' : iconsURL + 'saved.png'
+
+                const postId = getPostIdInList(e)
+                await handleBookmark(postId)                
             }
 
             // Event listener
@@ -469,13 +474,15 @@ function handlePostViewEvents () {
                 }
             }
 
-            const saveIconClicked = () => {
+            const saveIconClicked = (e) => {
                 if (!isLoggedIn) {
                     modalAppear()
                     return
                 }
 
                 saveIcon.src = iconsURL + 'saved.png'
+
+                console.log(e.target)
             }
 
             saveIconContainer.addEventListener('mouseover', saveIconMouseOver)

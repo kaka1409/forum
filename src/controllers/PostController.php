@@ -157,10 +157,54 @@ class PostController {
         
     }
     
-    public function bookmarks() {
+    public function bookmarksView() {
+        global $db;
+        $posts = Post::getBookmarked($db);
+
+        // add post's information status
+        if ($posts && isLoggedIn()) {
+            foreach ($posts as &$post) {
+                $user_vote = Vote::checkVote($db, $_SESSION['account_id'], $post['post_id']);
+                $post['is_voted'] = !empty($user_vote) ? $user_vote['vote_type'] : 0;
+
+                $user_bookmark = Post::checkBookmarked($db, $post['post_id']);
+                $post['is_bookmarked'] = !empty($user_bookmark) ? 1 : 0;
+            } 
+        } else {
+            foreach ($posts as &$post) {
+                $post['is_voted'] = 0;
+                $post['is_bookmarked'] = 0;
+            } 
+        }
+
+
         $view = ViewController::getInstance();
         $view->set('title', 'Bookmarks');
+        $view->set('disable_scroll', false);
+        $view->set('posts', $posts);
         $view->render('bookmarks');
+    }
+
+    public function bookmark() {
+        global $db;
+        $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : null;
+
+        $bookmarked = Post::checkBookmarked($db, $post_id);
+        if (empty($bookmarked)) {
+    
+            $result = Post::bookmarkPost($db,$post_id );
+    
+            if ($result) {
+                sendJson([
+                    'status' => 'success',
+                    'bookmarked' => $_POST['post_id']
+                ]);
+            }
+
+        } else {
+            Post::removeBookmarked($db, $post_id);
+        }
+
     }
 
 }

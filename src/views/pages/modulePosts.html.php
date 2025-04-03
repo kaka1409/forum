@@ -24,7 +24,7 @@
     
     <!-- Post listing here -->
     <div class="posts_container">
-        <?php if (isset($posts_of_module)): ?>
+        <?php if (!empty($posts_of_module)): ?>
             <?php foreach ($posts_of_module as $post): ?>
                 <a href="<?= BASE_URL ?>post/<?= $post['post_id'] ?>">
                     <div class="post">
@@ -115,7 +115,7 @@
             <?php endforeach; ?>
 
         <?php else: ?>
-            <h1>No post in this module</h1>
+            <h1>No posts in this module</h1>
         <?php endif; ?>
     </div>
 
