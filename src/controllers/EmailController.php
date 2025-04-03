@@ -4,7 +4,7 @@ class EmailController {
     public function emailForm() {
         global $db;
 
-        $messages = Message::getAllMessages($db);
+        $messages = Message::getAllAccountMessages($db);
         // print_r(empty($messages));
 
         $view = ViewController::getInstance();

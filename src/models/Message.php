@@ -22,7 +22,15 @@ class Message {
         $sql = "";
     }
 
-    public static function getAllMessages($db) {
+    public static function getAllmessages($db = null) {
+        $sql = "SELECT * FROM `message`";
+
+        $stmt = $db->query($sql);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getAllAccountMessages($db) {
         $account_id = $_SESSION['account_id'] ?? null;
         $sql = "SELECT * FROM `message` WHERE account_id = :account_id;";
 

@@ -249,6 +249,20 @@ class AdminController {
         sendJson(['posts' => $posts]);
     }
 
+    public function message() {
+        global $db;
+
+        $messages = Message::getAllMessages($db);
+
+        // print_r($messages);
+
+        if (!empty($messages)) {
+            sendJson([
+                'messages' => $messages
+            ]);
+        }
+    }
+
 }
 
 ?>

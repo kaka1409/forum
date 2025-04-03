@@ -66,7 +66,9 @@ const handleComment = async (postId, commentContent) => {
         if (data && data.content !== "") {
             // hide no comment message
             const message = selectElement('.comment_empty')
-            message.style.display = 'none'
+            if (message) {
+                message.style.display = 'none'
+            }
 
             const commentSection = selectElement('.comment_section')
 
