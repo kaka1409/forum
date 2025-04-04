@@ -172,7 +172,7 @@ const handleBookmark = async (postId) => {
             body: 'post_id=' + postId
         })        
 
-        const data = await response.json()
+        // const data = await response.json()
 
         // console.log(data)
 
@@ -185,7 +185,7 @@ const handleAdminControl = async (listType) => {
     const endPoint = 'admin/' + listType
     const title = `
         <h1 class="title">
-            List of ${listType}
+            List of ${listType}s
         </h1>
     `
 
@@ -387,7 +387,46 @@ const handleAdminControl = async (listType) => {
                     // List of messages
                     case 'message': {
 
-                        // todo
+                        const messages = data.messages
+
+                        messages.forEach( (message) => {
+                            const messageElement = document.createElement('li')
+                            messageElement.classList.add('item', 'message')
+
+                            messageElement.innerHTML = `
+
+                                <a href="${baseURL + 'admin/message/' + message.message_id}">
+                                    <div class="message_title">
+                                        ${message.title}
+                                    </div>
+
+                                    <div class="message_status ${message.status}">
+                                        &bull; ${message.status}
+                                    </div>
+
+                                    <div class="message_author">
+                                        by ${message.account_name}
+                                    </div>
+
+                                    <div class="message_date">
+                                        ${message.sent_at}
+                                    </div>
+
+                                    <div class="message_control">
+
+
+                                        <form action="${baseURL}message/delete/${message.message_id}" method="POST">
+                                            <button style="background-color: transparent; border: none;">
+                                                <img src="${baseURL}assets/icons/trash.png" alt="">
+                                            </button>
+                                        </form>
+                                    </div>
+                                </a>
+
+                            `
+
+                            list.appendChild(messageElement)
+                        })
 
                         listContent.innerHTML = title + list.outerHTML
                         break;

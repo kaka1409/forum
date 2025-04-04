@@ -50,6 +50,8 @@ class Router {
         // Email admin
         $this->addRoute('GET', 'email', 'EmailController', 'emailForm');
         $this->addRoute('POST', 'email', 'EmailController', 'email');
+        $this->addRoute('POST', 'message/delete/(\d+)', 'EmailController', 'delete');
+        // $this->addRoute('GET', 'email/(\d+)', 'EmailController', 'message');
 
         // Bookmarks
 
@@ -77,6 +79,8 @@ class Router {
         $this->addRoute('POST', 'admin/module/delete/(\d+)', 'AdminController', 'deleteModule');
 
         $this->addRoute('GET', 'admin/message', 'AdminController', 'message');
+        $this->addRoute('GET', 'admin/message/(\d+)', 'AdminController', 'showMessage');
+
         
     }
 

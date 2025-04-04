@@ -23,8 +23,9 @@ class Message {
     }
 
     public static function getAllmessages($db = null) {
-        $sql = "SELECT * FROM `message`";
-
+        $sql = "SELECT message.message_id, message.title, message.content, message.sent_at,
+                message.updated_at, message.status, account.account_name, account.account_avatar
+                FROM `message` INNER JOIN `account` ON account.account_id = message.account_id;";
         $stmt = $db->query($sql);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -41,6 +42,21 @@ class Message {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function getUserMessage($db = null, $message_id = null) {
+        $sql = "SELECT message.message_id, message.title, message.content, message.sent_at,
+                message.updated_at, message.status, account.account_id,
+                account.account_name, account.account_avatar
+                FROM `message` 
+                INNER JOIN `account` ON account.account_id = message.account_id
+                WHERE message.message_id = :message_id; ";
+
+        $stmt = $db->query($sql, [
+            ':message_id' => $message_id
+        ]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public static function getMessageCount($db = null) {
         $sql = "SELECT COUNT(*) AS message_count FROM `message`;";
 
@@ -50,6 +66,9 @@ class Message {
     }
 
     public static function updateMessage($db = null, $message_id = null) {
+        $title = trim($_POST['email_title']);
+        $content = trim($_POST['email_content']);
+
         $sql = "UPDATE `message`
                 SET title = :title, content = :content, updated_at = NOW()
                 WHERE message_id = :message_id";
@@ -57,13 +76,29 @@ class Message {
         $stmt = $db->query($sql, [
             ':title' => $title,
             ':content' => $content,
+            ':message_id' => $message_id
+        ]);
+
+        return $stmt;
+    }
+
+    public static function updateStatus($db = null, $status = '', $message_id = null) {
+        $sql = "UPDATE `message`
+                SET status = :status
+                WHERE message_id = :message_id;";
+
+        $stmt = $db->query($sql, [
+            ':status' => $status,
+            ':message_id' => $message_id
         ]);
 
         return $stmt;
     }
 
     public static function deleteMessage($db = null, $message_id = null) {
-        $sql = "DELETE FROM `module` WHERE message_id = :message_id";
+        $sql = "UPDATE `message`
+                SET status = 'deleted', title = '---', content = '---'
+                WHERE message_id = :message_id;";
 
         $stmt = $db->query($sql, [
             ':message_id' => $message_id

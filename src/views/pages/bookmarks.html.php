@@ -18,7 +18,7 @@
     
     <!-- Post listing here -->
     <div class="posts_container">
-        <?php if (isset($posts)): ?>
+        <?php if (!empty($posts)): ?>
             <?php foreach ($posts as $post): ?>
                 <div class="post">
                     <a href="<?=BASE_URL?>post/<?= $post['post_id'] ?>">

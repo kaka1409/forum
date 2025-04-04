@@ -125,12 +125,12 @@
                     </li>
                 <?php endforeach; ?>
                     
-                    <a 
-                        class="btn add_btn"    
-                        href="<?= BASE_URL ?>post/create"
-                    >
-                        + Add
-                    </a>
+                <a 
+                    class="btn add_btn"    
+                    href="<?= BASE_URL ?>post/create"
+                >
+                    + Add
+                </a>
 
             </ul>
         </div>

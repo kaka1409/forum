@@ -40,6 +40,47 @@ class EmailController {
             exit;
         }
     }
+
+    public function delete() {
+
+        global $db;
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
+        $message_id = end($uri_array);
+        $account_id = Message::getUserMessage($db, $message_id)['account_id'];
+
+
+        if (isAdmin()) {
+            $result = Message::deleteMessage($db, $message_id);
+
+            if ($result) {
+                header('Location: ' . BASE_URL . 'admin');
+                exit;
+            } else {
+                header('Location: ' . BASE_URL . 'admin/message/' . $message_id);
+                exit;
+            }
+        } else {
+            header('Location: ' . BASE_URL . 'admin/message/' . $message_id);
+            exit;
+        }
+
+        if ($_SESSION['account_id'] === $account_id) {
+            
+            $result = Message::deleteMessage($db, $message_id);
+
+            if ($result) {
+                
+            } else {
+                header('Location: ' . BASE_URL . 'email');
+                exit;
+            }
+        } else {
+            header('Location: ' . BASE_URL . 'email');
+            exit;
+        }
+
+
+    }
 }
 
 ?>

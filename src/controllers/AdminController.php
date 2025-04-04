@@ -250,11 +250,16 @@ class AdminController {
     }
 
     public function message() {
-        global $db;
+        adminAuth();
 
+        global $db;
         $messages = Message::getAllMessages($db);
 
-        // print_r($messages);
+        // format message data
+        foreach($messages as &$message) {
+            $message['sent_at'] = dateFormat($message['sent_at']);
+            $message['updated_at'] = dateFormat($message['updated_at']);
+        }
 
         if (!empty($messages)) {
             sendJson([
@@ -262,6 +267,26 @@ class AdminController {
             ]);
         }
     }
+
+    public function showMessage() {
+        adminAuth();
+
+        global $db;
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
+        $message_id = end($uri_array);
+        $message = Message::getUserMessage($db, $message_id);
+
+        if ($message['status'] === 'unread') {
+            Message::updateStatus($db, 'read', $message_id);
+        }
+
+        $view = ViewController::getInstance();
+        $view->set('title', 'Viewing ' . $message['title']);
+        $view->set('disable_scroll', false);
+        $view->set('message', $message);
+        $view->render('messageView');
+    }
+
 
 }
 

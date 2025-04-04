@@ -140,6 +140,8 @@ class Post {
     }
 
     public static function getBookmarked($db = null) {
+        $account_id = $_SESSION['account_id'] ?? null;
+
         $sql = "SELECT post.post_id, post.account_id, post.title, post.content,
             post.post_at, post.updated_at, post.vote, post.comments_count, post.thumbnail_url,
             account.account_name, account.account_avatar, module.module_name
@@ -150,18 +152,20 @@ class Post {
             WHERE bookmarked.account_id = :account_id;";
 
         $stmt = $db->query($sql, [
-            ':account_id' => $_SESSION['account_id']
+            ':account_id' => $account_id
         ]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function checkBookmarked($db = null, $post_id = null) {
+        $account_id = $_SESSION['account_id'] ?? null;
+
         $sql = "SELECT * FROM `bookmarked`
                 WHERE account_id = :account_id AND post_id = :post_id";
         
         $stmt = $db->query($sql, [
-            ':account_id' => $_SESSION['account_id'],
+            ':account_id' => $account_id,
             ':post_id' => $post_id,
         ]);
 

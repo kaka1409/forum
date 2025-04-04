@@ -75,23 +75,6 @@
     transition: opacity 1s ease-in-out;
 }
 
-/* messages animation */
-
-.message {
-    animation: slideIn 1s ease-out;
-}
-
-@keyframes slideIn {
-    0% {
-        transform: translateX(10em);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
 
 /* Admin control hover effect */
 
