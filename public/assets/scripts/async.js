@@ -188,19 +188,20 @@ const handleAdminControl = async (listType) => {
             List of ${listType}s
         </h1>
     `
-
+    
     // element to display user data
     const listContent = selectElement('.admin_content .content')
     const list = selectElement('.list')
-    list.innerHTML = ''
-
+    
     if (list && listContent) {
-
+        list.innerHTML = ''
+        
         try {
+            
             // get data
             const response = await fetch(baseURL + endPoint)
             const data = await response.json()
-    
+            
             if (data) {
                 
                 // switch between lists
@@ -254,8 +255,12 @@ const handleAdminControl = async (listType) => {
                         addButton.setAttribute('href', `${baseURL}post/create`)
                         addButton.textContent = '+ Add'
                         list.appendChild(addButton)
-
+                        
+                        // update list content
                         listContent.innerHTML = title + list.outerHTML
+                        
+                        // update history url and store list content state
+                        window.history.pushState(listContent.innerHTML, '', baseURL + endPoint + '_list')
                         break;
                     }
                     
@@ -302,6 +307,8 @@ const handleAdminControl = async (listType) => {
                             `
 
                             list.appendChild(moduleElement)
+
+                            
                         });
 
                         // append add button to the end of the list
@@ -312,6 +319,9 @@ const handleAdminControl = async (listType) => {
                         list.appendChild(addButton)
 
                         listContent.innerHTML = title + list.outerHTML
+                        
+                        // update history url and store list content state
+                        window.history.pushState(listContent.innerHTML, '', baseURL + endPoint + '_list')
                         break;
                     }
                     
@@ -381,6 +391,9 @@ const handleAdminControl = async (listType) => {
                         list.appendChild(addButton)
 
                         listContent.innerHTML = title + list.outerHTML
+                        
+                        // update history url and store list content state
+                        window.history.pushState(listContent.innerHTML, '', baseURL + endPoint + '_list')
                         break;
                     }
                     
@@ -429,6 +442,9 @@ const handleAdminControl = async (listType) => {
                         })
 
                         listContent.innerHTML = title + list.outerHTML
+                        
+                        // update history url and store list content state
+                        window.history.pushState(listContent.innerHTML, '', baseURL + endPoint + '_list')
                         break;
                     }
                     

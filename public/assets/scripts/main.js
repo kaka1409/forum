@@ -1,7 +1,7 @@
 import { 
     handleSearchBarEvent, handlePostsEvents, handleSidemenuEvent, 
-    handlePostViewEvents, handleDOMEvent, handleModuleEvent,
-    handleAdminEvent,handleCreateUserFormEvent
+    handlePostViewEvents, handleWindowEvent, handleDOMEvent, 
+    handleModuleEvent, handleAdminEvent, handleCreateUserFormEvent
 } from "./eventHandlers.js"
 
 import {
@@ -14,11 +14,13 @@ const app = {
         document.addEventListener('DOMContentLoaded', () => {
             this.eventHandlers.init()
             this.validators.init()
+
         })
     },
 
     eventHandlers: {
         init: function() { 
+            handleWindowEvent()
             handleDOMEvent()
             handleSidemenuEvent()
             handlePostsEvents()

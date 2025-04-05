@@ -24,10 +24,49 @@ function modalAppear() {
 
 }
 
+function handleWindowEvent() {
+
+    // get list content element
+    const listContent = selectElement('.admin_area .content')
+
+    // console.log(window.history.state)
+
+    //  split url so we can get the list type
+    const listURL = window.location.href.split('/').at(-1)
+
+    if (listURL.includes('list')) {
+        const listType = listURL.split('_')[0]
+
+        switch (listType) {
+            case 'post': {
+                listContent.innerHTML = window.history.state
+                break
+            }
+    
+            case 'module': {
+                listContent.innerHTML = window.history.state
+                break
+            }
+    
+            case 'user': {
+                listContent.innerHTML = window.history.state
+                break
+            }
+    
+            case 'message': {
+                listContent.innerHTML = window.history.state
+                break
+            }
+        }
+    }
+}
+
 function handleDOMEvent() {
     // hidden all popup when the user click on the document
     const popupHidden = () => {
         const popups = selectElement('.options_popup')
+        // console.log(popups)
+
         if (popups) {
             popups.forEach( (popup) => {
                 if (!popup.classList.contains('hidden')) {
@@ -38,6 +77,7 @@ function handleDOMEvent() {
     }
 
     document.addEventListener('click', popupHidden)
+
 }
 
 function handleSearchBarEvent() {
@@ -660,6 +700,7 @@ function handleCreateUserFormEvent() {
 }
 
 export {
+    handleWindowEvent,
     handleDOMEvent,
     handleSearchBarEvent,
     handleSidemenuEvent,

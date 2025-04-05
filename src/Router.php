@@ -63,8 +63,10 @@ class Router {
 
         // admin controls
         $this->addRoute('GET', 'admin/post', 'AdminController', 'post');
+        $this->addRoute('GET', 'admin/post_list', 'AdminController', 'dashboard');
         
         $this->addRoute('GET', 'admin/user', 'AdminController', 'user');
+        $this->addRoute('GET', 'admin/user_list', 'AdminController', 'dashboard');
         $this->addRoute('GET', 'admin/user/create', 'AdminController', 'createUserForm');
         $this->addRoute('POST', 'admin/user/create', 'AdminController', 'createUser');
         $this->addRoute('GET', 'admin/user/edit/(\d+)', 'AdminController', 'userEditForm');
@@ -72,6 +74,7 @@ class Router {
         $this->addRoute('POST', 'admin/user/delete/(\d+)', 'AdminController', 'deleteUser');
         
         $this->addRoute('GET', 'admin/module', 'AdminController', 'module');
+        $this->addRoute('GET', 'admin/module_list', 'AdminController', 'dashboard');
         $this->addRoute('GET', 'admin/module/create', 'AdminController', 'createModuleForm');
         $this->addRoute('POST', 'admin/module/create', 'AdminController', 'createModule');
         $this->addRoute('GET', 'admin/module/edit/(\d+)', 'AdminController', 'moduleEditForm');
@@ -79,6 +82,7 @@ class Router {
         $this->addRoute('POST', 'admin/module/delete/(\d+)', 'AdminController', 'deleteModule');
 
         $this->addRoute('GET', 'admin/message', 'AdminController', 'message');
+        $this->addRoute('GET', 'admin/message_list', 'AdminController', 'dashboard');
         $this->addRoute('GET', 'admin/message/(\d+)', 'AdminController', 'showMessage');
 
         

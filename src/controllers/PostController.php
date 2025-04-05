@@ -81,9 +81,11 @@ class PostController {
         $modules = Module::getAllModules($db);
         $post_data = Post::getPostById($db, $post_id);
         
-        if ($post_data['account_id'] !== $_SESSION['account_id'] || !isAdmin()) {
-            header('Location: ' . BASE_URL . 'home');
-            exit;
+        if ($post_data['account_id'] !== $_SESSION['account_id']) {
+            if (!isAdmin()) {
+                header('Location: ' . BASE_URL . 'home');
+                exit;
+            }
         }
 
         $view = ViewController::getInstance();        
