@@ -62,8 +62,21 @@ class AccountController {
     }
 
     public function showProfile() {
+        global $db;
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
+        $account_id = end($uri_array);
+
+        $account = Account::getAccountById($db, $account_id) ?? null;
+
+        if ($account === null) {
+            header('Location: ' . BASE_URL . 'home');
+            exit;
+        }
+
         $view = ViewController::getInstance();
-        $view->set('title', 'Profile');
+        $view->set('title', 'Profile of');
+        $view->set('disable_scroll', true);
+        $view->set('account', $account);
         $view->render('profile');
     
     }

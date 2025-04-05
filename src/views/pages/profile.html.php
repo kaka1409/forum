@@ -1,30 +1,56 @@
 <?php if (isset($_SESSION['account_id'])): ?>
     <!-- Back button -->
-    <?= ViewController::useComponent('backButton')?>
-
-    <div class="profile_display_container">
-        <div class="profile_name">
-            <?= $_SESSION['account_name']?>
-        </div>
-        <a href="<?=BASE_URL?>profile?">
-            <div class="profile_avatar">
-                <?php if( $_SESSION['account_avatar'] != null):?>
-                    <img 
-                        width="40px"
-                        height="40px"
-                        src="<?=ROOT_URL .  $_SESSION['account_avatar']?>" 
-                        alt=""
-                    >
-                <?php endif; ?>
+    <?= ViewController::useComponent(name: 'backButton')?>
+    
+    <section class="profile_display_container">
+        <div class="profile_header">
+    
+            <div class="profile_avatar_container">
+                <div class="profile_avatar">
+                    <?php if( $account['account_avatar'] != null): ?>
+                        <img 
+                            src="<?= ROOT_URL .  $account['account_avatar']?> " 
+                            alt=""
+                        >
+                    <?php endif; ?>
+                </div>
+                <div class="profile_role <?= formatRole()?>">
+                    <?= formatRole() ?>
+                </div>
             </div>
-        </a>
-
-        <!-- logout -->
-        <div class="logout">
-            <a href="<?=BASE_URL?>logout" alt="">log tf out</a>
+                
+            <div class="profile_details">
+                <div class="profile_name">
+                    <p>
+                        Username: 
+                    </p>
+                    <span>
+                        <?= $account['account_name'] ?>
+                    </span>
+                </div>
+                <div class="profile_email">
+                    <p>
+                        Email: 
+                    </p>
+                    <span>
+                        <?= $account['email'] ?>
+                    </span>    
+                </div>
+            </div>
+    
         </div>
-    </div>
+    
+        <?php if ($account['account_id'] === $_SESSION['account_id']): ?>
+            <!-- logout -->
+            <div class="logout">
+                <a href="<?=BASE_URL?>logout" alt="">log tf out</a>
+            </div>
+        
+        <?php endif; ?>
+    
+    </section>
 
 <?php else: ?>
     <?php header('Location: ' . BASE_URL . 'login');?>
 <?php endif; ?>
+

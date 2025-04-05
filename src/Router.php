@@ -53,10 +53,8 @@ class Router {
         $this->addRoute('GET', 'message/(\d+)', 'MessageController', 'show');
         $this->addRoute('POST', 'message/delete/(\d+)', 'MessageController', 'delete');
 
-        // Bookmarks
-
         // Profile
-        $this->addRoute('GET', 'profile', 'AccountController', 'showProfile');
+        $this->addRoute('GET', 'profile/(\d+)', 'AccountController', 'showProfile');
 
         // Admin dashboard
         $this->addRoute('GET', 'admin', 'AdminController', 'dashboard');
