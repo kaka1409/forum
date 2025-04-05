@@ -1140,6 +1140,7 @@ header {
     opacity: 0.6;
     font-size: 0.75em;
     font-weight: 300;
+    text-align: left;
 }
 .no_messages {
     text-align: center;
@@ -1338,7 +1339,7 @@ header {
 
 .item.message a {
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 2fr 0.5fr;
+    grid-template-columns: 0.75fr 2fr 1fr 2fr 0.5fr;
     width: 100%;
     padding: 1em 0;
     padding-left: 1em;
@@ -1751,6 +1752,24 @@ header {
     padding-top: 2em;
 }    
 
+#message_view .message_title p {
+    margin-top: 0.5em;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    /* background-color: #332544; */
+}
+
+#message_view .message_content p {
+    margin-top: 0.5em;
+    padding: 0.5em;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    height: 15em;
+    /* background-color: #332544; */
+    overflow-y: scroll;
+}
+
 #message_view .submit {
     display: block;
     margin: 0 auto;
@@ -1770,6 +1789,7 @@ header {
 #message_view .submit:hover {
     opacity: 0.5;
 }
+
 /* Message view */
 
 /* Admin area */

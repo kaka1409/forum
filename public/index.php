@@ -40,7 +40,7 @@ require_once APP_ROOT . '/controllers/HomeController.php';
 require_once APP_ROOT . '/controllers/PostController.php';
 require_once APP_ROOT . '/controllers/CommentController.php';
 require_once APP_ROOT . '/controllers/ModuleController.php';
-require_once APP_ROOT . '/controllers/EmailController.php';
+require_once APP_ROOT . '/controllers/MessageController.php';
 require_once APP_ROOT . '/controllers/AdminController.php';
 require_once APP_ROOT . '/controllers/VoteController.php';
 

@@ -29,35 +29,40 @@ function handleWindowEvent() {
     // get list content element
     const listContent = selectElement('.admin_area .content')
 
-    // console.log(window.history.state)
-
     //  split url so we can get the list type
     const listURL = window.location.href.split('/').at(-1)
 
     if (listURL.includes('list')) {
         const listType = listURL.split('_')[0]
 
-        switch (listType) {
-            case 'post': {
-                listContent.innerHTML = window.history.state
-                break
-            }
+        const controlButton = selectElement(`.admin_controls [list-type="${listType}"]`)
+
+        setTimeout(() => {
+            // console.log(controlButton)
+            controlButton.click()
+        }, 50)
+
+        // switch (listType) {
+        //     case 'post': {
+        //         listContent.innerHTML = window.history.state
+        //         break
+        //     }
     
-            case 'module': {
-                listContent.innerHTML = window.history.state
-                break
-            }
+        //     case 'module': {
+        //         listContent.innerHTML = window.history.state
+        //         break
+        //     }
     
-            case 'user': {
-                listContent.innerHTML = window.history.state
-                break
-            }
+        //     case 'user': {
+        //         listContent.innerHTML = window.history.state
+        //         break
+        //     }
     
-            case 'message': {
-                listContent.innerHTML = window.history.state
-                break
-            }
-        }
+        //     case 'message': {
+        //         listContent.innerHTML = window.history.state
+        //         break
+        //     }
+        // }
     }
 }
 
@@ -612,6 +617,34 @@ function handleModuleEvent() {
     }
 }
 
+function handleMessageEvent() {
+    const messages = selectElement('.message')
+
+    if (messages) {
+
+        // animation config
+        let animDuration = 750
+        let delay = 250
+
+        messages.forEach(message => {
+            animDuration += delay
+
+            message.animate(
+                [
+                    {transform: 'translateX(10em)', opacity: 0},
+                    {transform: 'translateX(0)', opacity: 1}
+                ],
+
+                {
+                    duration:  animDuration,
+                    easing: 'ease-in-out'
+                }
+
+            )
+        })
+    }
+}
+
 function handleAdminEvent() {
     const controlElements = selectElement('.control')
 
@@ -707,6 +740,7 @@ export {
     handlePostsEvents, 
     handlePostViewEvents,
     handleModuleEvent,
+    handleMessageEvent,
     handleAdminEvent,
     handleCreateUserFormEvent
 }

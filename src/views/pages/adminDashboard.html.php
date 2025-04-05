@@ -95,7 +95,9 @@
                     >
     
                         <div class="post_title">
-                            <?= htmlspecialchars($post['title']) ?>
+                            <?= htmlspecialchars(
+                                    truncateText($post['title'], 20)
+                                ) ?>
                         </div>
 
                         <div class="post_author">

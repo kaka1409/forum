@@ -26,4 +26,9 @@ function dateFormat($date) {
     }
 }
 
+function truncateText($text, $limit) {
+    return strlen($text) > $limit ? substr($text, 0, $limit) . '...' : $text;
+
+}
+
 ?>

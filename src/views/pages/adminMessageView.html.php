@@ -1,9 +1,11 @@
+
 <?= ViewController::useComponent('backButton')?>
 
 <section id="message_view">
     <div class="container">
         <div class="message_header">
             <div class="message_author">
+                Sent by 
                 <div class="avatar_container">
                     <img src="<?= ROOT_URL . $message['account_avatar']?>" alt="">
                 </div>
@@ -29,5 +31,6 @@
             </p>
         </div>
 
+        <button class="btn submit"> Reply </button>
     </div>
 </section>

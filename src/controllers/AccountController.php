@@ -2,13 +2,13 @@
 
 class AccountController {
     public function loginForm() {
-        $view = ViewController::getInstance('account_form_layout');
+        $view = ViewController::getInstance('loginLayout');
         $view->set('title', 'Login');
         $view->render('login');
     }
 
     public function registerForm() {
-        $view = ViewController::getInstance('account_form_layout');
+        $view = ViewController::getInstance('loginLayout');
         $view->set('title', 'Register');
         $view->render('register');
     }

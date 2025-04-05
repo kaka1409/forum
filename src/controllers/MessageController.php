@@ -1,6 +1,6 @@
 <?php
 
-class EmailController {
+class MessageController {
     public function emailForm() {
         global $db;
 
@@ -14,7 +14,7 @@ class EmailController {
         $view->render('email');
     }
 
-    public function email() {
+    public function create() {
         global $db;
 
         // not logged in
@@ -41,6 +41,24 @@ class EmailController {
         }
     }
 
+    public function show() {
+        global $db;
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
+        $message_id = end($uri_array);
+
+        $message = Message::getUserMessage($db, $message_id) ?? null;
+
+        if ($message['account_id'] !== $_SESSION['account_id']) {
+            header('Location: ' . BASE_URL . 'home');
+            exit;
+        }
+
+        $view = ViewController::getInstance();
+        $view->set('title', 'Viewing ' . $message['title']);
+        $view->set('message', $message);
+        $view->render('messageView');
+    }
+
     public function delete() {
 
         global $db;
@@ -53,7 +71,7 @@ class EmailController {
             $result = Message::deleteMessage($db, $message_id);
 
             if ($result) {
-                header('Location: ' . BASE_URL . 'admin');
+                header('Location: ' . BASE_URL . 'admin/message_list');
                 exit;
             } else {
                 header('Location: ' . BASE_URL . 'admin/message/' . $message_id);

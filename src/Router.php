@@ -48,10 +48,10 @@ class Router {
         $this->addRoute('GET', 'module/(\d+)', 'ModuleController', 'show');
 
         // Email admin
-        $this->addRoute('GET', 'email', 'EmailController', 'emailForm');
-        $this->addRoute('POST', 'email', 'EmailController', 'email');
-        $this->addRoute('POST', 'message/delete/(\d+)', 'EmailController', 'delete');
-        // $this->addRoute('GET', 'email/(\d+)', 'EmailController', 'message');
+        $this->addRoute('GET', 'email', 'MessageController', 'emailForm');
+        $this->addRoute('POST', 'email', 'MessageController', 'create');
+        $this->addRoute('GET', 'message/(\d+)', 'MessageController', 'show');
+        $this->addRoute('POST', 'message/delete/(\d+)', 'MessageController', 'delete');
 
         // Bookmarks
 

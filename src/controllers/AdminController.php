@@ -20,7 +20,7 @@ class AdminController {
         $view->set('user_count', $user_count);
         $view->set('message_count', $message_count);
         $view->set('posts', $posts);
-        $view->render('admin_dashboard');
+        $view->render('adminDashboard');
     }
 
     public function user() {
@@ -276,6 +276,8 @@ class AdminController {
         $message_id = end($uri_array);
         $message = Message::getUserMessage($db, $message_id);
 
+        // echo $message['status'];
+
         if ($message['status'] === 'unread') {
             Message::updateStatus($db, 'read', $message_id);
         }
@@ -284,7 +286,7 @@ class AdminController {
         $view->set('title', 'Viewing ' . $message['title']);
         $view->set('disable_scroll', false);
         $view->set('message', $message);
-        $view->render('messageView');
+        $view->render('adminMessageView');
     }
 
 

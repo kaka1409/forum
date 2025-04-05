@@ -1,7 +1,8 @@
 import { 
     handleSearchBarEvent, handlePostsEvents, handleSidemenuEvent, 
     handlePostViewEvents, handleWindowEvent, handleDOMEvent, 
-    handleModuleEvent, handleAdminEvent, handleCreateUserFormEvent
+    handleModuleEvent, handleMessageEvent, handleAdminEvent, 
+    handleCreateUserFormEvent
 } from "./eventHandlers.js"
 
 import {
@@ -27,6 +28,7 @@ const app = {
             handlePostViewEvents()
             handleSearchBarEvent()
             handleModuleEvent()
+            handleMessageEvent()
             handleAdminEvent()
             handleCreateUserFormEvent()
         }

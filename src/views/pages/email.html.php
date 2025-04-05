@@ -11,6 +11,7 @@
                 name="email_title" 
                 id="email_title" 
                 placeholder="Email title" 
+                autocomplete="off"
                 required
             >
         </div>
@@ -35,25 +36,31 @@
         <div class="messages">
             <?php if (!empty($messages)): ?>
                 <?php foreach($messages as $message): ?>
-                    <div class="message">
-                        <div class="message_title">
-                            <h1>
-                                <?= htmlspecialchars($message['title']) ?>
-                            </h1>
-    
-                            <p class="message_status <?= htmlspecialchars($message['status']) ?>">
-                               &bull; <?= htmlspecialchars($message['status']) ?>
+                    <a href="<?= BASE_URL . 'message/' . $message['message_id'] ?>">
+                        <div class="message">
+                            <div class="message_title">
+                                <h1>
+                                    <?= 
+                                        htmlspecialchars(
+                                            truncateText($message['title'], 10)
+                                        ) 
+                                    ?>
+                                </h1>
+        
+                                <p class="message_status <?= htmlspecialchars($message['status']) ?>">
+                                   &bull; <?= htmlspecialchars($message['status']) ?>
+                                </p>
+                            </div>
+        
+                            <p class="message_date">
+                                <?=
+                                    htmlspecialchars(
+                                        dateFormat($message['sent_at'])
+                                    )
+                                ?>
                             </p>
                         </div>
-    
-                        <p class="message_date">
-                            <?=
-                                htmlspecialchars(
-                                    dateFormat($message['sent_at'])
-                                )
-                            ?>
-                        </p>
-                    </div>
+                    </a>
                 <?php endforeach; ?>
             <?php else: ?>
                 <p class="no_messages">You have no messages</p>

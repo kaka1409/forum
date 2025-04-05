@@ -47,7 +47,7 @@
                             
                             <div class="post_title">
                                 <h1>
-                                    <?= strlen(htmlspecialchars( $post['title'] )) > 45 ? substr(htmlspecialchars( $post['title'] ), 0, 45) . '...' : htmlspecialchars( $post['title'] ) ?>
+                                    <?= htmlspecialchars(truncateText($post['title'], 45)) ?>
                                 </h1>
                             </div>
                 
