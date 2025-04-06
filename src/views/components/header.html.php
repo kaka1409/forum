@@ -23,7 +23,7 @@
                 <a href="<?=BASE_URL?>login">Sign in</a>
             <?php endif; ?>
         </div>
-        <a href="<?=BASE_URL?>profile/<?= $_SESSION['account_id']?>">
+        <a href="<?=BASE_URL?>profile/<?= $_SESSION['account_id'] ?? 0?>">
             <div class="profile_avatar">
                 <?php if( isset($_SESSION['account_avatar']) ):?>
                     <img 

@@ -26,9 +26,6 @@ function modalAppear() {
 
 function handleWindowEvent() {
 
-    // get list content element
-    const listContent = selectElement('.admin_area .content')
-
     //  split url so we can get the list type
     const listURL = window.location.href.split('/').at(-1)
 
@@ -41,28 +38,6 @@ function handleWindowEvent() {
             // console.log(controlButton)
             controlButton.click()
         }, 50)
-
-        // switch (listType) {
-        //     case 'post': {
-        //         listContent.innerHTML = window.history.state
-        //         break
-        //     }
-    
-        //     case 'module': {
-        //         listContent.innerHTML = window.history.state
-        //         break
-        //     }
-    
-        //     case 'user': {
-        //         listContent.innerHTML = window.history.state
-        //         break
-        //     }
-    
-        //     case 'message': {
-        //         listContent.innerHTML = window.history.state
-        //         break
-        //     }
-        // }
     }
 }
 
@@ -79,6 +54,15 @@ function handleDOMEvent() {
                 }
             })
         }
+
+        const feedOptionPopup = selectElement('.feed_options')
+
+        if (feedOptionPopup) {
+            if (!feedOptionPopup.classList.contains('hidden')) {
+                feedOptionPopup.classList.add('hidden')
+            }
+        }
+
     }
 
     document.addEventListener('click', popupHidden)
@@ -127,6 +111,115 @@ function handleSidemenuEvent() {
         // event listeners
         collapseIcon.addEventListener('click', sidemenuCollapsed)
         newPostBtn.addEventListener('click', loginAuth)
+    }
+}
+
+function handleFeedSettingEvent() {
+    const feedSetting = selectElement('.feed_settings')
+    const feedOptions = selectElement('.feed_options')
+    
+    if (feedSetting) {
+        
+        const feedSettingClicked = (e) => {
+            e.preventDefault()
+            e.stopPropagation()
+
+            const options = feedOptions.querySelectorAll('.options .option')
+
+            // options anim config
+            let duration = 300
+            let delay = 50
+            
+            // toggle feed options
+            feedOptions.classList.toggle('hidden')
+            
+            if (feedOptions.classList.contains('hidden')) {
+
+                // hide feed options
+                feedOptions.style.visibility = 'hidden'
+
+                options.forEach(option => {
+                    duration += delay
+    
+                    // feed options animation
+                    option.animate(
+                        [
+                            {transform: 'translateX(0)'},
+                            {transform: 'translateX(-15em)'},
+                        ],
+                        
+                        {
+                            duration: duration,
+                            easing: 'ease-in-out'
+                        }
+                    )
+                })
+
+            } else {
+                
+                // make feed option visible
+                feedOptions.style.visibility = 'visible'
+
+                options.forEach(option => {
+                    duration += delay
+    
+                    // feed options animation
+                    option.animate(
+                        [
+                            {transform: 'translateX(-10em)'},
+                            {transform: 'translateX(0)'},
+                        ],
+                        
+                        {
+                            duration: duration,
+                            easing: 'ease-in-out'
+                        }
+                    )
+                })
+            }
+
+
+            
+        }
+
+        
+        feedSetting.addEventListener('click', feedSettingClicked)
+
+    }
+
+    if (feedOptions) {
+        const options = feedOptions.querySelectorAll('.options .option')
+
+        // // anim config
+        // let duration = 1000
+        // let delay = 100
+        
+        options.forEach(option => {
+            // duration += delay
+
+            // // feed options animation
+            // option.animate(
+            //     [
+            //         {transform: 'translateX(-10em)'},
+            //         {transform: 'translateX(0)'},
+            //     ],
+                
+            //     {
+            //         duration: duration,
+            //         easing: 'ease-in-out'
+            //     }
+            // )
+
+
+            const optionClicked = () => {
+
+                console.log(option.textContent)
+
+
+            }
+
+            option.addEventListener('click', optionClicked)
+        })
     }
 }
 
@@ -737,6 +830,7 @@ export {
     handleDOMEvent,
     handleSearchBarEvent,
     handleSidemenuEvent,
+    handleFeedSettingEvent,
     handlePostsEvents, 
     handlePostViewEvents,
     handleModuleEvent,

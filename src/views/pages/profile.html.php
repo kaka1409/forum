@@ -14,8 +14,8 @@
                         >
                     <?php endif; ?>
                 </div>
-                <div class="profile_role <?= formatRole()?>">
-                    <?= formatRole() ?>
+                <div class="profile_role <?= formatRole($account['role_id'])?>">
+                    <?= formatRole($account['role_id']) ?>
                 </div>
             </div>
                 

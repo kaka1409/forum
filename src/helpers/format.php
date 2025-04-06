@@ -30,8 +30,8 @@ function truncateText($text, $limit) {
     return strlen($text) > $limit ? substr($text, 0, $limit) . '...' : $text;
 }
 
-function formatRole() {
-    return $_SESSION['role_id'] === '1' ? 'student' : 'admin';
+function formatRole($role_id) {
+    return intval($role_id) === 1 ? 'student' : 'admin';
 }
 
 ?>

@@ -260,7 +260,7 @@ const handleAdminControl = async (listType) => {
                         listContent.innerHTML = title + list.outerHTML
                         
                         // update history url and store list content state
-                        window.history.pushState(listContent.innerHTML, '', baseURL + endPoint + '_list')
+                        window.history.pushState(null, '', baseURL + endPoint + '_list')
                         break;
                     }
                     
@@ -321,7 +321,7 @@ const handleAdminControl = async (listType) => {
                         listContent.innerHTML = title + list.outerHTML
                         
                         // update history url and store list content state
-                        window.history.pushState(listContent.innerHTML, '', baseURL + endPoint + '_list')
+                        window.history.pushState(null, '', baseURL + endPoint + '_list')
                         break;
                     }
                     
@@ -393,7 +393,7 @@ const handleAdminControl = async (listType) => {
                         listContent.innerHTML = title + list.outerHTML
                         
                         // update history url and store list content state
-                        window.history.pushState(listContent.innerHTML, '', baseURL + endPoint + '_list')
+                        window.history.pushState(null, '', baseURL + endPoint + '_list')
                         break;
                     }
                     
@@ -444,7 +444,7 @@ const handleAdminControl = async (listType) => {
                         listContent.innerHTML = title + list.outerHTML
                         
                         // update history url and store list content state
-                        window.history.pushState(listContent.innerHTML, '', baseURL + endPoint + '_list')
+                        window.history.pushState(null, '', baseURL + endPoint + '_list')
                         break;
                     }
                     

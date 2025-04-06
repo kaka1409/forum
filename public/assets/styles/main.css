@@ -244,6 +244,7 @@ header {
 
 /* Main content */
 .feed_settings {
+    position: relative;
     padding: 1em;
     border-radius: 20px;
     width: 9em;
@@ -253,11 +254,12 @@ header {
     color: var(--secondary-font-color);
     background-color: var(--secondary-color);
     cursor: pointer;
-    opacity: 0.7;
+    /* opacity: 0.7; */
     transition: all 0.2s ease-in-out;
+    z-index: 1;
 }
 
-.feed_settings:hover {
+.feed_settings .feed_text:hover {
     color: #fff;
     opacity: 1;
 }
@@ -266,10 +268,59 @@ header {
     display: flex;
     align-items: center;
     gap: 0.75em;
+    transition: all 0.2s ease-in-out;
 }
 
 .feed_settings .feed_text p {
     text-align: center;
+}
+
+.feed_settings .feed_options {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 12em;
+    width: 20em;
+    height: 3em;
+    background-color: #fff;
+    border-radius: 20px;
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+    z-index: 2;
+    background-color: var(--secondary-color);
+}
+
+.feed_options.hidden {
+    opacity: 0;
+}
+
+.feed_options .options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+    overflow: hidden;
+}
+
+.feed_options .options .option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 0.5em;
+    /* border: none; */
+    transition: all 0.25s ease-in-out;
+}
+
+.feed_options .options .option.selected {
+    
+}
+
+.feed_options .options .option:hover {
+    color: #fff;
+    background-color: #251B32;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
 }
 
 .posts_container {
@@ -993,6 +1044,34 @@ header {
     border: 1px solid var(--border-color);
     color: var(--secondary-font-color);
 }
+
+.profile_display_container .logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0.5em 0.75em;
+    margin: 0 auto;
+    margin-top: 2em;
+    width: 5em;
+    height: 1.5em;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 10px;
+    color: #000;
+    background-color: #E04337;
+    cursor: pointer;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.logout a {
+    color: #000;
+}
+
+.profile_display_container .logout:hover {
+    opacity: 0.7;
+}
+
 
 /* Profile view */
 

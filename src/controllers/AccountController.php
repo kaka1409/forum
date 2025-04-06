@@ -66,15 +66,17 @@ class AccountController {
         $uri_array = explode('/', $_SERVER['REQUEST_URI']);
         $account_id = end($uri_array);
 
-        $account = Account::getAccountById($db, $account_id) ?? null;
+        $account = Account::getAccountById($db, $account_id);
 
-        if ($account === null) {
+        // sendJson(['data' => $account]);
+
+        if (!$account) {
             header('Location: ' . BASE_URL . 'home');
             exit;
         }
 
         $view = ViewController::getInstance();
-        $view->set('title', 'Profile of');
+        $view->set('title', 'Viewing ' . $account['account_name'] . ' profile');
         $view->set('disable_scroll', true);
         $view->set('account', $account);
         $view->render('profile');
