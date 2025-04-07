@@ -24,30 +24,27 @@ class HomeController {
                 $post['is_bookmarked'] = 0;
             } 
         }
-
-
-        // new feed setting
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
-            // feed setting type
-            $data = file_get_contents('php://input');
-            $setting = json_decode($data, true)['feedSetting'] ?? 'new'; // feed setting 'new' is default
-        } else {
-            $setting = 'new';
-        }
-
-        echo $setting;
+ 
+        // Get feed setting from URL parameter or use default
+        $setting = $_GET['feed'] ?? 'new';
 
         switch($setting) {
             case 'new': 
-
+                // Sort by newest first (default)
+                usort($posts, function($a, $b) {
+                    return strtotime($b['post_at']) - strtotime($a['post_at']);
+                });
                 break;
 
             case 'old': 
-
+                // Sort by oldest first
+                usort($posts, function($a, $b) {
+                    return strtotime($a['post_at']) - strtotime($b['post_at']);
+                });
                 break;
 
             case 'top': 
-                // sorting post (get top post)
+                // sorting post using bubble sort (get top post)
                 $length = count($posts);
         
                 if ($length > 1) {
@@ -66,15 +63,12 @@ class HomeController {
                             }
                         }
                     }
-
-                    $view->set('posts', $posts);
                 }
-
 
                 break;
 
             case 'bottom': 
-                // sorting post (get top post)
+                // sorting post (get bottom post)
                 $length = count($posts);
         
                 if ($length > 1) {
@@ -93,8 +87,6 @@ class HomeController {
                             }
                         }
                     }
-
-                    $view->set('posts', $posts);
                 }
 
                 break;
@@ -103,6 +95,8 @@ class HomeController {
                 echo 'No setting choose';
         }
 
+        // Set the sorted posts in the view
+        $view->set('posts', $posts);
         $view->render('home');
     }
 

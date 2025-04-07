@@ -4,8 +4,7 @@ import {
     handleVote,
     handleComment,
     handleBookmark,
-    handleAdminControl,
-    handleFeedOption
+    handleAdminControl
 } from "./async.js"
 
 
@@ -272,57 +271,33 @@ function handleFeedSettingEvent() {
 
     if (feedOptions) {
         const options = feedOptions.querySelectorAll('.options .option')
-        // const selectedOption = selectElement('.options .selected')
 
+        const urlParams = new URLSearchParams(window.location.search)
+        const localSetting = localStorage.getItem('feedSetting')
+        if (localSetting) {
+            window.history.pushState(null, '', `${baseURL}home?feed=${localSetting}`)
+            // window.location.reload()
+        }
 
-        // get choosen feed option in local storerage
-        const setting = localStorage.getItem('feedSetting')
+        const setting = localSetting || urlParams.get('feed') || 'new'
 
-        options.forEach( async (option) => {
+        options.forEach( (option) => {
+            const optionText = option.textContent.split(' ')[1] || option.textContent
 
-            // apply the stored feed setting in local storage
-            if (setting && option.textContent === setting) {
-                
-                const selectedOption = selectElement('.options .selected')      
-                if (selectedOption !== option) {
-                    // remove the previous active
-                    selectedOption.classList.remove('selected')
-                    selectedOption.textContent = selectedOption.textContent.split(' ')[1]
-                    
-                    option.classList.add('selected')
-                    await handleFeedOption(option.textContent.split(' ')[1])
-                }
-            }
-
-            // selected option will have a check emoji
-            if (option.classList.contains('selected')) {
+            if (setting === optionText) {
+                option.classList.add('selected')
                 option.textContent = '✔ ' + option.textContent
+            } else {
+                option.classList.remove('selected')
             }
 
-            const optionClicked = async () => {
-
-                if (!option.classList.contains('selected')) {
-
-                    // remove the previous active
-                    const selectedOption = selectElement('.options .selected')
-                    selectedOption.classList.remove('selected')
-                    selectedOption.textContent = selectedOption.textContent.split(' ')[1]
-
-                    // add selected class to the choosen option
-                    option.classList.add('selected')
-                    option.textContent = '✔ ' + option.textContent
-                } 
-
-                await handleFeedOption(option.textContent.split(' ')[1])
+            const optionClicked = () => {
 
                 // save setting to local storerage
-                localStorage.setItem('feedSetting', option.textContent.split(' ')[1])
+                localStorage.setItem('feedSetting', optionText)
 
-                // reload page
-                // setTimeout(() => {
-                //     location.reload()
-                // }, 200)
-
+                // redirect 
+                window.location.href = `${baseURL}home?feed=${optionText}`
 
             }
 

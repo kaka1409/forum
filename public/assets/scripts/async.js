@@ -465,32 +465,9 @@ const handleAdminControl = async (listType) => {
     }
 }
 
-const handleFeedOption = async (option) => {
-    const endPoint = 'home'
-
-    try {
-        
-        const response = await fetch(baseURL + endPoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                feedSetting: option
-            })
-
-        })
-
-
-    } catch (error) {
-        console.error(error)
-    }
-}
-
 export {
     handleVote,
     handleComment,
     handleBookmark,
     handleAdminControl,
-    handleFeedOption
 }
