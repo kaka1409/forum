@@ -4,7 +4,8 @@ import {
     handleVote,
     handleComment,
     handleBookmark,
-    handleAdminControl 
+    handleAdminControl,
+    handleFeedOption
 } from "./async.js"
 
 
@@ -73,18 +74,103 @@ function handleSearchBarEvent() {
     const searchBar = selectElement('.search_bar')
 
     if (searchBar) {
-        const searchInput = searchBar.querySelector('#search_input')
 
+        // search input
+        const searchInput = searchBar.querySelector('#search_input')
+        
+        // search options
+        const searchOption = searchBar.querySelector('.search_option')
+        const fontStyle = window.getComputedStyle(searchInput).font;
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        context.font = fontStyle
+
+        // reset search input
+        const resetSearchIcon = searchBar.querySelector('.reset_search')
+    
+
+        // event functions
         const searchInputFocus = () => {
             searchBar.style.border = '0.5px solid #d78adb'
+
+            searchOption.style.visibility = 'visible'
+            resetSearchIcon.style.visibility = 'visible'
         }
 
         const searchInputNoFocus = () => {
             searchBar.style.border = 'none'
+
+            searchOption.style.visibility = 'hidden'
+            resetSearchIcon.style.visibility = 'hidden'
         }
 
+
+        const searchInputChange = () => {
+            const textWidth = context.measureText(searchInput.value).width
+
+            if (parseInt(textWidth) <= (searchInput.parentElement.clientWidth - 50)) {
+                searchOption.style.left = 60 + textWidth + 'px'
+            }
+
+        }
+
+        const postSearch = 'search post'
+        const userSearch = 'search user'
+        const optionClicked = (e) => {
+            e.preventDefault()
+            e.stopPropagation()
+
+            searchOption.animate(
+                [
+                    {
+                        transform: 'scale(1)',
+                        opacity: 1
+                    },
+
+                    {
+                        transform: 'scale(0.7)',
+                        opacity: 0.2
+                    },
+
+                    {
+                        transform: 'scale(1)',
+                        opacity: 1
+                    },
+                ],
+
+                {
+                    duration: 300,
+                    easing: 'ease-in'
+                }
+            )
+
+            searchOption.textContent  = searchOption.textContent.replace(/^\s+|\s+$/g, "") === postSearch ? userSearch : postSearch
+
+        }
+
+        const resetIconClicked = (e) => {
+            e.preventDefault()
+            e.stopPropagation()
+
+            searchInput.value = ''
+            searchInput
+            searchOption.style.left = '60px'
+        }
+
+        // event listeners
+
+        // search input
         searchInput.addEventListener('focus', searchInputFocus)
         searchInput.addEventListener('blur', searchInputNoFocus)
+        searchInput.addEventListener('input', searchInputChange)
+
+        // search option
+        searchOption.addEventListener('mousedown', optionClicked)
+
+        // reset search icon
+        resetSearchIcon.addEventListener('mousedown', resetIconClicked)
+
+
     }
 }
 
@@ -119,16 +205,15 @@ function handleFeedSettingEvent() {
     const feedOptions = selectElement('.feed_options')
     
     if (feedSetting) {
+        const options = feedOptions.querySelectorAll('.options .option')
         
         const feedSettingClicked = (e) => {
             e.preventDefault()
             e.stopPropagation()
 
-            const options = feedOptions.querySelectorAll('.options .option')
-
             // options anim config
-            let duration = 300
-            let delay = 50
+            let duration = 200
+            let delay = 100
             
             // toggle feed options
             feedOptions.classList.toggle('hidden')
@@ -153,6 +238,7 @@ function handleFeedSettingEvent() {
                             easing: 'ease-in-out'
                         }
                     )
+
                 })
 
             } else {
@@ -177,9 +263,6 @@ function handleFeedSettingEvent() {
                     )
                 })
             }
-
-
-            
         }
 
         
@@ -189,31 +272,56 @@ function handleFeedSettingEvent() {
 
     if (feedOptions) {
         const options = feedOptions.querySelectorAll('.options .option')
+        // const selectedOption = selectElement('.options .selected')
 
-        // // anim config
-        // let duration = 1000
-        // let delay = 100
-        
-        options.forEach(option => {
-            // duration += delay
 
-            // // feed options animation
-            // option.animate(
-            //     [
-            //         {transform: 'translateX(-10em)'},
-            //         {transform: 'translateX(0)'},
-            //     ],
+        // get choosen feed option in local storerage
+        const setting = localStorage.getItem('feedSetting')
+
+        options.forEach( async (option) => {
+
+            // apply the stored feed setting in local storage
+            if (setting && option.textContent === setting) {
                 
-            //     {
-            //         duration: duration,
-            //         easing: 'ease-in-out'
-            //     }
-            // )
+                const selectedOption = selectElement('.options .selected')      
+                if (selectedOption !== option) {
+                    // remove the previous active
+                    selectedOption.classList.remove('selected')
+                    selectedOption.textContent = selectedOption.textContent.split(' ')[1]
+                    
+                    option.classList.add('selected')
+                    await handleFeedOption(option.textContent.split(' ')[1])
+                }
+            }
 
+            // selected option will have a check emoji
+            if (option.classList.contains('selected')) {
+                option.textContent = '✔ ' + option.textContent
+            }
 
-            const optionClicked = () => {
+            const optionClicked = async () => {
 
-                console.log(option.textContent)
+                if (!option.classList.contains('selected')) {
+
+                    // remove the previous active
+                    const selectedOption = selectElement('.options .selected')
+                    selectedOption.classList.remove('selected')
+                    selectedOption.textContent = selectedOption.textContent.split(' ')[1]
+
+                    // add selected class to the choosen option
+                    option.classList.add('selected')
+                    option.textContent = '✔ ' + option.textContent
+                } 
+
+                await handleFeedOption(option.textContent.split(' ')[1])
+
+                // save setting to local storerage
+                localStorage.setItem('feedSetting', option.textContent.split(' ')[1])
+
+                // reload page
+                // setTimeout(() => {
+                //     location.reload()
+                // }, 200)
 
 
             }
@@ -712,6 +820,8 @@ function handleModuleEvent() {
 
 function handleMessageEvent() {
     const messages = selectElement('.message')
+    if (messages === undefined) return
+    if (!Array.isArray(messages)) messages = new Array(messages)
 
     if (messages) {
 

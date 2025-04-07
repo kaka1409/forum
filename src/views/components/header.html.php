@@ -7,10 +7,19 @@
     </a>
 
     <div class="search_bar">
-        <div class="search_icon">
-            <img src="<?=BASE_URL?>assets/icons/search_icon.png" alt="">
+        <div class="search_input_container">
+            <div class="search_icon">
+                <img src="<?=BASE_URL?>assets/icons/search_icon.png" alt="">
+            </div>
+            <input id="search_input" type="text" placeholder="Search posts or users">
         </div>
-        <input id="search_input" type="text" placeholder="Search posts or users">
+        <div class="search_option">
+            search post
+        </div>
+
+        <div class="reset_search">
+            x
+        </div>
     </div>
 
     <div class="theme_switcher"></div>

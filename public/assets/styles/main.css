@@ -68,13 +68,22 @@ header {
 
 /* Search bar */
 .search_bar {
+    position: relative;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: var(--secondary-color);
     border-radius: 1rem;
     width: 30em;
     padding: 0.5rem;
     margin-left: 12rem;
+}
+
+.search_bar .search_input_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 75%;
 }
 
 .search_icon {
@@ -90,6 +99,7 @@ header {
     font-family: var(--secondary-font);
     color: var(--secondary-font-color);
     font-size: 1.2rem;
+    width: 100%;
 }
 
 #search_input::placeholder {
@@ -99,6 +109,39 @@ header {
     font-weight: bolder;
     color: var(--secondary-font-color);
 }
+
+.search_bar .search_option {
+    position: absolute;
+    left: 5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8em;
+    height: 3.5em;
+    border-radius: 8px;
+    font-size: 0.7em;
+    background-color: #643281;
+    opacity: 0.8;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+.search_bar .reset_search {
+    margin-right: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1em;
+    height: 1em;
+    background-color: var(--secondary-font-color);
+    border-radius: 20em;
+    color: #000;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    visibility: hidden;
+}
+
 /* Search bar */
 
 /* Profile */
@@ -313,7 +356,10 @@ header {
 }
 
 .feed_options .options .option.selected {
-    
+    color: #fff;
+    background-color: #251B32;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
 }
 
 .feed_options .options .option:hover {
@@ -2019,7 +2065,6 @@ header {
 }
 
 /* Modal */
-
 
 /* Scroll bar */
 ::-webkit-scrollbar {

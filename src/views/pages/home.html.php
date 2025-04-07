@@ -17,10 +17,10 @@
         <div class="feed_options hidden">
             <ul class="options">
                 <!-- <li class="option">hot</li> -->
+                <li class="option selected">new</li>
+                <li class="option">old</li>
                 <li class="option">top</li>
                 <li class="option">bottom</li>
-                <li class="option">new</li>
-                <li class="option">old</li>
             </ul>
         </div>
     </div>

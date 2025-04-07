@@ -16,6 +16,7 @@ class Router {
         // Home page
         $this->addRoute('GET', '', 'HomeController', 'index');
         $this->addRoute('GET', 'home', 'HomeController', 'index');
+        $this->addRoute('POST', 'home', 'HomeController', 'index');
 
         // Create post form 
         $this->addRoute('GET', 'post/create', 'PostController', 'createForm');

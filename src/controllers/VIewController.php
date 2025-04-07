@@ -30,7 +30,6 @@ class ViewController {
         require_once APP_ROOT . "/views/pages/{$page_name}.html.php";
         $content = ob_get_clean();
 
-        // ob_start();
         require_once APP_ROOT . "/views/layouts/{$this->layout}.html.php";
         return $content;
     }
