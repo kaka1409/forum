@@ -1,4 +1,41 @@
 import { selectElement } from "./helpers.js";
+
+function Validator(formSelector) {
+
+    const form = selectElement(formSelector)
+
+    // console.log(form)
+
+    if (form) {
+        let isValid = true
+
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault()
+
+            if (isValid) {
+                try {
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        body: new URLSearchParams({
+                            submit: 'submit'
+                        })
+                    })
+
+                    console.log(await response.text())
+
+                } catch (error) {
+                    console.error(error)
+                }
+            } else {
+                console.log('not valid')
+            }
+
+        })
+
+    }
+}
+
 function loginFormValidator() {
 
 }
@@ -6,6 +43,8 @@ function loginFormValidator() {
 function registerFormValidator() {
 
 }
+
+
 
 function createPostFormValidator() {
     const form = selectElement('#create_post_form')
@@ -104,10 +143,14 @@ function messageFormValidator() {
 }
 
 
+function createUserFormValidator() {
+    Validator('#create_user_form form')
+}
+
 export {
     loginFormValidator,
     registerFormValidator,
     createPostFormValidator, 
-    messageFormValidator
-
+    messageFormValidator,
+    createUserFormValidator
 }

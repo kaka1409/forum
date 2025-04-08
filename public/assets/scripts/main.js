@@ -7,7 +7,7 @@ import {
 
 import {
     loginFormValidator, registerFormValidator, createPostFormValidator,
-    messageFormValidator
+    messageFormValidator, createUserFormValidator
 } from './validators.js'
 
 const app = {
@@ -41,6 +41,7 @@ const app = {
             registerFormValidator()
             createPostFormValidator()
             messageFormValidator()
+            createUserFormValidator()
         }
     }
 }

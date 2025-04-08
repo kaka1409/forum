@@ -191,11 +191,13 @@ class AdminController {
 
         $module = Module::getModuleById($db, $module_id) ?? false;
 
-        $view = ViewController::getInstance();
-        $view->set('title', 'Editing a module');
-        $view->set('disable_scroll', true);
-        $view->set('module', $module);
-        $view->render('adminModuleEditForm');
+        if ($module) {
+            $view = ViewController::getInstance();
+            $view->set('title', 'Editing a module');
+            $view->set('disable_scroll', true);
+            $view->set('module', $module);
+            $view->render('adminModuleEditForm');
+        }
     }
 
     public function editModule() {

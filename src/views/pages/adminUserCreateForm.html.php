@@ -1,7 +1,7 @@
 <?= ViewController::useComponent('backButton')?>
 
 <section id="create_user_form">
-    <form action="<?= BASE_URL ?>admin/user/create" method="POST">
+    <form action="" method="POST">
         <h1 class="title">Create a new user account</h1>
 
         <label for="role">Role: </label>
@@ -47,7 +47,7 @@
                             name="account_name" 
                             placeholder="username"
                             autocomplete="off"
-                            required
+                            
                         >
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                             name="email" 
                             placeholder="email"
                             autocomplete="off"
-                            required
+                            
                         >
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                 name="password" 
                 placeholder="password"
                 autocomplete="off"
-                required
+                
             >
         </div>
 
@@ -86,7 +86,7 @@
                 name="confirm_password" 
                 placeholder="Confirm password"
                 autocomplete="off"
-                required
+                
             >
         </div>
 
