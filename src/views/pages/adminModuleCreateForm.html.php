@@ -2,7 +2,9 @@
 
 <section id="create_module_form">
     <form action="<?= BASE_URL ?>admin/module/create" method="POST">
+        <h1 class="title">Create a module</h1>
         
+        <label for="module_name">Name: </label>
         <div class="form_group module_name">
             <input 
                 type="text" 
@@ -13,6 +15,7 @@
             >
         </div>
 
+        <label for="module_name">Teacher: </label>
         <div class="form_group module_teacher">
             <input 
                 type="text"
@@ -23,6 +26,7 @@
             >
         </div>
 
+        <label for="module_name">Description: </label>
         <div class="form_group module_description">
             <textarea 
                 name="description" 

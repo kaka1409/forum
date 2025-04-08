@@ -179,6 +179,7 @@ class PostController {
             } 
         }
 
+        $posts = FeedController::setPostFeed($posts);
 
         $view = ViewController::getInstance();
         $view->set('title', 'Bookmarks');

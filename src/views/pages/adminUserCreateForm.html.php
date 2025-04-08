@@ -2,7 +2,15 @@
 
 <section id="create_user_form">
     <form action="<?= BASE_URL ?>admin/user/create" method="POST">
+        <h1 class="title">Create a new user account</h1>
 
+        <label for="role">Role: </label>
+        <div class="form_group role">
+            <select name="role">
+                <option value="1">Student</option>
+                <option value="2">Admin</option>
+            </select>
+        </div>
 
         <div class="form_head">
             <div class="avatar_container">
@@ -31,35 +39,36 @@
             </div>
 
             <div class="user_details">
-                <div class="form_group role">
-                    <select name="role">
-                        <option value="1">Student</option>
-                        <option value="2">Admin</option>
-                    </select>
+                <div class="username_container">
+                    <label for="account_name">Username: </label>
+                    <div class="form_group username">
+                        <input 
+                            type="text" 
+                            name="account_name" 
+                            placeholder="username"
+                            autocomplete="off"
+                            required
+                        >
+                    </div>
+                </div>
+            
+                <div class="email_container">
+                    <label for="email">Email: </label>
+                    <div class="form_group email">
+                        <input 
+                            type="text" 
+                            name="email" 
+                            placeholder="email"
+                            autocomplete="off"
+                            required
+                        >
+                    </div>
                 </div>
 
-                <div class="form_group username">
-                    <input 
-                        type="text" 
-                        name="account_name" 
-                        placeholder="username"
-                        autocomplete="off"
-                        required
-                    >
-                </div>
-        
-                <div class="form_group email">
-                    <input 
-                        type="text" 
-                        name="email" 
-                        placeholder="email"
-                        autocomplete="off"
-                        required
-                    >
-                </div>
             </div>
         </div>
- 
+
+        <label for="password">Password: </label>
         <div class="form_group password">
             <input 
                 type="password" 
@@ -70,6 +79,7 @@
             >
         </div>
 
+        <label for="confirm_password">Confirm password: </label>
         <div class="form_group confirm_password">
             <input 
                 type="password" 

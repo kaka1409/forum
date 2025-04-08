@@ -3,6 +3,8 @@
 
 <section class="post_form" style="overflow-y: hidden;">
     <form action="" method="POST">
+        <h1 class="title">Edit post</h1>
+
         <input type="hidden" name="csrf_token" value="<?= $csrf_token ?? null ?>">
 
         <!-- module selection -->

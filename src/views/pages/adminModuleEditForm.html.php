@@ -2,7 +2,10 @@
 
 <section id="edit_module_form">
     <form action="<?= BASE_URL ?>admin/module/edit/<?= $module['module_id'] ?>" method="POST">
+        <h1 class="title">Edit a module</h1>
         
+    
+        <label for="module_name">Name: </label>
         <div class="form_group module_name">
             <input 
                 type="text" 
@@ -13,7 +16,8 @@
                 value="<?= $module['module_name']?>"
             >
         </div>
-
+        
+        <label for="module_name">Teacher: </label>
         <div class="form_group module_teacher">
             <input 
                 type="text"
@@ -24,7 +28,8 @@
                 value="<?= $module['teacher']?>"
             >
         </div>
-
+        
+        <label for="module_name">Description: </label>
         <div class="form_group module_description">
             <textarea 
                 name="description" 
