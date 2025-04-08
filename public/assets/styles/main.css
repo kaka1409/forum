@@ -2021,6 +2021,21 @@ form .title {
 
 /* Admin area */
 
+/* Form validate message */
+.error_message {
+    display: block;
+    margin-top: -2em;
+    height: 2em;
+    padding-left: 0.2em;
+    font-size: 0.8em;
+    color: #E04337;
+}
+
+.error {
+    border: 1px solid #E04337;
+}
+
+/* Form validate message */
 
 /* Main content */
 /* Main area */

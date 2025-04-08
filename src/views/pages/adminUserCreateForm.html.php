@@ -47,9 +47,10 @@
                             name="account_name" 
                             placeholder="username"
                             autocomplete="off"
-                            
+                            rules="required|max:25"
                         >
                     </div>
+                    <span class="error_message"></span>
                 </div>
             
                 <div class="email_container">
@@ -60,9 +61,10 @@
                             name="email" 
                             placeholder="email"
                             autocomplete="off"
-                            
+                            rules="required|email"
                         >
                     </div>
+                    <span class="error_message"></span>
                 </div>
 
             </div>
@@ -75,9 +77,10 @@
                 name="password" 
                 placeholder="password"
                 autocomplete="off"
-                
+                rules="required|min:6|match"      
             >
         </div>
+        <span class="error_message"></span>
 
         <label for="confirm_password">Confirm password: </label>
         <div class="form_group confirm_password">
@@ -86,9 +89,11 @@
                 name="confirm_password" 
                 placeholder="Confirm password"
                 autocomplete="off"
-                
+                rules="required|min:6|match"   
             >
         </div>
+        <span class="error_message"></span>
+
 
         <input 
             type="submit" 

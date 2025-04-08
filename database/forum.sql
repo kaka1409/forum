@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2025 at 09:56 AM
+-- Generation Time: Apr 08, 2025 at 06:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,8 +44,28 @@ CREATE TABLE `account` (
 INSERT INTO `account` (`account_id`, `role_id`, `account_name`, `account_avatar`, `password_hash`, `email`, `create_at`) VALUES
 (1, 1, 'kaka1409', 'uploads/account/kaka1409.png', 'test', 'testEmail@gmail.com', '2025-03-16 05:06:49'),
 (7, 1, 'test user', 'uploads/account/default.jpg', '$2y$10$j37XG4wZOUJslK3dH1IM7uQv4BOGfa5RK6H7l3t88lNlgQo.CI5Fq', 'test@gmail.com', '2025-03-20 04:54:40'),
-(8, 1, 'kk1409', 'uploads/account/default.jpg', '$2y$10$nVSapmddlfUCX344CJumde9w/qL1aiCGvLrw1MSkjEyDRoVmbLsfO', 'bruh@gmail.com', '2025-03-20 04:58:36'),
+(8, 2, 'kk1409', 'uploads/account/default.jpg', '$2y$10$nVSapmddlfUCX344CJumde9w/qL1aiCGvLrw1MSkjEyDRoVmbLsfO', 'bruh@gmail.com', '2025-03-20 04:58:36'),
 (10, 1, 'new user', 'uploads/account/default.jpg', '$2y$10$S8y9wx2ADVjKz/gT7rVllO2jsnxNKbYTcJ3S9qZ3eDCIlhzfN1Tju', 'new@gmail.com', '2025-03-21 06:10:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookmarked`
+--
+
+CREATE TABLE `bookmarked` (
+  `account_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bookmarked`
+--
+
+INSERT INTO `bookmarked` (`account_id`, `post_id`) VALUES
+(10, 2),
+(8, 13),
+(8, 2);
 
 -- --------------------------------------------------------
 
@@ -70,15 +90,29 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`comment_id`, `account_id`, `post_id`, `parent_comment_id`, `content`, `updated_at`, `commented_at`, `vote`, `depth_level`) VALUES
-(1, 10, 1, NULL, 'yay', '2025-03-29 02:03:28', '2025-03-29 02:03:28', 0, 0),
-(2, 10, 1, NULL, 'asd', '2025-03-29 02:03:42', '2025-03-29 02:03:42', 0, 0),
-(5, 10, 1, NULL, 'test', '2025-03-29 05:49:16', '2025-03-29 05:49:16', 0, 0),
-(6, 10, 1, NULL, 'toi bi ngu', '2025-03-29 05:50:19', '2025-03-29 05:50:19', 0, 0),
-(7, 10, 1, NULL, 'toi het bi ngu roi', '2025-03-29 06:08:09', '2025-03-29 06:08:09', 0, 0),
 (8, 8, 2, NULL, 'Nah I\'m cooked', '2025-03-29 07:26:50', '2025-03-29 07:26:50', 0, 0),
 (9, 8, 2, NULL, 'oooooooohhh', '2025-03-29 07:30:31', '2025-03-29 07:30:31', 0, 0),
 (10, 8, 2, NULL, 'dsnfdfnsdfsdlfknaklflkdflkaslflkasdlk klas dklaslkdj alksdlk asflksndkl fneksfn skdnfk nsdkfn sdnkfskjdfn jksdnfjk sndjk sdf', '2025-03-29 07:31:14', '2025-03-29 07:31:14', 0, 0),
-(11, 8, 12, NULL, 'congrat on your first post', '2025-03-29 07:36:40', '2025-03-29 07:36:40', 0, 0);
+(11, 8, 12, NULL, 'congrat on your first post', '2025-03-29 07:36:40', '2025-03-29 07:36:40', 0, 0),
+(12, 8, 13, NULL, 'never cook again', '2025-04-01 10:10:37', '2025-04-01 10:10:37', 0, 0),
+(13, 8, 16, NULL, 'haha', '2025-04-01 10:11:17', '2025-04-01 10:11:17', 0, 0),
+(14, 8, 13, NULL, 'no wayyas', '2025-04-03 08:18:28', '2025-04-03 08:18:28', 0, 0),
+(15, 8, 13, NULL, 'huh', '2025-04-03 08:18:43', '2025-04-03 08:18:43', 0, 0),
+(16, 8, 13, NULL, 'hehehehe', '2025-04-03 08:20:16', '2025-04-03 08:20:16', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs`
+--
+
+CREATE TABLE `logs` (
+  `admin_id` int(11) NOT NULL,
+  `action` enum('create','update','delete') DEFAULT NULL,
+  `post_id` int(11) NOT NULL,
+  `module_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -101,8 +135,9 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`message_id`, `account_id`, `title`, `content`, `updated_at`, `sent_at`, `status`) VALUES
-(1, 10, 'test email', 'yayaay', '2025-03-25 17:20:01', '2025-03-25 17:20:01', 'unread'),
-(2, 10, 'message 2', 'wowow', '2025-03-25 17:27:43', '2025-03-25 17:27:43', 'unread');
+(1, 10, 'test email', 'yayaay', '2025-04-04 08:17:57', '2025-03-25 17:20:01', 'read'),
+(2, 10, 'message 2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita impedit inventore consequatur, amet ratione molestias dolorem ad incidunt provident. Veritatis aliquid tempora aliquam in maxime ab obcaecati sequi, optio unde?', '2025-04-05 14:29:06', '2025-03-25 17:27:43', 'read'),
+(3, 8, '---', '---', '2025-04-04 09:29:43', '2025-04-04 08:48:25', 'deleted');
 
 -- --------------------------------------------------------
 
@@ -122,9 +157,10 @@ CREATE TABLE `module` (
 --
 
 INSERT INTO `module` (`module_id`, `module_name`, `teacher`, `description`) VALUES
-(1, 'Test module', 'random teacher', 'test module discription'),
+(1, 'Test module updated', 'random teacher', 'test module discription'),
 (2, 'Web Progarmming', 'Mr Tra', 'Learn web development concepts'),
-(3, 'Data Science', 'Pro. David', 'Data is gold, and data science is the best field in CompSci change my mind');
+(3, 'Data Science', 'Pro. David', 'Data is gold, and data science is the best field in CompSci change my mind'),
+(4, 'IOT', 'Mr Charles', 'Working around with IOT ecosystem');
 
 -- --------------------------------------------------------
 
@@ -150,14 +186,13 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`post_id`, `account_id`, `module_id`, `title`, `content`, `post_at`, `updated_at`, `vote`, `comments_count`, `thumbnail_url`) VALUES
-(1, 1, 1, 'test post updated 3', 'lorem isuapum yeah', '2025-03-16 05:08:41', '2025-03-29 07:34:26', 2, 5, 'uploads/1.webp'),
-(2, 1, 2, 'test post number oishdfshiodfu', 'lorem isuapum of post number 2', '2025-03-16 05:11:20', '2025-03-29 08:53:48', 2, 3, 'uploads/2.jpg'),
-(4, 1, 1, 'post number 3', 'lorem isuapum of post number 3', '2025-03-16 05:11:56', '2025-03-25 15:54:11', -1, 0, 'uploads/3.webp'),
-(12, 8, 3, 'new post yeah', 'oh baby oh bay oh baby', '2025-03-20 08:56:49', '2025-03-29 07:37:51', 1, 1, 'uploads/'),
-(13, 8, 1, 'yeah baby', 'oy hm good', '2025-03-21 04:27:54', '2025-03-26 04:33:54', -1, 0, 'uploads/'),
+(2, 1, 2, 'test post number oishdfshiodfu', 'lorem isuapum of post number 2', '2025-03-16 05:11:20', '2025-04-03 04:08:43', 2, 3, 'uploads/2.jpg'),
+(4, 1, 1, 'post number 3', 'lorem isuapum of post number 3', '2025-03-16 05:11:56', '2025-04-05 14:29:46', -2, 0, 'uploads/3.webp'),
+(12, 8, 3, 'new post yeah', 'oh baby oh bay oh baby', '2025-03-20 08:56:49', '2025-04-03 04:57:21', 2, 1, 'uploads/'),
+(13, 8, 1, 'yeah baby', 'oy hm good', '2025-03-21 04:27:54', '2025-04-06 14:59:38', 0, 4, 'uploads/'),
 (14, 10, 1, 'my first post ever', 'yayayayayaaayaa', '2025-03-22 16:09:17', '2025-03-25 15:16:49', 2, 0, 'uploads/4.webp'),
-(15, 10, 2, 'yeah yeah', 'a', '2025-03-23 10:22:23', '2025-03-29 05:54:46', 1, 0, 'uploads/4.webp'),
-(16, 10, 1, 'my lastest post IG', 'uspen nivka', '2025-03-25 17:25:50', '2025-03-28 05:47:11', 1, 0, 'uploads/');
+(15, 10, 2, 'yeah yeah', 'a', '2025-03-23 10:22:23', '2025-04-04 07:42:07', 2, 0, 'uploads/4.webp'),
+(16, 10, 1, 'my lastest post IG', 'uspen nivka', '2025-03-25 17:25:50', '2025-04-06 15:09:09', 1, 1, 'uploads/');
 
 -- --------------------------------------------------------
 
@@ -206,10 +241,12 @@ INSERT INTO `vote` (`vote_id`, `account_id`, `post_id`, `comment_id`, `vote_type
 (54, 10, 2, NULL, '1'),
 (55, 10, 12, NULL, '1'),
 (56, 10, 13, NULL, '-1'),
-(79, 10, 1, NULL, '1'),
 (85, 10, 15, NULL, '1'),
-(86, 8, 2, NULL, '1'),
-(87, 8, 1, NULL, '1');
+(95, 8, 2, NULL, '1'),
+(98, 8, 12, NULL, '1'),
+(102, 8, 15, NULL, '1'),
+(103, 8, 4, NULL, '-1'),
+(104, 8, 13, NULL, '1');
 
 --
 -- Indexes for dumped tables
@@ -224,6 +261,13 @@ ALTER TABLE `account`
   ADD KEY `idx_account_role_id` (`role_id`);
 
 --
+-- Indexes for table `bookmarked`
+--
+ALTER TABLE `bookmarked`
+  ADD KEY `account_id` (`account_id`),
+  ADD KEY `post_id` (`post_id`);
+
+--
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
@@ -231,6 +275,15 @@ ALTER TABLE `comment`
   ADD KEY `idx_comment_account_id` (`account_id`),
   ADD KEY `idx_comment_post_id` (`post_id`),
   ADD KEY `idx_comment_parent_id` (`parent_comment_id`);
+
+--
+-- Indexes for table `logs`
+--
+ALTER TABLE `logs`
+  ADD KEY `admin_id` (`admin_id`),
+  ADD KEY `post_id` (`post_id`),
+  ADD KEY `module_id` (`module_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `message`
@@ -285,25 +338,25 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
-  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -315,7 +368,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- Constraints for dumped tables
@@ -328,12 +381,28 @@ ALTER TABLE `account`
   ADD CONSTRAINT `account_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `bookmarked`
+--
+ALTER TABLE `bookmarked`
+  ADD CONSTRAINT `bookmarked_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bookmarked_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`parent_comment_id`) REFERENCES `comment` (`comment_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `logs`
+--
+ALTER TABLE `logs`
+  ADD CONSTRAINT `logs_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `logs_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `logs_ibfk_3` FOREIGN KEY (`module_id`) REFERENCES `module` (`module_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `logs_ibfk_4` FOREIGN KEY (`user_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `message`

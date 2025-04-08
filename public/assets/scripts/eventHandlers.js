@@ -115,6 +115,10 @@ function handleSearchBarEvent() {
                 searchOption.style.visibility = 'visible'
             }
 
+            if (searchInput.value.trim() === '') {
+                searchOption.style.visibility = 'hidden'
+            }
+
         }
 
         const postSearch = 'search post'
@@ -158,6 +162,9 @@ function handleSearchBarEvent() {
             searchInput.value = ''
             searchInput
             searchOption.style.left = '60px'
+
+            // hide search option
+            searchOption.style.visibility = 'hidden'
         }
 
         // event listeners
@@ -810,7 +817,7 @@ function handleModuleEvent() {
 }
 
 function handleMessageEvent() {
-    const messages = selectElement('.message')
+    let messages = selectElement('.message')
     if (messages === undefined) return
     if (!Array.isArray(messages)) messages = new Array(messages)
 

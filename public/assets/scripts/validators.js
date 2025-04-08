@@ -4,29 +4,79 @@ function Validator(formSelector) {
 
     const form = selectElement(formSelector)
 
-    // console.log(form)
+    const formRules = {
+        required: function (value) {
+            return  value.replace(/\s+/g, '') === '' ? true : 'This field must not be empty'
+        },
+
+        email: function (value) {
+            const emailRegex = '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
+            return value.match(emailRegex) ? true : 'Invalid email'
+        },
+
+        min: function (value, min) {
+            return value.length >= min ? true : `This field must be at least ${min} characters`
+        },
+
+        min: function (value, max) {
+            return value.length <= max ? true : `This field must not be more than ${max} characters`
+        },
+
+        match: function (value, fieldToMatch, formData) {
+            return value === formData[fieldToMatch] ? true : `Not match with ${feildTOMatch}`
+        }
+    }
 
     if (form) {
         let isValid = true
+        let formData = {}
+
+        const inputs = form.querySelectorAll('input:not([type="submit"])')
+
+        for (let input of inputs) {
+            const inputRules = input.getAttribute('rules')
+
+            // get validate functions from rules attribute of input
+            if (inputRules) {
+                const rules = inputRules.split('|')
+
+                for (const rule of rules) {
+                    console.log(rule)
+
+                    if (rule.includes(':')) {
+                        // const 
+                    }
+                }
+            }
+
+            // add event listener 'blur' and 'input' to each input
+            
+        }
 
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
 
             if (isValid) {
-                try {
-                    const response = await fetch(form.action, {
-                        method: form.method,
-                        body: new URLSearchParams({
-                            submit: 'submit'
-                        })
-                    })
+                console.log('')
 
-                    console.log(await response.text())
+                // try {
+                //     const response = await fetch(form.action, {
+                //         method: form.method,
+                //         headers: {
+                //             'Content-Type': 'application/x-www-form-urlencoded',
+                //         },
+                //         body: new URLSearchParams({
+                //             submit: 'submit'
+                //         })
+                //     })
 
-                } catch (error) {
-                    console.error(error)
-                }
+                //     console.log(await response.text())
+
+                // } catch (error) {
+                //     console.error(error)
+                // }
+                
             } else {
                 console.log('not valid')
             }

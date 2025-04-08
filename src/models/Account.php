@@ -61,7 +61,9 @@ class Account {
     public static function createAccount($db = null) {
         $role_id = trim($_POST['role']);
         $account_name = trim($_POST['account_name']);
-        $account_avatar = isset($_POST['account_avatar']) ? 'uploads/account/' . trim($_POST['account_avatar']): 'uploads/account/default.jpg';
+        $account_avatar = isset($_POST['account_avatar']) && trim($_POST['account_avatar']) !== ''
+                            ? 'uploads/account/' . trim($_POST['account_avatar'])
+                            : 'uploads/account/default.jpg';
         $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $email = trim($_POST['email']);
 
