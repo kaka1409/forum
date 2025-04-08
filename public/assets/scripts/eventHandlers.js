@@ -87,18 +87,18 @@ function handleSearchBarEvent() {
         // reset search input
         const resetSearchIcon = searchBar.querySelector('.reset_search')
     
-
         // event functions
         const searchInputFocus = () => {
             searchBar.style.border = '0.5px solid #d78adb'
 
-            searchOption.style.visibility = 'visible'
+            // display
             resetSearchIcon.style.visibility = 'visible'
         }
 
         const searchInputNoFocus = () => {
             searchBar.style.border = 'none'
 
+            // hidden
             searchOption.style.visibility = 'hidden'
             resetSearchIcon.style.visibility = 'hidden'
         }
@@ -109,6 +109,10 @@ function handleSearchBarEvent() {
 
             if (parseInt(textWidth) <= (searchInput.parentElement.clientWidth - 50)) {
                 searchOption.style.left = 60 + textWidth + 'px'
+            }
+
+            if (searchOption.style.visibility === '' || 'hidden') {
+                searchOption.style.visibility = 'visible'
             }
 
         }
@@ -200,7 +204,11 @@ function handleSidemenuEvent() {
 }
 
 function handleFeedSettingEvent() {
+
+    // feed setting
     const feedSetting = selectElement('.feed_settings')
+
+    // feed option container
     const feedOptions = selectElement('.feed_options')
     
     if (feedSetting) {
@@ -272,14 +280,23 @@ function handleFeedSettingEvent() {
     if (feedOptions) {
         const options = feedOptions.querySelectorAll('.options .option')
 
+        // get current location
+        const currentLocation = window.location.href.split('?')[0]
+
+        // create new search query string
         const urlParams = new URLSearchParams(window.location.search)
+
+        // get setting from url query string and local storage
+        const urlParamSetting = urlParams.get('feed')
         const localSetting = localStorage.getItem('feedSetting')
-        if (localSetting) {
-            window.history.pushState(null, '', `${baseURL}home?feed=${localSetting}`)
-            // window.location.reload()
+
+        //  synchorize setting between search params and local storage
+        if (localSetting !== urlParamSetting) {
+            window.history.pushState(null, '', `${currentLocation}?feed=${localSetting}`)
+            window.location.reload()
         }
 
-        const setting = localSetting || urlParams.get('feed') || 'new'
+        const setting = localSetting || urlParamSetting || 'new'
 
         options.forEach( (option) => {
             const optionText = option.textContent.split(' ')[1] || option.textContent
@@ -297,8 +314,7 @@ function handleFeedSettingEvent() {
                 localStorage.setItem('feedSetting', optionText)
 
                 // redirect 
-                window.location.href = `${baseURL}home?feed=${optionText}`
-
+                window.location.href = `${currentLocation}?feed=${localSetting}`
             }
 
             option.addEventListener('click', optionClicked)

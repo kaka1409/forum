@@ -13,6 +13,15 @@
                 Feed settings
             </p>
         </div>
+
+        <div class="feed_options hidden">
+            <ul class="options">
+                <li class="option selected">new</li>
+                <li class="option">old</li>
+                <li class="option">top</li>
+                <li class="option">bottom</li>
+            </ul>
+        </div>
     </div>
     
     

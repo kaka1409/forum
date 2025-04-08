@@ -32,25 +32,49 @@
                 <a href="<?=BASE_URL?>login">Sign in</a>
             <?php endif; ?>
         </div>
-        <a href="<?=BASE_URL?>profile/<?= $_SESSION['account_id'] ?? 0?>">
-            <div class="profile_avatar">
-                <?php if( isset($_SESSION['account_avatar']) ):?>
-                    <img 
-                        width="40px"
-                        height="40px"
-                        src="<?=ROOT_URL .  $_SESSION['account_avatar']?>" 
-                        alt=""
-                    >
-                <?php else: ?>
-                    <img 
-                        width="50px"
-                        height="50px"
-                        src="<?=BASE_URL?>assets/icons/default_avatar.png" 
-                        alt=""
-                    >
-                <?php endif;?>
+        <?php if (isLoggedIn()): ?>
+            <a href="<?=BASE_URL?>profile/<?= $_SESSION['account_id'] ?? 0?>">
+                <div class="profile_avatar">
+                    <?php if( isset($_SESSION['account_avatar']) ):?>
+                        <img 
+                            width="40px"
+                            height="40px"
+                            src="<?=ROOT_URL .  $_SESSION['account_avatar']?>" 
+                            alt=""
+                        >
+                    <?php else: ?>
+                        <img 
+                            width="50px"
+                            height="50px"
+                            src="<?=BASE_URL?>assets/icons/default_avatar.png" 
+                            alt=""
+                        >
+                    <?php endif;?>
+    
+                </div>
+            </a>
+        <?php else: ?>    
+            <a href="<?=BASE_URL?>login?>">
+                <div class="profile_avatar">
+                    <?php if( isset($_SESSION['account_avatar']) ):?>
+                        <img 
+                            width="40px"
+                            height="40px"
+                            src="<?=ROOT_URL .  $_SESSION['account_avatar']?>" 
+                            alt=""
+                        >
+                    <?php else: ?>
+                        <img 
+                            width="50px"
+                            height="50px"
+                            src="<?=BASE_URL?>assets/icons/default_avatar.png" 
+                            alt=""
+                        >
+                    <?php endif;?>
+    
+                </div>
+            </a>
+        <?php endif;?>
 
-            </div>
-        </a>
     </div>
 </header>
