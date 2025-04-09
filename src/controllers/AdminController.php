@@ -50,6 +50,7 @@ class AdminController {
     public function createUserForm() {
         adminAuth();
 
+
         $view = ViewController::getInstance();
         $view->set('title', 'Create a new user');
         $view->set('disable_scroll', true);
@@ -83,6 +84,12 @@ class AdminController {
             $result = Account::createAccount($db);
     
             if ($result) {
+
+                $user_id = $result->lastInsertId();
+
+                // collect admin audit logs
+                Log::collectLog($db, $user_id);
+
                 sendJson([
                     'status' => 'success',
                     'message' => 'User created successfully',
