@@ -149,6 +149,15 @@ function Validator(formSelector) {
                         break
                     }
 
+                    case '#contact_email_form': {
+                        requestBody = new URLSearchParams({
+                            submit: 'submit',
+                            email_title: formData['email_title'],
+                            email_content: formData['email_content'],
+                        })
+                        break
+                    }
+
                     case '#create_user_form': {
                         requestBody = new URLSearchParams({
                             submit: 'submit',
@@ -305,7 +314,16 @@ function editPostFormValidator() {
 }
 
 function messageFormValidator() {
+    const titleInput = selectElement('[name="email_title"]')
+    const contentInput = selectElement('[name="email_content"]')
 
+    // set rules for form inputs
+    if (titleInput) {
+        titleInput.setAttribute('rules', 'required')
+        contentInput.setAttribute('rules', 'required')
+    }
+
+    Validator('#contact_email_form form')
 }
 
 

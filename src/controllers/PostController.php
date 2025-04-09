@@ -24,7 +24,11 @@ class PostController {
         // validate csrf token
         $session = new Session();
         if (!$session->validateCsrfToken($_POST['csrf_token'])) {
-            header('Location: ' . BASE_URL . 'post/create');
+            sendJson([
+                'status' => 'error',
+                'message' => 'csrf token is invalid',
+                'redirect' => BASE_URL . 'post/create'
+            ]);
             exit;
         }
 
@@ -110,14 +114,18 @@ class PostController {
     }
 
     public function edit() {
-        $session = new Session();
-        if (!$session->validateCsrfToken($_POST['csrf_token'])) {
-            header('Location: ' . BASE_URL . 'home');
-            exit;
-        }
-
         global $db;
         $post_id = getPostId();
+
+        $session = new Session();
+        if (!$session->validateCsrfToken($_POST['csrf_token'])) {
+            sendJson([
+                'status' => 'error',
+                'message' => 'csrf token is invalid',
+                'redirect' => BASE_URL . 'edit/' . $post_id . '/edit'
+            ]);
+            exit;
+        }
 
         if (isset($_POST['submit'])) {
             $result = Post::updatePostById($db, $post_id);

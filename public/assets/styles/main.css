@@ -1220,7 +1220,7 @@ form .title {
 /* module listing */
 
 /* Email form */
-#contact_email_container {
+#contact_email_form {
     padding: 0;
     display: flex;
     align-items: flex-start;
@@ -1229,12 +1229,11 @@ form .title {
     height: 105%;
 }
 
-#contact_email_container  form {
+#contact_email_form  form {
     padding:0 2em;
     width: 70%;
     height: inherit;
 }
-
 
 #contact_email .form_title {
     background-color: transparent;
@@ -1256,6 +1255,12 @@ form .title {
     box-sizing: border-box;
 }
 
+#contact_email .email_title_container,
+#contact_email .email_content_container {
+    position: relative;
+    width: 100%;
+}
+
 #email_title::placeholder,
 #email_content::placeholder {
     color: var(--secondary-font-color);
@@ -1270,6 +1275,27 @@ form .title {
     resize: none;
     border: none;
     height: 10em;
+}
+
+#contact_email_form .char_count {
+    position: absolute;
+    color: var(--secondary-font-color);
+    font-family: var(--secondary-font);
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0;
+    padding: 0.5em 0;
+    text-align: right;
+}
+
+.email_title_container .char_count {
+    top: 0.5em;
+    right: 1em;
+}
+
+.email_content_container .char_count {
+    bottom: 0.5em;
+    right: 1em;
 }
 
 #contact_email #submit{

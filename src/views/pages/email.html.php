@@ -1,28 +1,36 @@
-<section class="post_form" style="overflow-y: hidden;" id="contact_email_container">
+<section class="post_form" style="overflow-y: hidden;" id="contact_email_form">
     
     <form action="<?= BASE_URL ?>email" method="POST" id="contact_email">
         <div class="form_title">
             <h1>Send an email to contact admin</h1>
         </div>
 
-        <div class="form_group email_container">
-            <input 
-                type="text" 
-                name="email_title" 
-                id="email_title" 
-                placeholder="Email title" 
-                autocomplete="off"
-                required
-            >
+        <div class="container">
+            <div class="form_group email_title_container">
+                <input 
+                    type="text" 
+                    name="email_title" 
+                    id="email_title" 
+                    placeholder="Email title" 
+                    autocomplete="off"
+                    max="100"
+                >
+                <p class="char_count"></p>
+            </div>
+            <span class="error_message"></span>
         </div>
 
-        <div class="form_group email_content_container">
-            <textarea 
-                name="email_content" 
-                id="email_content" 
-                placeholder="Share your thoughts for admins"
-                required
-            ></textarea>
+        <div class="container">
+            <div class="form_group email_content_container">
+                <textarea 
+                    name="email_content" 
+                    id="email_content" 
+                    placeholder="Share your thoughts for admins"
+                    max="1000"
+                ></textarea>
+                <p class="char_count"></p>
+            </div>
+            <span class="error_message"></span>
         </div>
 
         <input type="submit" id="submit" name="submit" value="Send">

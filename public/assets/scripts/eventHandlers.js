@@ -909,11 +909,6 @@ function handleListItemsEvent() {
     }
 }
 
-function handleCreateUserFormEvent() {
-    const createUserForm = selectElement('#create_user_form')
-
-}
-
 export {
     handleWindowEvent,
     handleDOMEvent,
@@ -925,5 +920,4 @@ export {
     handleModuleEvent,
     handleMessageEvent,
     handleAdminEvent,
-    handleCreateUserFormEvent
 }

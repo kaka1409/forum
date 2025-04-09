@@ -19,7 +19,11 @@ class MessageController {
 
         // not logged in
         if (!isLoggedIn()) {
-            header('Location: ' . BASE_URL . 'email');
+            sendJson([
+                'status' => 'error',
+                'message' => 'Not logged in',
+                'redirect' => BASE_URL . 'login'
+            ]);
             exit;
         }
 
@@ -28,15 +32,27 @@ class MessageController {
             $result = Message::createMessage($db);
 
             if ($result) {
-                header('Location: ' . BASE_URL . 'email');
+                sendJson([
+                    'status' => 'success',
+                    'message' => 'Message sent successfully',
+                    'redirect' => BASE_URL . 'email'
+                ]);
                 exit;
             } else {
-                header('Location: ' . BASE_URL . 'email');
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'Failed to send message',
+                    'redirect' => BASE_URL . 'email'
+                ]);
                 exit;
             }
 
         } else {
-            header('Location: ' . BASE_URL . 'email');
+            sendJson([
+                'status' => 'error',
+                'message' => 'csrf token is invalid',
+                'redirect' => BASE_URL . 'email'
+            ]);
             exit;
         }
     }
