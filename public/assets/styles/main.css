@@ -714,7 +714,7 @@ form .title {
     border-radius: 10px;
 }
 
-.form_title #title_char_count {
+.form_title .char_count {
     display: inline-block;
     color: var(--secondary-font-color);
     font-family: var(--secondary-font);
@@ -730,7 +730,9 @@ form .title {
     border-radius: 10px;
 }
 
-.form_thumbnail {
+#create_post_form .thumbnail_container {
+    display: flex;
+    justify-content: center;
     width: 100%;
     height: 8em;
     border-radius: 10px;
@@ -740,7 +742,7 @@ form .title {
     overflow-y: scroll;
 }
 
-.form_thumbnail .thumbnail_title {
+#create_post_form .thumbnail_container .thumbnail_title {
     display: flex;
     gap: 5px;
     justify-content: center;
@@ -751,12 +753,11 @@ form .title {
     font-size: 1em;
 }
 
-.form_thumbnail #thumbnail_preview {
+#create_post_form .thumbnail_container .image_preview.thumbnail {
     display: none;
-    width: 100%;
 }
 
-.form_thumbnail #thumbnail {
+#create_post_form .thumbnail_container #thumbnail {
     display: none;
 }
 
@@ -765,7 +766,7 @@ form .title {
     border-radius: 10px;
 }
 
-.form_content #content_char_count {
+.form_content .char_count {
     padding-right: 1em;
     padding-bottom: 1em;
     color: var(--secondary-font-color);
@@ -1674,6 +1675,7 @@ form .title {
     border-radius: 20em;
     border: 1px solid var(--border-color);
     overflow: hidden;
+    /* z-index: 10; */
 }
 
 #create_user_form .user_details {
@@ -1685,7 +1687,8 @@ form .title {
     justify-content: space-between;
 }
 
-#create_user_form .avatar_container .avatar_preview {
+#create_user_form .avatar_container .image_preview {
+    display: none;
     width: 100%;
     height: 100%;
 }
@@ -1699,10 +1702,6 @@ form .title {
     align-items: center;
     gap: 0.5em;
     color: var(--secondary-font-color);
-}
-
-#create_user_form .avatar_preview {
-    display: none;
 }
 
 #create_user_form .user_details > div {
@@ -1775,6 +1774,7 @@ form .title {
     border-radius: 20em;
     border: 1px solid var(--border-color);
     overflow: hidden;
+    z-index: 10;
 }
 
 #edit_user_form .avatar_container img {

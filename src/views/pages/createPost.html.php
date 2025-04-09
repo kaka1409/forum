@@ -29,13 +29,15 @@
                 id="title" 
                 name="title" 
                 placeholder="Enter title"
+                max="100"
                 required
             >
-            <p id="title_char_count"></p>
+            <p class="char_count"></p>
         </div>
+        <p class="error_message"></p>
 
         <!-- post thumbnail -->
-        <button type="button" class="form_group form_thumbnail">
+        <div class="form_group thumbnail_container">
             <div class="thumbnail_title">
                 <img 
                     width="20px"
@@ -52,8 +54,8 @@
                 placeholder="Enter thumbnail url"
                 accept="image/*"
             >
-            <img id="thumbnail_preview" src="''">
-        </button>
+            <img class="image_preview thumbnail" src="''">
+        </div>
 
         <!-- post content -->
         <div class="form_group form_content">
@@ -62,10 +64,12 @@
                 id="content" 
                 name="content" 
                 placeholder="Share your thoughts..."
+                max="1000"
                 required
             ></textarea>
-            <p id="content_char_count"></p>
+            <p class="char_count"></p>
         </div>
+        <p class="error_message"></p>
 
         <input type="submit" id="submit" name="submit" value="Post">
     </form>

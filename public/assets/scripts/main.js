@@ -6,7 +6,7 @@ import {
 } from "./eventHandlers.js"
 
 import {
-    loginFormValidator, registerFormValidator, createPostFormValidator,
+    formValidatorEvent, loginFormValidator, registerFormValidator, createPostFormValidator,
     messageFormValidator, createUserFormValidator
 } from './validators.js'
 
@@ -15,7 +15,6 @@ const app = {
         document.addEventListener('DOMContentLoaded', () => {
             this.eventHandlers.init()
             this.validators.init()
-
         })
     },
 
@@ -37,6 +36,7 @@ const app = {
 
     validators: {
         init: function() {
+            formValidatorEvent()
             loginFormValidator()
             registerFormValidator()
             createPostFormValidator()

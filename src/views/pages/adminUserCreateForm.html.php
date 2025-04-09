@@ -27,13 +27,14 @@
                 <input 
                     type="file"
                     name="account_avatar" 
+                    accept="image/*"
                     hidden
                 >
 
                 <img 
                     src=""  
                     alt=""
-                    class="avatar_preview"
+                    class="image_preview avatar"
                 >
                 
             </div>

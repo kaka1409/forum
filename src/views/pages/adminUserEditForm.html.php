@@ -18,8 +18,16 @@
             <!-- accout avatar -->
             <div class="form_group avatar_container">
                 <img 
+                    class="image_preview avatar"
                     src="<?= ROOT_URL . $account['account_avatar'] ?>" 
                     alt=""
+                >
+                <input 
+                    type="file"     
+                    name="avatar" 
+                    accept="image/*"
+                    id=""
+                    hidden
                 >
             </div>
             
