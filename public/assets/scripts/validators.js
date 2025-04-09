@@ -181,6 +181,26 @@ function Validator(formSelector) {
                         })
                         break
                     }
+
+                    case '#create_module_form': {
+                        requestBody = new URLSearchParams({
+                            submit: 'submit',
+                            module_name: formData['module_name'],
+                            teacher: formData['teacher'],
+                            description: formData['description'],
+                        })
+                        break
+                    }
+
+                    case '#edit_module_form': {
+                        requestBody = new URLSearchParams({
+                            submit: 'submit',
+                            module_name: formData['module_name'],
+                            teacher: formData['teacher'],
+                            description: formData['description'],
+                        })
+                        break
+                    }
                 }
 
                 try {
@@ -192,7 +212,7 @@ function Validator(formSelector) {
                         body: requestBody
                     })
 
-                    // console.log(requestBody)
+                    console.log(requestBody)
                     // console.log(await response.text())
 
                     const data = await response.json()
@@ -216,11 +236,11 @@ function Validator(formSelector) {
 }
 
 function loginFormValidator() {
-
+    // TODO
 }
 
 function registerFormValidator() {
-
+    // TODO
 }
 
 function formValidatorEvent() {
@@ -229,7 +249,7 @@ function formValidatorEvent() {
 
     if (form) {
         // limit characters inputs and textareas
-        const textInput = form.querySelector('input[type="text"]')
+        const textInputs = form.querySelectorAll('input[type="text"]')
         const textArea = form.querySelector('textarea')
 
         // console.log(textInput, textArea)
@@ -279,8 +299,10 @@ function formValidatorEvent() {
             }
         }
 
-        if (textInput) {
-            textInput.addEventListener('input', limitChar)
+        if (textInputs.length !== 0) {
+            textInputs.forEach(input => {
+                input.addEventListener('input', limitChar)
+            });
         }
 
         if (textArea) {
@@ -374,6 +396,34 @@ function editUserFormValidator() {
     Validator('#edit_user_form form')
 }
 
+function createModuleFormValidator() {
+    const moduleNameInput = selectElement('[name="module_name"]')
+    const teacherInput = selectElement('[name="teacher"]')
+    const moduleDescriptionInput = selectElement('[name="description"]')
+
+    if (moduleNameInput) {
+        moduleNameInput.setAttribute('rules', 'required')
+        teacherInput.setAttribute('rules', 'required')
+        moduleDescriptionInput.setAttribute('rules', 'required')
+    }
+
+    Validator('#create_module_form form')
+}
+
+function editModuleFormValidator () {
+    const moduleNameInput = selectElement('[name="module_name"]')
+    const teacherInput = selectElement('[name="teacher"]')
+    const moduleDescriptionInput = selectElement('[name="description"]')
+
+    if (moduleNameInput) {
+        moduleNameInput.setAttribute('rules', 'required')
+        teacherInput.setAttribute('rules', 'required')
+        moduleDescriptionInput.setAttribute('rules', 'required')
+    }
+
+    Validator('#edit_module_form form')
+}
+
 export {
     loginFormValidator,
     registerFormValidator,
@@ -382,5 +432,7 @@ export {
     messageFormValidator,
     createUserFormValidator,
     editUserFormValidator,
-    formValidatorEvent
+    formValidatorEvent,
+    createModuleFormValidator,
+    editModuleFormValidator
 }

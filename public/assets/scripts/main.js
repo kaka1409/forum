@@ -8,7 +8,9 @@ import {
 import {
     formValidatorEvent, loginFormValidator, registerFormValidator, 
     createPostFormValidator, editPostFormValidator, messageFormValidator, 
-    createUserFormValidator, editUserFormValidator
+    createUserFormValidator, editUserFormValidator, createModuleFormValidator,
+    editModuleFormValidator
+
 } from './validators.js'
 
 const app = {
@@ -44,6 +46,8 @@ const app = {
             messageFormValidator()
             createUserFormValidator()
             editUserFormValidator()
+            createModuleFormValidator()
+            editModuleFormValidator()
         }
     }
 }

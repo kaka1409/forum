@@ -1842,8 +1842,25 @@ form .title {
     font-size: 1em;
 }
 
+#create_module_form .char_count {
+    position: absolute;
+    font-weight: bold;
+    color: var(--secondary-font-color);
+}
+
+#create_module_form .module_name .char_count,
+#create_module_form .module_teacher .char_count {
+    top: 1.25em;
+    right: 1em;
+}
+
+#create_module_form .module_description .char_count {
+    right: 1em;
+    bottom: 1em;
+}
 
 #create_module_form .form_group {
+    position: relative;
     height: 3.5em;
     border-radius: 15px;
     overflow: hidden;
@@ -1904,7 +1921,25 @@ form .title {
 }
 
 
+#edit_module_form .char_count {
+    position: absolute;
+    font-weight: bold;
+    color: var(--secondary-font-color);
+}
+
+#edit_module_form .module_name .char_count,
+#edit_module_form .module_teacher .char_count {
+    top: 1.25em;
+    right: 1em;
+}
+
+#edit_module_form .module_description .char_count {
+    right: 1em;
+    bottom: 1em;
+}
+
 #edit_module_form .form_group {
+    position: relative;
     height: 3.5em;
     border-radius: 15px;
     overflow: hidden;

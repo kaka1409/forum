@@ -206,14 +206,26 @@ class AdminController {
             $result = Module::createModule($db);
 
             if ($result) {
-                header('Location: ' . BASE_URL . 'admin');
+                sendJson([
+                    'status' => 'success',
+                    'message' => 'Module created successfully',
+                    'redirect' => BASE_URL . 'admin/module_list'
+                ]);
                 exit;
             } else {
-                header('Location: ' . BASE_URL . 'admin/module/create');
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'Failed to create module',
+                    'redirect' => BASE_URL . 'admin/module/create'
+                ]);
                 exit;
             }
         } else {
-            header('Location: ' . BASE_URL . 'admin/module/create');
+            sendJson([
+                'status' => 'error',
+                'message' => 'Failed to create module',
+                'redirect' => BASE_URL . 'admin/module/create'
+            ]);
             exit;
         }
     }
@@ -248,17 +260,28 @@ class AdminController {
             $result = Module::updateModule($db, $module_id);
 
             if ($result) {
-                header('Location: ' . BASE_URL . 'admin');
+                sendJson([
+                    'status' => 'success',
+                    'message' => 'Module edited successfully',
+                    'redirect' => BASE_URL . 'admin/module_list'
+                ]);
                 exit;
             } else {
-                header('Location: ' . BASE_URL . 'admin/module/edit' . $module_id);
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'Failed to edit module',
+                    'redirect' => BASE_URL . 'admin/module/edit' . $module_id
+                ]);
                 exit;
             }
         } else {
-            header('Location: ' . BASE_URL . 'admin/module/edit' . $module_id);
+            sendJson([
+                'status' => 'error',
+                'message' => 'Failed to edit module',
+                'redirect' => BASE_URL . 'admin/module/edit' . $module_id
+            ]);
             exit;
         }
-
     }
 
     public function deleteModule() {
@@ -268,9 +291,21 @@ class AdminController {
         $uri_array = explode('/', $_SERVER['REQUEST_URI']);
         $module_id = end($uri_array);
 
-        Module::deleteModule($db, $module_id);
+        $result = Module::deleteModule($db, $module_id);
 
-        header('Location: ' . BASE_URL . 'admin');
+        if ($result) {
+            sendJson([
+                'status' => 'success',
+                'message' => 'Module deleted successfully',
+            ]);
+        } else {
+            sendJson([
+                'status' => 'error',
+                'message' => 'Failed to delete module',
+            ]);
+        }
+
+        header('Location: ' . BASE_URL . 'admin/module_list');
         exit;
     }
 
@@ -284,7 +319,9 @@ class AdminController {
             $post['post_at'] = dateFormat($post['post_at']);
         }
 
-        sendJson(['posts' => $posts]);
+        if (!empty($posts)) {
+            sendJson(['posts' => $posts]);
+        }
     }
 
     public function message() {

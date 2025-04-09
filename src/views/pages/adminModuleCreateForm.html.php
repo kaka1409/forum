@@ -4,37 +4,50 @@
     <form action="<?= BASE_URL ?>admin/module/create" method="POST">
         <h1 class="title">Create a module</h1>
         
-        <label for="module_name">Name: </label>
-        <div class="form_group module_name">
-            <input 
-                type="text" 
-                name="module_name" 
-                placeholder="Enter module name"
-                required
-                autocomplete="off"
-            >
+        <div class="container">
+            <label for="module_name">Name: </label>
+            <div class="form_group module_name">
+                <input 
+                    type="text" 
+                    name="module_name" 
+                    placeholder="Enter module name"
+                    max="100"
+                    autocomplete="off"
+                >
+                <p class="char_count"></p>
+            </div>
+            <span class="error_message"></span>
         </div>
 
-        <label for="module_name">Teacher: </label>
-        <div class="form_group module_teacher">
-            <input 
-                type="text"
-                name="teacher"
-                placeholder="Enter teacher name"
-                required
-                autocomplete="off"
-            >
+        <div class="container">
+            <label for="module_name">Teacher: </label>
+            <div class="form_group module_teacher">
+                <input 
+                    type="text"
+                    name="teacher"
+                    placeholder="Enter teacher name"
+                    max="50"
+                    autocomplete="off"
+                >
+                <p class="char_count"></p>
+            </div>
+            <span class="error_message"></span>
         </div>
 
-        <label for="module_name">Description: </label>
-        <div class="form_group module_description">
-            <textarea 
-                name="description" 
-                placeholder="Enter module description"
-                required
-                autocomplete="off"    
-            ></textarea>
+        <div class="container">
+            <label for="module_name">Description: </label>
+            <div class="form_group module_description">
+                <textarea 
+                    name="description" 
+                    placeholder="Enter module description"
+                    max="1000"
+                    autocomplete="off"    
+                ></textarea>
+                <p class="char_count"></p>
+            </div>
+            <span class="error_message"></span>
         </div>
+
 
         <input type="submit" name="submit" value="Submit" id="submit">
     </form>
