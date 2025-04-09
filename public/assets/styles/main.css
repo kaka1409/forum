@@ -730,7 +730,7 @@ form .title {
     border-radius: 10px;
 }
 
-#create_post_form .thumbnail_container {
+.post_form .thumbnail_container {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -742,7 +742,7 @@ form .title {
     overflow-y: scroll;
 }
 
-#create_post_form .thumbnail_container .thumbnail_title {
+.post_form .thumbnail_container .thumbnail_title {
     display: flex;
     gap: 5px;
     justify-content: center;
@@ -753,11 +753,11 @@ form .title {
     font-size: 1em;
 }
 
-#create_post_form .thumbnail_container .image_preview.thumbnail {
+.post_form .thumbnail_container .image_preview.thumbnail {
     display: none;
 }
 
-#create_post_form .thumbnail_container #thumbnail {
+.post_form .thumbnail_container #thumbnail {
     display: none;
 }
 

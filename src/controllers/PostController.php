@@ -35,15 +35,27 @@ class PostController {
             $result = Post::createPost($db);
 
             if ($result) {
-                header('Location: ' . BASE_URL . 'home');
+                sendJson([
+                    'status' => 'success',
+                    'message' => 'Post created successfully',
+                    'redirect' => BASE_URL . 'home'
+                ]);
                 exit;
             } else {
-                header('Location: ' . BASE_URL . 'post/create');
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'Failed to create post',
+                    'redirect' => BASE_URL . 'post/create'
+                ]);
                 exit;
             }
 
         } else {
-            header('Location: ' . BASE_URL . 'post/create');
+            sendJson([
+                'status' => 'error',
+                'message' => 'Failed to create post',
+                'redirect' => BASE_URL . 'post/create'
+            ]);
             exit;
         }
     }
@@ -111,16 +123,28 @@ class PostController {
             $result = Post::updatePostById($db, $post_id);
     
             if ($result) {
-                header('Location: ' . BASE_URL . 'post/' . $post_id);
+                sendJson([
+                    'status' => 'success',
+                    'message' => 'Post edit successfully',
+                    'redirect' => BASE_URL . 'post/' . $post_id
+                ]);
                 exit;
             } else {
                 // error toase message maybe
-                header('Location: ' . BASE_URL . 'edit/' . $post_id . '/edit');
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'Failed to edit post',
+                    'redirect' =>BASE_URL . 'edit/' . $post_id . '/edit'
+                ]);
                 exit;
             }
 
         } else {
-            header('Location: ' . BASE_URL . 'edit/' . $post_id . '/edit');
+            sendJson([
+                'status' => 'error',
+                'message' => 'Failed to edit post',
+                'redirect' =>BASE_URL . 'edit/' . $post_id . '/edit'
+            ]);
             exit;
         }
 

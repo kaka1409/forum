@@ -912,25 +912,6 @@ function handleListItemsEvent() {
 function handleCreateUserFormEvent() {
     const createUserForm = selectElement('#create_user_form')
 
-    // if (createUserForm) {
-    //     const avatarContainer = createUserForm.querySelector('.avatar_container') 
-    //     const avatarPlaceholder = avatarContainer.querySelector('.avatar_placeholder')
-    //     const avatarFile = avatarContainer.querySelector('input')
-    //     const avatarPreview = avatarContainer.querySelector('.image_preview')
-
-    //     avatarContainer.addEventListener('click', () => {
-    //         avatarFile.click()
-    //     })
-
-    //     avatarFile.addEventListener('change', () => {
-    //         avatarPlaceholder.style.display = 'none'
-    //         avatarPreview.style.display = 'block'
-    //         avatarPreview.src = URL.createObjectURL(avatarFile.files[0])
-
-    //         // console.log(avatarFile.files[0].name)
-    //     })
-    // }
-
 }
 
 export {
