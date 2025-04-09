@@ -29,7 +29,8 @@ function Validator(formSelector) {
 
         match: function (fieldToMatch) {
             return function(value) {
-                return value === selectElement(`[name="${fieldToMatch}"]`).value ? null : `Not match with ${fieldToMatch}`
+                return value === selectElement(`[name="${fieldToMatch}"]`).value  && value.replace(/\s+/g, '') !== ''
+                    ? null : `Not match with ${fieldToMatch}`
             }
         }
     }
@@ -168,6 +169,18 @@ function Validator(formSelector) {
                         })
                         break
                     }
+
+                    case '#edit_user_form': {
+                        requestBody = new URLSearchParams({
+                            submit: 'submit',
+                            role: form.querySelector('[name="role"]').value,
+                            account_avatar: form.querySelector('[name="account_avatar"]').value.split(`\\`)[2],
+                            account_name: formData['account_name'],
+                            email: formData['email'],
+                            password: formData['password'],
+                        })
+                        break
+                    }
                 }
 
                 try {
@@ -248,7 +261,6 @@ function formValidatorEvent() {
                     imagePreview.src = URL.createObjectURL(inputFile.files[0])
                 })
             }
-
         }
 
         const limitChar = (e) => {
@@ -345,6 +357,23 @@ function createUserFormValidator() {
 
 }
 
+function editUserFormValidator() {
+    const usernameInput = selectElement('[name="account_name"]')
+    const emailInput = selectElement('[name="email"]')
+    const passwordInput = selectElement('[name="password"]')
+    const confirmPasswordInput = selectElement('[name="confirm_password"]')
+
+    // set rules for form inputs
+    if (usernameInput) {
+        usernameInput.setAttribute('rules', 'required')
+        emailInput.setAttribute('rules', 'required|email')
+        passwordInput.setAttribute('rules', 'required|min:6')
+        confirmPasswordInput.setAttribute('rules', 'required|min:6|match:password')
+    }
+
+    Validator('#edit_user_form form')
+}
+
 export {
     loginFormValidator,
     registerFormValidator,
@@ -352,5 +381,6 @@ export {
     editPostFormValidator,
     messageFormValidator,
     createUserFormValidator,
+    editUserFormValidator,
     formValidatorEvent
 }

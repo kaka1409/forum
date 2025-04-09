@@ -96,8 +96,6 @@
             <span class="error_message"></span>
         </div>
 
-
-
         <input 
             type="submit" 
             name="submit" 

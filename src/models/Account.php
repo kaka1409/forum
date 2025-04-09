@@ -119,8 +119,10 @@ class Account {
 
     public static function updateAccount($db = null, $account_id) {
         $role_id = trim($_POST['role']);
-        $account_name = trim($_POST['name']);
-        $account_avatar = isset($_POST['account_avatar']) ? UPLOAD_FOLDER . trim($_POST['account_avatar']) : 'uploads/account/default.jpg';
+        $account_name = trim($_POST['account_name']);
+        $account_avatar = isset($_POST['account_avatar']) && trim($_POST['account_avatar']) !== ''
+                            ? 'uploads/account/' . trim($_POST['account_avatar'])
+                            : 'uploads/account/default.jpg';
         $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $email = trim($_POST['email']);
 

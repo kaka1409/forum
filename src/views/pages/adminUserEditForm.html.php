@@ -24,7 +24,7 @@
                 >
                 <input 
                     type="file"     
-                    name="avatar" 
+                    name="account_avatar" 
                     accept="image/*"
                     id=""
                     hidden
@@ -33,31 +33,35 @@
             
             <div class="user_details">
                 <!-- account name -->
-                <label for="name">Username: </label>
-                <div class="form_group">
-                    <input 
-                        type="text" 
-                        name="name"
-                        placeholder="Enter new username here"
-                        value="<?= $account['account_name']?>"
-                        autocomplete="off"
-                    >
-                    <!-- <div class="char_count">
-                        <p>100</p>
-                    </div> -->
+                <div class="username_container container">
+                    <label for="name">Username: </label>
+                    <div class="form_group">    
+                        <input 
+                            type="text" 
+                            name="account_name"
+                            placeholder="Enter new username here"
+                            value="<?= $account['account_name']?>"
+                            autocomplete="off"
+                        >
+                        
+                    </div>
+                    <span class="error_message"></span>
                 </div>
         
         
                 <!-- email -->
-                <label for="email">Email: </label>
-                <div class="form_group">
-                    <input 
-                        type="email" 
-                        name="email"
-                        placeholder="Enter new email"
-                        value="<?= $account['email'] ?>"
-                        autocomplete="off"
-                    >
+                <div class="email_container container">
+                    <label for="email">Email: </label>
+                    <div class="form_group">
+                        <input 
+                            type="email" 
+                            name="email"
+                            placeholder="Enter new email"
+                            value="<?= $account['email'] ?>"
+                            autocomplete="off"
+                        >
+                    </div>
+                    <span class="error_message"></span>
                 </div>
             </div>
     
@@ -66,26 +70,33 @@
 
 
         <!-- new password -->
-        <label for="password">Password: </label>
-        <div class="form_group">
-            <input 
-                type="password" 
-                name="password" 
-                placeholder="Enter password"
-                autocomplete="off"
-            >
+        <div class="container">
+            <label for="password">Password: </label>
+            <div class="form_group">
+                <input 
+                    type="password" 
+                    name="password" 
+                    placeholder="Enter password"
+                    autocomplete="off"
+                >
+            </div>
+            <span class="error_message"></span>
         </div>
 
         <!-- confirm new password -->
-        <label for="confirm_password">Confirm password: </label>
-        <div class="form_group">
-            <input 
-                type="password" 
-                name="confirm_password" 
-                placeholder="Confirm new password"
-                autocomplete="off"
-            >
+        <div class="container">
+            <label for="confirm_password">Confirm password: </label>
+            <div class="form_group">
+                <input 
+                    type="password" 
+                    name="confirm_password" 
+                    placeholder="Confirm new password"
+                    autocomplete="off"
+                >
+            </div>
+            <span class="error_message"></span>
         </div>
+
 
         <input type="submit" name="submit" value="Update" id="submit">
     </form>

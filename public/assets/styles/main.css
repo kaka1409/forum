@@ -1259,6 +1259,7 @@ form .title {
 #contact_email .email_content_container {
     position: relative;
     width: 100%;
+    border-radius: 10px;
 }
 
 #email_title::placeholder,

@@ -83,14 +83,26 @@ class AdminController {
             $result = Account::createAccount($db);
     
             if ($result) {
-                header('Location: ' . BASE_URL . 'admin');
+                sendJson([
+                    'status' => 'success',
+                    'message' => 'User created successfully',
+                    'redirect' => BASE_URL . 'admin/user_list'
+                ]);
                 exit;
             } else {
-                header('Location: ' . BASE_URL . 'admin/user/create');
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'Failed to create user',
+                    'redirect' => BASE_URL . 'admin/user/create'
+                ]);
                 exit;
             }
         } else {
-            header('Location: ' . BASE_URL . 'admin/user/create');
+            sendJson([
+                'status' => 'error',
+                'message' => 'Failed to create user',
+                'redirect' => BASE_URL . 'admin/user/create'
+            ]);
             exit;
         }
 
@@ -108,15 +120,27 @@ class AdminController {
             $result = Account::updateAccount($db, $accout_id);
 
             if ($result) {
-                header('Location: '. BASE_URL . 'admin');
+                sendJson([
+                    'status' => 'success',
+                    'message' => 'User edited successfully',
+                    'redirect' => BASE_URL . 'admin/user_list'
+                ]);
                 exit;
             } else {
-                header('Location: '. BASE_URL . 'admin/user/edit/' . $accout_id);
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'Failed to edit user',
+                    'redirect' => BASE_URL . 'admin/user/edit/' . $accout_id
+                ]);
                 exit;
             }
 
         } else {
-            header('Location: '. BASE_URL . 'admin/user/edit/' . $accout_id);
+            sendJson([
+                'status' => 'error',
+                'message' => 'Failed to edit user',
+                'redirect' => BASE_URL . 'admin/user/edit/' . $accout_id
+            ]);
             exit;
         }
     }
@@ -128,7 +152,19 @@ class AdminController {
         $uri_array = explode('/', $_SERVER['REQUEST_URI']);
         $account_id = end($uri_array);
 
-        Account::deleteAccount($db, $account_id);
+        $result = Account::deleteAccount($db, $account_id);
+
+        if ($result) {
+            sendJson([
+                'status' => 'success',
+                'message' => 'User deleted successfully',
+            ]);
+        } else {
+            sendJson([
+                'status' => 'error',
+                'message' => 'Failed to delete user',
+            ]);
+        }
 
         header('Location: '. BASE_URL . 'admin/user_list');
         exit;

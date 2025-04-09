@@ -133,7 +133,7 @@ class PostController {
             if ($result) {
                 sendJson([
                     'status' => 'success',
-                    'message' => 'Post edit successfully',
+                    'message' => 'Post edited successfully',
                     'redirect' => BASE_URL . 'post/' . $post_id
                 ]);
                 exit;
