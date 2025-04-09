@@ -130,7 +130,7 @@ class AdminController {
 
         Account::deleteAccount($db, $account_id);
 
-        header('Location: '. BASE_URL . 'admin');
+        header('Location: '. BASE_URL . 'admin/user_list');
         exit;
     }
 

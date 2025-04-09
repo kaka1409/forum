@@ -1,3 +1,4 @@
+import { baseURL } from "./config.js";
 import { selectElement } from "./helpers.js";
 
 function Validator(formSelector) {
@@ -6,79 +7,166 @@ function Validator(formSelector) {
 
     const formRules = {
         required: function (value) {
-            return  value.replace(/\s+/g, '') === '' ? true : 'This field must not be empty'
+            return  value.replace(/\s+/g, '') !== '' ? null : 'This field must not be empty'
         },
 
         email: function (value) {
-            const emailRegex = '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
-            return value.match(emailRegex) ? true : 'Invalid email'
+            const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return value.match(emailRegex) ? null : 'Invalid email'
         },
 
-        min: function (value, min) {
-            return value.length >= min ? true : `This field must be at least ${min} characters`
+        min: function (min) {
+            return function(value) {
+                return value.length >= min ? null : `This field must be at least ${min} characters`
+            }
         },
 
-        min: function (value, max) {
-            return value.length <= max ? true : `This field must not be more than ${max} characters`
+        max: function (max) {
+            return function(value) {
+                return value.length <= max ? null : `This field must not be more than ${max} characters`
+            }
         },
 
-        match: function (value, fieldToMatch, formData) {
-            return value === formData[fieldToMatch] ? true : `Not match with ${feildTOMatch}`
+        match: function (fieldToMatch) {
+            return function(value) {
+                return value === selectElement(`[name="${fieldToMatch}"]`).value ? null : `Not match with ${fieldToMatch}`
+            }
         }
     }
 
     if (form) {
         let isValid = true
+        let inputValidatorRules = {}
         let formData = {}
 
-        const inputs = form.querySelectorAll('input:not([type="submit"])')
+        const inputs = form.querySelectorAll('[name][rules]')
 
         for (let input of inputs) {
             const inputRules = input.getAttribute('rules')
 
-            // get validate functions from rules attribute of input
+            // get rules from 'rules' attribute of input
             if (inputRules) {
                 const rules = inputRules.split('|')
-
+                
                 for (const rule of rules) {
-                    console.log(rule)
+                    // get form rules function from the rules we get from the attribute
+                    if (Array.isArray(inputValidatorRules[input.name])) {
 
-                    if (rule.includes(':')) {
-                        // const 
+                        // rule with parameter
+                        if (rule.includes(':')) {
+                            let ruleArray = rule.split(':')
+                            let ruleName = ruleArray[0]
+                            let parameter = ruleArray[1]
+
+                            // console.log(ruleArray)
+
+                            inputValidatorRules[input.name].push(formRules[ruleName](parameter))
+                        } else {
+                            inputValidatorRules[input.name].push(formRules[rule])
+                        }
+                    } else {
+                        inputValidatorRules[input.name] = [formRules[rule]]
                     }
                 }
             }
 
+            // console.log(inputValidatorRules)
+
             // add event listener 'blur' and 'input' to each input
+            const eventListeners = ['blur', 'input']
+            
+            var validate = (e) => {
+                const ruleFunctions = inputValidatorRules[e.target.name]
+                let parent = e.target.parentElement
+                let errorMessage = e.target.closest('.container').querySelector('.error_message')
+
+                // console.log(parent, errorMessage)
+
+                for (const ruleFunction of ruleFunctions) {
+                    var result = ruleFunction(e.target.value)
+
+                    
+                    if (result) {
+                        // invalid
+                        // console.log(result)
+                        parent.classList.add('error')
+                        errorMessage.innerText = result
+                    } else {
+                        // valid
+                        // console.log(result)
+                        parent.classList.remove('error')
+                        errorMessage.innerText = ''
+                    }
+
+                }
+                
+                return !result
+            }
+
+            for (const eventListener of eventListeners) {
+                input.addEventListener(eventListener, validate)
+            }
             
         }
-
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
 
+            for (let input of inputs) {
+                const formValidation = validate({target: input})
+
+                formData[input.name] = input.value
+                isValid = formValidation ? true : false
+                if (isValid === false) break
+            }
+
             if (isValid) {
-                console.log('')
+                // VALID
+                // console.log('valid')
+                console.log(formData)
 
-                // try {
-                //     const response = await fetch(form.action, {
-                //         method: form.method,
-                //         headers: {
-                //             'Content-Type': 'application/x-www-form-urlencoded',
-                //         },
-                //         body: new URLSearchParams({
-                //             submit: 'submit'
-                //         })
-                //     })
+                // construct body for each form
+                const formElement = formSelector.split(' ')[0]
+                let requestBody;
+                let redirect;
 
-                //     console.log(await response.text())
+                switch(formElement) {
+                    case '#create_user_form': {
+                        requestBody = new URLSearchParams({
+                            submit: 'submit',
+                            role: form.querySelector('[name="role"]').value,
+                            account_name: formData['account_name'],
+                            email: formData['email'],
+                            password: formData['password'],
+                        })
 
-                // } catch (error) {
-                //     console.error(error)
-                // }
+                        redirect = `${baseURL}admin/user_list`
+                        break
+                    }
+                }
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: requestBody
+                    })
+
+                    // console.log(await response.text())
+
+                    window.location.href = redirect
+
+                } catch (error) {
+                    console.error(error)
+                }
                 
             } else {
-                console.log('not valid')
+                // NOT VALID
+                // console.log('valid')
+
+                // give some warning if necessary
             }
 
         })
@@ -194,7 +282,21 @@ function messageFormValidator() {
 
 
 function createUserFormValidator() {
+    const usernameInput = selectElement('form [name="account_name"]')
+    const emailInput = selectElement('form [name="email"]')
+    const passwordInput = selectElement('form [name="password"]')
+    const confirmPasswordInput = selectElement('form [name="confirm_password"]')
+
+    // set rules for form inputs
+    if (usernameInput) {
+        usernameInput.setAttribute('rules', 'required')
+        emailInput.setAttribute('rules', 'required|email')
+        passwordInput.setAttribute('rules', 'required|min:6')
+        confirmPasswordInput.setAttribute('rules', 'required|min:6|match:password')
+    }
+
     Validator('#create_user_form form')
+
 }
 
 export {

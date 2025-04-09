@@ -1,7 +1,7 @@
 <?= ViewController::useComponent('backButton')?>
 
 <section id="create_user_form">
-    <form action="" method="POST">
+    <form action="<?=BASE_URL?>admin/user/create" method="POST">
         <h1 class="title">Create a new user account</h1>
 
         <label for="role">Role: </label>
@@ -39,7 +39,7 @@
             </div>
 
             <div class="user_details">
-                <div class="username_container">
+                <div class="username_container container">
                     <label for="account_name">Username: </label>
                     <div class="form_group username">
                         <input 
@@ -47,21 +47,19 @@
                             name="account_name" 
                             placeholder="username"
                             autocomplete="off"
-                            rules="required|max:25"
                         >
                     </div>
                     <span class="error_message"></span>
                 </div>
             
-                <div class="email_container">
+                <div class="email_container container">
                     <label for="email">Email: </label>
                     <div class="form_group email">
                         <input 
-                            type="text" 
+                            type="email" 
                             name="email" 
                             placeholder="email"
                             autocomplete="off"
-                            rules="required|email"
                         >
                     </div>
                     <span class="error_message"></span>
@@ -70,29 +68,33 @@
             </div>
         </div>
 
-        <label for="password">Password: </label>
-        <div class="form_group password">
-            <input 
-                type="password" 
-                name="password" 
-                placeholder="password"
-                autocomplete="off"
-                rules="required|min:6|match"      
-            >
+        <div class="container">
+            <label for="password">Password: </label>
+            <div class="form_group password">
+                <input 
+                    type="password" 
+                    name="password" 
+                    placeholder="password"
+                    autocomplete="off"
+                >
+            </div>
+            <span class="error_message"></span>
         </div>
-        <span class="error_message"></span>
 
-        <label for="confirm_password">Confirm password: </label>
-        <div class="form_group confirm_password">
-            <input 
-                type="password" 
-                name="confirm_password" 
-                placeholder="Confirm password"
-                autocomplete="off"
-                rules="required|min:6|match"   
-            >
+        <div class="container">
+            <label for="confirm_password">Confirm password: </label>
+            <div class="form_group confirm_password">
+                <input 
+                    type="password" 
+                    name="confirm_password" 
+                    placeholder="Confirm password"
+                    autocomplete="off"
+                    rules="min:6|match:password|required"   
+                >
+            </div>
+            <span class="error_message"></span>
         </div>
-        <span class="error_message"></span>
+
 
 
         <input 
