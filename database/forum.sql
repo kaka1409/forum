@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2025 at 06:04 PM
+-- Generation Time: Apr 10, 2025 at 11:18 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,7 +45,8 @@ INSERT INTO `account` (`account_id`, `role_id`, `account_name`, `account_avatar`
 (1, 1, 'kaka1409', 'uploads/account/kaka1409.png', 'test', 'testEmail@gmail.com', '2025-03-16 05:06:49'),
 (7, 1, 'test user', 'uploads/account/default.jpg', '$2y$10$j37XG4wZOUJslK3dH1IM7uQv4BOGfa5RK6H7l3t88lNlgQo.CI5Fq', 'test@gmail.com', '2025-03-20 04:54:40'),
 (8, 2, 'kk1409', 'uploads/account/default.jpg', '$2y$10$nVSapmddlfUCX344CJumde9w/qL1aiCGvLrw1MSkjEyDRoVmbLsfO', 'bruh@gmail.com', '2025-03-20 04:58:36'),
-(10, 1, 'new user', 'uploads/account/default.jpg', '$2y$10$S8y9wx2ADVjKz/gT7rVllO2jsnxNKbYTcJ3S9qZ3eDCIlhzfN1Tju', 'new@gmail.com', '2025-03-21 06:10:40');
+(10, 1, 'new user', 'uploads/account/default.jpg', '$2y$10$S8y9wx2ADVjKz/gT7rVllO2jsnxNKbYTcJ3S9qZ3eDCIlhzfN1Tju', 'new@gmail.com', '2025-03-21 06:10:40'),
+(23, 1, 'Alma Mcknight', 'uploads/account/default.jpg', '$2y$10$7OIbScToTST55C0SJBX0LuaYgheImCSN6oL5m6N0.1Y4s8I7RPPra', 'zixecixop@mailinator.com', '2025-04-10 03:48:26');
 
 -- --------------------------------------------------------
 
@@ -109,10 +110,19 @@ INSERT INTO `comment` (`comment_id`, `account_id`, `post_id`, `parent_comment_id
 CREATE TABLE `logs` (
   `admin_id` int(11) NOT NULL,
   `action` enum('create','update','delete') DEFAULT NULL,
-  `post_id` int(11) NOT NULL,
-  `module_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `post_id` int(11) DEFAULT NULL,
+  `module_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `logs`
+--
+
+INSERT INTO `logs` (`admin_id`, `action`, `post_id`, `module_id`, `user_id`) VALUES
+(8, 'create', NULL, NULL, 23),
+(8, 'create', 25, NULL, NULL),
+(8, 'create', NULL, 9, NULL);
 
 -- --------------------------------------------------------
 
@@ -137,7 +147,8 @@ CREATE TABLE `message` (
 INSERT INTO `message` (`message_id`, `account_id`, `title`, `content`, `updated_at`, `sent_at`, `status`) VALUES
 (1, 10, 'test email', 'yayaay', '2025-04-04 08:17:57', '2025-03-25 17:20:01', 'read'),
 (2, 10, 'message 2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita impedit inventore consequatur, amet ratione molestias dolorem ad incidunt provident. Veritatis aliquid tempora aliquam in maxime ab obcaecati sequi, optio unde?', '2025-04-05 14:29:06', '2025-03-25 17:27:43', 'read'),
-(3, 8, '---', '---', '2025-04-04 09:29:43', '2025-04-04 08:48:25', 'deleted');
+(3, 8, '---', '---', '2025-04-04 09:29:43', '2025-04-04 08:48:25', 'deleted'),
+(5, 8, 'test email', 'test content', '2025-04-09 10:08:41', '2025-04-09 10:08:41', 'unread');
 
 -- --------------------------------------------------------
 
@@ -160,7 +171,8 @@ INSERT INTO `module` (`module_id`, `module_name`, `teacher`, `description`) VALU
 (1, 'Test module updated', 'random teacher', 'test module discription'),
 (2, 'Web Progarmming', 'Mr Tra', 'Learn web development concepts'),
 (3, 'Data Science', 'Pro. David', 'Data is gold, and data science is the best field in CompSci change my mind'),
-(4, 'IOT', 'Mr Charles', 'Working around with IOT ecosystem');
+(4, 'IOT', 'Mr Charles', 'Working around with IOT ecosystem'),
+(9, 'new module updated', 'new teacher', 'new description');
 
 -- --------------------------------------------------------
 
@@ -188,11 +200,13 @@ CREATE TABLE `post` (
 INSERT INTO `post` (`post_id`, `account_id`, `module_id`, `title`, `content`, `post_at`, `updated_at`, `vote`, `comments_count`, `thumbnail_url`) VALUES
 (2, 1, 2, 'test post number oishdfshiodfu', 'lorem isuapum of post number 2', '2025-03-16 05:11:20', '2025-04-03 04:08:43', 2, 3, 'uploads/2.jpg'),
 (4, 1, 1, 'post number 3', 'lorem isuapum of post number 3', '2025-03-16 05:11:56', '2025-04-05 14:29:46', -2, 0, 'uploads/3.webp'),
-(12, 8, 3, 'new post yeah', 'oh baby oh bay oh baby', '2025-03-20 08:56:49', '2025-04-03 04:57:21', 2, 1, 'uploads/'),
-(13, 8, 1, 'yeah baby', 'oy hm good', '2025-03-21 04:27:54', '2025-04-06 14:59:38', 0, 4, 'uploads/'),
+(12, 8, 3, 'new post yeah', 'oh baby oh bay oh baby', '2025-03-20 08:56:49', '2025-04-10 08:08:59', 2, 1, 'uploads/'),
+(13, 8, 1, 'yeah baby', 'oy hm good', '2025-03-21 04:27:54', '2025-04-10 06:59:44', 0, 4, 'uploads/1.webp'),
 (14, 10, 1, 'my first post ever', 'yayayayayaaayaa', '2025-03-22 16:09:17', '2025-03-25 15:16:49', 2, 0, 'uploads/4.webp'),
 (15, 10, 2, 'yeah yeah', 'a', '2025-03-23 10:22:23', '2025-04-04 07:42:07', 2, 0, 'uploads/4.webp'),
-(16, 10, 1, 'my lastest post IG', 'uspen nivka', '2025-03-25 17:25:50', '2025-04-06 15:09:09', 1, 1, 'uploads/');
+(16, 10, 1, 'my lastest post IG', 'uspen nivka', '2025-03-25 17:25:50', '2025-04-06 15:09:09', 1, 1, 'uploads/'),
+(23, 8, 2, 'how can  I center a div?', 'seriously how can I do that?', '2025-04-09 09:03:04', '2025-04-09 09:33:39', 1, 0, 'uploads/4.webp'),
+(25, 8, 1, 'psot 123', 'sdjjasfkff', '2025-04-10 04:15:07', '2025-04-10 06:58:39', 0, 0, 'uploads/');
 
 -- --------------------------------------------------------
 
@@ -246,7 +260,8 @@ INSERT INTO `vote` (`vote_id`, `account_id`, `post_id`, `comment_id`, `vote_type
 (98, 8, 12, NULL, '1'),
 (102, 8, 15, NULL, '1'),
 (103, 8, 4, NULL, '-1'),
-(104, 8, 13, NULL, '1');
+(106, 8, 23, NULL, '1'),
+(107, 8, 13, NULL, '1');
 
 --
 -- Indexes for dumped tables
@@ -332,7 +347,7 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -344,19 +359,19 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
-  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -368,7 +383,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- Constraints for dumped tables

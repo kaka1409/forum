@@ -1,6 +1,7 @@
 import { selectElement, getPostIdInList } from "./helpers.js"
 import { baseURL, iconsURL } from "./config.js"
 import {
+    handleSearch,
     handleVote,
     handleComment,
     handleBookmark,
@@ -121,6 +122,20 @@ function handleSearchBarEvent() {
 
         }
 
+        const searchInputEnter = async (e) => {
+            if (e.key === 'Enter' && searchInput.value.trim() !== '') {
+                // TODO: handleSearch here
+                // console.log(searchOption.textContent.trim())
+
+                const option = searchOption.textContent.trim().split(' ')[1]
+                const query = searchInput.value.trim().replace(' ', '+')
+
+                window.location.href = `${baseURL}search?option=${option}&query=${query}`
+
+                // await handleSearch()
+            }
+        }
+
         const postSearch = 'search post'
         const userSearch = 'search user'
         const optionClicked = (e) => {
@@ -173,12 +188,21 @@ function handleSearchBarEvent() {
         searchInput.addEventListener('focus', searchInputFocus)
         searchInput.addEventListener('blur', searchInputNoFocus)
         searchInput.addEventListener('input', searchInputChange)
+        searchInput.addEventListener('keydown', searchInputEnter)
 
         // search option
         searchOption.addEventListener('mousedown', optionClicked)
 
         // reset search icon
         resetSearchIcon.addEventListener('mousedown', resetIconClicked)
+
+        // if is searching then the input will have the search query
+        if (searchInput) {
+            const urlParams = new URLSearchParams(window.location.search)
+            if (window.location.href.includes('search')) {
+                searchInput.value = urlParams.get('query')
+            }
+        }
 
 
     }

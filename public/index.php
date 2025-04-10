@@ -44,6 +44,7 @@ require_once APP_ROOT . '/controllers/ModuleController.php';
 require_once APP_ROOT . '/controllers/MessageController.php';
 require_once APP_ROOT . '/controllers/FeedController.php';
 require_once APP_ROOT . '/controllers/AdminController.php';
+require_once APP_ROOT . '/controllers/SearchController.php';
 require_once APP_ROOT . '/controllers/VoteController.php';
 
 // router

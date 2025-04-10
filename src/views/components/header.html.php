@@ -11,7 +11,12 @@
             <div class="search_icon">
                 <img src="<?=BASE_URL?>assets/icons/search_icon.png" alt="">
             </div>
-            <input id="search_input" type="text" placeholder="Search posts or users">
+            <input 
+                id="search_input" 
+                type="text" 
+                placeholder="Search posts or users"
+                autocomplete="off"    
+            >
         </div>
         <div class="search_option">
             search post
