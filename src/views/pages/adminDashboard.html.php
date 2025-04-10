@@ -139,6 +139,31 @@
 
         <div class="audit_log">
             <h1 class="title">Audit logs</h1>
+
+            <?php if (!empty($logs)): ?>
+                <ul class="logs">
+                    <?php foreach($logs as $log): ?>
+                        
+                        <li class="log"> &bull;
+                            <span>
+                                <?= htmlspecialchars($log['admin_name'])?>
+                            </span>
+
+                            <span class="action <?= htmlspecialchars($log['action'])?>">
+                                <?= htmlspecialchars($log['action'])?>
+                            </span>
+
+                            <span class="name">
+                                <?= htmlspecialchars($log['name'])?>
+                            </span>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php else: ?>
+                <ul class="log">
+                    <li class="log">No audit activity</li>
+                </ul>
+            <?php endif; ?>
         </div>
     </div>
 </section>

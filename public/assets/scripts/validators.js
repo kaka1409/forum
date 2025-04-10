@@ -212,12 +212,14 @@ function Validator(formSelector) {
                         body: requestBody
                     })
 
-                    console.log(requestBody)
+                    // console.log(requestBody)
                     // console.log(await response.text())
 
                     const data = await response.json()
 
-                    window.location.href = data.redirect
+                    if (data && data.redirect) {
+                        window.location.href = data.redirect
+                    }
 
                 } catch (error) {
                     console.error(error)

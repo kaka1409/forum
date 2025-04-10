@@ -1642,6 +1642,33 @@ form .title {
     cursor: pointer;
 }
 
+.audit_log .logs {
+    margin-top: 3em;
+    font-size: 0.9em;
+}
+
+.audit_log .logs .log {
+    margin: 1em 0;
+}
+
+.audit_log .log .action.create {
+    color: #39E58C;
+}
+
+.audit_log .log .action.update {
+    color: #FF8E3B;
+}
+
+.audit_log .log .action.delete {
+    color: #E04337;
+}
+
+.audit_log .log .name{
+    font-weight: bold;
+}
+
+
+
 /* create user form */
 #create_user_form {
     margin: 0 auto;

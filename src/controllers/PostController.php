@@ -39,6 +39,17 @@ class PostController {
             $result = Post::createPost($db);
 
             if ($result) {
+                if (isAdmin()) {
+                    $pdo = $db->getConnection();
+                    $post_id = $pdo->lastInsertId();
+    
+                    // collect admin audit logs
+                    $log_result = Log::collectLog($db, $post_id, 'create', 'post') ?? null;
+    
+                    if ($log_result === null || !$log_result) {
+                        throw new Error('Failed to create post log');
+                    }
+                }
                 sendJson([
                     'status' => 'success',
                     'message' => 'Post created successfully',

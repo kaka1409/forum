@@ -11,6 +11,19 @@ class AdminController {
         $message_count = Message::getMessageCount($db);
 
         $posts = Post::getAllPosts($db);
+        $logs = Log::getLogs($db);
+
+        if (!empty($logs)) {
+            foreach($logs as &$log) {
+                if ($log['post_title']) {
+                    $log['name'] = 'post ' . $log['post_title'];
+                } else if ($log['module_name']) {
+                    $log['name'] = 'module ' . $log['module_name'];
+                } else {
+                    $log['name'] = 'user ' . $log['username'];
+                }
+            }
+        }
 
         $view = ViewController::getInstance();
         $view->set('title', 'Admin dashboard');
@@ -20,6 +33,7 @@ class AdminController {
         $view->set('user_count', $user_count);
         $view->set('message_count', $message_count);
         $view->set('posts', $posts);
+        $view->set('logs', $logs);
         $view->render('adminDashboard');
     }
 
@@ -84,11 +98,15 @@ class AdminController {
             $result = Account::createAccount($db);
     
             if ($result) {
-
-                $user_id = $result->lastInsertId();
+                $pdo = $db->getConnection();
+                $user_id = $pdo->lastInsertId();
 
                 // collect admin audit logs
-                Log::collectLog($db, $user_id);
+                $log_result = Log::collectLog($db, $user_id, 'create', 'user') ?? null;
+
+                if ($log_result === null || !$log_result) {
+                    throw new Error('Failed to create user log');
+                }
 
                 sendJson([
                     'status' => 'success',
@@ -161,17 +179,17 @@ class AdminController {
 
         $result = Account::deleteAccount($db, $account_id);
 
-        if ($result) {
-            sendJson([
-                'status' => 'success',
-                'message' => 'User deleted successfully',
-            ]);
-        } else {
-            sendJson([
-                'status' => 'error',
-                'message' => 'Failed to delete user',
-            ]);
-        }
+        // if ($result) {
+        //     sendJson([
+        //         'status' => 'success',
+        //         'message' => 'User deleted successfully',
+        //     ]);
+        // } else {
+        //     sendJson([
+        //         'status' => 'error',
+        //         'message' => 'Failed to delete user',
+        //     ]);
+        // }
 
         header('Location: '. BASE_URL . 'admin/user_list');
         exit;
@@ -213,6 +231,16 @@ class AdminController {
             $result = Module::createModule($db);
 
             if ($result) {
+                $pdo = $db->getConnection();
+                $module_id = $pdo->lastInsertId();
+
+                // collect admin audit logs
+                $log_result = Log::collectLog($db, $module_id, 'create', 'module') ?? null;
+
+                if ($log_result === null || !$log_result) {
+                    throw new Error('Failed to create module log');
+                }
+
                 sendJson([
                     'status' => 'success',
                     'message' => 'Module created successfully',
@@ -300,17 +328,17 @@ class AdminController {
 
         $result = Module::deleteModule($db, $module_id);
 
-        if ($result) {
-            sendJson([
-                'status' => 'success',
-                'message' => 'Module deleted successfully',
-            ]);
-        } else {
-            sendJson([
-                'status' => 'error',
-                'message' => 'Failed to delete module',
-            ]);
-        }
+        // if ($result) {
+        //     sendJson([
+        //         'status' => 'success',
+        //         'message' => 'Module deleted successfully',
+        //     ]);
+        // } else {
+        //     sendJson([
+        //         'status' => 'error',
+        //         'message' => 'Failed to delete module',
+        //     ]);
+        // }
 
         header('Location: ' . BASE_URL . 'admin/module_list');
         exit;
