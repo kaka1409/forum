@@ -13,7 +13,6 @@
             </select>
         </div>
 
-
         <div class="form_head">
             <!-- accout avatar -->
             <div class="form_group avatar_container">
@@ -27,6 +26,7 @@
                     name="account_avatar" 
                     accept="image/*"
                     id=""
+                    value=""
                     hidden
                 >
             </div>

@@ -142,6 +142,16 @@ class PostController {
             $result = Post::updatePostById($db, $post_id);
     
             if ($result) {
+                if (isAdmin()) {
+
+                    // collect admin audit logs
+                    $log_result = Log::collectLog($db, $post_id, 'update', 'post') ?? null;
+
+                    if ($log_result === null || !$log_result) {
+                        throw new Error('Failed to collect post log');
+                    }
+                }
+
                 sendJson([
                     'status' => 'success',
                     'message' => 'Post edited successfully',

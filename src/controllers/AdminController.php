@@ -15,13 +15,47 @@ class AdminController {
 
         if (!empty($logs)) {
             foreach($logs as &$log) {
-                if ($log['post_title']) {
-                    $log['name'] = 'post ' . $log['post_title'];
-                } else if ($log['module_name']) {
-                    $log['name'] = 'module ' . $log['module_name'];
-                } else {
-                    $log['name'] = 'user ' . $log['username'];
-                }
+
+                switch ($log['action']) {
+                    case 'create': {
+                        if ($log['post_title']) {
+                            $log['name'] = 'post "' . $log['post_title'] .'"';
+                        } else if ($log['module_name']) {
+                            $log['name'] = 'module "' . $log['module_name'] . '"';
+                        } else if ($log['username']){
+                            $log['name'] = 'user "' . $log['username'] . '"';
+                        } 
+
+                        break;
+
+                    }
+
+                    case 'update': {
+                        if ($log['post_title']) {
+                            $log['name'] = 'post "' . $log['post_title'] . '"';
+                        } else if ($log['module_name']) {
+                            $log['name'] = 'module "' . $log['module_name'] . '"';
+                        } else {
+                            $log['name'] = 'user "' . $log['username'] . '"';
+                        } 
+
+                        break;
+
+                    }
+
+                    case 'delete': {
+                        if ($log['post_title']) {
+                            $log['name'] = 'post ' . $log['post_title'];
+                        } else if ($log['module_name']) {
+                            $log['name'] = 'module ' . $log['module_name'];
+                        } else {
+                            $log['name'] = 'user ' . $log['username'];
+                        } 
+
+                        break;
+                    }
+                };
+
             }
         }
 
@@ -105,7 +139,7 @@ class AdminController {
                 $log_result = Log::collectLog($db, $user_id, 'create', 'user') ?? null;
 
                 if ($log_result === null || !$log_result) {
-                    throw new Error('Failed to create user log');
+                    throw new Error('Failed to collect user log');
                 }
 
                 sendJson([
@@ -145,6 +179,15 @@ class AdminController {
             $result = Account::updateAccount($db, $accout_id);
 
             if ($result) {
+                $user_id = $accout_id;
+
+                // collect admin audit logs
+                $log_result = Log::collectLog($db, $user_id, 'update', 'user') ?? null;
+
+                if ($log_result === null || !$log_result) {
+                    throw new Error('Failed to collect user log');
+                }
+
                 sendJson([
                     'status' => 'success',
                     'message' => 'User edited successfully',
@@ -238,7 +281,7 @@ class AdminController {
                 $log_result = Log::collectLog($db, $module_id, 'create', 'module') ?? null;
 
                 if ($log_result === null || !$log_result) {
-                    throw new Error('Failed to create module log');
+                    throw new Error('Failed to collect module log');
                 }
 
                 sendJson([
@@ -295,6 +338,13 @@ class AdminController {
             $result = Module::updateModule($db, $module_id);
 
             if ($result) {
+                // collect admin audit logs
+                $log_result = Log::collectLog($db, $module_id, 'update', 'module') ?? null;
+
+                if ($log_result === null || !$log_result) {
+                    throw new Error('Failed to collect user log');
+                }
+
                 sendJson([
                     'status' => 'success',
                     'message' => 'Module edited successfully',

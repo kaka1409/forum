@@ -146,7 +146,7 @@
                         
                         <li class="log"> &bull;
                             <span>
-                                <?= htmlspecialchars($log['admin_name'])?>
+                                <?= $_SESSION['account_name'] === $log['admin_name']? 'You' : htmlspecialchars($log['admin_name'])?> 
                             </span>
 
                             <span class="action <?= htmlspecialchars($log['action'])?>">

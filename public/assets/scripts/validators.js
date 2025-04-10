@@ -125,6 +125,19 @@ function Validator(formSelector) {
                 const formElement = formSelector.split(' ')[0]
                 let requestBody;
 
+                // handle thumbnail and avatar
+                let thumbnail = form.querySelector('[name="thumbnail"]')
+                let thumbnailImage;
+                if (thumbnail) {
+                    thumbnailImage = thumbnail.value === '' ? '' : thumbnail.value.split(`\\`)[2]
+                }
+
+                let avatar = form.querySelector('[name="account_avatar"]')
+                let avatarImage;
+                if (avatar) {
+                    avatarImage = avatar.value === '' ? 'default.jpg' : avatar.value.split(`\\`)[2]
+                }
+
                 switch(formElement) {
                     case '#create_post_form': {
                         requestBody = new URLSearchParams({
@@ -132,7 +145,7 @@ function Validator(formSelector) {
                             csrf_token: form.querySelector('[name="csrf_token"]').value,
                             module: form.querySelector('[name="module"]').value,
                             title: formData['title'],
-                            thumbnail: form.querySelector('[name="thumbnail"]').value.split(`\\`)[2],  
+                            thumbnail: thumbnailImage,  
                             content: formData['content'],
                         })
                         break
@@ -144,7 +157,7 @@ function Validator(formSelector) {
                             csrf_token: form.querySelector('[name="csrf_token"]').value,
                             module: form.querySelector('[name="module"]').value,
                             title: formData['title'],
-                            thumbnail: form.querySelector('[name="thumbnail"]').value.split(`\\`)[2],  
+                            thumbnail: thumbnailImage,  
                             content: formData['content'],
                         })
                         break
@@ -174,7 +187,7 @@ function Validator(formSelector) {
                         requestBody = new URLSearchParams({
                             submit: 'submit',
                             role: form.querySelector('[name="role"]').value,
-                            account_avatar: form.querySelector('[name="account_avatar"]').value.split(`\\`)[2],
+                            account_avatar: avatarImage,
                             account_name: formData['account_name'],
                             email: formData['email'],
                             password: formData['password'],
