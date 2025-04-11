@@ -38,7 +38,9 @@ class SearchController {
 
             case 'user': {
                 $view->set('title', 'Searching ' . $search_query);
-                // $view->set()
+
+                $users = Account::searchAccount($db, $search_query);
+                $view->set('users', $users);
                 $view->render('searchUser');
             }
         }

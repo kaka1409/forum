@@ -154,6 +154,18 @@ class Account {
 
         return $stmt;
     }
+
+    public static function searchAccount($db = null, $query = null) {
+        $sql = "SELECT account_id, role_id, account_name, account_avatar, email, create_at
+                FROM `account`
+                WHERE account_name LIKE :query;";
+
+        $stmt = $db->query($sql, [
+            ':query' => '%'. $query .'%'
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>

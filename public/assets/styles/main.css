@@ -2250,12 +2250,92 @@ form .title {
     padding: 1em;
     font-size: 1.5em;
     text-align: center;
+    font-weight: bold;
 }
 
 .search_result_container .search_empty h1{
     color: gray;
     text-align: center;
     margin-bottom: 0.5em;
+    font-weight: 100;
+}
+
+.search_result_container .user_container {
+    contain: content;
+}
+
+.search_result_container .user {
+    margin-top: 1em;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: auto;
+    height: 8em;
+    border-radius: 2em;
+    border-top: 1px solid var(--border-color);
+}
+
+.search_result_container .user:hover {
+    background-color: #332544;
+}
+
+.search_result_container .avatar {
+    border-radius:  20em;
+    width: 8em;
+    height: 8em;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.search_result_container .avatar img {
+    width: 100%;
+    height: 100%;
+}
+
+.search_result_container .user_details {
+    text-align: left;
+    padding: 1em;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.search_result_container .username {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.25em;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.search_result_container .date {
+    display: inline-block;
+    font-size: 0.6em;
+    font-weight: 100;
+    color: gray;
+}
+
+.search_result_container .role {
+    border-radius: 3em;
+    width: fit-content;
+}
+
+.search_result_container .role.admin {
+    padding: 0.25em 0.5em;
+    color: #000;
+    font-weight: bold;
+    font-size: 0.8em;
+    background-color: #2cdce6;
+}
+
+.search_result_container .role.student {
+    padding: 0.25em 0.5em;
+    color: #000;
+    font-weight: bold;
+    font-size: 0.8em;
+    background-color: var(--violet-color);
 }
 
 /* Search result view */

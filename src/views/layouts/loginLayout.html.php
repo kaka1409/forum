@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?= ViewController::useComponent('login_head', ['title' => $title]); ?>
+    <?= ViewController::useComponent('loginHead', ['title' => $title]); ?>
 </head>
 <body>
     <div class="account_form_container">

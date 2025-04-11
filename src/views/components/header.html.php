@@ -18,9 +18,7 @@
                 autocomplete="off"    
             >
         </div>
-        <div class="search_option">
-            search post
-        </div>
+        <div class="search_option"></div>
 
         <div class="reset_search">
             x

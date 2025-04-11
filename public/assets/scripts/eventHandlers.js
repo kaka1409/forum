@@ -79,7 +79,7 @@ function handleSearchBarEvent() {
         const searchInput = searchBar.querySelector('#search_input')
         
         // search options
-        const searchOption = searchBar.querySelector('.search_option')
+        const searchOptionElement = searchBar.querySelector('.search_option')
         const fontStyle = window.getComputedStyle(searchInput).font;
         const canvas = document.createElement("canvas");
         const context = canvas.getContext("2d");
@@ -100,7 +100,7 @@ function handleSearchBarEvent() {
             searchBar.style.border = 'none'
 
             // hidden
-            searchOption.style.visibility = 'hidden'
+            searchOptionElement.style.visibility = 'hidden'
             resetSearchIcon.style.visibility = 'hidden'
         }
 
@@ -109,25 +109,25 @@ function handleSearchBarEvent() {
             const textWidth = context.measureText(searchInput.value).width
 
             if (parseInt(textWidth) <= (searchInput.parentElement.clientWidth - 50)) {
-                searchOption.style.left = 60 + textWidth + 'px'
+                searchOptionElement.style.left = 60 + textWidth + 'px'
             }
 
-            if (searchOption.style.visibility === '' || 'hidden') {
-                searchOption.style.visibility = 'visible'
+            if (searchOptionElement.style.visibility === '' || 'hidden') {
+                searchOptionElement.style.visibility = 'visible'
             }
 
             if (searchInput.value.trim() === '') {
-                searchOption.style.visibility = 'hidden'
+                searchOptionElement.style.visibility = 'hidden'
             }
 
         }
 
-        const searchInputEnter = async (e) => {
+        const searchInputEnter = (e) => {
             if (e.key === 'Enter' && searchInput.value.trim() !== '') {
                 // TODO: handleSearch here
                 // console.log(searchOption.textContent.trim())
 
-                const option = searchOption.textContent.trim().split(' ')[1]
+                const option = searchOptionElement.textContent.trim().split(' ')[1]
                 const query = searchInput.value.trim().replace(' ', '+')
 
                 window.location.href = `${baseURL}search?option=${option}&query=${query}`
@@ -136,13 +136,13 @@ function handleSearchBarEvent() {
             }
         }
 
-        const postSearch = 'search post'
-        const userSearch = 'search user'
+        let localSearchOption = localStorage.getItem('searchOption') || 'search post'
+        searchOptionElement.textContent = localSearchOption
         const optionClicked = (e) => {
             e.preventDefault()
             e.stopPropagation()
 
-            searchOption.animate(
+            searchOptionElement.animate(
                 [
                     {
                         transform: 'scale(1)',
@@ -166,7 +166,9 @@ function handleSearchBarEvent() {
                 }
             )
 
-            searchOption.textContent  = searchOption.textContent.replace(/^\s+|\s+$/g, "") === postSearch ? userSearch : postSearch
+            searchOptionElement.textContent = searchOptionElement.textContent.replace(/^\s+|\s+$/g, "") === 'search post' ? 'search user' : 'search post'
+            // store option to local storage
+            localStorage.setItem('searchOption', searchOptionElement.textContent.replace(/^\s+|\s+$/g, ""))
 
         }
 
@@ -176,10 +178,10 @@ function handleSearchBarEvent() {
 
             searchInput.value = ''
             searchInput
-            searchOption.style.left = '60px'
+            searchOptionElement.style.left = '60px'
 
             // hide search option
-            searchOption.style.visibility = 'hidden'
+            searchOptionElement.style.visibility = 'hidden'
         }
 
         // event listeners
@@ -191,12 +193,12 @@ function handleSearchBarEvent() {
         searchInput.addEventListener('keydown', searchInputEnter)
 
         // search option
-        searchOption.addEventListener('mousedown', optionClicked)
+        searchOptionElement.addEventListener('mousedown', optionClicked)
 
         // reset search icon
         resetSearchIcon.addEventListener('mousedown', resetIconClicked)
 
-        // if is searching then the input will have the search query
+        // if is searching then the search input will have the search query
         if (searchInput) {
             const urlParams = new URLSearchParams(window.location.search)
             if (window.location.href.includes('search')) {
@@ -318,8 +320,8 @@ function handleFeedSettingEvent() {
         const urlParams = new URLSearchParams(window.location.search)
 
         // get setting from url query string and local storage
-        const urlParamSetting = urlParams.get('feed')
-        const localSetting = localStorage.getItem('feedSetting')
+        const urlParamSetting = urlParams.get('feed') || 'new'
+        const localSetting = localStorage.getItem('feedSetting') || 'new'
 
         //  synchorize setting between search params and local storage
         if (localSetting !== urlParamSetting) {
