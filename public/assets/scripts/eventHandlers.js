@@ -623,8 +623,9 @@ function handlePostsEvents () {
     // get current location
     const location = window.location.href
 
-    if (location.includes('home')) {
+    if (location.includes('home') || location.includes('module') || location.includes('bookmarks')) {
         let posts = selectElement('.posts_container .post')
+        // console.log(posts)
         if (posts === undefined) return
         if (!Array.isArray(posts)) posts = new Array(posts)
 

@@ -25,6 +25,22 @@ class ModuleController {
 
         $posts_of_module = Module::getAllPostById($db, $module_id);
 
+        // add  post's information status
+        if ($posts_of_module && isLoggedIn()) {
+            foreach ($posts_of_module as &$post) {
+                $user_vote = Vote::checkVote($db, $_SESSION['account_id'], $post['post_id']);
+                $post['is_voted'] = !empty($user_vote) ? $user_vote['vote_type'] : 0;
+
+                $user_bookmark = Post::checkBookmarked($db, $post['post_id']);
+                $post['is_bookmarked'] = !empty($user_bookmark) ? 1 : 0;
+            } 
+        } else {
+            foreach ($posts_of_module as &$post) {
+                $post['is_voted'] = 0;
+                $post['is_bookmarked'] = 0;
+            }
+        }
+
         $view = ViewController::getInstance();
         $view->set('posts_of_module', $posts_of_module);
         $view->set('disable_scroll', false);

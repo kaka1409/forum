@@ -31,7 +31,7 @@ class SearchController {
                     } 
                 }
 
-                $view->set('title', 'Searching' . $search_query);
+                $view->set('title', 'Searching ' . $search_query);
                 $view->set('posts', $posts);
                 $view->render('searchPost');
             }
