@@ -355,15 +355,12 @@ function handleFeedSettingEvent() {
 
 function handlePostsEvents () {
 
-    let posts = selectElement('.posts_container .post')
-    if (posts === undefined) return
-    if (!Array.isArray(posts)) posts = new Array(posts)
-
     // post animation config
     let animDuration = 1200
     let delay = 200
-
-    posts.forEach(post => {
+    
+    // post event function
+    const postEvents = (post) => {
 
         // post scale up animation
         animDuration += delay
@@ -613,14 +610,40 @@ function handlePostsEvents () {
                     return
                 }
             }
-
+            
             // Event listner
             shareContainer.addEventListener('mouseover', shareIconMouseOver)
             shareContainer.addEventListener('mouseout', shareIconMouseOut)
             shareContainer.addEventListener('click', shareIconClicked)
         }
+        
+    }
+    
 
-    });
+    // get current location
+    const location = window.location.href
+
+    if (location.includes('home')) {
+        let posts = selectElement('.posts_container .post')
+        if (posts === undefined) return
+        if (!Array.isArray(posts)) posts = new Array(posts)
+
+        // post in homepage, module and bookmarks 
+        posts.forEach(postEvents);
+    }
+
+
+    if (location.includes('search')) {
+        // get post elements from search
+        let searchPosts = selectElement('.search_result_container .post')
+        if (searchPosts === undefined) return
+        if (!Array.isArray(searchPosts)) searchPosts = new Array(searchPosts)
+
+        // post in search result
+        searchPosts.forEach(postEvents)
+    }
+
+
 }
 
 function handlePostViewEvents () {

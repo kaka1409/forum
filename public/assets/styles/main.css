@@ -612,6 +612,7 @@ header {
 }
 
 .post_share {
+    display: none !important;
     padding: 0.35em;
 }
 
@@ -2150,6 +2151,11 @@ form .title {
     width: 100%;
 }
 
+.search_result_container a {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+}
 .search_result_container .post {
     margin-top: 0.5em;
     padding: 1em;
@@ -2225,8 +2231,9 @@ form .title {
 }
 
 .search_result_container .post_thumbnail {
-    width: 15em;
-    height: 8em;
+    max-width: 15em;
+    max-height: 8em;
+    min-height: 8em;
 }
 
 .search_result_container .post_thumbnail img {
@@ -2237,6 +2244,18 @@ form .title {
 
 .search_result_container .upvote_container {
     width: 4em;
+}
+
+.search_result_container .search_empty {
+    padding: 1em;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.search_result_container .search_empty h1{
+    color: gray;
+    text-align: center;
+    margin-bottom: 0.5em;
 }
 
 /* Search result view */

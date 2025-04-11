@@ -171,6 +171,23 @@ class Post {
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public static function searchPost($db = null, $search_query = null) {
+        $sql = "SELECT post.post_id, post.account_id, post.title, post.content,
+            post.post_at, post.vote, post.comments_count, post.thumbnail_url,
+            account.account_name, account.account_avatar, module.module_name
+            FROM `post`
+            INNER JOIN `account` ON post.account_id = account.account_id
+            INNER JOIN `module` ON post.module_id = module.module_id
+            WHERE post.title LIKE :search_query;";
+
+        $stmt = $db->query($sql, [
+            ':search_query' => '%' . $search_query . '%',
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
 }
 
 ?>
