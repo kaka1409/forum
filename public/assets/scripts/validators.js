@@ -4,6 +4,7 @@ import { selectElement } from "./helpers.js";
 function Validator(formSelector) {
 
     const form = selectElement(formSelector)
+    // console.log(form)
 
     const formRules = {
         required: function (value) {
@@ -139,6 +140,25 @@ function Validator(formSelector) {
                 }
 
                 switch(formElement) {
+                    case '#login': {
+                        requestBody = new URLSearchParams({
+                            submit: 'submit',
+                            email: formData['email'],
+                            password: formData['password'],
+                        })
+                        break
+                    }
+
+                    case '#register': {
+                        requestBody = new URLSearchParams({
+                            submit: 'submit',
+                            username: formData['username'],
+                            email: formData['email'],
+                            password: formData['password'],
+                        })
+                        break
+                    }
+
                     case '#create_post_form': {
                         requestBody = new URLSearchParams({
                             submit: 'submit',
@@ -230,9 +250,20 @@ function Validator(formSelector) {
 
                     const data = await response.json()
 
-                    if (data && data.redirect) {
-                        window.location.href = data.redirect
-                    }
+                    // console.log(data)
+                    if (data) {
+                        if (data.redirect) {
+                            window.location.href = data.redirect
+                        }
+
+                        if (data.status === 'error') {
+                            const errorElement = form.querySelector('.error_container')
+                            if (errorElement) {
+                                errorElement.textContent = data.message
+                            }
+                        }
+
+                    } 
 
                 } catch (error) {
                     console.error(error)
@@ -242,20 +273,12 @@ function Validator(formSelector) {
                 // NOT VALID
                 // console.log('valid')
 
-                // give some warning if necessary
+                // give some warning 
             }
 
         })
 
     }
-}
-
-function loginFormValidator() {
-    // TODO
-}
-
-function registerFormValidator() {
-    // TODO
 }
 
 function formValidatorEvent() {
@@ -333,6 +356,37 @@ function formValidatorEvent() {
         }
     }
 
+}
+
+function loginFormValidator() {
+    const emailInput = selectElement('[name="email"]')
+    const passwordInput = selectElement('[name="password"]')
+
+    // set rules for form inputs
+    if (emailInput) {
+        emailInput.setAttribute('rules', 'required|email')
+        passwordInput.setAttribute('rules', 'required|min:6')
+    }
+
+    Validator('#login form')
+}
+
+function registerFormValidator() {
+    const usernameInput = selectElement('[name="username"]')
+    const emailInput = selectElement('[name="email"]')
+    const passwordInput = selectElement('[name="password"]')
+    const confirmPasswordInput = selectElement('[name="confirm_password"]')
+
+
+    // set rules for form inputs
+    if (usernameInput) {
+        usernameInput.setAttribute('rules', 'required')
+        emailInput.setAttribute('rules', 'required|email')
+        passwordInput.setAttribute('rules', 'required|min:6')
+        confirmPasswordInput.setAttribute('rules', 'required|min:6|match:password')
+    }
+
+    Validator('#register form')
 }
 
 function createPostFormValidator() {

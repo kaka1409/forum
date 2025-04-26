@@ -2,7 +2,7 @@ import {
     handleSearchBarEvent, handlePostsEvents, handleSidemenuEvent, 
     handleFeedSettingEvent, handlePostViewEvents, handleWindowEvent, 
     handleDOMEvent,  handleModuleEvent, handleMessageEvent,
-    handleAdminEvent
+    handleAdminEvent, handleFormEvent
 } from "./eventHandlers.js"
 
 import {
@@ -33,6 +33,7 @@ const app = {
             handleModuleEvent()
             handleMessageEvent()
             handleAdminEvent()
+            handleFormEvent()
         }
     },
 

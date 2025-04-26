@@ -43,7 +43,7 @@
         <?php if ($account['account_id'] === $_SESSION['account_id']): ?>
             <!-- logout -->
             <div class="logout">
-                <a href="<?=BASE_URL?>logout" alt="">log tf out</a>
+                <a href="<?=BASE_URL?>logout" alt="">Log tf out</a>
             </div>
         
         <?php endif; ?>

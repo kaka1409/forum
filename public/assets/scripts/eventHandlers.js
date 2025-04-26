@@ -959,6 +959,65 @@ function handleListItemsEvent() {
     }
 }
 
+function handleFormEvent() {
+    const loginForm = selectElement('#login form')
+    const registerForm = selectElement('#register form')
+
+    // register form
+    if (registerForm) {
+        const passwordInput = registerForm.querySelector('input[type="password"]')
+        const confirmPasswordInput = registerForm.querySelector('input[name="confirm_password"]')
+        
+        const passwordIcon = registerForm.querySelector('.password_icon img')
+        const confirmPasswordIcon = registerForm.querySelector('.confirm_password_icon img')
+
+        const passwordVisibilityClicked = () => {
+            const type = passwordInput.getAttribute('type')
+            if (type === 'password') {
+                passwordInput.setAttribute('type', 'text')
+                passwordIcon.src = iconsURL + 'show.png'
+            } else {
+                passwordInput.setAttribute('type', 'password')
+                passwordIcon.src = iconsURL + 'hide.png'
+            }
+        }
+
+        const confirmPasswordVisibilityClicked = () => {
+            const type = confirmPasswordInput.getAttribute('type')
+            if (type === 'password') {
+                confirmPasswordInput.setAttribute('type', 'text')
+                confirmPasswordIcon.src = iconsURL + 'show.png'
+            } else {
+                confirmPasswordInput.setAttribute('type', 'password')
+                confirmPasswordIcon.src = iconsURL + 'hide.png'
+            }
+        }
+
+        passwordIcon.addEventListener('click', passwordVisibilityClicked)
+        confirmPasswordIcon.addEventListener('click', confirmPasswordVisibilityClicked)
+    }
+
+    // login form
+    if (loginForm) {
+        const passwordInput = loginForm.querySelector('input[type="password"]')
+        const passwordIcon = loginForm.querySelector('.password_icon img')
+        
+        const passwordVisibilityClicked = () => {
+            const type = passwordInput.getAttribute('type')
+            if (type === 'password') {
+                passwordInput.setAttribute('type', 'text')
+                passwordIcon.src = iconsURL + 'show.png'
+            } else {
+                passwordInput.setAttribute('type', 'password')
+                passwordIcon.src = iconsURL + 'hide.png'
+            }
+        }
+
+        passwordIcon.addEventListener('click', passwordVisibilityClicked)
+    }
+
+}
+
 export {
     handleWindowEvent,
     handleDOMEvent,
@@ -970,4 +1029,5 @@ export {
     handleModuleEvent,
     handleMessageEvent,
     handleAdminEvent,
+    handleFormEvent
 }

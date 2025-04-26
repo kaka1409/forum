@@ -21,14 +21,24 @@ class AccountController {
             $account = Account::login($db);
 
             if ($account) {
-                header('Location: ' . BASE_URL . 'home');
+                sendJson([
+                    'status' => 'success',
+                    'message' => 'Login successfully',
+                    'redirect' => BASE_URL . 'home'
+                ]);
                 exit;
             } else {
-                header('Location: ' . BASE_URL . 'login');
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'Invalid email or password',
+                ]);
                 exit;
             }
         } else {
-            header('Location: ' . BASE_URL . 'login');
+            sendJson([
+                    'status' => 'error',
+                    'message' => 'Login failed',
+                ]);
             exit;
         }
     }
@@ -41,14 +51,24 @@ class AccountController {
             $account = Account::register($db);
 
             if ($account) {
-                header('Location: ' . BASE_URL . 'login');
+                sendJson([
+                    'status' => 'success',
+                    'message' => 'Account registered successfully',
+                    'redirect' => BASE_URL . 'login'
+                ]);
                 exit;
             } else {
-                header('Location: ' . BASE_URL . 'register');
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'There already exists an account with that email',
+                ]);
                 exit;
             }
         } else {
-            header('Location: ' . BASE_URL . 'register');
+            sendJson([
+                    'status' => 'error',
+                    'message' => 'Account registered failed',
+                ]);
             exit;
         }
     }

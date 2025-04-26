@@ -42,12 +42,22 @@ class Account {
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
     
+        $emailCheck = "SELECT * FROM `account` WHERE email = :email;";
+        $emailCheckStmt = $db->query($emailCheck, [
+            ':email' => $email
+        ]);
+
+        // check if email already exists
+        if ($emailCheckStmt->rowCount() > 0) {
+            return false;
+        }
+
         $sql = "INSERT INTO `account`
                 (`role_id`, `account_name`, `account_avatar`, `password_hash`, `email`, `create_at`) 
                 VALUES (:role_id, :username, :account_avatar, :password_hash, :email, NOW())";
 
         $stmt = $db->query($sql, [
-            ':role_id' => 1,
+            ':role_id' => 1, // student is default role
             ':username' => $username,
             ':account_avatar' => 'uploads/account/default.jpg',
             ':password_hash' => password_hash($password, PASSWORD_DEFAULT),
@@ -55,7 +65,7 @@ class Account {
         ]);
 
         return $stmt;
-    
+        
     }
 
     public static function createAccount($db = null) {
