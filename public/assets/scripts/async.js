@@ -134,7 +134,7 @@ const handleComment = async (postId, commentContent) => {
     }
 }
 
-const handleCommentVote = async (isupvote) => {
+const handleCommentVote = async (commentId, isupvote) => {
     const endPoint = isupvote ? 'post/comment/upvote' : 'post/comment/downvote'
 
     try {
@@ -144,13 +144,19 @@ const handleCommentVote = async (isupvote) => {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: new URLSearchParams({
-
+                comment_id: commentId
             })
         })
 
         const data = await response.json()
 
-        // todo
+        // console.log(data.voteCount)
+
+
+        if (data.voteCount !== undefined) {
+            const voteCount = selectElement(`[comment_id="${commentId}"] .vote_count`)
+            voteCount.textContent = data.voteCount
+        }
 
     } catch (error) {
         console.error("Failed to to fetch comment vote data from server ", error)
@@ -481,6 +487,7 @@ const handleAdminControl = async (listType) => {
 
 export {
     handleVote,
+    handleCommentVote,
     handleComment,
     handleBookmark,
     handleAdminControl,

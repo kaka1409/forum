@@ -96,10 +96,10 @@
 
         <!-- comment section -->
         <div class="comment_section">
-            <?php if($comments): ?>
+            <?php if(!empty($comments)): ?>
 
                 <?php foreach($comments as $comment): ?>
-                    <div class="comment">
+                    <div class="comment" comment_id="<?=$comment['comment_id']?>" >
                         <div class="comment_header">
                             <div class="thumbnail_container">
                                 <img src="<?= ROOT_URL . $comment['account_avatar'] ?>" alt="">
@@ -124,13 +124,21 @@
                                 <div class="comment_control">
                                     <div class="comment_vote">
                                         <div class="upvote_container">
-                                            <img id="upvote" src="<?=BASE_URL?>/assets/icons/upvote.png" alt="">
+                                            <img 
+                                                id="upvote"
+                                                src="<?=BASE_URL?>/assets/icons/<?= $comment['is_voted'] == '1'? 'upvoted.png' : 'upvote.png' ?>" 
+                                                alt=""
+                                            >
                                             <p class="vote_count">
                                                 <?= htmlspecialchars( $comment['vote'] )?>
                                             </p>
                                         </div>
                                         <div class="downvote_container">
-                                            <img id="downvote" src="<?=BASE_URL?>/assets/icons/downvote.png" alt="">
+                                            <img 
+                                                id="downvote" 
+                                                src="<?=BASE_URL?>/assets/icons/<?= $comment['is_voted'] == '-1' ? 'downvoted.png' : 'downvote.png' ?>" 
+                                                alt=""
+                                            >
                                         </div>
                                     </div>
             

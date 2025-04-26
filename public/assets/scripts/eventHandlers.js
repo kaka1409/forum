@@ -2,6 +2,7 @@ import { selectElement, getPostIdInList } from "./helpers.js"
 import { baseURL, iconsURL } from "./config.js"
 import {
     handleVote,
+    handleCommentVote,
     handleComment,
     handleBookmark,
     handleAdminControl
@@ -837,8 +838,14 @@ function handlePostViewEvents () {
                     const upvote = upvoteContainer.querySelector('img')
                     const voteCount = upvoteContainer.querySelector('p')
                     
-                    const upvoteClicked = () => {
+                    const upvoteClicked = async (e) => {
                         upvote.src = upvote.src.includes('upvoted') ? iconsURL + 'upvote.png' :  iconsURL + 'upvoted.png'
+
+                        const commentElement = e.target.closest('.comment')
+                        commentElement.querySelector('.downvote_container img').src = iconsURL + 'downvote.png'
+
+                        const commentId = commentElement.getAttribute('comment_id')
+                        await handleCommentVote(parseInt(commentId), true)
                     }
 
                     const upvoteMouseOver = () => {
@@ -863,8 +870,14 @@ function handlePostViewEvents () {
                 downvoteContainers.forEach( (downvoteContainer) => {
                     const downvote = downvoteContainer.querySelector('img')
                     
-                    const downvoteClicked = () => {
+                    const downvoteClicked = async (e) => {
                         downvote.src = downvote.src.includes('downvoted') ? iconsURL + 'downvote.png' :  iconsURL + 'downvoted.png'
+
+                        const commentElement = e.target.closest('.comment')
+                        commentElement.querySelector('.upvote_container img').src = iconsURL + 'upvote.png'
+
+                        const commentId = commentElement.getAttribute('comment_id')
+                        await handleCommentVote(parseInt(commentId), false)
                     }
 
                     const downvoteMouseOver = () => {

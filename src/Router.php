@@ -42,6 +42,8 @@ class Router {
 
         // Post comment
         $this->addRoute('POST', 'post/comment', 'CommentController', 'comment');
+        $this->addRoute('POST', 'post/comment/upvote', 'CommentVoteController', 'upvote');
+        $this->addRoute('POST', 'post/comment/downvote', 'CommentVoteController', 'downvote');
         $this->addRoute('POST', 'post/reply', 'CommentController', 'reply');
 
         // post bookmark

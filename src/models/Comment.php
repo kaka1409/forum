@@ -2,8 +2,9 @@
 
 class Comment {
     public static function getAllComments($db = null, $post_id = null) {
-        $sql = "SELECT comment.account_id , comment.parent_comment_id, comment.content,
-                comment.updated_at, comment.commented_at, comment.vote, comment.depth_level,
+        $sql = "SELECT comment.account_id , comment.comment_id, 
+                comment.parent_comment_id, comment.content, comment.updated_at,
+                comment.commented_at, comment.vote, comment.depth_level,
                 account.account_name, account.account_avatar
                 FROM `comment`
                 INNER JOIN `account` ON comment.account_id = account.account_id 

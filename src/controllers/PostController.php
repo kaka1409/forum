@@ -86,6 +86,12 @@ class PostController {
         if ($post_content && isLoggedIn()) {
             $user_vote = Vote::checkVote($db, $_SESSION['account_id'], $post_content['post_id']);
             $post_content['is_voted'] = !empty($user_vote) ? 1 : 0;
+
+            // user vote for comment
+            foreach($comments as &$comment) {
+                $user_comment_vote = CommentVote::checkVote($db, $_SESSION['account_id'], $comment['comment_id']) ?? null;
+                $comment['is_voted'] = !empty($user_comment_vote) ? $user_comment_vote['vote_type'] : 0;
+            }
         } else {
             $post_content['is_voted'] = 0;
         }

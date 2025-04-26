@@ -11,7 +11,7 @@ This website is a self-contained study platform for student to discuss and share
 - **CRUD operations:** Student can create, read, update, and delete posts.
 - **Email**: Student can send emails to admins.
 - **Feed setting:** Student can filter posts by newest, oldest, or top posts.
-- **Voting:** Student can upvote or downvote posts.
+- **Voting:** Student can upvote or downvote posts and comments.
 - **Comments:** Student can leave comments on posts.
 - **Bookmark:** Student can bookmark posts.
 - **Search:** Student can search for posts using keywords.
