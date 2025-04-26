@@ -8,7 +8,7 @@ class FeedController {
 
         switch($setting) {
             case 'new': 
-                // Sort by newest first (default)
+                // Sort by newest (default)
                 usort($posts, function($a, $b) {
                     return strtotime($b['post_at']) - strtotime($a['post_at']);
                 });
@@ -16,7 +16,7 @@ class FeedController {
                 break;
 
             case 'old': 
-                // Sort by oldest first
+                // Sort by oldest
                 usort($posts, function($a, $b) {
                     return strtotime($a['post_at']) - strtotime($b['post_at']);
                 });

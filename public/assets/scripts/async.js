@@ -1,10 +1,6 @@
 import { selectElement, truncateText } from "./helpers.js";
 import { rootURL, baseURL, iconsURL } from "./config.js"
 
-const handleSearch = async () => {
-
-}
-
 // async function to handle upvote and downvote
 const handleVote = async (postId, isUpvote) => {
     const endPoint = isUpvote ? 'post/upvote' : 'post/downvote';
@@ -484,7 +480,6 @@ const handleAdminControl = async (listType) => {
 }
 
 export {
-    handleSearch,
     handleVote,
     handleComment,
     handleBookmark,

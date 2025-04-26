@@ -134,11 +134,11 @@
                                         </div>
                                     </div>
             
-                                    <div class="post_comments">
+                                    <!-- <div class="post_comments">
                                         <div class="post_comments_container">
                                             <img src="<?=BASE_URL?>/assets/icons/comment.png" alt="">
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <!-- <form action="<?= BASE_URL ?>post/reply" method="POST">
                                         <input type="text">
                                         <input id="post_comment" type="submit" name="submit" value="Post">

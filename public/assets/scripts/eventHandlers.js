@@ -1,7 +1,6 @@
 import { selectElement, getPostIdInList } from "./helpers.js"
 import { baseURL, iconsURL } from "./config.js"
 import {
-    handleSearch,
     handleVote,
     handleComment,
     handleBookmark,
@@ -677,6 +676,10 @@ function handlePostViewEvents () {
         const commentInput = post.querySelector('#comment')
         const commentButton = post.querySelector('#post_comment')
 
+        // comment section
+        const commentSection = post.querySelector('.comment_section')
+
+
         if (upvoteContainer) {
             const upvoteMouseOver = () => {
                 if (!upvote.src.includes('upvoted')) {
@@ -822,6 +825,61 @@ function handlePostViewEvents () {
 
             commentButton.addEventListener('click', commentButtonClicked)
 
+        }
+
+        if (commentSection) {
+            const upvoteContainers = commentSection.querySelectorAll('.upvote_container')
+            const downvoteContainers = commentSection.querySelectorAll('.downvote_container')
+
+            if (upvoteContainers) {
+
+                upvoteContainers.forEach( (upvoteContainer) => {
+                    const upvote = upvoteContainer.querySelector('img')
+                    const voteCount = upvoteContainer.querySelector('p')
+                    
+                    const upvoteClicked = () => {
+                        upvote.src = upvote.src.includes('upvoted') ? iconsURL + 'upvote.png' :  iconsURL + 'upvoted.png'
+                    }
+
+                    const upvoteMouseOver = () => {
+                        upvote.src = upvote.src.includes('upvoted') ? iconsURL + 'upvoted.png' : iconsURL + 'upvote_hover.png'
+                        voteCount.style.color = '#39E58C'
+                        
+                    }
+
+                    const upvoteMouseOut = () => {
+                        upvote.src = upvote.src.includes('upvoted') ? iconsURL + 'upvoted.png' : iconsURL + 'upvote.png'
+                        voteCount.style.color = '#C6ABC8'
+                    }
+
+                    upvoteContainer.addEventListener('click', upvoteClicked)
+                    upvoteContainer.addEventListener('mouseover', upvoteMouseOver)
+                    upvoteContainer.addEventListener('mouseout', upvoteMouseOut)
+                })
+
+            }
+
+            if (downvoteContainers) {
+                downvoteContainers.forEach( (downvoteContainer) => {
+                    const downvote = downvoteContainer.querySelector('img')
+                    
+                    const downvoteClicked = () => {
+                        downvote.src = downvote.src.includes('downvoted') ? iconsURL + 'downvote.png' :  iconsURL + 'downvoted.png'
+                    }
+
+                    const downvoteMouseOver = () => {
+                        downvote.src = downvote.src.includes('downvoted') ? iconsURL + 'downvoted.png' : iconsURL + 'downvote_hover.png'
+                    }
+
+                    const downvoteMouseOut = () => {
+                        downvote.src = downvote.src.includes('downvoted') ? iconsURL + 'downvoted.png' : iconsURL + 'downvote.png'
+                    }
+
+                    downvoteContainer.addEventListener('click', downvoteClicked)
+                    downvoteContainer.addEventListener('mouseover', downvoteMouseOver)
+                    downvoteContainer.addEventListener('mouseout', downvoteMouseOut)
+                })
+            }
         }
 
     }
