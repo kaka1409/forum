@@ -197,6 +197,7 @@ function Validator(formSelector) {
                             submit: 'submit',
                             role: form.querySelector('[name="role"]').value,
                             account_name: formData['account_name'],
+                            account_avatar: avatarImage,
                             email: formData['email'],
                             password: formData['password'],
                         })
@@ -468,7 +469,7 @@ function editUserFormValidator() {
 function createModuleFormValidator() {
     const moduleNameInput = selectElement('[name="module_name"]')
     const teacherInput = selectElement('[name="teacher"]')
-    const moduleDescriptionInput = selectElement('[name="description"]')
+    const moduleDescriptionInput = selectElement('textarea[name="description"]')
 
     if (moduleNameInput) {
         moduleNameInput.setAttribute('rules', 'required')
@@ -482,7 +483,7 @@ function createModuleFormValidator() {
 function editModuleFormValidator () {
     const moduleNameInput = selectElement('[name="module_name"]')
     const teacherInput = selectElement('[name="teacher"]')
-    const moduleDescriptionInput = selectElement('[name="description"]')
+    const moduleDescriptionInput = selectElement('textarea[name="description"]')
 
     if (moduleNameInput) {
         moduleNameInput.setAttribute('rules', 'required')

@@ -332,6 +332,7 @@ const handleAdminControl = async (listType) => {
                         // update history url and store list content state
                         window.history.pushState(null, '', baseURL + endPoint + '_list')
 
+                        
                         if (data.redirect) window.location.href = data.redirect
 
 
