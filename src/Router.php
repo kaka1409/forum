@@ -69,6 +69,7 @@ class Router {
         // admin controls
         $this->addRoute('GET', 'admin/post', 'AdminController', 'post');
         $this->addRoute('GET', 'admin/post_list', 'AdminController', 'dashboard');
+        $this->addRoute('POST', 'admin/post/delete/(\d+)', 'AdminController', 'deletePost');
         
         $this->addRoute('GET', 'admin/user', 'AdminController', 'user');
         $this->addRoute('GET', 'admin/user_list', 'AdminController', 'dashboard');

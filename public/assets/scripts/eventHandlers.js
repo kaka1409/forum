@@ -223,8 +223,9 @@ function handleSidemenuEvent() {
             sidemenu.classList.toggle('collapsed')
         }
 
-        const loginAuth = () => {
+        const loginAuth = (e) => {
             if (!isLoggedIn) {
+                e.preventDefault()
                 modalAppear()
                 return
             } 
@@ -778,9 +779,10 @@ function handlePostViewEvents () {
                     return
                 }
 
-                saveIcon.src = iconsURL + 'saved.png'
+                saveIcon.src = saveIcon.src.includes('saved') ? iconsURL + 'save.png' : iconsURL + 'saved.png'
 
-                console.log(e.target)
+                const postId = e.target.closest('[post-id]') ? e.target.closest('[post-id]').getAttribute('post-id') : null
+                handleBookmark(postId)
             }
 
             saveIconContainer.addEventListener('mouseover', saveIconMouseOver)
@@ -839,6 +841,11 @@ function handlePostViewEvents () {
                     const voteCount = upvoteContainer.querySelector('p')
                     
                     const upvoteClicked = async (e) => {
+                        if (!isLoggedIn) {
+                            modalAppear()
+                            return
+                        }
+
                         upvote.src = upvote.src.includes('upvoted') ? iconsURL + 'upvote.png' :  iconsURL + 'upvoted.png'
 
                         const commentElement = e.target.closest('.comment')
@@ -871,6 +878,11 @@ function handlePostViewEvents () {
                     const downvote = downvoteContainer.querySelector('img')
                     
                     const downvoteClicked = async (e) => {
+                        if (!isLoggedIn) {
+                            modalAppear()
+                            return
+                        }
+                        
                         downvote.src = downvote.src.includes('downvoted') ? iconsURL + 'downvote.png' :  iconsURL + 'downvoted.png'
 
                         const commentElement = e.target.closest('.comment')

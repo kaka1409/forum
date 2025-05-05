@@ -82,10 +82,16 @@ class PostController {
         $post_content = Post::getPostById($db, $post_id);
         $comments = Comment::getAllComments($db, $post_id);
 
-        // add user vote status
+        // add user's information status
         if ($post_content && isLoggedIn()) {
+
+            // vote status
             $user_vote = Vote::checkVote($db, $_SESSION['account_id'], $post_content['post_id']);
             $post_content['is_voted'] = !empty($user_vote) ? 1 : 0;
+
+            // bookmark status
+            $user_bookmark = Post::checkBookmarked($db, $post_content['post_id']);
+            $post_content['is_bookmarked'] = !empty($user_bookmark) ? 1 : 0;
 
             // user vote for comment
             foreach($comments as &$comment) {
@@ -94,6 +100,11 @@ class PostController {
             }
         } else {
             $post_content['is_voted'] = 0;
+            $post_content['is_bookmarked'] = 0;
+
+            foreach($comments as &$comment) { 
+                $comment['is_voted'] = 0;
+            }
         }
 
         $view = ViewController::getInstance();
@@ -188,33 +199,23 @@ class PostController {
     public function delete() {
         global $db;
         $post_id = getPostId();
+        
+        if (isset($_POST['submit']) ) {
 
-        if (isAdmin()) {
+            $result = Post::deletePostById($db, $post_id);
 
-            Post::deletePostById($db, $post_id);
-  
-            header('Location: ' . BASE_URL . 'admin');
-            exit;            
-
-        } else {
-            if (isset($_POST['submit']) ) {
-    
-                $result = Post::deletePostById($db, $post_id);
-    
-                if ($result) {
-                    header('Location: ' . BASE_URL . 'home');
-                    exit;
-                } else {
-                    header('Location: ' . BASE_URL . 'home');
-                    exit;
-                }
-    
+            if ($result) {
+                header('Location: ' . BASE_URL . 'home');
+                exit;
             } else {
                 header('Location: ' . BASE_URL . 'home');
                 exit;
             }
-        }
 
+        } else {
+            header('Location: ' . BASE_URL . 'home');
+            exit;
+        }
         
     }
     

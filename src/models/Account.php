@@ -71,9 +71,32 @@ class Account {
     public static function createAccount($db = null) {
         $role_id = trim($_POST['role']);
         $account_name = trim($_POST['account_name']);
-        $account_avatar = isset($_POST['account_avatar']) && trim($_POST['account_avatar']) !== ''
-                            ? 'uploads/account/' . trim($_POST['account_avatar'])
-                            : 'uploads/account/default.jpg';
+        if (isset($_FILES['account_avatar'])) {
+            $account_avatar = UPLOAD_FOLDER . 'account/' . basename($_FILES['account_avatar']['name']);
+            $isOk = 1;
+
+            $check = getimagesize($_FILES["account_avatar"]["tmp_name"]);
+            if ($check !== false) {
+                $isOk = 1;
+            } else {
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'File is not an image.<br>'
+                ]);
+                $isOk = 0;
+            }
+
+            if ($isOk) {
+                move_uploaded_file($_FILES['account_avatar']['tmp_name'], dirname(__DIR__, 2) . '/' . $account_avatar);
+            } else {
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'Your file was not uploaded'
+                ]);
+            }
+        } else {
+            $account_avatar = UPLOAD_FOLDER . 'account/default.jpg';
+        }
         $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $email = trim($_POST['email']);
 
@@ -130,9 +153,32 @@ class Account {
     public static function updateAccount($db = null, $account_id) {
         $role_id = trim($_POST['role']);
         $account_name = trim($_POST['account_name']);
-        $account_avatar = isset($_POST['account_avatar']) && trim($_POST['account_avatar']) !== ''
-                            ? 'uploads/account/' . trim($_POST['account_avatar'])
-                            : 'uploads/account/default.jpg';
+        if (isset($_FILES['account_avatar'])) {
+            $account_avatar = UPLOAD_FOLDER . 'account/' . basename($_FILES['account_avatar']['name']);
+            $isOk = 1;
+
+            $check = getimagesize($_FILES["account_avatar"]["tmp_name"]);
+            if ($check !== false) {
+                $isOk = 1;
+            } else {
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'File is not an image.<br>'
+                ]);
+                $isOk = 0;
+            }
+
+            if ($isOk) {
+                move_uploaded_file($_FILES['account_avatar']['tmp_name'], dirname(__DIR__, 2) . '/' . $account_avatar);
+            } else {
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'Your file was not uploaded'
+                ]);
+            }
+        } else {
+            $account_avatar = UPLOAD_FOLDER . 'account/default.jpg';
+        }
         $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $email = trim($_POST['email']);
 

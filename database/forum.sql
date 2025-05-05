@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2025 at 12:37 PM
+-- Generation Time: May 05, 2025 at 10:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,9 +45,11 @@ INSERT INTO `account` (`account_id`, `role_id`, `account_name`, `account_avatar`
 (7, 1, 'test user', 'uploads/account/default.jpg', '$2y$10$j37XG4wZOUJslK3dH1IM7uQv4BOGfa5RK6H7l3t88lNlgQo.CI5Fq', 'test@gmail.com', '2025-03-20 04:54:40'),
 (8, 2, 'kk1409', 'uploads/account/default.jpg', '$2y$10$nVSapmddlfUCX344CJumde9w/qL1aiCGvLrw1MSkjEyDRoVmbLsfO', 'bruh@gmail.com', '2025-03-20 04:58:36'),
 (10, 1, 'new user', 'uploads/account/default.jpg', '$2y$10$S8y9wx2ADVjKz/gT7rVllO2jsnxNKbYTcJ3S9qZ3eDCIlhzfN1Tju', 'new@gmail.com', '2025-03-21 06:10:40'),
-(23, 1, 'Alma Mcknight', 'uploads/account/default.jpg', '$2y$10$7OIbScToTST55C0SJBX0LuaYgheImCSN6oL5m6N0.1Y4s8I7RPPra', 'zixecixop@mailinator.com', '2025-04-10 03:48:26'),
+(23, 1, 'Alma Mcknight', 'uploads/account/uni.jfif', '$2y$10$zjgNbwCeo65s8KFdT.Klnuj.bDQDrDUTrf9vwP8SqsDfrnrlbgNlK', 'zixecixop@mailinator.com', '2025-04-10 03:48:26'),
 (26, 2, 'admin', 'uploads/account/default.jpg', '$2y$10$OwaGCruSWcKwBPNAA1jfnulUK/AwNe.v8c8sfkv94wRudzbusY0LS', 'admin@gmail.com', '2025-04-26 05:35:06'),
-(31, 1, 'kaka1409', 'uploads/account/kaka1409.png', '$2y$10$8264PElCOt2nR1l6S99i1u74Xlb.6B0vXPTVS3BZvgCxQkGCfRvLq', 'khanhphqgcs230461@fpt.edu.vn', '2025-04-26 08:33:25');
+(31, 1, 'kaka1409', 'uploads/account/kaka1409.png', '$2y$10$8264PElCOt2nR1l6S99i1u74Xlb.6B0vXPTVS3BZvgCxQkGCfRvLq', 'khanhphqgcs230461@fpt.edu.vn', '2025-04-26 08:33:25'),
+(34, 1, 'My new Account', 'uploads/account/default.jpg', '$2y$10$ZUjYHbHnSBMeEEqj5MJKwuiUKjXHfzlEl6nJSzv9ZT6UpHMTuBuF2', 'newAccount@gmail.com', '2025-04-29 08:32:15'),
+(41, 1, 'test user', 'uploads/account/default.jpg', '$2y$10$QlX760Lj2SMOF5VtvKMzueeUyTH0MNpnSQgLXsDYR5TviYQS2MxPi', 'asd123@gmail.com', '2025-05-05 08:10:16');
 
 -- --------------------------------------------------------
 
@@ -65,7 +67,10 @@ CREATE TABLE `bookmarked` (
 --
 
 INSERT INTO `bookmarked` (`account_id`, `post_id`) VALUES
-(8, 13);
+(8, 13),
+(26, 45),
+(26, 30),
+(26, 15);
 
 -- --------------------------------------------------------
 
@@ -90,12 +95,14 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`comment_id`, `account_id`, `post_id`, `parent_comment_id`, `content`, `updated_at`, `commented_at`, `vote`, `depth_level`) VALUES
-(11, 8, 12, NULL, 'congrat on your first post', '2025-03-29 07:36:40', '2025-03-29 07:36:40', 0, 0),
-(12, 8, 13, NULL, 'never cook again', '2025-04-01 10:10:37', '2025-04-01 10:10:37', 0, 0),
+(11, 8, 12, NULL, 'congrat on your first post', '2025-04-28 06:18:31', '2025-03-29 07:36:40', -1, 0),
+(12, 8, 13, NULL, 'never cook again', '2025-04-28 06:21:12', '2025-04-01 10:10:37', 1, 0),
 (13, 8, 16, NULL, 'haha', '2025-04-01 10:11:17', '2025-04-01 10:11:17', 0, 0),
-(14, 8, 13, NULL, 'no wayyas', '2025-04-03 08:18:28', '2025-04-03 08:18:28', 0, 0),
-(15, 8, 13, NULL, 'huh', '2025-04-03 08:18:43', '2025-04-03 08:18:43', 0, 0),
-(16, 8, 13, NULL, 'hehehehe', '2025-04-03 08:20:16', '2025-04-03 08:20:16', 0, 0);
+(14, 8, 13, NULL, 'no wayyas', '2025-04-28 06:21:15', '2025-04-03 08:18:28', 1, 0),
+(15, 8, 13, NULL, 'huh', '2025-04-28 06:21:14', '2025-04-03 08:18:43', 1, 0),
+(16, 8, 13, NULL, 'hehehehe', '2025-04-28 06:21:16', '2025-04-03 08:20:16', -1, 0),
+(17, 26, 23, NULL, 'Use margin 0 auto', '2025-04-29 09:41:09', '2025-04-29 09:30:55', -1, 0),
+(18, 26, 30, NULL, 'first comment', '2025-05-05 08:08:33', '2025-05-05 08:08:28', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -109,6 +116,19 @@ CREATE TABLE `commentvote` (
   `comment_id` int(11) DEFAULT NULL,
   `vote_type` enum('1','-1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `commentvote`
+--
+
+INSERT INTO `commentvote` (`vote_id`, `account_id`, `comment_id`, `vote_type`) VALUES
+(1, 26, 11, '-1'),
+(2, 26, 12, '1'),
+(3, 26, 14, '1'),
+(4, 26, 15, '1'),
+(5, 26, 16, '-1'),
+(7, 26, 17, '-1'),
+(8, 26, 18, '1');
 
 -- --------------------------------------------------------
 
@@ -131,7 +151,13 @@ CREATE TABLE `logs` (
 INSERT INTO `logs` (`admin_id`, `action`, `post_id`, `module_id`, `user_id`) VALUES
 (8, 'create', NULL, NULL, 23),
 (8, 'create', 25, NULL, NULL),
-(31, 'update', NULL, NULL, 31);
+(31, 'update', NULL, NULL, 31),
+(26, 'update', NULL, NULL, 23),
+(26, 'create', 30, NULL, NULL),
+(26, 'create', 45, NULL, NULL),
+(26, 'update', 45, NULL, NULL),
+(26, 'update', 45, NULL, NULL),
+(26, 'update', 45, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -157,7 +183,9 @@ INSERT INTO `message` (`message_id`, `account_id`, `title`, `content`, `updated_
 (1, 10, 'test email', 'yayaay', '2025-04-04 08:17:57', '2025-03-25 17:20:01', 'read'),
 (2, 10, 'message 2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita impedit inventore consequatur, amet ratione molestias dolorem ad incidunt provident. Veritatis aliquid tempora aliquam in maxime ab obcaecati sequi, optio unde?', '2025-04-05 14:29:06', '2025-03-25 17:27:43', 'read'),
 (3, 8, '---', '---', '2025-04-04 09:29:43', '2025-04-04 08:48:25', 'deleted'),
-(5, 8, '---', '---', '2025-04-25 10:52:49', '2025-04-09 10:08:41', 'deleted');
+(5, 8, '---', '---', '2025-04-25 10:52:49', '2025-04-09 10:08:41', 'deleted'),
+(6, 26, 'How can I log out?', 'I can\'t find the logout button, please help me', '2025-04-29 07:13:36', '2025-04-29 07:09:36', 'read'),
+(7, 26, '---', '---', '2025-05-05 08:07:07', '2025-05-05 08:06:48', 'deleted');
 
 -- --------------------------------------------------------
 
@@ -206,13 +234,15 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`post_id`, `account_id`, `module_id`, `title`, `content`, `post_at`, `updated_at`, `vote`, `comments_count`, `thumbnail_url`) VALUES
-(12, 8, 3, 'new post yeah', 'oh baby oh bay oh baby', '2025-03-20 08:56:49', '2025-04-26 09:40:20', 3, 1, 'uploads/'),
-(13, 8, 1, 'yeah baby', 'oy hm good', '2025-03-21 04:27:54', '2025-04-26 09:46:17', -1, 4, 'uploads/1.webp'),
+(12, 8, 3, 'new post yeah', 'oh baby oh bay oh baby', '2025-03-20 08:56:49', '2025-05-05 08:10:42', 4, 1, 'uploads/default.png'),
+(13, 8, 1, 'yeah baby', 'oy hm good', '2025-03-21 04:27:54', '2025-05-05 08:10:39', -1, 4, 'uploads/1.webp'),
 (14, 10, 1, 'my first post ever', 'yayayayayaaayaa', '2025-03-22 16:09:17', '2025-03-25 15:16:49', 2, 0, 'uploads/4.webp'),
 (15, 10, 2, 'yeah yeah', 'a', '2025-03-23 10:22:23', '2025-04-04 07:42:07', 2, 0, 'uploads/4.webp'),
-(16, 10, 1, 'my lastest post IG', 'uspen nivka', '2025-03-25 17:25:50', '2025-04-06 15:09:09', 1, 1, 'uploads/'),
-(23, 8, 2, 'how can  I center a div?', 'seriously how can I do that?', '2025-04-09 09:03:04', '2025-04-09 09:33:39', 1, 0, 'uploads/4.webp'),
-(25, 8, 1, 'psot 123', 'sdjjasfkff', '2025-04-10 04:15:07', '2025-04-26 09:40:24', 1, 0, 'uploads/');
+(16, 10, 1, 'my lastest post IG', 'uspen nivka', '2025-03-25 17:25:50', '2025-05-05 05:54:17', 1, 1, 'uploads/default.png'),
+(23, 8, 2, 'how can  I center a div?', 'seriously how can I do that?', '2025-04-09 09:03:04', '2025-04-29 09:39:08', 1, 1, 'uploads/4.webp'),
+(25, 8, 1, 'psot 123', 'sdjjasfkff', '2025-04-10 04:15:07', '2025-05-05 08:08:00', 1, 0, 'uploads/default.png'),
+(30, 26, 4, 'Announcement', 'New announcement to all student, this website will stop running', '2025-05-04 10:45:02', '2025-05-05 08:08:28', 1, 1, 'uploads/4.webp'),
+(45, 26, 1, 'asd', 'asd', '2025-05-04 12:40:17', '2025-05-05 06:43:37', 1, 0, 'uploads/Screenshot (73).png');
 
 -- --------------------------------------------------------
 
@@ -264,8 +294,11 @@ INSERT INTO `vote` (`vote_id`, `account_id`, `post_id`, `comment_id`, `vote_type
 (106, 8, 23, NULL, '1'),
 (107, 8, 13, NULL, '1'),
 (108, 26, 12, NULL, '1'),
-(109, 26, 25, NULL, '1'),
-(110, 26, 13, NULL, '-1');
+(110, 26, 13, NULL, '-1'),
+(113, 26, 45, NULL, '1'),
+(114, 26, 25, NULL, '1'),
+(115, 26, 30, NULL, '1'),
+(118, 41, 12, NULL, '1');
 
 --
 -- Indexes for dumped tables
@@ -359,31 +392,37 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `commentvote`
+--
+ALTER TABLE `commentvote`
+  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
-  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -395,7 +434,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- Constraints for dumped tables

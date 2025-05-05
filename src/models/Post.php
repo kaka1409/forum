@@ -6,10 +6,33 @@ class Post {
         $module_id = $_POST['module'];
         $title = trim($_POST['title']);
         $content = trim($_POST['content']);
-        $thumbnail_url = UPLOAD_FOLDER . $_POST['thumbnail'];
+        if (isset($_FILES['thumbnail'])) {
+            $thumbnail_url = UPLOAD_FOLDER . basename($_FILES['thumbnail']['name']);
+            $isOk = 1;
 
-        // echo $module_id;
-    
+            $check = getimagesize($_FILES["thumbnail"]["tmp_name"]);
+            if ($check !== false) {
+                $isOk = 1;
+            } else {
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'File is not an image.<br>'
+                ]);
+                $isOk = 0;
+            }
+
+            if ($isOk) {
+                move_uploaded_file($_FILES['thumbnail']['tmp_name'], dirname(__DIR__, 2) . '/' . $thumbnail_url);
+            } else {
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'Your file was not uploaded'
+                ]);
+            }
+        } else {
+            $thumbnail_url = UPLOAD_FOLDER . 'default.png';
+        }
+
         $sql = "INSERT INTO `post`(`account_id`, `module_id`, `title`, `content`, `post_at`, `updated_at`, `vote`, `comments_count`, `thumbnail_url`) 
                 VALUES (:account_id, :module_id, :title, :content, NOW(), NOW(), :vote, :comments_count, :thumbnail_url)";
         
@@ -78,7 +101,32 @@ class Post {
         $module_id = $_POST['module'];
         $title = trim($_POST['title']);
         $content = trim($_POST['content']);
-        $thumbnail_url = UPLOAD_FOLDER . trim($_POST['thumbnail']);
+        if (isset($_FILES['thumbnail'])) {
+            $thumbnail_url = UPLOAD_FOLDER . basename($_FILES['thumbnail']['name']);
+            $isOk = 1;
+
+            $check = getimagesize($_FILES["thumbnail"]["tmp_name"]);
+            if ($check !== false) {
+                $isOk = 1;
+            } else {
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'File is not an image.<br>'
+                ]);
+                $isOk = 0;
+            }
+
+            if ($isOk) {
+                move_uploaded_file($_FILES['thumbnail']['tmp_name'], dirname(__DIR__, 2) . '/' . $thumbnail_url);
+            } else {
+                sendJson([
+                    'status' => 'error',
+                    'message' => 'Your file was not uploaded'
+                ]);
+            }
+        } else {
+            $thumbnail_url = UPLOAD_FOLDER . 'default.png';
+        }
 
         $sql = "UPDATE `post`
                 SET module_id = :module_id, title = :title, content = :content,

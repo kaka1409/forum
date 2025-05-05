@@ -2,7 +2,7 @@
 
 <section class="post_form" style="overflow-y: hidden;" id="create_post_form">
 
-    <form action="<?=BASE_URL?>post/create" method="POST">
+    <form action="<?=BASE_URL?>post/create" method="POST" enctype="multipart/form-data">
         <h1 class="title">Create a new post</h1>
 
         <input type="hidden" name="csrf_token" value="<?= $csrf_token ?? null ?>">

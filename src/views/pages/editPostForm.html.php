@@ -2,7 +2,7 @@
 <?= ViewController::useComponent('backButton')?>
 
 <section class="post_form" style="overflow-y: hidden;" id="edit_post_form">
-    <form action="<?=BASE_URL?>post/<?=$post_data['post_id']?>/edit" method="POST">
+    <form action="<?=BASE_URL?>post/<?=$post_data['post_id']?>/edit" method="POST" enctype="multipart/form-data">
         <h1 class="title">Edit post</h1>
 
         <input type="hidden" name="csrf_token" value="<?= $csrf_token ?? null ?>">
@@ -61,7 +61,7 @@
             >
             <img 
                 class="image_preview" 
-                src="<?= htmlspecialchars($post_data['thumbnail_url']) == UPLOAD_FOLDER ? '/forum/uploads/default.png' : ROOT_URL . htmlspecialchars($post_data['thumbnail_url']) ;?>"
+                src="<?=ROOT_URL . htmlspecialchars($post_data['thumbnail_url']) ;?>"
                 style="display: block;"
             >
         </div>

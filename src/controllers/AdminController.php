@@ -409,6 +409,26 @@ class AdminController {
         }
     }
 
+    public function deletePost() {
+        adminAuth();
+
+        global $db;
+        $uri_array = explode('/', $_SERVER['REQUEST_URI']);
+        $post_id = end($uri_array);
+        
+        
+        $result = Post::deletePostById($db, $post_id);
+
+        if ($result) {
+            header('Location: ' . BASE_URL . 'admin');
+            exit;
+        } else {
+            header('Location: ' . BASE_URL . 'error');
+            exit;
+        }
+
+    }
+
     public function message() {
         adminAuth();
 

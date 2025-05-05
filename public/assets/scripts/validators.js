@@ -124,115 +124,145 @@ function Validator(formSelector) {
 
                 // construct body for each form
                 const formElement = formSelector.split(' ')[0]
-                let requestBody;
+                let requestBody = new FormData();
 
                 // handle thumbnail and avatar
                 let thumbnail = form.querySelector('[name="thumbnail"]')
-                let thumbnailImage;
+                let thumbnailFile;
                 if (thumbnail) {
-                    thumbnailImage = thumbnail.value === '' ? '' : thumbnail.value.split(`\\`)[2]
+                    thumbnailFile = thumbnail.files[0] ? thumbnail.files[0] : 'default.png'
+                    console.log(thumbnailFile)
                 }
 
                 let avatar = form.querySelector('[name="account_avatar"]')
-                let avatarImage;
+                let avatarFile;
                 if (avatar) {
-                    avatarImage = avatar.value === '' ? 'default.jpg' : avatar.value.split(`\\`)[2]
+                    avatarFile = avatar.files[0] ? avatar.files[0] : 'account/default.jpg'
                 }
 
                 switch(formElement) {
                     case '#login': {
-                        requestBody = new URLSearchParams({
-                            submit: 'submit',
-                            email: formData['email'],
-                            password: formData['password'],
-                        })
+                        // requestBody = new URLSearchParams({
+                        //     submit: 'submit',
+                        //     email: formData['email'],
+                        //     password: formData['password'],
+                        // })
+
+                        requestBody.append('submit', 'submit')
+                        requestBody.append('email', formData['email'])
+                        requestBody.append('password', formData['password'])
                         break
                     }
 
                     case '#register': {
-                        requestBody = new URLSearchParams({
-                            submit: 'submit',
-                            username: formData['username'],
-                            email: formData['email'],
-                            password: formData['password'],
-                        })
+                        // requestBody = new URLSearchParams({
+                        //     submit: 'submit',
+                        //     username: formData['username'],
+                        //     email: formData['email'],
+                        //     password: formData['password'],
+                        // })
+
+                        requestBody.append('submit', 'submit')
+                        requestBody.append('username', formData['username'])
+                        requestBody.append('email', formData['email'])
+                        requestBody.append('password', formData['password'])
                         break
                     }
 
                     case '#create_post_form': {
-                        requestBody = new URLSearchParams({
-                            submit: 'submit',
-                            csrf_token: form.querySelector('[name="csrf_token"]').value,
-                            module: form.querySelector('[name="module"]').value,
-                            title: formData['title'],
-                            thumbnail: thumbnailImage,  
-                            content: formData['content'],
-                        })
+                        requestBody.append('submit', 'submit')
+                        requestBody.append('csrf_token', form.querySelector('[name="csrf_token"]').value)
+                        requestBody.append('module', form.querySelector('[name="module"]').value)
+                        requestBody.append('title', formData['title'])
+                        if (typeof thumbnailFile !== 'string') {
+                            requestBody.append('thumbnail', thumbnailFile, thumbnailFile.name)
+                        } else {
+                            requestBody.append('thumbnail', thumbnailFile)
+                        }
+                        requestBody.append('content', formData['content'])
                         break
                     }
 
                     case '#edit_post_form': {
-                        requestBody = new URLSearchParams({
-                            submit: 'submit',
-                            csrf_token: form.querySelector('[name="csrf_token"]').value,
-                            module: form.querySelector('[name="module"]').value,
-                            title: formData['title'],
-                            thumbnail: thumbnailImage,  
-                            content: formData['content'],
-                        })
+                        requestBody.append('submit', 'submit')
+                        requestBody.append('csrf_token', form.querySelector('[name="csrf_token"]').value)
+                        requestBody.append('module', form.querySelector('[name="module"]').value)
+                        requestBody.append('title', formData['title'])
+                        if (typeof thumbnailFile !== 'string') {
+                            requestBody.append('thumbnail', thumbnailFile, thumbnailFile.name)
+                        } else {
+                            requestBody.append('thumbnail', thumbnailFile)
+                        }
+                        requestBody.append('content', formData['content'])
                         break
                     }
 
                     case '#contact_email_form': {
-                        requestBody = new URLSearchParams({
-                            submit: 'submit',
-                            email_title: formData['email_title'],
-                            email_content: formData['email_content'],
-                        })
+                        requestBody.append('submit', 'submit')
+                        requestBody.append('email_title', formData['email_title'])
+                        requestBody.append('email_content', formData['email_content'])
                         break
                     }
 
                     case '#create_user_form': {
-                        requestBody = new URLSearchParams({
-                            submit: 'submit',
-                            role: form.querySelector('[name="role"]').value,
-                            account_name: formData['account_name'],
-                            account_avatar: avatarImage,
-                            email: formData['email'],
-                            password: formData['password'],
-                        })
+                        // requestBody = new URLSearchParams({
+                        //     submit: 'submit',
+                        //     role: form.querySelector('[name="role"]').value,
+                        //     account_name: formData['account_name'],
+                        //     account_avatar: avatarFile,
+                        //     email: formData['email'],
+                        //     password: formData['password'],
+                        // })
+
+                        requestBody.append('submit', 'submit')
+                        requestBody.append('role', form.querySelector('[name="role"]').value)
+                        requestBody.append('account_name', formData['account_name'])
+                        if (typeof avatarFile !== 'string') {
+                            requestBody.append('account_avatar', avatarFile, avatarFile.name)
+                        } else {
+                            requestBody.append('account_avatar', avatarFile)
+                        }
+                        requestBody.append('email', formData['email'])
+                        requestBody.append('password', formData['password'])
                         break
                     }
 
                     case '#edit_user_form': {
-                        requestBody = new URLSearchParams({
-                            submit: 'submit',
-                            role: form.querySelector('[name="role"]').value,
-                            account_avatar: avatarImage,
-                            account_name: formData['account_name'],
-                            email: formData['email'],
-                            password: formData['password'],
-                        })
+                        // requestBody = new URLSearchParams({
+                        //     submit: 'submit',
+                        //     role: form.querySelector('[name="role"]').value,
+                        //     account_avatar: avatarFile,
+                        //     account_name: formData['account_name'],
+                        //     email: formData['email'],
+                        //     password: formData['password'],
+                        // })
+
+                        requestBody.append('submit', 'submit')
+                        requestBody.append('role', form.querySelector('[name="role"]').value)
+                        if (typeof avatarFile !== 'string') {
+                            requestBody.append('account_avatar', avatarFile, avatarFile.name)
+                        } else {
+                            requestBody.append('account_avatar', avatarFile)
+                        }
+                        requestBody.append('account_name', formData['account_name'])
+                        requestBody.append('email', formData['email'])
+                        requestBody.append('password', formData['password'])
                         break
                     }
 
                     case '#create_module_form': {
-                        requestBody = new URLSearchParams({
-                            submit: 'submit',
-                            module_name: formData['module_name'],
-                            teacher: formData['teacher'],
-                            description: formData['description'],
-                        })
+                        requestBody.append('submit', 'submit')
+                        requestBody.append('module_name', formData['module_name'])
+                        requestBody.append('teacher', formData['teacher'])
+                        requestBody.append('description', formData['description'])
                         break
                     }
 
                     case '#edit_module_form': {
-                        requestBody = new URLSearchParams({
-                            submit: 'submit',
-                            module_name: formData['module_name'],
-                            teacher: formData['teacher'],
-                            description: formData['description'],
-                        })
+                        requestBody.append('submit', 'submit')
+                        requestBody.append('module_name', formData['module_name'])
+                        requestBody.append('teacher', formData['teacher'])
+                        requestBody.append('description', formData['description'])
                         break
                     }
                 }
@@ -240,19 +270,18 @@ function Validator(formSelector) {
                 try {
                     const response = await fetch(form.action, {
                         method: form.method,
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
                         body: requestBody
                     })
 
                     // console.log(requestBody)
                     // console.log(await response.text())
 
-                    const data = await response.json()
-
-                    // console.log(data)
-                    if (data) {
+                    if (response.headers.get('Content-Type').includes('application/json')) {
+                        const data = await response.json()
+                        
+                        console.log(data)
+                        
+                        
                         if (data.redirect) {
                             window.location.href = data.redirect
                         }
@@ -263,8 +292,10 @@ function Validator(formSelector) {
                                 errorElement.textContent = data.message
                             }
                         }
+                    
 
-                    } 
+                    }
+
 
                 } catch (error) {
                     console.error(error)

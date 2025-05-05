@@ -1,13 +1,15 @@
 <!-- Back to home -->
 <?= ViewController::useComponent('backButton')?>
 
-<div class="post_container">
+<div class="post_container" post-id="<?= $post_content['post_id']?>">
     <div class="post_content">
 
         <!-- author -->
         <div class="post_author">
             <div class="author_avatar">
-                <img src="<?= ROOT_URL . $post_content['account_avatar']?>" alt="">
+                <a href="<?=BASE_URL?>profile/<?= $post_content['account_id']?>">
+                    <img src="<?= ROOT_URL . $post_content['account_avatar']?>" alt="">
+                </a>
             </div>
 
             <div class="author_name">
@@ -28,7 +30,7 @@
         <!-- thumbnail -->
         <div class="thumbnail">
             <img 
-                src=" <?= $post_content['thumbnail_url'] == UPLOAD_FOLDER ? ROOT_URL . 'uploads/default.png' : ROOT_URL . htmlspecialchars( $post_content['thumbnail_url'] ); ?>" 
+                src="<?= ROOT_URL . htmlspecialchars( $post_content['thumbnail_url'] ); ?>"
                 alt=""
             >
         </div>
@@ -80,7 +82,7 @@
             </div>
 
             <div class="post_save">
-                <img src="<?=BASE_URL?>/assets/icons/save.png" alt="">
+                <img src="<?=BASE_URL?>/assets/icons/<?= $post_content['is_bookmarked'] == 1 ? 'saved.png' : 'save.png' ?>" alt="">
             </div>
             
             <div class="post_share">
@@ -102,7 +104,9 @@
                     <div class="comment" comment_id="<?=$comment['comment_id']?>" >
                         <div class="comment_header">
                             <div class="thumbnail_container">
-                                <img src="<?= ROOT_URL . $comment['account_avatar'] ?>" alt="">
+                                <a href="<?=BASE_URL?>profile/<?= $comment['account_id']?>">
+                                    <img src="<?= ROOT_URL . $comment['account_avatar'] ?>" alt="">
+                                </a>
                             </div>
         
                             <div class="comment_username">

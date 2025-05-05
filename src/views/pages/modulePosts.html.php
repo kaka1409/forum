@@ -80,11 +80,7 @@
                 
                             <div class="post_thumbnail">
                                 <img 
-                                    src="
-                                        <?=
-                                            $post['thumbnail_url'] == UPLOAD_FOLDER ? ROOT_URL . 'uploads/default.png' : ROOT_URL . htmlspecialchars( $post['thumbnail_url'] );
-                                        ?>
-                                        "
+                                    src="<?= ROOT_URL . htmlspecialchars( $post['thumbnail_url'] ); ?>"
                                     alt=""
                                 >
                             </div>

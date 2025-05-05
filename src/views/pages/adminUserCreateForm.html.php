@@ -1,7 +1,7 @@
 <?= ViewController::useComponent('backButton')?>
 
 <section id="create_user_form">
-    <form action="<?=BASE_URL?>admin/user/create" method="POST">
+    <form action="<?=BASE_URL?>admin/user/create" method="POST" enctype="multipart/form-data">
         <h1 class="title">Create a new user account</h1>
 
         <label for="role">Role: </label>
